@@ -369,59 +369,64 @@ document.addEventListener('DOMContentLoaded', function() {
     // ========== EFECTO DE CONTADOR ESPECTACULAR ==========
     const statNumbers = document.querySelectorAll('.stat-number');
     
-    const animateCounter = (element, target) => {
-        let current = 0;
-        const increment = target / 100;
-        const duration = 2000;
-        const stepTime = duration / 100;
-        
-        const timer = setInterval(() => {
-            current += increment;
-            if (current >= target) {
-                current = target;
-                clearInterval(timer);
-                
-                // Efecto final
-                element.style.transform = 'scale(1.2)';
-                setTimeout(() => {
-                    element.style.transform = 'scale(1)';
-                }, 300);
-            }
-            
-            // Formatear número
-            let displayNumber;
-            if (element.textContent.includes('+')) {
-                displayNumber = `+${Math.floor(current)}`;
-            } else {
-                displayNumber = Math.floor(current);
-            }
-            
-            element.textContent = displayNumber;
-        }, stepTime);
-    };
+    // Actualiza esta parte en tu script.js para el contador de +20
+
+const animateCounter = (element, target) => {
+    let current = 0;
+    const increment = target / 50;
+    const duration = 1500;
+    const stepTime = duration / 50;
     
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const statNumber = entry.target;
-                const text = statNumber.textContent;
-                let target;
-                
-                if (text.includes('+')) {
-                    target = parseInt(text.replace('+', '').split(' ')[0]);
-                } else {
-                    target = parseInt(text);
-                }
-                
-                if (!isNaN(target)) {
-                    statNumber.textContent = text.includes('+') ? '+0' : '0';
-                    animateCounter(statNumber, target);
-                }
-                
-                observer.unobserve(statNumber);
+    const timer = setInterval(() => {
+        current += increment;
+        if (current >= target) {
+            current = target;
+            clearInterval(timer);
+            
+            // Efecto final
+            element.style.transform = 'scale(1.1)';
+            setTimeout(() => {
+                element.style.transform = 'scale(1)';
+            }, 300);
+        }
+        
+        // Formatear número manteniendo el "+"
+        let displayNumber;
+        if (element.textContent.includes('+')) {
+            displayNumber = `+${Math.floor(current)}`;
+        } else {
+            displayNumber = Math.floor(current);
+        }
+        
+        element.textContent = displayNumber;
+    }, stepTime);
+};
+
+// En la parte del observer, actualiza para manejar "+20"
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            const statNumber = entry.target;
+            const text = statNumber.textContent.trim();
+            let target;
+            
+            if (text.includes('+')) {
+                // Manejar formato "+20"
+                target = parseInt(text.replace('+', '').split(' ')[0]);
+                if (isNaN(target)) target = 20; // Fallback
+            } else {
+                target = parseInt(text);
             }
-        });
-    }, { threshold: 0.5, rootMargin: '50px' });
+            
+            if (!isNaN(target) && target > 0) {
+                statNumber.textContent = text.includes('+') ? '+0' : '0';
+                animateCounter(statNumber, target);
+            }
+            
+            observer.unobserve(statNumber);
+        }
+    });
+}, { threshold: 0.5, rootMargin: '50px' });
     
     statNumbers.forEach(stat => {
         observer.observe(stat);
