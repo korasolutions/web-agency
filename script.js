@@ -400,22 +400,22 @@ document.addEventListener('DOMContentLoaded', function() {
     if (projectTypeSelect && resultSpan) {
         // Precios base por tipo de proyecto
         const basePrices = {
-            landing: 1800,
-            corporate: 3500,
-            ecommerce: 6000,
-            custom: 9000,
-            kiosk: 5000
+            landing: 1000,
+            corporate: 2200,
+            ecommerce: 2800,
+            custom: 3500,
+            kiosk: 2800
         };
         
         // Precios de funcionalidades extra
         const featurePrices = {
-            seo: 400,
-            blog: 500,
+            seo: 250,
+            blog: 300,
             multilang: 800,
-            booking: 1200,
+            booking: 500,
             crm: 1500,
             premium: 2000,
-            pagos: 600,
+            pagos: 450,
             app: 3500
         };
         
