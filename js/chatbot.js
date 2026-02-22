@@ -5,6 +5,7 @@
 (function(d, t) {
     'use strict';
     
+    // Crear elemento script
     var v = d.createElement(t), 
         s = d.getElementsByTagName(t)[0];
     
@@ -24,13 +25,51 @@
         }).then(() => {
             console.log('✅ Chatbot de KORA inicializado');
             
-            // Opcional: personalizar mensaje de bienvenida
+            // SOLUCIÓN: Forzar posición fija y eliminar espacio en el DOM
             setTimeout(() => {
-                if (window.voiceflow && window.voiceflow.chat) {
-                    // Puedes enviar un mensaje de inicio personalizado si lo deseas
-                    // window.voiceflow.chat.sendText('Hola');
+                // Buscar todos los elementos del chatbot
+                const chatElements = document.querySelectorAll('.vfrc-widget-container, .vfrc-launcher, .vfrc-chat, .vfrc-widget');
+                
+                chatElements.forEach(element => {
+                    if (element) {
+                        // Hacer que el elemento sea flotante y no ocupe espacio en el DOM
+                        element.style.position = 'fixed';
+                        element.style.bottom = '20px';
+                        element.style.right = '20px';
+                        element.style.left = 'auto';
+                        element.style.top = 'auto';
+                        element.style.zIndex = '999999';
+                        element.style.pointerEvents = 'auto'; // Mantener interactivo
+                        
+                        // Forzar que no afecte el layout
+                        element.style.display = 'block';
+                        element.style.contain = 'layout paint';
+                    }
+                });
+                
+                // SOLUCIÓN ESPECÍFICA: Buscar el contenedor raíz del widget
+                const widgetRoot = document.getElementById('voiceflow-widget') || 
+                                   document.querySelector('[data-testid="widget-container"]') ||
+                                   document.querySelector('.vfrc-widget-container');
+                
+                if (widgetRoot) {
+                    widgetRoot.style.position = 'fixed';
+                    widgetRoot.style.bottom = '20px';
+                    widgetRoot.style.right = '20px';
                 }
-            }, 1000);
+                
+                // Ocultar cualquier elemento fantasma que pueda estar causando el hueco
+                const possibleGhosts = document.querySelectorAll('div[style*="height"], div[style*="margin"]');
+                possibleGhosts.forEach(ghost => {
+                    if (ghost.textContent === '' && ghost.children.length === 0 && 
+                        ghost.clientHeight > 0 && ghost.clientHeight < 100) {
+                        // Posible elemento fantasma del chatbot
+                        ghost.style.display = 'none';
+                    }
+                });
+                
+            }, 1500); // Aumentamos el timeout para asegurar que el widget esté completamente cargado
+            
         }).catch(error => {
             console.error('❌ Error al cargar el chatbot:', error);
         });
@@ -46,44 +85,31 @@
     
 })(document, 'script');
 
-// ========================================
-// FUNCIONES ADICIONALES PARA EL CHATBOT
-// ========================================
-
-// Función para mostrar/ocultar el chatbot manualmente (opcional)
-function toggleChatbot() {
-    if (window.voiceflow && window.voiceflow.chat) {
-        window.voiceflow.chat.toggle();
-    }
-}
-
-// Función para cerrar el chatbot
-function closeChatbot() {
-    if (window.voiceflow && window.voiceflow.chat) {
-        window.voiceflow.chat.close();
-    }
-}
-
-// Función para abrir el chatbot
-function openChatbot() {
-    if (window.voiceflow && window.voiceflow.chat) {
-        window.voiceflow.chat.open();
-    }
-}
-
-// Función para enviar un mensaje específico
-function sendToChatbot(message) {
-    if (window.voiceflow && window.voiceflow.chat) {
-        window.voiceflow.chat.sendText(message);
-    }
-}
-
-// Exportar funciones al ámbito global para poder usarlas desde la consola o eventos HTML
-window.KoraChat = {
-    toggle: toggleChatbot,
-    open: openChatbot,
-    close: closeChatbot,
-    send: sendToChatbot
-};
-
-console.log(' Funciones del chatbot disponibles: window.KoraChat');
+// FUNCIÓN DE EMERGENCIA: Forzar posición fija después de la carga completa
+window.addEventListener('load', function() {
+    setTimeout(function() {
+        // Búsqueda agresiva de elementos del chatbot
+        const allElements = document.querySelectorAll('*');
+        allElements.forEach(el => {
+            const styles = window.getComputedStyle(el);
+            if (styles.position === 'absolute' || styles.position === 'relative') {
+                // Si el elemento tiene clases típicas de Voiceflow
+                if (el.className && (
+                    el.className.includes('vfrc') || 
+                    el.className.includes('voiceflow') || 
+                    el.className.includes('widget')
+                )) {
+                    el.style.position = 'fixed !important';
+                    el.style.bottom = '20px !important';
+                    el.style.right = '20px !important';
+                    el.style.zIndex = '999999 !important';
+                }
+            }
+        });
+        
+        // Eliminar cualquier espacio extra al final del body
+        document.body.style.marginBottom = '0';
+        document.body.style.paddingBottom = '0';
+        
+    }, 2000);
+});
