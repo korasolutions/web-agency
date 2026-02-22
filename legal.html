@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KORA | Información Legal</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Estilos adicionales para que la página legal se vea bien */
+        .legal-page {
+            padding-top: 120px; /* Ajusta según la altura de tu header */
+            padding-bottom: 60px;
+        }
+        .legal-page .container {
+            max-width: 900px;
+        }
+        .legal-document {
+            background-color: var(--bg-elevated);
+            border: 1px solid var(--border-color);
+            border-radius: var(--border-radius);
+            padding: 3rem;
+            margin-bottom: 2rem;
+        }
+        .legal-document h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
+        }
+        .legal-document .last-update {
+            color: var(--text-tertiary);
+            font-size: 0.9rem;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .legal-document h2 {
+            font-size: 1.6rem;
+            margin-top: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+            font-weight: 500;
+        }
+        .legal-document h3 {
+            font-size: 1.2rem;
+            margin-top: 1.8rem;
+            margin-bottom: 0.8rem;
+            color: var(--text-primary);
+            font-weight: 500;
+        }
+        .legal-document p, .legal-document li {
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-bottom: 1rem;
+        }
+        .legal-document ul, .legal-document ol {
+            padding-left: 1.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--text-secondary);
+        }
+        .legal-document strong {
+            color: var(--text-primary);
+        }
+        .legal-document a {
+            color: #ff6b6b;
+            text-decoration: none;
+        }
+        .legal-document a:hover {
+            text-decoration: underline;
+        }
+        .legal-document .table-of-contents {
+            background-color: var(--bg-secondary);
+            padding: 1.5rem;
+            border-radius: var(--border-radius);
+            margin-bottom: 2rem;
+            border: 1px solid var(--border-color);
+        }
+        .legal-document .table-of-contents ul {
+            margin-bottom: 0;
+        }
+        .legal-document .table-of-contents a {
+            color: var(--text-secondary);
+        }
+        .legal-document .table-of-contents a:hover {
+            color: #ff6b6b;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- HEADER (copiado de index.html) -->
+    <header class="header">
+        <div class="header-container">
+            <a href="index.html" class="logo">KORA<span class="logo-dot"></span></a>
+
+            <nav class="nav">
+                <ul class="nav-list">
+                    <li class="nav-item"><a href="index.html" class="nav-link" data-text="Inicio">Inicio</a></li>
+                    <li class="nav-item dropdown">
+                        <a href="sobre-nosotros.html" class="nav-link" data-text="Sobre Nosotros">Sobre Nosotros</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="proyectos.html" class="dropdown-link">Nuestros Proyectos</a></li>
+                            <li><a href="sobre-nosotros.html" class="dropdown-link">Más sobre KORA</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a href="servicios.html" class="nav-link" data-text="Servicios">Servicios</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="servicios.html#diseno" class="dropdown-link">Diseño de Identidad</a></li>
+                            <li><a href="servicios.html#desarrollo" class="dropdown-link">Desarrollo Web</a></li>
+                            <li><a href="servicios.html#ia" class="dropdown-link">Automatizaciones IA</a></li>
+                            <li><a href="servicios.html#kioscos" class="dropdown-link">Kioscos de Autopedido</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item"><a href="proyectos.html" class="nav-link" data-text="Proyectos">Proyectos</a></li>
+                    <li class="nav-item"><a href="index.html#contacto" class="nav-link" data-text="Contacto">Contacto</a></li>
+                </ul>
+            </nav>
+
+            <div class="header-actions">
+                <a href="index.html#contacto" class="btn btn-contact">Contacta</a>
+                <button class="menu-toggle" aria-label="Menú">
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="legal-page">
+        <div class="container">
+            <div class="legal-document">
+                <h1>Información Legal</h1>
+                <p class="last-update">Última actualización: 22 de Febrero de 2026</p>
+
+                <div class="table-of-contents">
+                    <h3>Contenido</h3>
+                    <ul>
+                        <li><a href="#aviso-legal">1. Aviso Legal</a></li>
+                        <li><a href="#privacidad">2. Política de Privacidad</a></li>
+                        <li><a href="#cookies">3. Política de Cookies</a></li>
+                    </ul>
+                </div>
+
+                <!-- AVISO LEGAL -->
+                <section id="aviso-legal">
+                    <h2>1. AVISO LEGAL</h2>
+                    <p>En cumplimiento con el deber de información recogido en el artículo 10 de la Ley 34/2002, de 11 de julio, de Servicios de la Sociedad de la Información y de Comercio Electrónico (LSSICE), a continuación se detallan los datos generales de la entidad titular de este sitio web:</p>
+
+                    <h3>Identificación del Titular</h3>
+                    <ul>
+                        <li><strong>Denominación Social:</strong> KORA SOLUTIONS (Nombre comercial) / [Si tienes una empresa registrada, pon el nombre legal, ej. "KORA Estrategia Digital S.L."].</li>
+                        <li><strong>NIF/CIF:</strong> [Pendiente de registro / Número de identificación fiscal].</li>
+                        <li><strong>Domicilio Social:</strong> Canarias, España. [Si tienes una dirección física, inclúyela aquí].</li>
+                        <li><strong>Correo Electrónico de Contacto:</strong> info@korasolutions.com</li>
+                        <li><strong>Teléfonos de Contacto:</strong> +34 611 48 62 07, +34 689 07 49 45, +34 689 23 76 81</li>
+                    </ul>
+
+                    <h3>Finalidad de la Página Web</h3>
+                    <p>La página web de KORA SOLUTIONS tiene como finalidad principal informar a los usuarios sobre los servicios ofrecidos por la agencia (Diseño de Identidad, Desarrollo Web, Automatizaciones con IA y Kioscos de Autopedido), así como proporcionar una vía de contacto para la solicitud de presupuestos y consultoría estratégica.</p>
+
+                    <h3>Propiedad Intelectual e Industrial</h3>
+                    <p>Todos los derechos de propiedad intelectual e industrial de los contenidos de este sitio web (incluyendo, a título enunciativo pero no limitativo, textos, imágenes, logotipos, diseño gráfico, estructura y base de datos) son titularidad de KORA SOLUTIONS, a menos que se indique lo contrario. Queda expresamente prohibida la reproducción, distribución, comunicación pública o transformación de estos contenidos sin la autorización expresa y por escrito de su titular.</p>
+
+                    <h3>Exclusión de Responsabilidad</h3>
+                    <p>KORA SOLUTIONS no se hace responsable de los daños o perjuicios derivados del uso de los contenidos de su sitio web. Tampoco garantiza la ausencia de virus u otros elementos lesivos que pudieran dañar el sistema informático del usuario. El usuario es el único responsable del uso que haga de los servicios y contenidos del sitio.</p>
+
+                    <h3>Legislación Aplicable y Jurisdicción</h3>
+                    <p>Las presentes condiciones se rigen por la legislación española. Para cualquier controversia que pudiera derivarse del acceso o uso de la web, las partes se someten a los juzgados y tribunales de la provincia de Las Palmas (Canarias), renunciando expresamente a cualquier otro fuero que pudiera corresponderles.</p>
+                </section>
+
+                <!-- POLÍTICA DE PRIVACIDAD -->
+                <section id="privacidad">
+                    <h2>2. POLÍTICA DE PRIVACIDAD</h2>
+                    <p>En KORA SOLUTIONS nos tomamos muy en serio la protección de tus datos personales. Esta política de privacidad tiene como objetivo informarte sobre cómo recopilamos, tratamos y protegemos la información que nos proporcionas a través de nuestro sitio web y en el contexto de nuestra relación comercial.</p>
+
+                    <h3>Responsable del Tratamiento</h3>
+                    <ul>
+                        <li><strong>Identidad:</strong> KORA SOLUTIONS / [Nombre legal de la empresa].</li>
+                        <li><strong>Correo electrónico:</strong> info@korasolutions.com</li>
+                    </ul>
+
+                    <h3>¿Qué datos personales recopilamos?</h3>
+                    <p>Podemos recopilar los siguientes datos personales a través de nuestro formulario de contacto y durante la prestación de servicios:</p>
+                    <ul>
+                        <li><strong>Datos identificativos:</strong> Nombre, apellidos.</li>
+                        <li><strong>Datos de contacto:</strong> Dirección de correo electrónico, teléfono.</li>
+                        <li><strong>Datos de negocio:</strong> Información sobre tu empresa y proyecto que nos facilites en tus comunicaciones.</li>
+                    </ul>
+
+                    <h3>Finalidad y Base Legal del Tratamiento</h3>
+                    <p>Tratamos tus datos personales para las siguientes finalidades:</p>
+                    <ul>
+                        <li><strong>Gestionar la solicitud de información y contacto:</strong> Atender las consultas que nos realizas a través del formulario de contacto. La base legal es el consentimiento que nos otorgas al marcarla casilla de aceptación.</li>
+                        <li><strong>Prestación de servicios y relación contractual:</strong> Gestionar la relación comercial si finalmente decides contratar nuestros servicios. La base legal es la ejecución de un contrato.</li>
+                        <li><strong>Envío de comunicaciones comerciales:</strong> Siempre con tu consentimiento previo, podremos enviarte información sobre nuestros servicios y novedades que puedan ser de tu interés. Podrás revocar este consentimiento en cualquier momento.</li>
+                        <li><strong>Cumplir con obligaciones legales.</strong></li>
+                    </ul>
+
+                    <h3>Plazo de Conservación de los Datos</h3>
+                    <p>Los datos personales serán conservados durante el tiempo necesario para cumplir con la finalidad para la que fueron recogidos. Una vez finalizada la relación, los datos se conservarán debidamente bloqueados durante los plazos legales de prescripción para atender posibles responsabilidades legales. Para el envío de comunicaciones, conservaremos tus datos hasta que solicites la baja.</p>
+
+                    <h3>Destinatarios de los Datos</h3>
+                    <p>No se cederán datos a terceros, salvo obligación legal. Podrían tener acceso a tus datos proveedores de servicios tecnológicos (como nuestro servicio de hosting o email) que actúan como Encargados de Tratamiento, con quienes tenemos formalizados los correspondientes contratos conforme a la normativa.</p>
+
+                    <h3>Tus Derechos</h3>
+                    <p>Tienes derecho a obtener confirmación sobre si estamos tratando tus datos personales. También tienes derecho a acceder a tus datos, solicitar la rectificación de los datos inexactos o, en su caso, solicitar su supresión cuando, entre otros motivos, los datos ya no sean necesarios para los fines que fueron recogidos. En determinadas circunstancias, podrás solicitar la limitación u oponerte al tratamiento de tus datos, en cuyo caso solo los conservaremos para el ejercicio o defensa de reclamaciones.</p>
+                    <p>Para ejercer estos derechos, puedes enviar una solicitud por escrito adjuntando una copia de tu DNI o documento identificativo equivalente a la siguiente dirección de correo electrónico: <strong>info@korasolutions.com</strong>. También tienes derecho a presentar una reclamación ante la Agencia Española de Protección de Datos (AEPD).</p>
+                </section>
+
+                <!-- POLÍTICA DE COOKIES -->
+                <section id="cookies">
+                    <h2>3. POLÍTICA DE COOKIES</h2>
+                    <p>En KORA SOLUTIONS utilizamos cookies propias y de terceros para mejorar tu experiencia de navegación en nuestro sitio web, así como para analizar el tráfico y el comportamiento de los usuarios. Esta política explica qué son las cookies, qué tipos utilizamos y cómo puedes gestionarlas.</p>
+
+                    <h3>¿Qué son las cookies?</h3>
+                    <p>Las cookies son pequeños archivos de texto que se almacenan en tu dispositivo (ordenador, tablet, móvil) cuando visitas un sitio web. Su función principal es reconocerte y recordar información sobre tu visita, como tu idioma preferido o las opciones de configuración, para facilitar tus próximas visitas y hacer que el sitio te sea más útil.</p>
+
+                    <h3>Tipos de cookies que utilizamos</h3>
+                    <p>Clasificamos las cookies según su finalidad:</p>
+                    <ul>
+                        <li>
+                            <strong>Cookies Técnicas (Necesarias):</strong> Son aquellas esenciales para el funcionamiento básico del sitio web y la navegación. Permiten, por ejemplo, la identificación de sesión o el acceso a áreas seguras. Sin estas cookies, el sitio web no puede funcionar correctamente. No requieren tu consentimiento.
+                            <br><em>Ejemplos: cookies de sesión, de equilibrio de carga.</em>
+                        </li>
+                        <li>
+                            <strong>Cookies de Análisis o Medición:</strong> Son aquellas que, bien tratadas por nosotros o por terceros, nos permiten cuantificar el número de visitantes y analizar estadísticamente el uso que hacen los usuarios de nuestro sitio web. Esto nos ayuda a mejorar la oferta de servicios que ofrecemos.
+                            <br><em>Ejemplo: Google Analytics (_ga, _gid, _gat).</em>
+                        </li>
+                        <li>
+                            <strong>Cookies de Preferencias o Personalización:</strong> Permiten recordar información para que el usuario acceda al servicio con ciertas características que pueden diferenciar su experiencia de la de otros usuarios, como el idioma o la moneda.
+                            <br><em>Ejemplo: cookies de idioma.</em>
+                        </li>
+                    </ul>
+                    <p><em>Nota: Actualmente, este sitio web solo utiliza cookies técnicas y de análisis. No utilizamos cookies de publicidad comportamental ni de remarketing.</em></p>
+
+                    <h3>Cookies de Terceros</h3>
+                    <p>En nuestro sitio web, utilizamos servicios de terceros para medir y analizar el tráfico. Los proveedores de estos servicios pueden establecer cookies en tu dispositivo. A continuación, se listan los terceros con los que trabajamos y un enlace a sus respectivas políticas de cookies para que puedas obtener más información:</p>
+                    <ul>
+                        <li><strong>Google Analytics:</strong> Gestionado por Google, Inc. Puedes consultar su política de cookies en <a href="https://policies.google.com/privacy?hl=es" target="_blank">Política de Privacidad de Google</a> y el <a href="https://tools.google.com/dlpage/gaoptout" target="_blank">complemento de inhabilitación para navegadores</a>.</li>
+                    </ul>
+
+                    <h3>Gestión y Configuración de las Cookies</h3>
+                    <p>Al acceder a nuestro sitio web por primera vez, se te muestra un banner de cookies que te permite aceptar o configurar tus preferencias, a excepción de las cookies técnicas que son necesarias para la navegación.</p>
+                    <p>Puedes permitir, bloquear o eliminar las cookies instaladas en tu dispositivo mediante la configuración de las opciones de tu navegador. A continuación, te facilitamos enlaces con información sobre cómo gestionar las cookies en los navegadores más comunes:</p>
+                    <ul>
+                        <li><a href="https://support.google.com/chrome/answer/95647?hl=es" target="_blank">Google Chrome</a></li>
+                        <li><a href="https://support.mozilla.org/es/kb/habilitar-y-deshabilitar-cookies-sitios-web-rastrear-preferencias" target="_blank">Mozilla Firefox</a></li>
+                        <li><a href="https://support.apple.com/es-es/guide/safari/sfri11471/mac" target="_blank">Safari (Apple)</a></li>
+                        <li><a href="https://support.microsoft.com/es-es/windows/eliminar-y-administrar-cookies-168dab11-0753-043d-7c16-ede5947fc64d" target="_blank">Microsoft Edge</a></li>
+                    </ul>
+                    <p>Ten en cuenta que, si bloqueas o no aceptas la instalación de cookies, es posible que ciertos servicios o funcionalidades del sitio web no estén disponibles o no funcionen correctamente.</p>
+                </section>
+            </div>
+        </div>
+    </main>
+
+    <!-- FOOTER (copiado de index.html) -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <a href="index.html" class="logo">KORA<span class="logo-dot"></span></a>
+                    <p class="footer-description">
+                        Creamos productos digitales únicos que definen el punto distintivo de cada negocio.
+                    </p>
+                </div>
+
+                <div class="footer-links">
+                    <h3 class="footer-title">NAVEGACIÓN</h3>
+                    <ul>
+                        <li><a href="index.html">Inicio</a></li>
+                        <li><a href="sobre-nosotros.html">Sobre Nosotros</a></li>
+                        <li><a href="servicios.html">Servicios</a></li>
+                        <li><a href="proyectos.html">Proyectos</a></li>
+                        <li><a href="legal.html">Legal</a></li>
+                        <li><a href="index.html#contacto">Contacto</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-cta">
+                    <h3 class="footer-title">¿LISTO PARA COMENZAR?</h3>
+                    <p>Tu proyecto digital único está a un mensaje de distancia.</p>
+                    <a href="index.html#contacto" class="btn btn-secondary">Solicitar consulta</a>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; <span id="currentYear"></span> KORA Solutions. Todos los derechos reservados.</p>
+                <div class="footer-legal">
+                    <a href="legal.html#aviso-legal">Aviso legal</a>
+                    <a href="legal.html#privacidad">Política de privacidad</a>
+                    <a href="legal.html#cookies">Política de cookies</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        // Asegurar que el año se actualiza también en esta página
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+    </script>
+</body>
+</html>
