@@ -1,131 +1,167 @@
-<!DOCTYPE html><html lang="es"> <head> <meta charset="UTF-8"> <meta name="viewport" content="width=device-width, initial-scale=1.0"> <title>KORA | Sobre Nosotros</title> <link rel="preconnect" href="https://fonts.googleapis.com"> <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"> <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"> <link rel="stylesheet" href="style.css"> </head> <body>
+<!DOCTYPE html>
+<html lang="es">
 
-<!-- HEADER -->
-<header class="header">
-    <div class="header-container">
-        <a href="index.html" class="logo">KORA<span class="logo-dot"></span></a>
-        
-        <nav class="nav">
-            <ul class="nav-list">
-                <li class="nav-item"><a href="index.html" class="nav-link" data-text="Inicio">Inicio</a></li>
-                <li class="nav-item dropdown">
-                    <a href="sobre-nosotros.html" class="nav-link" data-text="Sobre Nosotros">Sobre Nosotros</a>
-                    <ul class="dropdown-menu">
-                        <li><a href="proyectos.html" class="dropdown-link">Nuestros Proyectos</a></li>
-                        <li><a href="sobre-nosotros.html" class="dropdown-link">Más sobre KORA</a></li>
-                    </ul>
-                </li>
-                <li class="nav-item dropdown">
-                    <a href="servicios.html" class="nav-link" data-text="Servicios">Servicios</a>
-                    <ul class="dropdown-menu">
-                        <li><a href="servicios.html#diseno" class="dropdown-link">Diseño de Identidad</a></li>
-                        <li><a href="servicios.html#desarrollo" class="dropdown-link">Desarrollo Web</a></li>
-                        <li><a href="servicios.html#ia" class="dropdown-link">Automatizaciones IA</a></li>
-                        <li><a href="servicios.html#kioscos" class="dropdown-link">Kioscos de Autopedido</a></li>
-                    </ul>
-                </li>
-                <li class="nav-item"><a href="proyectos.html" class="nav-link" data-text="Proyectos">Proyectos</a></li>
-                <li class="nav-item"><a href="index.html#contacto" class="nav-link" data-text="Contacto">Contacto</a></li>
-            </ul>
-        </nav>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KORA | Sobre Nosotros</title>
+    <link rel="shortcut icon" href="assets/favicon.ico" type="image/x-icon">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
 
-        <div class="header-actions">
-            <a href="index.html#contacto" class="btn btn-contact">Contacta</a>
-            <button class="menu-toggle" aria-label="Menú">
-                <span></span>
-                <span></span>
-            </button>
-        </div>
-    </div>
-</header>
+<body>
+    <!-- HEADER -->
+    <header class="header">
+        <div class="header-container">
+            <a href="index.html" class="logo">KORA<span class="logo-dot"></span></a>
 
-<main>
-    <section class="page-hero" style="padding: 8rem 2rem 4rem; text-align: center;">
-        <div class="container">
-            <h1 class="page-title" style="font-size: 3.5rem; margin-bottom: 1rem;">Más sobre <span class="highlight">KORA</span></h1>
-            <p class="page-subtitle" style="font-size: 1.2rem; color: var(--text-secondary); max-width: 700px; margin: 0 auto;">Descubre la historia, la filosofía y la gente que hay detrás de nuestros proyectos.</p>
-        </div>
-    </section>
-
-    <!-- TRES TARJETAS MINIMALISTAS SOBRE KORA -->
-    <section style="padding: 40px 0 80px;">
-        <div class="container">
-            <div class="story-cards" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px;">
-                
-                <!-- Tarjeta 1: Cómo surge la agencia -->
-                <div class="story-card" style="background: var(--bg-elevated); border-radius: var(--border-radius); padding: 40px 30px; border: 1px solid var(--border-color); text-align: center; transition: transform 0.3s ease;">
-                    <div style="font-size: 3rem; margin-bottom: 20px; color: #ff6b6b;">🚀</div>
-                    <h3 style="font-size: 1.8rem; margin-bottom: 15px; color: var(--text-primary);">Nuestro Origen</h3>
-                    <p style="color: var(--text-secondary); line-height: 1.7;">KORA nació en 2026 de la mano de tres amigos canarios con una visión clara: crear una agencia que no solo ejecutara, sino que pensara. Cansados de las soluciones genéricas, decidimos fundar un espacio donde la estrategia y la artesanía digital se dieran la mano. Lo que empezó como un pequeño estudio en una oficina compartida, hoy es un equipo que colabora con marcas de todo el mundo.</p>
-                </div>
-
-                <!-- Tarjeta 2: Quiénes somos -->
-                <div class="story-card" style="background: var(--bg-elevated); border-radius: var(--border-radius); padding: 40px 30px; border: 1px solid var(--border-color); text-align: center; transition: transform 0.3s ease;">
-                    <div style="font-size: 3rem; margin-bottom: 20px; color: #ff6b6b;">👥</div>
-                    <h3 style="font-size: 1.8rem; margin-bottom: 15px; color: var(--text-primary);">Quiénes Somos</h3>
-                    <p style="color: var(--text-secondary); line-height: 1.7;">Somos Iriem, Fernando y Fabio, un equipo multidisciplinar apasionado por la tecnología y el diseño. Creemos en el poder de las ideas bien ejecutadas. Nos gusta entender los negocios de nuestros clientes como si fueran nuestros, porque sabemos que el éxito de ellos es nuestro éxito. Nos define la cercanía, la transparencia y un perfeccionismo que no descansa hasta que el proyecto brilla.</p>
-                </div>
-
-                <!-- Tarjeta 3: Nuestro Propósito -->
-                <div class="story-card" style="background: var(--bg-elevated); border-radius: var(--border-radius); padding: 40px 30px; border: 1px solid var(--border-color); text-align: center; transition: transform 0.3s ease;">
-                    <div style="font-size: 3rem; margin-bottom: 20px; color: #ff6b6b;">🎯</div>
-                    <h3 style="font-size: 1.8rem; margin-bottom: 15px; color: var(--text-primary);">Nuestro Propósito</h3>
-                    <p style="color: var(--text-secondary); line-height: 1.7;">Nuestro propósito es simple: humanizar la tecnología. En un mundo cada vez más automatizado, queremos que las herramientas digitales sirvan para conectar marcas con personas de forma auténtica. No buscamos hacer "páginas web", buscamos construir plataformas que cuenten historias, resuelvan problemas y generen crecimiento real. Queremos ser ese socio tecnológico que entiende tu negocio y lo impulsa al siguiente nivel.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Llamada a la acción (opcional) -->
-    <section style="padding: 60px 0; text-align: center; background-color: var(--bg-secondary);">
-        <div class="container">
-            <h2 style="font-size: 2rem; margin-bottom: 20px;">¿Quieres formar parte de nuestra historia?</h2>
-            <p style="color: var(--text-secondary); margin-bottom: 30px;">Hablemos de tu próximo proyecto.</p>
-            <a href="index.html#contacto" class="btn btn-primary">Contacta con nosotros</a>
-        </div>
-    </section>
-</main>
-
-<!-- FOOTER -->
-<footer class="footer">
-    <div class="container">
-        <div class="footer-content">
-            <div class="footer-brand">
-                <a href="index.html" class="logo">KORA<span class="logo-dot"></span></a>
-                <p class="footer-description">
-                    Creamos productos digitales únicos que definen el punto distintivo de cada negocio.
-                </p>
-            </div>
-            
-            <div class="footer-links">
-                <h3 class="footer-title">NAVEGACIÓN</h3>
-                <ul>
-                    <li><a href="index.html">Inicio</a></li>
-                    <li><a href="sobre-nosotros.html">Sobre Nosotros</a></li>
-                    <li><a href="servicios.html">Servicios</a></li>
-                    <li><a href="proyectos.html">Proyectos</a></li>
-                    <li><a href="index.html#legal">Legal</a></li>
-                    <li><a href="index.html#contacto">Contacto</a></li>
+            <nav class="nav">
+                <ul class="nav-list">
+                    <li class="nav-item"><a href="index.html" class="nav-link" data-text="Inicio">Inicio</a></li>
+                    <li class="nav-item"><a href="index.html#sobre-nosotros" class="nav-link"
+                            data-text="Sobre Nosotros">Sobre Nosotros</a></li>
+                    <li class="nav-item dropdown">
+                        <a href="servicios.html" class="nav-link" data-text="Servicios">Servicios</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="servicios.html#diseno" class="dropdown-link">Diseño de Identidad</a></li>
+                            <li><a href="servicios.html#desarrollo" class="dropdown-link">Desarrollo Web</a></li>
+                            <li><a href="servicios.html#ia" class="dropdown-link">Automatizaciones IA</a></li>
+                            <li><a href="servicios.html#kioscos" class="dropdown-link">Kioscos de Autopedido</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item"><a href="proyectos.html" class="nav-link" data-text="Proyectos">Proyectos</a>
+                    </li>
+                    <li class="nav-item"><a href="index.html#contacto" class="nav-link"
+                            data-text="Contacto">Contacto</a></li>
                 </ul>
-            </div>
-            
-            <div class="footer-cta">
-                <h3 class="footer-title">¿LISTO PARA COMENZAR?</h3>
-                <p>Tu proyecto digital único está a un mensaje de distancia.</p>
-                <a href="index.html#contacto" class="btn btn-secondary">Solicitar consulta</a>
-            </div>
-        </div>
-        
-        <div class="footer-bottom">
-            <p>&copy; <span id="currentYear"></span> KORA Solutions. Todos los derechos reservados.</p>
-            <div class="footer-legal">
-                <a href="#">Aviso legal</a>
-                <a href="#">Política de privacidad</a>
-                <a href="#">Política de cookies</a>
-            </div>
-        </div>
-    </div>
-</footer>
+            </nav>
 
-<script src="script.js"></script>
-</body> </html>
+            <div class="header-actions">
+                <a href="index.html#contacto" class="btn btn-contact">Contacta</a>
+                <button class="menu-toggle" aria-label="Menú">
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="page-hero" style="padding: 8rem 2rem 4rem; text-align: center;">
+            <div class="container">
+                <h1 class="page-title" style="font-size: 3.5rem; margin-bottom: 1rem;">Más sobre <span
+                        class="highlight">KORA</span></h1>
+                <p class="page-subtitle"
+                    style="font-size: 1.2rem; color: var(--text-secondary); max-width: 700px; margin: 0 auto;">Descubre
+                    la historia, la filosofía y la gente que hay detrás de nuestros proyectos.</p>
+            </div>
+        </section>
+
+        <!-- TRES TARJETAS MINIMALISTAS SOBRE KORA -->
+        <section style="padding: 40px 0 80px;">
+            <div class="container">
+                <div class="story-cards" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px;">
+
+                    <!-- Tarjeta 1: Cómo surge la agencia -->
+                    <div class="story-card"
+                        style="background: var(--bg-elevated); border-radius: var(--border-radius); padding: 40px 30px; border: 1px solid var(--border-color); text-align: center; transition: transform 0.3s ease;">
+                        <div style="font-size: 3rem; margin-bottom: 20px; color: #ff6b6b;">🚀</div>
+                        <h3 style="font-size: 1.8rem; margin-bottom: 15px; color: var(--text-primary);">Nuestro Origen
+                        </h3>
+                        <p style="color: var(--text-secondary); line-height: 1.7;">KORA nació en 2026 de la mano de tres
+                            amigos canarios con una visión clara: crear una agencia que no solo ejecutara, sino que
+                            pensara. Cansados de las soluciones genéricas, decidimos fundar un espacio donde la
+                            estrategia y la artesanía digital se dieran la mano. Lo que empezó como un pequeño estudio
+                            en una oficina compartida, hoy es un equipo que colabora con marcas de todo el mundo.</p>
+                    </div>
+
+                    <!-- Tarjeta 2: Quiénes somos -->
+                    <div class="story-card"
+                        style="background: var(--bg-elevated); border-radius: var(--border-radius); padding: 40px 30px; border: 1px solid var(--border-color); text-align: center; transition: transform 0.3s ease;">
+                        <div style="font-size: 3rem; margin-bottom: 20px; color: #ff6b6b;">👥</div>
+                        <h3 style="font-size: 1.8rem; margin-bottom: 15px; color: var(--text-primary);">Quiénes Somos
+                        </h3>
+                        <p style="color: var(--text-secondary); line-height: 1.7;">Somos Iriem, Fernando y Fabio, un
+                            equipo multidisciplinar apasionado por la tecnología y el diseño. Creemos en el poder de las
+                            ideas bien ejecutadas. Nos gusta entender los negocios de nuestros clientes como si fueran
+                            nuestros, porque sabemos que el éxito de ellos es nuestro éxito. Nos define la cercanía, la
+                            transparencia y un perfeccionismo que no descansa hasta que el proyecto brilla.</p>
+                    </div>
+
+                    <!-- Tarjeta 3: Nuestro Propósito -->
+                    <div class="story-card"
+                        style="background: var(--bg-elevated); border-radius: var(--border-radius); padding: 40px 30px; border: 1px solid var(--border-color); text-align: center; transition: transform 0.3s ease;">
+                        <div style="font-size: 3rem; margin-bottom: 20px; color: #ff6b6b;">🎯</div>
+                        <h3 style="font-size: 1.8rem; margin-bottom: 15px; color: var(--text-primary);">Nuestro
+                            Propósito</h3>
+                        <p style="color: var(--text-secondary); line-height: 1.7;">Nuestro propósito es simple:
+                            humanizar la tecnología. En un mundo cada vez más automatizado, queremos que las
+                            herramientas digitales sirvan para conectar marcas con personas de forma auténtica. No
+                            buscamos hacer "páginas web", buscamos construir plataformas que cuenten historias,
+                            resuelvan problemas y generen crecimiento real. Queremos ser ese socio tecnológico que
+                            entiende tu negocio y lo impulsa al siguiente nivel.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Llamada a la acción (opcional) -->
+        <section style="padding: 60px 0; text-align: center; background-color: var(--bg-secondary);">
+            <div class="container">
+                <h2 style="font-size: 2rem; margin-bottom: 20px;">¿Quieres formar parte de nuestra historia?</h2>
+                <p style="color: var(--text-secondary); margin-bottom: 30px;">Hablemos de tu próximo proyecto.</p>
+                <a href="index.html#contacto" class="btn btn-primary">Contacta con nosotros</a>
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <a href="index.html" class="logo">KORA<span class="logo-dot"></span></a>
+                    <p class="footer-description">
+                        Creamos productos digitales únicos que definen el punto distintivo de cada negocio.
+                    </p>
+                </div>
+
+                <div class="footer-links">
+                    <h3 class="footer-title">NAVEGACIÓN</h3>
+                    <ul>
+                        <li><a href="index.html">Inicio</a></li>
+                        <li><a href="sobre-nosotros.html">Sobre Nosotros</a></li>
+                        <li><a href="servicios.html">Servicios</a></li>
+                        <li><a href="proyectos.html">Proyectos</a></li>
+                        <li><a href="index.html#legal">Legal</a></li>
+                        <li><a href="index.html#contacto">Contacto</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-cta">
+                    <h3 class="footer-title">¿LISTO PARA COMENZAR?</h3>
+                    <p>Tu proyecto digital único está a un mensaje de distancia.</p>
+                    <a href="index.html#contacto" class="btn btn-secondary">Solicitar consulta</a>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; <span id="currentYear"></span> KORA Solutions. Todos los derechos reservados.</p>
+                <div class="footer-legal">
+                    <a href="#">Aviso legal</a>
+                    <a href="#">Política de privacidad</a>
+                    <a href="#">Política de cookies</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
