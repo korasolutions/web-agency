@@ -336,6 +336,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         const spans = menuToggle.querySelectorAll('span');
                         spans[0].style.transform = 'none';
                         spans[1].style.transform = 'none';
+                        document.body.style.overflow = '';
                     }
                 }
             }
