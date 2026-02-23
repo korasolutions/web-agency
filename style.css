@@ -196,7 +196,7 @@
     width: 100%;
     height: 1px;
     background: linear-gradient(90deg, transparent, var(--text-primary), var(--accent-color), transparent);
-    animation: scanLine 3s linear infinite;
+    animation: scanLine 4.5s linear infinite;
 }
 
 @keyframes scanLine {
@@ -883,6 +883,22 @@
     background-color: var(--bg-secondary);
 }
 
+.calculator::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--text-primary), var(--accent-color), transparent);
+    animation: scanLine 4.5s linear infinite;
+}
+
+@keyframes scanLine {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+}
+
 .calculator-container {
     max-width: 800px;
     margin: 0 auto;
@@ -1093,7 +1109,6 @@
     opacity: 1;
 }
 
-/* SECCIÓN CONTACTO CON FORMULARIO REDISEÑADO */
 .contact {
     background-color: var(--bg-primary);
 }
@@ -1214,8 +1229,25 @@
 }
 
 /* FORMULARIO DE CONTACTO REDISEÑADO */
+.contact.contact-hero {
+  background-color: transparent;
+  position: relative;
+  overflow: hidden;
+}
+
+.contact.contact-hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 30% 20%, rgba(58, 90, 120, 0.14) 0%, transparent 50%),
+    radial-gradient(circle at 70% 80%, rgba(255, 107, 107, 0.03) 0%, transparent 50%);
+  z-index: -1;
+  animation: heroBackground 20s infinite alternate;
+}
+
 .contact-form-container {
-    background: linear-gradient(135deg, rgba(30, 30, 30, 0.8), rgba(18, 18, 18, 0.9));
+    background: linear-gradient(135deg, rgba(30, 30, 30, 0.95), rgba(18, 18, 18, 0.95));
     padding: 40px;
     border-radius: 24px;
     border: 1px solid var(--border-light);
@@ -1294,12 +1326,12 @@
     align-items: center;
     justify-content: center;
     gap: 10px;
-    box-shadow: 0 10px 20px rgba(255,107,107,0.3);
+    box-shadow: 0 10px 10px rgba(255,107,107,0.15);
 }
 
 .btn-submit:hover {
     transform: translateY(-2px);
-    box-shadow: 0 15px 30px rgba(255,107,107,0.5);
+    box-shadow: 0 15px 15px rgba(255,107,107,0.15);
     background: linear-gradient(135deg, #ff8a8a, #ff9f9f);
 }
 
