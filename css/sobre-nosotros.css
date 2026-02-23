@@ -1,3 +1,90 @@
 /* ======================================================
    ESTILOS PARA sobre-nosotros.html
    ====================================================== */
+
+/* Hero de página */
+.page-hero {
+   padding: 8rem 2rem 4rem;
+   text-align: center;
+}
+
+.page-title {
+   font-size: 3.5rem;
+   margin-bottom: 1rem;
+}
+
+.page-subtitle {
+   font-size: 1.2rem;
+   color: var(--text-secondary);
+   max-width: 700px;
+   margin: 0 auto;
+}
+
+/* Sección tarjetas historia */
+.story-section {
+   padding: 40px 0 80px;
+}
+
+.story-cards {
+   display: grid;
+   grid-template-columns: repeat(3, 1fr);
+   gap: 30px;
+}
+
+.story-card {
+   background: var(--bg-elevated);
+   border-radius: var(--border-radius);
+   padding: 40px 30px;
+   border: 1px solid var(--border-color);
+   text-align: center;
+   transition: transform 0.3s ease;
+}
+
+.story-card:hover {
+   transform: translateY(-6px);
+}
+
+.story-emoji {
+   font-size: 3rem;
+   margin-bottom: 20px;
+   color: #ff6b6b;
+}
+
+.story-card h3 {
+   font-size: 1.8rem;
+   margin-bottom: 15px;
+   color: var(--text-primary);
+}
+
+.story-card p {
+   color: var(--text-secondary);
+   line-height: 1.7;
+}
+
+/* CTA inferior */
+.about-cta {
+   padding: 60px 0;
+   text-align: center;
+   background-color: var(--bg-secondary);
+}
+
+.about-cta h2 {
+   font-size: 2rem;
+   margin-bottom: 20px;
+}
+
+.about-cta p {
+   color: var(--text-secondary);
+   margin-bottom: 30px;
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+   .story-cards {
+      grid-template-columns: 1fr !important;
+   }
+
+   .page-title {
+      font-size: 2.6rem;
+   }
+}

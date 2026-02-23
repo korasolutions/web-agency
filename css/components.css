@@ -330,6 +330,60 @@ footer .logo {
     width: 100%;
 }
 
+/* ======================================================
+   BOTONES REUTILIZABLES
+   ====================================================== */
+.btn-primary {
+    display: inline-block;
+    background-color: var(--text-primary);
+    color: var(--bg-primary);
+    text-decoration: none;
+    padding: 1rem 2rem;
+    border-radius: 40px;
+    font-weight: 500;
+    text-align: center;
+    transition: var(--transition-smooth);
+    border: none;
+    font-size: 1rem;
+    letter-spacing: 0.02em;
+    cursor: pointer;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+}
+
+.btn-primary:hover {
+    background-color: transparent;
+    color: var(--text-primary);
+    box-shadow: inset 0 0 0 1px var(--text-primary), 0 10px 20px rgba(0,0,0,0.3);
+    transform: translateY(-2px);
+}
+
+.btn-block {
+    display: block;
+    width: 100%;
+}
+
+.btn-large {
+    padding: 1rem 2rem;
+    font-size: 1rem;
+}
+
+.btn-secondary {
+    display: inline-block;
+    background: transparent;
+    color: var(--text-primary);
+    border: 1px solid var(--border-color);
+    padding: 1rem 2rem;
+    border-radius: 40px;
+    text-decoration: none;
+    transition: var(--transition-smooth);
+}
+
+.btn-secondary:hover {
+    border-color: var(--text-primary);
+    background-color: var(--accent-glow);
+    transform: translateY(-2px);
+}
+
 
 /* ======================================================
    RESPONSIVE
