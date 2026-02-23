@@ -199,17 +199,15 @@ document.addEventListener('DOMContentLoaded', function() {
     const contactForm = document.getElementById('contactForm');
 
     if (contactForm) {
-        const formInputs = contactForm.querySelectorAll('input, textarea');
+        const formInputs = contactForm.querySelectorAll('input:not([type="checkbox"]), textarea');
 
         // Efecto al enfocar inputs
         formInputs.forEach(input => {
             input.addEventListener('focus', function() {
-                this.parentElement.style.transform = 'translateZ(10px)';
                 this.style.boxShadow = '0 0 20px rgba(58, 90, 120, 0.3)';
             });
 
             input.addEventListener('blur', function() {
-                this.parentElement.style.transform = 'translateZ(0)';
                 this.style.boxShadow = '';
             });
         });

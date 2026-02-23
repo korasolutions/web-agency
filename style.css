@@ -935,7 +935,7 @@
 }
 
 .form-group {
-    margin-bottom: 2.5rem;
+    margin-bottom: 20px;
 }
 
 .form-group label {
@@ -1324,6 +1324,7 @@
 .contact-form .checkbox label {
     color: var(--text-secondary);
     font-size: 0.9rem;
+    cursor: pointer;
 }
 
 .btn-submit {
