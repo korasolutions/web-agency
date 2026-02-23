@@ -8,32 +8,46 @@
 }
 
 :root {
+    /* ---- Colores de fondo ---- */
     --bg-primary: #0b0b0b;
     --bg-secondary: #111111;
     --bg-elevated: #1a1a1a;
-    --text-primary: #ffffff;
+    --bg-light: #121212;
+    --bg-lighter: #1e1e1e;
+
+    /* ---- Colores de texto ---- */
+    --text-primary: #ffffff; 
     --text-secondary: #a0a0a0;
-    --text-tertiary: #6c6c6c;
+    --text-tertiary: #6c6c6c; 
+    --text-light: #b0b0b0; 
+    --text-lighter: #888888; 
+
+    /* ---- Colores de acento ---- */
     --accent: #ffffff;
+    --accent-color: #ff8383;
     --accent-glow: rgba(255, 255, 255, 0.08);
-    --border-color: #222222;
-    --border-light: #333333;
-    --transition-smooth: all 0.3s ease;
-    --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+
     --primary-color: #783a3a;
     --primary-light: #884a4a;
     --primary-dark: #682a2a;
-    --accent-color: #ff8383;
-    --bg-light: #121212;
-    --bg-lighter: #1e1e1e;
-    --text-light: #b0b0b0;
-    --text-lighter: #888888;
-    --shadow-color: rgba(0, 0, 0, 0.7);
+
+    /* ---- Bordes y sombras ---- */
+    --border-color: #222222;  
+    --border-light: #333333;  
+    --shadow-color: rgba(0, 0, 0, 0.7); 
     --shadow-lg: 0 8px 16px var(--shadow-color);
     --glow: 0 0 15px rgba(120, 58, 58, 0.5);
-    --border-radius: 12px;
+
+    /* ---- Tipografía ---- */
+    --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; 
+
+    /* ---- Espaciado y layout ---- */
+    --border-radius: 12px; 
     --container-width: 1200px;
-    --section-spacing: 80px;
+    --section-spacing: 80px; 
+
+    /* ---- Transiciones ---- */
+    --transition-smooth: all 0.3s ease; 
 }
 
 html {
