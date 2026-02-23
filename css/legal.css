@@ -1,3 +1,106 @@
 /* ======================================================
    ESTILOS PARA legal.html
    ====================================================== */
+.legal-page {
+   padding-top: 120px;
+   padding-bottom: 60px;
+}
+
+.legal-page .container {
+   max-width: 900px;
+}
+
+.legal-document {
+   background-color: var(--bg-elevated);
+   border: 1px solid var(--border-color);
+   border-radius: var(--border-radius);
+   padding: 3rem;
+   margin-bottom: 2rem;
+}
+
+.legal-document h1 {
+   font-size: 2.5rem;
+   margin-bottom: 0.5rem;
+   color: var(--text-primary);
+}
+
+.legal-document .last-update {
+   color: var(--text-tertiary);
+   font-size: 0.9rem;
+   margin-bottom: 2rem;
+   padding-bottom: 1rem;
+   border-bottom: 1px solid var(--border-color);
+}
+
+.legal-document h2 {
+   font-size: 1.6rem;
+   margin-top: 2.5rem;
+   margin-bottom: 1rem;
+   color: var(--text-primary);
+   font-weight: 500;
+}
+
+.legal-document h3 {
+   font-size: 1.2rem;
+   margin-top: 1.8rem;
+   margin-bottom: 0.8rem;
+   color: var(--text-primary);
+   font-weight: 500;
+}
+
+.legal-document p,
+.legal-document li {
+   color: var(--text-secondary);
+   line-height: 1.7;
+   margin-bottom: 1rem;
+}
+
+.legal-document ul,
+.legal-document ol {
+   padding-left: 1.5rem;
+   margin-bottom: 1.5rem;
+   color: var(--text-secondary);
+}
+
+.legal-document strong {
+   color: var(--text-primary);
+}
+
+.legal-document a {
+   color: #ff6b6b;
+   text-decoration: none;
+}
+
+.legal-document a:hover {
+   text-decoration: underline;
+}
+
+.legal-document .table-of-contents {
+   background-color: var(--bg-secondary);
+   padding: 1.5rem;
+   border-radius: var(--border-radius);
+   margin-bottom: 2rem;
+   border: 1px solid var(--border-color);
+}
+
+.legal-document .table-of-contents ul {
+   margin-bottom: 0;
+}
+
+.legal-document .table-of-contents a {
+   color: var(--text-secondary);
+}
+
+.legal-document .table-of-contents a:hover {
+   color: #ff6b6b;
+}
+
+.legal-document section {
+   padding: 0;
+}
+
+.contenido {
+   display: flex;
+   flex-direction: column;
+   gap: 60px;
+}
