@@ -1146,9 +1146,11 @@
 }
 
 .contact-item:hover {
+    transform: translateY(-3px) translateZ(7px);
     border-color: var(--text-primary);
-    transform: translateX(5px) translateZ(5px);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+    box-shadow: 
+        0 20px 40px rgba(0,0,0,0.6),
+        0 0 30px rgba(255,255,255,0.08);
 }
 
 .contact-item i {
@@ -1175,7 +1177,7 @@
 }
 
 .contact-item:hover i {
-    transform: rotateY(180deg) scale(1.1);
+    transform: rotateY(180deg);
 }
 
 .contact-item h4 {
@@ -1195,8 +1197,20 @@
     padding: 30px;
     background: rgba(30, 30, 30, 0.5);
     border-radius: var(--border-radius);
-    border: 1px solid var(--border-color);
     backdrop-filter: blur(10px);
+    transition: 
+        transform 0.6s cubic-bezier(0.22, 1, 0.36, 1),
+        box-shadow 0.6s ease,
+        border-color 0.6s ease;
+    border: 1px solid transparent;
+}
+
+.social-contact:hover {
+    transform: translateY(-3px) translateZ(7px);
+    border-color: var(--text-primary);
+    box-shadow: 
+        0 20px 40px rgba(0,0,0,0.6),
+        0 0 30px rgba(255,255,255,0.08);
 }
 
 .social-contact p {
@@ -1219,13 +1233,15 @@
     justify-content: center;
     color: var(--text-secondary);
     text-decoration: none;
-    transition: var(--transition-smooth);
+    transition: 
+        transform 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+        color 0.4s ease
 }
 
 .social-links a:hover {
-    background: rgba(255,255,255,0.1);
+    background: rgba(255,255,255,0.2);
+    transform: translateY(-4px);
     color: var(--text-primary);
-    transform: translateY(-3px);
 }
 
 /* FORMULARIO DE CONTACTO REDISEÑADO */
