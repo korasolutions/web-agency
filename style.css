@@ -976,21 +976,19 @@
 }
 
 .checkbox-label {
-    display: flex;
+    display: inline-flex;
     align-items: center;
     gap: 0.5rem;
-    color: var(--text-secondary);
-    font-size: 0.95rem;
-    cursor: pointer;
+    line-height: 1.5;
 }
 
 .checkbox-label input[type="checkbox"] {
+    margin: 0;
     width: 18px;
     height: 18px;
-    accent-color: var(--text-primary);
-    background-color: transparent;
-    border: 1px solid var(--border-color);
-    border-radius: 4px;
+    flex: 0 0 auto;
+    vertical-align: middle;
+    position: static;
 }
 
 .calculator-result {
@@ -1319,12 +1317,16 @@
     width: 18px;
     height: 18px;
     accent-color: #ff6b6b;
+    margin: 0;
+    flex-shrink: 0;
 }
 
 .contact-form .checkbox label {
     color: var(--text-secondary);
     font-size: 0.9rem;
     cursor: pointer;
+    margin: 0;
+    line-height: 1.4;
 }
 
 .btn-submit {
