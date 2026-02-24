@@ -1062,7 +1062,7 @@
     flex-direction: row;
     align-items: center;
     justify-content: center;
-    gap: 10px;
+    gap: 15px;
     text-decoration: none;
     color: inherit;
 }
@@ -1078,7 +1078,7 @@
     color: var(--text-primary);
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 15px;
     font-size: 1.3rem;
     transition: transform 0.5s ease;
     font-weight: 500;
@@ -1101,13 +1101,14 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
+    font-size: 1.2rem;
     color: var(--text-primary);
     transition: transform 0.2s ease, opacity 0.5s ease;
     opacity: 0.7;
 }
 
 .legal-card:hover .legal-link {
-    transform: translateX(8px) scale(1.2);
+    transform: translateX(8px) rotate(90deg) scale(1.4);
     opacity: 1;
 }
 
