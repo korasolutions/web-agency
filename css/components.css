@@ -60,13 +60,14 @@
     box-shadow: 0 0 5px var(--accent-color);
 }
 
-#kora-logo {
+.kora-logo {
     height: 27px;
-    width: fit-content;
-    transition: filter 0.3s ease;
+    width: auto;
+    display: block;
+    user-select: none;
 }
 
-#kora-logo:hover {
+.kora-logo:hover {
     filter: brightness(1.3);
 }
 
