@@ -335,6 +335,7 @@
     margin: 20px 20px 13px 20px;
     object-fit: cover; 
     border-radius: var(--border-radius);
+    pointer-events: none;
 }
 
 /* SECCIÓN SERVICIOS */
@@ -942,11 +943,48 @@
     text-transform: uppercase;
 }
 
+.checkbox-group {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    align-items: flex-start;
+    gap: 1rem;
+    max-height: 200px;
+    overflow: auto;
+}
+
+.checkbox-group div {
+    display: flex;
+    flex-direction: row;
+    gap: 7px;
+    align-items: center;
+    user-select: none;
+}
+
+.checkbox-group div:hover {
+    cursor: pointer;
+}
+
+.checkbox-group input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    accent-color: #ff6b6b;
+}
+
+.checkbox-group legend:hover {
+    cursor: default;
+}
+
 .checkbox-group label {
     display: block;
+    width: 100%;
     color: var(--text-secondary);
     font-size: 0.9rem;
     letter-spacing: 0.05em;
+    cursor: pointer;
+}
+
+.checkbox-group label:hover {
+    color: var(--text-primary);
 }
 
 .form-control {
@@ -971,31 +1009,6 @@
     box-shadow: 0 0 0 2px rgba(255,255,255,0.1);
 }
 
-.checkbox-group {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    align-items: flex-start;
-    gap: 1rem;
-    max-height: 200px;
-    overflow: auto;
-}
-
-.checkbox-label {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    line-height: 1.5;
-}
-
-.checkbox-label input[type="checkbox"] {
-    margin: 0;
-    margin-right: 5px;
-    width: 18px;
-    height: 18px;
-    flex: 0 0 auto;
-    vertical-align: middle;
-    position: static;
-}
 
 .calculator-result {
     background-color: var(--bg-primary);

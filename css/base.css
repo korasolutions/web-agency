@@ -120,6 +120,17 @@ textarea {
     resize: none;
 }
 
+fieldset {
+    border: none;
+    padding: 0;
+    margin: 0;
+    min-inline-size: 0;
+}
+
+legend {
+    padding: 0;
+}
+
 /* Barra de scroll personalizada */
 /* Firefox */
 * {

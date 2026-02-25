@@ -3,12 +3,16 @@
 
 <head>
     <!-- Google Tag Manager -->
-        <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-        new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-        'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-        })(window,document,'script','dataLayer','GTM-T8RSJ7GH');</script>
-    <!-- End Google Tag Manager -->
+    <script>
+        (function (w,d,s,l,i) {
+            w[l]=w[l]||[];
+            w[l].push({'gtm.start': new Date().getTime(), event:'gtm.js'});
+            var f=d.getElementsByTagName(s)[0], j=d.createElement(s), dl=l!='dataLayer'?'&l='+l:'';
+            j.async=true;j.src= 'https://www.googletagmanager.com/gtm.js?id='+i+dl;
+            f.parentNode.insertBefore(j,f);
+        })
+        (window,document,'script','dataLayer','GTM-T8RSJ7GH');
+    </script>
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -26,10 +30,12 @@
 
 <body>
     <!-- Google Tag Manager (noscript) -->
-        <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-T8RSJ7GH"
-        height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-    <!-- End Google Tag Manager (noscript) -->
-     
+    <noscript>
+        <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-T8RSJ7GH" height="0" width="0"
+            style="display:none;visibility:hidden">
+        </iframe>
+    </noscript>
+
     <!-- ===================================================== -->
     <!--  TEMPLATE HEADER (tpl/header.html)  -->
     <!-- ===================================================== -->
@@ -106,12 +112,9 @@
                     <div class="about-image">
                         <div class="about-placeholder">
                             <div class="placeholder-content">
-                                <video 
-                                    src="assets/koraVideo.mp4" 
-                                    autoplay 
-                                    loop 
-                                    muted 
-                                    playsinline>
+                                <video src="assets/koraVideo.mp4" autoplay loop muted playsinline preload="metadata"
+                                    controlslist="nodownload nofullscreen noremoteplayback " disablepictureinpicture
+                                    oncontextmenu="return false;">
                                 </video>
                             </div>
                         </div>
@@ -224,17 +227,51 @@
                     </div>
 
                     <div class="form-group">
-                        <label class="form-group-title">Funcionalidades extra</label>
-                        <div class="checkbox-group">
-                            <label class="checkbox-label"><input type="checkbox" value="seo"> SEO avanzado</label>
-                            <label class="checkbox-label"><input type="checkbox" value="blog"> Blog</label>
-                            <label class="checkbox-label"><input type="checkbox" value="multilang"> Multidioma</label>
-                            <label class="checkbox-label"><input type="checkbox" value="booking"> Sistema de reservas</label>
-                            <label class="checkbox-label"><input type="checkbox" value="crm"> Integración CRM</label>
-                            <label class="checkbox-label"><input type="checkbox" value="premium"> Diseño premium</label>
-                            <label class="checkbox-label"><input type="checkbox" value="pagos"> Pasarela de pagos</label>
-                            <label class="checkbox-label"><input type="checkbox" value="app"> App móvil</label>
-                        </div>
+                        <fieldset class="checkbox-group">
+                            <legend class="form-group-title">
+                                Funcionalidades extra
+                            </legend>
+
+                            <div>
+                                <input type="checkbox" id="seo" name="extras" value="seo">
+                                <label for="seo">SEO avanzado</label>
+                            </div>
+
+                            <div>
+                                <input type="checkbox" id="blog" name="extras" value="blog">
+                                <label for="blog">Blog</label>
+                            </div>
+
+                            <div>
+                                <input type="checkbox" id="multilang" name="extras" value="multilang">
+                                <label for="multilang">Multidioma</label>
+                            </div>
+
+                            <div>
+                                <input type="checkbox" id="booking" name="extras" value="booking">
+                                <label for="booking">Sistema de reservas</label>
+                            </div>
+
+                            <div>
+                                <input type="checkbox" id="crm" name="extras" value="crm">
+                                <label for="crm">Integración CRM</label>
+                            </div>
+
+                            <div>
+                                <input type="checkbox" id="premium" name="extras" value="premium">
+                                <label for="premium">Diseño premium</label>
+                            </div>
+
+                            <div>
+                                <input type="checkbox" id="pagos" name="extras" value="pagos">
+                                <label for="pagos">Pasarela de pagos</label>
+                            </div>
+
+                            <div>
+                                <input type="checkbox" id="app" name="extras" value="app">
+                                <label for="app">App móvil</label>
+                            </div>
+                        </fieldset>
                     </div>
 
                     <div class="form-group">
@@ -313,29 +350,29 @@
                     <div class="contact-form-container">
                         <form class="contact-form" id="contact-form">
                             <div class="form-group">
-                                <input type="text" name="name" placeholder="Tu nombre" required>
+                                <input type="text" name="name" autocomplete="name" placeholder="Tu nombre" required>
                             </div>
-                        
+
                             <div class="form-group">
-                                <input type="email" name="email" placeholder="Tu correo electrónico" required>
+                                <input type="email" name="email" autocomplete="email" placeholder="Tu correo electrónico" required>
                             </div>
-                        
+
                             <div class="form-group">
-                                <input type="text" name="subject" placeholder="Asunto">
+                                <input type="text" name="subject" autocomplete="off" placeholder="Asunto">
                             </div>
-                        
+
                             <div class="form-group">
-                                <textarea name="message" rows="8" placeholder="Cuéntanos sobre tu proyecto" required></textarea>
+                                <textarea name="message" autocomplete="off" rows="8" placeholder="Cuéntanos sobre tu proyecto" required></textarea>
                             </div>
-                        
+
                             <div class="form-group checkbox">
-                                <input type="checkbox" name="privacy" required>
+                                <input type="checkbox" name="privacy" id="privacy" required>
                                 <label for="privacy">Acepto la política de privacidad</label>
                             </div>
-                        
+
                             <!-- honeypot anti-spam -->
                             <input type="text" name="website" style="display:none">
-                        
+
                             <button type="submit" class="btn-submit">
                                 <i class="fas fa-paper-plane"></i> Enviar mensaje
                             </button>
