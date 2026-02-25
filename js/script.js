@@ -34,12 +34,48 @@ document.addEventListener('DOMContentLoaded', function () {
             document.querySelectorAll('.nav .dropdown').forEach(drop => drop.classList.remove('active'));
         };
 
-        // Header dinámico (solo si existe)
+        // Header dinámico: compacto + aparece al subir / se oculta al bajar
         if (header) {
+            let lastY = window.scrollY;
+            let ticking = false;
             const onScrollHeader = () => {
-                header.classList.toggle('scrolled', window.scrollY > 50);
+                const currentY = window.scrollY;
+
+                header.classList.toggle('scrolled', currentY > 50);
+                if (nav && nav.classList.contains('active')) {
+                    header.classList.remove('is-hidden');
+                    lastY = currentY;
+                    return;
+                }
+                if (currentY <= 10) {
+                    header.classList.remove('is-hidden');
+                    lastY = currentY;
+                    return;
+                }
+                const delta = currentY - lastY;
+
+                if (delta < 0) {
+                    header.classList.remove('is-hidden');
+                }
+                else if (delta > 0) {
+                    header.classList.add('is-hidden');
+                }
+                lastY = currentY;
             };
-            window.addEventListener('scroll', onScrollHeader, { passive: true });
+
+            window.addEventListener(
+                'scroll',
+                () => {
+                    if (!ticking) {
+                        window.requestAnimationFrame(() => {
+                            onScrollHeader();
+                            ticking = false;
+                        });
+                        ticking = true;
+                    }
+                },
+                { passive: true }
+            );
             onScrollHeader();
         }
 
