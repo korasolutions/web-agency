@@ -1426,6 +1426,15 @@
     .kioskos-mock {
         order: -1;
     }
+
+    .about-placeholder video{
+        width: 370px; 
+        height: 300px;
+        margin: 20px 20px 13px 20px;
+        object-fit: cover; 
+        border-radius: var(--border-radius);
+        pointer-events: none;
+    }
 }
 
 @media (max-width: 798px) {
@@ -1481,5 +1490,40 @@
 @media (max-width: 400px) {
     .hero-visual {
         margin-top: 45px;
+    }
+
+    .about-placeholder video{
+        width: 300px; 
+        height: 200px;
+        margin: 10px 10px 6px 10px;
+        object-fit: cover; 
+        border-radius: var(--border-radius);
+        pointer-events: none;
+    }
+}
+
+@media (max-width: 375px) {
+    .footer-content {
+        flex-direction: column;
+        text-align: center;
+        gap: 20px;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .footer-section,
+    .footer-links,
+    .footer-social {
+        text-align: center;
+        align-items: center;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    
+    .footer-logo,
+    .footer-copyright {
+        display: flex;
+        justify-content: center;
+        width: 100%;
     }
 }
