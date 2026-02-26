@@ -52,14 +52,21 @@ document.addEventListener('DOMContentLoaded', function () {
                     lastY = currentY;
                     return;
                 }
-                const delta = currentY - lastY;
 
-                if (delta < 0) {
-                    header.classList.remove('is-hidden');
+                const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+                if (currentY <= 0 || currentY >= maxScroll) {
+                    lastY = currentY;
+                    return;
                 }
-                else if (delta > 0) {
-                    header.classList.add('is-hidden');
-                }
+
+                const delta = currentY - lastY;
+                const THRESHOLD = 150;
+
+                if (Math.abs(delta) < THRESHOLD) return;
+
+                if (delta < 0) header.classList.remove('is-hidden');
+                else header.classList.add('is-hidden');
+
                 lastY = currentY;
             };
 

@@ -54,11 +54,6 @@ html {
     scroll-behavior: smooth;
 }
 
-html,
-body {
-    touch-action: manipulation;
-}
-
 body {
     font-family: var(--font-sans);
     background-color: var(--bg-primary);
@@ -86,6 +81,20 @@ body::before {
     z-index: -1;
     pointer-events: none;
     animation: bgPulse 10s ease-in-out infinite;
+}
+
+html,
+body {
+    touch-action: manipulation;
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden !important;
+}
+
+@supports (overflow: clip) {
+  html, body {
+    overflow-x: clip !important;
+  }
 }
 
 @keyframes bgPulse {
@@ -259,15 +268,6 @@ legend {
 /* ======================================================
    KEYFRAMES GLOBALES
    ====================================================== */
-   @keyframes heroBackground {
-    0% {
-        transform: scale(1) rotate(0deg);
-    }
-
-    100% {
-        transform: scale(1.1) rotate(1deg);
-    }
-}
 @keyframes scanLine {
     0% {
         transform: translateX(-100%);
