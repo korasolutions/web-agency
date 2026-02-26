@@ -1,6 +1,115 @@
 /* ======================================================
    ESTILOS PARA servicios.html
    ====================================================== */
+/* HERO */
+.page-hero {
+  padding: 8rem 2rem 4rem;
+  text-align: center;
+}
+
+.page-hero .page-title {
+  font-size: 3.5rem;
+  margin-bottom: 1rem;
+}
+
+.page-hero .page-subtitle {
+  font-size: 1.2rem;
+  color: var(--text-secondary);
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+/* SECCIONES SERVICIO */
+.service-detail {
+  padding: 60px 0;
+}
+
+#diseno.service-detail,
+#ia.service-detail {
+  background-color: var(--bg-secondary);
+}
+
+.service-detail-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 50px;
+  align-items: center;
+}
+
+/* Titulares y texto */
+.service-detail .section-title {
+  text-align: left;
+  margin-bottom: 20px;
+}
+
+.service-detail p.service-intro {
+  color: var(--text-secondary);
+  margin-bottom: 20px;
+  font-size: 1.1rem;
+}
+
+/* Listas */
+.service-detail ul.service-list {
+  list-style: none;
+  color: var(--text-secondary);
+  margin-bottom: 30px;
+  padding-left: 0;
+}
+
+.service-detail ul.service-list li {
+  margin-bottom: 10px;
+}
+
+.service-detail ul.service-list i {
+  color: #ff6b6b;
+  margin-right: 10px;
+}
+
+/* Visual box */
+.service-visual {
+  background: linear-gradient(135deg, rgba(255,107,107,0.1), transparent);
+  border-radius: var(--border-radius);
+  padding: 40px;
+  text-align: center;
+  border: 1px solid var(--border-color);
+}
+
+.service-visual i {
+  font-size: 5rem;
+  color: #ff6b6b;
+  margin-bottom: 20px;
+}
+
+.service-visual p {
+  color: var(--text-secondary);
+}
+
+#desarrollo .service-visual {
+  order: 1;
+}
+
+#desarrollo .service-text {
+  order: 2;
+}
+
+/* CTA FINAL */
+.section-cta {
+  padding: 80px 0;
+  text-align: center;
+}
+
+.section-cta h2 {
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+}
+
+.section-cta p {
+  color: var(--text-secondary);
+  margin-bottom: 30px;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
 
 /*
 .kioscos {
@@ -344,3 +453,176 @@
     transform: scale(1.02);
 }
 */
+
+/* ======================================================
+   RESPONSIVE - servicios.html
+   ====================================================== */
+.page-hero .container,
+.service-detail .container {
+    max-width: var(--container-width);
+}
+
+.page-hero,
+.service-detail,
+.service-detail * {
+    max-width: 100%;
+}
+
+@media (max-width: 1200px) {
+
+    .page-hero .container,
+    .service-detail .container {
+        padding-left: 32px !important;
+        padding-right: 32px !important;
+    }
+}
+
+
+@media (max-width: 992px) {
+    .page-hero .container,
+    .service-detail .container {
+        padding-left: 24px !important;
+        padding-right: 24px !important;
+    }
+
+    .page-hero {
+        padding: 7rem 1.25rem 3rem !important;
+    }
+
+    .page-title {
+        font-size: 2.4rem !important;
+        line-height: 1.15 !important;
+    }
+
+    .page-subtitle {
+        font-size: 1.05rem !important;
+    }
+
+    .service-detail-grid {
+        display: grid !important;
+        grid-template-columns: 1fr !important;
+        gap: 30px !important;
+        align-items: stretch !important;
+    }
+
+    .service-detail-grid>div:not(.service-visual) {
+        order: 1 !important;
+        text-align: center !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
+        max-width: 720px !important;
+    }
+
+    .service-visual {
+        order: 2 !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
+        width: 100% !important;
+        max-width: 720px !important;
+    }
+
+    .service-detail .section-title {
+        text-align: center !important;
+        font-size: 2rem !important;
+    }
+
+    .service-detail ul {
+        padding-left: 0 !important;
+        list-style-position: inside;
+        text-align: left;
+        display: inline-block;
+        margin: 0 auto !important;
+    }
+
+    .service-detail-grid>div:not(.service-visual) .btn {
+        display: block !important;
+        margin: 25px auto 0 !important;
+        width: fit-content;
+        text-align: center;
+    }
+}
+
+@media (max-width: 768px) {
+    .page-hero {
+        padding: 6.5rem 1rem 2.5rem !important;
+    }
+
+    .page-title {
+        font-size: 2.05rem !important;
+    }
+
+    .page-subtitle {
+        font-size: 1rem !important;
+    }
+
+    .service-detail {
+        padding: 44px 0 !important;
+    }
+
+    .service-detail .container {
+        padding-left: 18px !important;
+        padding-right: 18px !important;
+    }
+
+    .service-visual {
+        padding: 24px !important;
+    }
+
+    .service-visual i {
+        font-size: 4rem !important;
+    }
+
+    .section-cta h2 {
+        font-size: 1.8rem !important;
+    }
+}
+
+@media (max-width: 576px) {
+    .service-detail-grid {
+        gap: 24px !important;
+    }
+
+    .service-detail .section-title {
+        font-size: 1.8rem !important;
+    }
+
+    .btn,
+    .btn-primary,
+    .btn-secondary,
+    .btn-large {
+        width: 100% !important;
+        max-width: 420px;
+    }
+}
+
+@media (max-width: 480px) {
+
+    .page-hero .container,
+    .service-detail .container {
+        padding-left: 14px !important;
+        padding-right: 14px !important;
+    }
+
+    .page-title {
+        font-size: 1.85rem !important;
+    }
+
+    .service-detail .section-title {
+        font-size: 1.6rem !important;
+    }
+
+    .service-visual {
+        padding: 18px !important;
+        border-radius: 18px !important;
+    }
+}
+
+@media (max-width: 360px) {
+    .page-title {
+        font-size: 1.65rem !important;
+    }
+
+    .page-subtitle {
+        font-size: 0.95rem !important;
+    }
+}

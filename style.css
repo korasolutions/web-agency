@@ -196,13 +196,21 @@
     backdrop-filter: blur(10px);
     min-height: 350px;
     display: flex;
+    justify-content: space-between ;
     flex-direction: column;
 }
 
 .service-card:hover {
     transform: perspective(1000px) rotateX(2deg) translateY(-5px) translateZ(10px);
-    border-color: var(--text-primary);
+    border-color: var(--accent-color);
     box-shadow: 0 30px 40px rgba(0, 0, 0, 0.6);
+}
+
+.service-card:hover .card-btn {
+    background-color: var(--accent-color);
+    color: #000;
+    border-color: var(--accent-color);
+    font-weight: 600;
 }
 
 .service-card::before {
