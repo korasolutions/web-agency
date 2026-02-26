@@ -1,3 +1,249 @@
 /* ======================================================
    ESTILOS PARA servicios.html
    ====================================================== */
+
+/* Kiosko estilo urbano con fotos
+.kiosk-screen-urban {
+    background: linear-gradient(145deg, #1a1a1a, #0d0d0d);
+    border-radius: 24px;
+    padding: 20px;
+    border: 2px solid #ff6b6b;
+    box-shadow: 0 20px 30px rgba(0,0,0,0.8), 0 0 0 3px #333 inset, 0 0 15px rgba(255,107,107,0.3);
+    transform: perspective(1000px) rotateY(-3deg) rotateX(2deg);
+    transition: transform 0.5s ease;
+    backdrop-filter: blur(5px);
+    color: var(--text-primary);
+    max-width: 480px;
+    margin: 0 auto;
+    font-family: 'Inter', sans-serif;
+}
+
+.kiosk-screen-urban:hover {
+    transform: perspective(1000px) rotateY(0deg) rotateX(0deg);
+    border-color: #ff8a8a;
+    box-shadow: 0 25px 40px rgba(0,0,0,0.9), 0 0 0 3px #444 inset, 0 0 25px rgba(255,107,107,0.5);
+}
+
+.kiosk-header-urban {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: rgba(0,0,0,0.5);
+    padding: 12px 16px;
+    border-radius: 16px;
+    margin-bottom: 20px;
+    border: 1px solid #ff6b6b;
+}
+
+.kiosk-header-urban i {
+    font-size: 2.2rem;
+    color: #ff6b6b;
+    filter: drop-shadow(0 0 5px #ff6b6b);
+}
+
+.kiosk-header-urban h4 {
+    flex: 1;
+    margin: 0;
+    font-size: 1.6rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    color: #fff;
+    text-shadow: 0 0 10px #ff6b6b;
+}
+
+.kiosk-badge-urban {
+    background: #ff6b6b;
+    padding: 6px 14px;
+    border-radius: 30px;
+    font-size: 0.9rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: #000;
+    box-shadow: 0 0 15px #ff6b6b;
+}
+
+.kiosk-categories-urban {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 20px;
+}
+
+.category-urban {
+    background: #222;
+    padding: 8px 18px;
+    border-radius: 40px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    border: 1px solid #444;
+    transition: all 0.3s ease;
+    cursor: default;
+}
+
+.category-urban.active {
+    background: #ff6b6b;
+    color: #000;
+    border-color: #ff6b6b;
+    font-weight: 700;
+    box-shadow: 0 0 10px #ff6b6b;
+}
+
+.kiosk-items-urban {
+    margin-bottom: 20px;
+    max-height: 280px;
+    overflow-y: auto;
+    padding-right: 5px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.kiosk-item-urban {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px;
+    background: rgba(0,0,0,0.6);
+    border-radius: 16px;
+    border: 1px solid #333;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.kiosk-item-urban:hover {
+    background: rgba(255,107,107,0.15);
+    border-color: #ff6b6b;
+    transform: translateX(5px);
+}
+
+.item-image-urban {
+    width: 60px;
+    height: 60px;
+    border-radius: 12px;
+    background-size: cover;
+    background-position: center;
+    border: 2px solid #ff6b6b;
+    box-shadow: 0 0 10px rgba(255,107,107,0.3);
+}
+
+.item-info-urban {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.item-name-urban {
+    font-weight: 700;
+    font-size: 1rem;
+    color: #fff;
+}
+
+.item-price-urban {
+    font-weight: 600;
+    font-size: 0.95rem;
+    color: #ff6b6b;
+}
+
+.item-desc-urban {
+    font-size: 0.75rem;
+    color: #aaa;
+    margin-top: 2px;
+}
+
+.item-add-urban {
+    background: #ff6b6b;
+    border: none;
+    color: #000;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    font-size: 1.4rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 10px #ff6b6b;
+}
+
+.item-add-urban:hover {
+    transform: scale(1.1);
+    background: #ff8a8a;
+    box-shadow: 0 0 20px #ff8a8a;
+}
+
+.kiosk-cart-urban {
+    background: #111;
+    border-radius: 16px;
+    padding: 15px;
+    border: 2px solid #ff6b6b;
+    margin-top: 10px;
+}
+
+.cart-header-urban {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #ff6b6b;
+    font-weight: 700;
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+}
+
+.cart-items-urban {
+    min-height: 50px;
+    max-height: 100px;
+    overflow-y: auto;
+    margin-bottom: 10px;
+    font-size: 0.9rem;
+}
+
+.cart-item-urban {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px 0;
+    border-bottom: 1px dashed #333;
+}
+
+.cart-total-urban {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1.2rem;
+    font-weight: 700;
+    border-top: 1px solid #ff6b6b;
+    padding-top: 10px;
+    margin-bottom: 10px;
+}
+
+.total-amount-urban {
+    color: #ff6b6b;
+}
+
+.cart-checkout-urban {
+    width: 100%;
+    background: #ff6b6b;
+    border: none;
+    color: #000;
+    padding: 12px;
+    border-radius: 40px;
+    font-weight: 700;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s;
+    opacity: 0.6;
+}
+
+.cart-checkout-urban:enabled {
+    opacity: 1;
+    cursor: pointer;
+    box-shadow: 0 0 15px #ff6b6b;
+}
+
+.cart-checkout-urban:enabled:hover {
+    background: #ff8a8a;
+    transform: scale(1.02);
+}
+*/
