@@ -374,6 +374,9 @@
                             <!-- honeypot anti-spam -->
                             <input type="text" name="website" style="display:none">
 
+                            <!-- Esta sitekey no es peligrosa -->
+                            <div class="cf-turnstile" data-sitekey="0x4AAAAAACi7cbjkr1PcRn7Q"></div>
+
                             <button type="submit" class="btn-submit">
                                 <i class="fas fa-paper-plane"></i> Enviar mensaje
                             </button>
@@ -424,7 +427,7 @@
     <script src="js/script.js"></script>
     <!-- <script src="js/chatbot.js"></script> -->
 
-    <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
     <script src="js/form.js"></script>
+    <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 </body>
 </html>
