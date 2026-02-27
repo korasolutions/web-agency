@@ -1,0 +1,23 @@
+{
+  "nav": {
+    "home": "Inicio",
+    "about": "Sobre Nosotros",
+    "services": "Servicios",
+    "projects": "Proyectos",
+    "cta": "Contacta"
+  },
+
+  "footer": {
+    "description": "Creamos productos digitales únicos que definen el punto distintivo de cada negocio.",
+    "navigation": "NAVEGACIÓN",
+    "contact": "Contacto",
+    "legalLink": "Legal",
+    "ready": "¿LISTO PARA COMENZAR?",
+    "ctaText": "Tu proyecto digital único está a un mensaje de distancia.",
+    "ctaButton": "Solicitar consulta",
+    "rights": "KORA Solutions. Todos los derechos reservados.",
+    "legalNotice": "Aviso legal",
+    "privacy": "Política de privacidad",
+    "cookies": "Política de cookies"
+  }
+}

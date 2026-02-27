@@ -25,10 +25,7 @@ document.addEventListener('DOMContentLoaded', function () {
         const closeMenu = () => {
             if (!nav || !menuToggle) return;
             nav.classList.remove('active');
-
-            const spans = menuToggle.querySelectorAll('span');
-            if (spans[0]) spans[0].style.transform = 'none';
-            if (spans[1]) spans[1].style.transform = 'none';
+            menuToggle.classList.remove('is-open');
 
             document.body.style.overflow = '';
             document.querySelectorAll('.nav .dropdown').forEach(drop => drop.classList.remove('active'));
@@ -60,7 +57,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 }
 
                 const delta = currentY - lastY;
-                const THRESHOLD = 150;
+                const THRESHOLD = 130;
 
                 if (Math.abs(delta) < THRESHOLD) return;
 
@@ -91,15 +88,9 @@ document.addEventListener('DOMContentLoaded', function () {
             menuToggle.addEventListener('click', function (e) {
                 e.stopPropagation();
                 nav.classList.toggle('active');
-
-                const spans = menuToggle.querySelectorAll('span');
-                if (nav.classList.contains('active')) {
-                    if (spans[0]) spans[0].style.transform = 'rotate(45deg) translate(4px, 4px)';
-                    if (spans[1]) spans[1].style.transform = 'rotate(-45deg) translate(4px, -4px)';
-                    document.body.style.overflow = 'hidden';
-                } else {
-                    closeMenu();
-                }
+                menuToggle.classList.toggle('is-open');
+                document.body.style.overflow =
+                    nav.classList.contains('active') ? 'hidden' : '';
             });
 
             // Cerrar menú al hacer clic fuera
@@ -162,6 +153,27 @@ document.addEventListener('DOMContentLoaded', function () {
     ]).then(() => {
         initHeaderAndMenu();
         initCurrentYear();
+
+        I18N.init({ observe: true });
+
+        const langButtons = document.querySelectorAll(".lang-btn");
+
+        langButtons.forEach(btn => {
+            btn.addEventListener("click", () => {
+                const lang = btn.dataset.lang;
+                I18N.setLang(lang);
+            });
+        });
+
+        function paintLangActive(lang) {
+            langButtons.forEach(btn => {
+                btn.classList.toggle("is-active", btn.dataset.lang === lang);
+            });
+        }
+
+        document.addEventListener("i18n:changed", (e) => {
+            paintLangActive(e.detail.lang);
+        });
     });
 
     // ========== SISTEMA DE PARTÍCULAS FLOTANTES ==========
