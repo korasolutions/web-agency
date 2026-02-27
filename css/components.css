@@ -711,6 +711,12 @@ footer .logo {
         font-size: 0.9rem;
         padding: 0.4rem 1.1rem;
     }
+
+    .btn-primary {
+        padding: 0.7rem 2rem;
+        font-size: 1rem;
+        letter-spacing: 0.02em;
+    }
 }
 
 @media (max-width: 375px) {
