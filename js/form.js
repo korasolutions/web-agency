@@ -1,14 +1,22 @@
 document.addEventListener("DOMContentLoaded", () => {
-    console.log("form.js cargado");
     const form = document.getElementById("contact-form");
     const statusBox = document.getElementById("form-status");
 
-    if (!form || !statusBox) return;
+    if (!form || !statusBox) {
+        console.error("Formulario o statusBox no encontrado");
+        return;
+    }
+
+    // Detectar entorno
+    const API_URL =
+        location.hostname === "localhost"
+            ? "https://koradigitalsolutions.com/api/contact"
+            : "/api/contact";
 
     form.addEventListener("submit", async function (e) {
         e.preventDefault();
 
-        // Honeypot anti-spam
+        // Honeypot
         if (this.website && this.website.value !== "") return;
 
         const btn = form.querySelector("button");
@@ -24,40 +32,41 @@ document.addEventListener("DOMContentLoaded", () => {
 
         try {
             const payload = {
-                name: form.name.value,
-                email: form.email.value,
-                subject: form.subject.value || "Nuevo mensaje desde la web",
-                message: form.message.value,
+                name: form.name.value.trim(),
+                email: form.email.value.trim(),
+                subject: form.subject.value.trim() || "Nuevo mensaje desde la web",
+                message: form.message.value.trim(),
                 website: form.website.value,
             };
 
-            const res = await fetch("/api/contact", {
+            const res = await fetch(API_URL, {
                 method: "POST",
-                headers: { "content-type": "application/json" },
+                headers: {
+                    "content-type": "application/json",
+                },
                 body: JSON.stringify(payload),
             });
 
             const data = await res.json().catch(() => ({}));
 
             if (!res.ok || !data.ok) {
-                throw new Error(data.error || "Error en el envío");
+                throw new Error(
+                    data.detail || data.error || "Error desconocido en el envío"
+                );
             }
 
-            // Mostrar éxito
+            // Éxito
             statusBox.textContent =
                 "Mensaje enviado correctamente. Te responderemos lo antes posible.";
             statusBox.classList.add("show", "success");
 
             form.reset();
-
         } catch (error) {
-            console.error(error);
+            console.error("Error real:", error.message);
 
-            // Mostrar error
             statusBox.textContent =
-                "Hubo un error al enviar el mensaje. Inténtalo de nuevo.";
+                "Error: " + (error.message || "Hubo un problema al enviar el mensaje.");
             statusBox.classList.add("show", "error");
-
         } finally {
             if (btn) {
                 btn.disabled = false;
