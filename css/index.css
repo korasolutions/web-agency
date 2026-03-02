@@ -146,7 +146,7 @@
         repeating-linear-gradient(45deg, transparent 0px, transparent 20px, rgba(255, 255, 255, 0.04) 20px, rgba(255, 255, 255, 0.02) 40px);
     border: 1px solid rgba(255, 255, 255, 0.05);
     border-radius: 50%;
-    animation: float 8s infinite alternate ease-in-out;
+    animation: float 7s infinite alternate ease-in-out;
     position: relative;
     box-shadow: 0 30px 40px -20px rgba(0, 0, 0, 0.8);
     display: flex;
@@ -166,7 +166,7 @@
     inset: -20px;
     border: 1px solid rgba(255, 255, 255, 0.15);
     border-radius: 60%;
-    animation: floatReverse 12s infinite alternate ease-in-out;
+    animation: floatReverse 11s infinite alternate ease-in-out;
 }
 
 /* ======================================================
@@ -998,7 +998,7 @@
     }
 
     100% {
-        transform: translate(20px, -20px) scale(1.02) rotate(5deg);
+        transform: translate(20px, -23px) scale(1.02) rotate(10deg);
     }
 }
 

@@ -322,6 +322,7 @@
 
 /* Botón 'Contacta' */
 .btn-contact {
+    position: relative;
     text-decoration: none;
     color: var(--text-primary);
     font-size: 1rem;
@@ -331,12 +332,30 @@
     border-radius: 30px;
     transition: var(--transition-smooth);
     background-color: transparent;
+    animation: contactBorderPulse 8s ease-in-out infinite;
 }
 
 .btn-contact:hover {
-    border-color: var(--text-primary);
-    background-color: var(--accent-glow);
-    box-shadow: 0 0 20px rgba(255,255,255,0.05);
+    border-color: var(--accent-color);
+    box-shadow: 0 0 8px rgba(255, 131, 131, 0.2);
+    animation: none;
+}
+
+@keyframes contactBorderPulse {
+    60% {
+        border-color: var(--border-color);
+        box-shadow: 0 0 0px transparent;
+    }
+
+    85% {
+        border-color: var(--accent-color);
+        box-shadow: 0 0 8px rgba(255, 131, 131, 0.2);
+    }
+
+    100% {
+        border-color: var(--border-color);
+        box-shadow: 0 0 0px transparent;
+    }
 }
 
 /* Language switch */
@@ -804,15 +823,16 @@ footer .logo {
         gap: 30px;
     }
 
-    .btn-contact {
-        font-size: 0.9rem;
-        padding: 0.4rem 1.1rem;
-    }
-
     .btn-primary {
         padding: 0.7rem 2rem;
         font-size: 1rem;
         letter-spacing: 0.02em;
+    }
+}
+
+@media (max-width: 465px) {
+    .btn-contact {
+        padding: 0.4rem 1.1rem;
     }
 }
 
