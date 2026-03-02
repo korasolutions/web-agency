@@ -299,11 +299,20 @@
     }
 
     .hero-title {
-        font-size: 2.2rem;
+        font-size: 2rem;
+    }
+
+    .hero-description {
+        font-size: 1.1rem;
     }
 
     .hero {
-        padding-top: 7rem;
+        min-height: 85vh;
+        padding: 4rem 2rem 1rem;
+    }
+
+    .hero-container {
+        gap: 3rem;
     }
 
     .about-placeholder {
@@ -398,10 +407,4 @@
   .checkbox-group {
     max-height: 240px;
   }
-}
-
-@media (max-width: 400px) {
-    .hero-visual {
-        margin-top: 45px;
-    }
 }
