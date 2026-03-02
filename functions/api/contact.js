@@ -5,14 +5,6 @@ export async function onRequestPost({ request, env }) {
         return json({ ok: false, error: "Unsupported Media Type" }, 415);
     }
 
-    // 2) Origin check (capa extra)
-    if (env.ALLOWED_ORIGIN) {
-        const origin = request.headers.get("Origin") || "";
-        if (origin && origin !== env.ALLOWED_ORIGIN) {
-            return json({ ok: false, error: "Forbidden origin" }, 403);
-        }
-    }
-
     let body;
     try {
         body = await request.json();
