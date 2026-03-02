@@ -307,8 +307,8 @@
     }
 
     .hero {
-        min-height: 85vh;
-        padding: 4rem 2rem 1rem;
+        min-height: 90vh;
+        padding: 5.5rem 2rem 3rem;
     }
 
     .hero-container {
@@ -407,4 +407,10 @@
   .checkbox-group {
     max-height: 240px;
   }
+}
+
+@media (max-width: 400px) {
+    .hero-visual {
+        margin-top: 45px;
+    }
 }

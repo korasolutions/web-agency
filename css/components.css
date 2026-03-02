@@ -587,6 +587,17 @@ footer .logo {
     margin-bottom: 20px;
 }
 
+.footer-cta .btn-secondary {
+    animation: contactBorderPulse 8s ease-in-out infinite;
+}
+
+.footer-cta .btn-secondary:hover {
+    border-color: var(--accent-color);
+    background-color: transparent;
+    box-shadow: 0 0 8px rgba(255, 131, 131, 0.2);
+    animation: none;
+}
+
 .footer-bottom {
     border-top: 1px solid var(--border-color);
     padding-top: 30px;
@@ -833,6 +844,12 @@ footer .logo {
 @media (max-width: 465px) {
     .btn-contact {
         padding: 0.4rem 1.1rem;
+    }
+    .header {
+        padding: 1.4rem 1.5rem;
+    }
+    .kora-logo {
+        height: 23px;
     }
 }
 

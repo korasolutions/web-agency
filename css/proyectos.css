@@ -5,6 +5,10 @@
     min-height: 50vh;
 }
 
+.page-title {
+    font-size: 3.5rem;
+}
+
 .logos {
     padding: 4rem 2rem 6rem 2rem;
     background-color: var(--bg-primary);
@@ -155,4 +159,10 @@
 .cta p {
     color: var(--text-secondary);
     margin-bottom: 30px;
+}
+
+@media (max-width: 575px) {
+    .page-title {
+        font-size: 2rem;
+    }
 }

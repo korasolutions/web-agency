@@ -581,9 +581,6 @@
 }
 
 @media (max-width: 768px) {
-    .page-hero {
-        padding: 6.5rem 1rem 2.5rem !important;
-    }
 
     .page-title {
         font-size: 2.05rem !important;
@@ -624,7 +621,6 @@
         font-size: 1.8rem !important;
     }
 
-    .btn,
     .btn-primary,
     .btn-secondary,
     .btn-large {
