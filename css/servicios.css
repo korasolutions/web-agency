@@ -65,6 +65,44 @@
   margin-right: 10px;
 }
 
+.service-list {
+    list-style: none;
+    margin-top: auto;
+}
+
+.service-list li {
+    padding: 8px 0;
+    border-bottom: 1px solid var(--border-color);
+    color: var(--text-secondary);
+    position: relative;
+    padding-left: 25px;
+    transition: all 0.3s ease;
+    font-size: 0.95rem;
+}
+
+.service-list li:last-child {
+    border-bottom: none;
+}
+
+.service-list li::before {
+    content: '▶';
+    position: absolute;
+    left: 0;
+    color: var(--text-primary);
+    font-size: 0.8rem;
+    transform: scale(0);
+    transition: transform 0.3s ease;
+}
+
+.service-list li:hover {
+    color: var(--text-primary);
+    transform: translateX(8px);
+}
+
+.service-list li:hover::before {
+    transform: scale(1);
+}
+
 /* Visual box */
 .service-visual {
   background: linear-gradient(135deg, rgba(255,107,107,0.1), transparent);
