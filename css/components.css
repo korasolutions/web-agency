@@ -2,8 +2,150 @@
    COMPONENTES REUTILIZABLES
    ====================================================== */
 
+/* =========================
+   COOKIE CONSENT
+   ========================= */
+.cookie-consent {
+  position: fixed;
+  left: 18px;
+  bottom: 18px;
+  z-index: 9999;
+  width: min(380px, calc(100vw - 36px));
+  background: rgba(18, 18, 18, 0.92);
+  border: 1px solid var(--border-light);
+  border-radius: 18px;
+  backdrop-filter: blur(14px);
+  box-shadow: 0 22px 50px rgba(0,0,0,0.65);
+  transform: translateY(14px);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+.cookie-consent.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.cookie-consent__content { padding: 16px 16px 14px; }
+
+.cookie-consent__title {
+  margin: 0 0 6px 0;
+  font-size: 0.95rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-primary);
+}
+
+.cookie-consent__text {
+  margin: 0 0 12px 0;
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  line-height: 1.45;
+}
+
+.cookie-consent__link {
+  color: var(--text-primary);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.cookie-consent__actions {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  gap: 7px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.cookie-consent__actions--save { margin-top: 10px; }
+
+.cookie-btn {
+  border: 1px solid var(--border-color);
+  background: transparent;
+  color: var(--text-primary);
+  padding: 10px 12px;
+  border-radius: 999px;
+  min-width: 135px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: var(--transition-smooth);
+}
+
+.cookie-btn:hover {
+  border-color: var(--text-primary);
+  background: rgba(255,255,255,0.06);
+}
+
+.cookie-btn--primary {
+  background: linear-gradient(135deg, #ff6b6b, #ff8a8a);
+  border-color: transparent;
+  color: #000;
+  font-weight: 700;
+}
+
+.cookie-btn--primary:hover {
+  transform: translateY(-1px);
+  background: linear-gradient(135deg, #ff8a8a, #ff9f9f);
+}
+
+.cookie-btn--ghost {
+  background: rgba(255, 255, 255, 0.055);
+  font-weight: 500;
+}
+
+
 /* ======================================================
-   MENÚ SUPERIOR
+   TÍTULOS DE CADA SECCIÓN
+   ====================================================== */
+.section-header {
+    text-align: center;
+    margin-bottom: 50px;
+    transform-style: preserve-3d;
+}
+
+.section-title {
+    margin-bottom: 12px;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    font-size: 2.2rem;
+    position: relative;
+    display: inline-block;
+    padding-bottom: 15px;
+    color: var(--text-primary);
+}
+
+.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--text-primary), transparent);
+    animation: linePulse 2s infinite alternate;
+}
+
+.section-subtitle {
+    max-width: 600px;
+    margin: 0 auto;
+    font-size: 1.1rem;
+    color: var(--text-tertiary);
+    transform: translateZ(20px);
+}
+
+.highlight {
+    color: var(--text-primary);
+    font-weight: 700;
+}
+
+
+/* ======================================================
+   MENÚ SUPERIOR (HEADER)
    ====================================================== */  
 /* Header base */
 .header {
@@ -197,9 +339,7 @@
     box-shadow: 0 0 20px rgba(255,255,255,0.05);
 }
 
-/* =========================
-   Language switch
-   ========================= */
+/* Language switch */
 .lang-switch {
     display: inline-flex;
     align-items: center;
@@ -292,51 +432,6 @@
     transform: translate(-50%, -1px) rotate(-45deg);
 }
 
-/* ======================================================
-   TÍTULOS DE CADA SECCIÓN
-   ====================================================== */
-.section-header {
-    text-align: center;
-    margin-bottom: 50px;
-    transform-style: preserve-3d;
-}
-
-.section-title {
-    margin-bottom: 12px;
-    font-weight: 600;
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
-    font-size: 2.2rem;
-    position: relative;
-    display: inline-block;
-    padding-bottom: 15px;
-    color: var(--text-primary);
-}
-
-.section-title::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 60px;
-    height: 2px;
-    background: linear-gradient(90deg, transparent, var(--text-primary), transparent);
-    animation: linePulse 2s infinite alternate;
-}
-
-.section-subtitle {
-    max-width: 600px;
-    margin: 0 auto;
-    font-size: 1.1rem;
-    color: var(--text-tertiary);
-    transform: translateZ(20px);
-}
-
-.highlight {
-    color: var(--text-primary);
-    font-weight: 700;
-}
 
 /* ======================================================
    FOOTER
@@ -510,6 +605,7 @@ footer .logo {
     width: auto;
 }
 
+
 /* ======================================================
    BOTONES REUTILIZABLES
    ====================================================== */
@@ -563,6 +659,7 @@ footer .logo {
     background-color: var(--accent-glow);
     transform: translateY(-2px);
 }
+
 
 /* ======================================================
    RESPONSIVE

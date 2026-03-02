@@ -297,69 +297,6 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-    // ========== EFECTO DE CONTADOR ==========
-    const statNumbers = document.querySelectorAll('.stat-number');
-
-    if (statNumbers.length > 0) {
-        const animateCounter = (element, target) => {
-            let current = 0;
-            const increment = target / 50;
-            const stepTime = 1500 / 50;
-
-            const timer = setInterval(() => {
-                current += increment;
-                if (current >= target) {
-                    current = target;
-                    clearInterval(timer);
-
-                    // Efecto final
-                    element.style.transform = 'scale(1.1)';
-                    setTimeout(() => {
-                        element.style.transform = 'scale(1)';
-                    }, 300);
-                }
-
-                // Formatear número manteniendo el "+"
-                let displayNumber;
-                if (element.textContent.includes('+')) {
-                    displayNumber = `+${Math.floor(current)}`;
-                } else {
-                    displayNumber = Math.floor(current);
-                }
-
-                element.textContent = displayNumber;
-            }, stepTime);
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const statNumber = entry.target;
-                    const text = statNumber.textContent.trim();
-                    let target;
-
-                    if (text.includes('+')) {
-                        target = parseInt(text.replace('+', '').split(' ')[0]);
-                        if (isNaN(target)) target = 20;
-                    } else {
-                        target = parseInt(text);
-                    }
-
-                    if (!isNaN(target) && target > 0) {
-                        statNumber.textContent = text.includes('+') ? '+0' : '0';
-                        animateCounter(statNumber, target);
-                    }
-
-                    observer.unobserve(statNumber);
-                }
-            });
-        }, { threshold: 0.5, rootMargin: '50px' });
-
-        statNumbers.forEach(stat => {
-            observer.observe(stat);
-        });
-    }
-
     // ========== EFECTO DE HOVER EN TARJETAS ==========
     const cards = document.querySelectorAll('.value-item, .legal-card, .story-card');
 
@@ -383,28 +320,26 @@ document.addEventListener('DOMContentLoaded', function () {
     if (projectTypeSelect && resultSpan) {
         // Precios base por tipo de proyecto
         const basePrices = {
-            landing: 1000,
-            corporate: 1600,
-            ecommerce: 1800,
-            custom: 2000
+            landing: 700,
+            corporate: 1100,
+            ecommerce: 1450,
+            // mobileapp: 2000
         };
 
         // Precios de funcionalidades extra
         const featurePrices = {
-            seo: 250,
-            blog: 300,
-            multilang: 800,
-            booking: 500,
-            crm: 1500,
-            premium: 2000,
-            pagos: 450,
-            app: 3500
+            seo: 200,
+            blog: 150,
+            multilang: 250,
+            booking: 300,
+            crm: 550,
+            pagos: 250
         };
 
         function calculatePrice() {
             // Precio base
             const projectType = projectTypeSelect.value;
-            let base = basePrices[projectType] || 2500;
+            let base = basePrices[projectType] || 1000;
 
             // Sumar funcionalidades seleccionadas
             let featuresTotal = 0;
