@@ -321,8 +321,8 @@ document.addEventListener('DOMContentLoaded', function () {
         // Precios base por tipo de proyecto
         const basePrices = {
             landing: 700,
-            corporate: 1100,
-            ecommerce: 1450,
+            corporate: 900,
+            ecommerce: 1250,
             // mobileapp: 2000
         };
 
