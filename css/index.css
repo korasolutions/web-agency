@@ -41,7 +41,7 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 4rem;
-    align-items: flex-start;
+    align-items: center;
 }
 
 .hero-content {

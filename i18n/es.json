@@ -7,6 +7,128 @@
     "cta": "Contacta"
   },
 
+  "home": {
+    "hero": {
+      "title": "En KORA no seguimos las tendencias del mercado, las",
+      "titleAccent": "creamos",
+      "description": "Creamos productos digitales únicos que definen el punto distintivo de cada negocio."
+    },
+    "about": {
+      "title1": "SOBRE",
+      "title2": "NOSOTROS",
+      "subtitle": "Más que una agencia, somos socios estratégicos en tu transformación digital.",
+      "philosophyTitle": "Nuestra filosofía",
+      "philosophyText": "En KORA creemos en la autenticidad por encima de todo. No aplicamos plantillas ni soluciones genéricas. Cada proyecto nace de un análisis profundo de las necesidades específicas de tu negocio.",
+      "focusTitle": "Nuestro enfoque",
+      "focusText": "Trabajamos con metodologías ágiles pero con una visión artesanal. Cada línea de código, cada diseño, cada estrategia está pensada para construir no solo un producto digital, sino una extensión de tu marca.",
+      "values": {
+        "authenticity": {
+          "title": "Autenticidad",
+          "text": "Proyectos únicos que reflejan la esencia de cada marca."
+        },
+        "commitment": {
+          "title": "Compromiso",
+          "text": "Nos involucramos como si fuera nuestro propio negocio."
+        },
+        "results": {
+          "title": "Resultados",
+          "text": "Enfocados en métricas que importan para tu crecimiento."
+        }
+      },
+      "button": "Conócenos mejor"
+    },
+    "services": {
+      "title1": "NUESTROS",
+      "title2": "SERVICIOS",
+      "subtitle": "Soluciones integrales para cada etapa de tu transformación digital.",
+      "more": "Saber más",
+      "viewAll": "Ver todos los servicios",
+      "cards": {
+        "identity": {
+          "title": "Diseño de Identidad",
+          "desc": "Creamos tu marca desde su base (colores, logotipo y branding) hasta su identidad digital."
+        },
+        "web": {
+          "title": "Desarrollo Web",
+          "desc": "Desarrollamos sitios web a medida con tecnologías modernas y escalables."
+        },
+        "ai": {
+          "title": "Automatizaciones IA",
+          "desc": "Automatizamos tareas repetitivas para ahorrar horas de trabajo."
+        },
+        "kiosk": {
+          "title": "Kioscos de Autopedido",
+          "desc": "Digitaliza tu local con pantallas interactivas de autoservicio estilo McDonald's."
+        }
+      }
+    },
+    "calculator": {
+      "title": "Descubre cuánto podría costar tu proyecto",
+      "subtitle": "Simula tu inversión digital",
+
+      "projectType": "Tipo de proyecto",
+      "projectOptions": {
+        "landing": "Landing page",
+        "corporate": "Web corporativa",
+        "ecommerce": "Tienda online"
+      },
+
+      "extras": "Funcionalidades extra",
+      "extrasOptions": {
+        "seo": "SEO avanzado",
+        "blog": "Blog",
+        "multilang": "Multidioma",
+        "booking": "Sistema de reservas",
+        "crm": "Gestión de clientes",
+        "payments": "Pasarela de pagos"
+      },
+
+      "urgency": "Urgencia",
+      "urgencyOptions": {
+        "normal": "Normal (2-3 semanas)",
+        "priority": "Prioritario (+30%, 1 semana)",
+        "vip": "VIP (+100%, 2-3 días)"
+      },
+
+      "rangeLabel": "Rango estimado",
+      "disclaimer": "*Cálculo orientativo. Presupuesto final sujeto a requisitos específicos.",
+      "cta": "Propuesta personalizada"
+    },
+    "contact": {
+      "title1": "CONTACTA",
+      "title2": "CON NOSOTROS",
+      "subtitle": "¿Listo para comenzar tu transformación digital? Hablemos de tu proyecto.",
+
+      "ideaTitle": "Conversemos sobre tu idea",
+      "ideaText": "Estamos aquí para escucharte, entender tus objetivos y diseñar una estrategia digital que se alinee perfectamente con tu visión de negocio.",
+
+      "emailLabel": "Email",
+      "phoneLabel": "Teléfonos",
+      "locationLabel": "Ubicación",
+      "location": "Canarias, España",
+      "follow": "Síguenos en redes sociales:",
+
+      "form": {
+        "name": "Tu nombre",
+        "email": "Tu correo electrónico",
+        "subject": "Asunto",
+        "message": "Cuéntanos sobre tu proyecto",
+        "privacy": "Acepto la política de privacidad",
+        "send": "Enviar mensaje"
+      }
+    },
+    "legal": {
+      "title1": "INFORMACIÓN",
+      "title2": "LEGAL",
+      "subtitle": "Transparencia y claridad en cada aspecto de nuestra colaboración.",
+      "cards": {
+        "legalNotice": "Aviso legal",
+        "privacy": "Política de Privacidad",
+        "cookies": "Política de Cookies"
+      }
+    }
+  },
+
   "footer": {
     "description": "Creamos productos digitales únicos que definen el punto distintivo de cada negocio.",
     "navigation": "NAVEGACIÓN",

@@ -7,6 +7,128 @@
     "cta": "Contact us"
   },
 
+  "home": {
+    "hero": {
+      "title": "At KORA, we don’t follow market trends, we",
+      "titleAccent": "create them",
+      "description": "We create unique digital products that define what makes each business different."
+    },
+    "about": {
+      "title1": "ABOUT",
+      "title2": "US",
+      "subtitle": "More than an agency, we’re strategic partners in your digital transformation.",
+      "philosophyTitle": "Our philosophy",
+      "philosophyText": "At KORA, we believe in authenticity above all. We don’t use templates or generic solutions. Every project starts with a deep analysis of your business’s specific needs.",
+      "focusTitle": "Our approach",
+      "focusText": "We work with agile methodologies, but with a handcrafted mindset. Every line of code, every design, every strategy is built not only to create a digital product, but to become an extension of your brand.",
+      "values": {
+        "authenticity": {
+          "title": "Authenticity",
+          "text": "Unique projects that reflect the essence of every brand."
+        },
+        "commitment": {
+          "title": "Commitment",
+          "text": "We get involved as if it were our own business."
+        },
+        "results": {
+          "title": "Results",
+          "text": "Focused on the metrics that matter for your growth."
+        }
+      },
+      "button": "Get to know us better"
+    },
+    "services": {
+      "title1": "OUR",
+      "title2": "SERVICES",
+      "subtitle": "End-to-end solutions for every stage of your digital transformation.",
+      "more": "Learn more",
+      "viewAll": "View all services",
+      "cards": {
+        "identity": {
+          "title": "Brand Identity Design",
+          "desc": "We build your brand from its foundation (colors, logo, and branding) to its digital identity."
+        },
+        "web": {
+          "title": "Web Development",
+          "desc": "We create custom websites using modern, scalable technologies."
+        },
+        "ai": {
+          "title": "AI Automations",
+          "desc": "We automate repetitive tasks to save hours of work."
+        },
+        "kiosk": {
+          "title": "Self-Order Kiosks",
+          "desc": "Digitize your venue with interactive self-service screens like McDonald's."
+        }
+      }
+    },
+    "calculator": {
+      "title": "Discover how much your project could cost",
+      "subtitle": "Simulate your digital investment",
+
+      "projectType": "Project type",
+      "projectOptions": {
+        "landing": "Landing page",
+        "corporate": "Corporate website",
+        "ecommerce": "Online store"
+      },
+
+      "extras": "Extra features",
+      "extrasOptions": {
+        "seo": "Advanced SEO",
+        "blog": "Blog",
+        "multilang": "Multilanguage",
+        "booking": "Booking system",
+        "crm": "Customer management",
+        "payments": "Payment gateway"
+      },
+
+      "urgency": "Urgency",
+      "urgencyOptions": {
+        "normal": "Standard (2–3 weeks)",
+        "priority": "Priority (+30%, 1 week)",
+        "vip": "VIP (+100%, 2–3 days)"
+      },
+
+      "rangeLabel": "Estimated range",
+      "disclaimer": "*Approximate estimate. Final budget depends on specific requirements.",
+      "cta": "Custom proposal"
+    },
+    "contact": {
+      "title1": "CONTACT",
+      "title2": "US",
+      "subtitle": "Ready to start your digital transformation? Let’s talk about your project.",
+
+      "ideaTitle": "Let’s talk about your idea",
+      "ideaText": "We’re here to listen, understand your goals, and design a digital strategy perfectly aligned with your business vision.",
+
+      "emailLabel": "Email",
+      "phoneLabel": "Phone",
+      "locationLabel": "Location",
+      "location": "Canary Islands, Spain",
+      "follow": "Follow us on social media:",
+
+      "form": {
+        "name": "Your name",
+        "email": "Your email address",
+        "subject": "Subject",
+        "message": "Tell us about your project",
+        "privacy": "I accept the privacy policy",
+        "send": "Send message"
+      }
+    },
+    "legal": {
+      "title1": "LEGAL",
+      "title2": "INFORMATION",
+      "subtitle": "Transparency and clarity in every aspect of our collaboration.",
+      "cards": {
+        "legalNotice": "Legal notice",
+        "privacy": "Privacy policy",
+        "cookies": "Cookie policy"
+      }
+    }
+  },
+
   "footer": {
     "description": "We create unique digital products that define what makes each business different.",
     "navigation": "NAVIGATION",
