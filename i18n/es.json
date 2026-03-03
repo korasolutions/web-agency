@@ -11,7 +11,7 @@
     "hero": {
       "title": "En KORA no seguimos las tendencias del mercado, las",
       "titleAccent": "creamos",
-      "h1": "Agencia de marketing digital y diseño web a medida en Lanzarote."
+      "h1": "Agencia de marketing digital en Canarias | Hacemos crecer tu negocio online."
     },
     "about": {
       "title1": "SOBRE",
@@ -274,5 +274,70 @@
       "subtitle": "Hablemos de cómo podemos ayudarte a alcanzar tus metas.",
       "button": "Contacta con nosotros"
     }
+  },
+  
+  "legalPage": {
+  "title": "Información Legal",
+  "lastUpdate": "Última actualización: 22 de febrero de 2026",
+  "contentsTitle": "Contenido",
+  "contents": {
+    "legalNotice": "1. Aviso Legal",
+    "privacy": "2. Política de Privacidad",
+    "cookies": "3. Política de Cookies"
+  },
+
+  "legalNotice": {
+    "title": "1. AVISO LEGAL",
+    "intro": "En cumplimiento del artículo 10 de la Ley 34/2002, de Servicios de la Sociedad de la Información y de Comercio Electrónico (LSSICE), se detallan los datos del titular del sitio web:",
+    "ownerTitle": "Identificación del Titular",
+    "owner": {
+      "name": "Denominación Social: KORA SOLUTIONS",
+      "tax": "NIF/CIF: 98459543959",
+      "address": "Domicilio Social: Canarias, España",
+      "email": "Correo Electrónico: info@koradigitalsolutions.com",
+      "phones": "Teléfonos: +34 611 48 62 07, +34 689 07 49 45, +34 689 23 76 81"
+    },
+    "purposeTitle": "Finalidad de la Web",
+    "purposeText": "La finalidad de esta página es informar sobre los servicios ofrecidos por KORA SOLUTIONS y proporcionar un canal de contacto para presupuestos y consultoría.",
+    "ipTitle": "Propiedad Intelectual e Industrial",
+    "ipText": "Todos los derechos de propiedad intelectual e industrial pertenecen a KORA SOLUTIONS salvo indicación contraria. Queda prohibida su reproducción sin autorización previa por escrito.",
+    "liabilityTitle": "Exclusión de Responsabilidad",
+    "liabilityText": "KORA SOLUTIONS no se responsabiliza de los daños derivados del uso del contenido del sitio. El usuario es el único responsable del uso realizado.",
+    "lawTitle": "Legislación y Jurisdicción",
+    "lawText": "Estas condiciones se rigen por la legislación española. Las partes se someten a los juzgados y tribunales de Las Palmas (Canarias)."
+  },
+
+  "privacy": {
+    "title": "2. POLÍTICA DE PRIVACIDAD",
+    "intro": "En KORA SOLUTIONS protegemos tus datos personales. Esta política explica cómo los recopilamos y tratamos.",
+    "controllerTitle": "Responsable del Tratamiento",
+    "controller": {
+      "identity": "KORA SOLUTIONS",
+      "email": "info@koradigitalsolutions.com"
+    },
+    "dataTitle": "Datos que Recopilamos",
+    "dataText": "Podemos recopilar datos identificativos (nombre), datos de contacto (email y teléfono) y datos de negocio proporcionados en el formulario.",
+    "purposeTitle": "Finalidad del Tratamiento",
+    "purposeText": "Tratamos los datos para responder consultas, gestionar relaciones contractuales, enviar comunicaciones comerciales (con consentimiento) y cumplir obligaciones legales.",
+    "retentionTitle": "Conservación de los Datos",
+    "retentionText": "Los datos se conservarán el tiempo necesario según su finalidad y conforme a la normativa vigente.",
+    "recipientsTitle": "Destinatarios",
+    "recipientsText": "No se cederán datos a terceros salvo obligación legal. Proveedores tecnológicos pueden acceder como encargados de tratamiento.",
+    "rightsTitle": "Tus Derechos",
+    "rightsText": "Puedes acceder, rectificar, suprimir o limitar el tratamiento de tus datos enviando solicitud a info@koradigitalsolutions.com. También puedes reclamar ante la AEPD."
+  },
+
+  "cookies": {
+    "title": "3. POLÍTICA DE COOKIES",
+    "intro": "Utilizamos cookies propias y de terceros para mejorar la experiencia y analizar el tráfico.",
+    "whatTitle": "¿Qué son las cookies?",
+    "whatText": "Son archivos de texto que se almacenan en tu dispositivo para recordar preferencias.",
+    "typesTitle": "Tipos de Cookies",
+    "typesText": "Utilizamos cookies técnicas, de análisis y de preferencias. No usamos cookies publicitarias ni de remarketing.",
+    "thirdTitle": "Cookies de Terceros",
+    "thirdText": "Utilizamos Google Analytics para medir el tráfico. Puedes consultar su política de privacidad para más información.",
+    "manageTitle": "Gestión de Cookies",
+    "manageText": "Puedes configurar las cookies desde tu navegador. Bloquearlas puede afectar al funcionamiento del sitio."
   }
+}
 }
