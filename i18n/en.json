@@ -280,69 +280,119 @@
       "button": "Contact us"
     }
   },
-  
+
   "legalPage": {
-  "title": "Legal Information",
-  "lastUpdate": "Last updated: February 22, 2026",
-  "contentsTitle": "Contents",
-  "contents": {
-    "legalNotice": "1. Legal Notice",
-    "privacy": "2. Privacy Policy",
-    "cookies": "3. Cookie Policy"
-  },
-
-  "legalNotice": {
-    "title": "1. LEGAL NOTICE",
-    "intro": "In compliance with Article 10 of Law 34/2002 of July 11 on Information Society Services and Electronic Commerce (LSSICE), the general information of the website owner is detailed below:",
-    "ownerTitle": "Owner Identification",
-    "owner": {
-      "name": "Company Name: KORA SOLUTIONS",
-      "tax": "Tax ID (NIF/CIF): 98459543959",
-      "address": "Registered Address: Canary Islands, Spain",
-      "email": "Contact Email: info@koradigitalsolutions.com",
-      "phones": "Contact Phone Numbers: +34 611 48 62 07, +34 689 07 49 45, +34 689 23 76 81"
+    "title": "Legal Information",
+    "lastUpdateLabel": "Last updated:",
+    "toc": {
+      "title": "Contents",
+      "legalNotice": "1. Legal Notice",
+      "privacy": "2. Privacy Policy",
+      "cookies": "3. Cookie Policy"
     },
-    "purposeTitle": "Purpose of the Website",
-    "purposeText": "The purpose of this website is to inform users about the services offered by KORA SOLUTIONS (Brand Identity Design, Web Development, AI Automations, and Self-Order Kiosks) and to provide a contact channel for budget requests and consultancy services.",
-    "ipTitle": "Intellectual and Industrial Property",
-    "ipText": "All intellectual and industrial property rights over the contents of this website are owned by KORA SOLUTIONS unless otherwise stated. Reproduction, distribution, public communication, or transformation is prohibited without prior written authorization.",
-    "liabilityTitle": "Disclaimer of Liability",
-    "liabilityText": "KORA SOLUTIONS shall not be held liable for any damages arising from the use of the website contents. The user is solely responsible for the use made of the services and information provided.",
-    "lawTitle": "Applicable Law and Jurisdiction",
-    "lawText": "These conditions are governed by Spanish law. Any dispute shall be submitted to the courts of Las Palmas (Canary Islands), expressly waiving any other jurisdiction."
-  },
-
-  "privacy": {
-    "title": "2. PRIVACY POLICY",
-    "intro": "At KORA SOLUTIONS, we take the protection of your personal data seriously. This policy explains how we collect, process, and protect your data.",
-    "controllerTitle": "Data Controller",
-    "controller": {
-      "identity": "KORA SOLUTIONS",
-      "email": "info@koradigitalsolutions.com"
-    },
-    "dataTitle": "What Data We Collect",
-    "dataText": "We may collect identification data (name), contact data (email and phone), and business-related information provided through the contact form.",
-    "purposeTitle": "Purpose of Processing",
-    "purposeText": "We process your data to respond to inquiries, manage contractual relationships, send commercial communications (with consent), and comply with legal obligations.",
-    "retentionTitle": "Data Retention",
-    "retentionText": "Data will be retained as long as necessary for its intended purpose and in accordance with legal obligations.",
-    "recipientsTitle": "Data Recipients",
-    "recipientsText": "Data will not be shared with third parties except when legally required. Service providers may access data as data processors.",
-    "rightsTitle": "Your Rights",
-    "rightsText": "You have the right to access, rectify, erase, restrict, or object to data processing. Requests may be sent to info@koradigitalsolutions.com. You may also lodge a complaint with the Spanish Data Protection Authority (AEPD)."
-  },
-
-  "cookies": {
-    "title": "3. COOKIE POLICY",
-    "intro": "We use our own and third-party cookies to improve browsing experience and analyze traffic.",
-    "whatTitle": "What Are Cookies?",
-    "whatText": "Cookies are small text files stored on your device to recognize you and remember preferences.",
-    "typesTitle": "Types of Cookies Used",
-    "typesText": "We use technical (necessary), analytics, and preference cookies. We do not use advertising or remarketing cookies.",
-    "thirdTitle": "Third-Party Cookies",
-    "thirdText": "We use Google Analytics to measure traffic. You can review Google's privacy policy for more information.",
-    "manageTitle": "Cookie Management",
-    "manageText": "You can manage cookies through your browser settings. Blocking cookies may affect website functionality."
+    "sections": {
+      "legalNotice": {
+        "title": "1. LEGAL NOTICE",
+        "intro": "In compliance with the duty to inform set out in Article 10 of Law 34/2002 of 11 July on Information Society Services and Electronic Commerce (LSSICE), the general details of the entity that owns this website are provided below:",
+        "ownerHeading": "Owner Identification",
+        "ownerFields": {
+          "companyName": "Company name:",
+          "taxId": "Tax ID:",
+          "address": "Registered address:",
+          "email": "Contact email:",
+          "phones": "Contact phone numbers:"
+        },
+        "purposeHeading": "Purpose of the Website",
+        "purposeText": "KORA SOLUTIONS’ website is primarily intended to inform users about the services offered by the agency (Web Development, Brand Identity Design and AI Automations), as well as to provide a contact channel for requesting quotes and strategic consulting.",
+        "ipHeading": "Intellectual and Industrial Property",
+        "ipText": "All intellectual and industrial property rights to the contents of this website (including, but not limited to, texts, images, logos, graphic design, structure, and database) belong to KORA SOLUTIONS, unless otherwise stated. Reproduction, distribution, public communication, or transformation of these contents is expressly prohibited without the owner’s prior written authorization.",
+        "liabilityHeading": "Disclaimer of Liability",
+        "liabilityText": "KORA SOLUTIONS is not responsible for any damages arising from the use of the content on its website. Nor does it guarantee the absence of viruses or other harmful elements that could damage the user’s computer system. The user is solely responsible for how they use the services and content of the site.",
+        "lawHeading": "Applicable Law and Jurisdiction",
+        "lawText": "These terms are governed by Spanish law. For any disputes arising from access to or use of the website, the parties submit to the courts and tribunals of the province of Las Palmas (Canary Islands), expressly waiving any other jurisdiction that may apply."
+      },
+      "privacy": {
+        "title": "2. PRIVACY POLICY",
+        "intro": "At KORA SOLUTIONS, we take the protection of your personal data very seriously. This privacy policy aims to inform you about how we collect, process, and protect the information you provide through our website and within the context of our business relationship.",
+        "controllerHeading": "Data Controller",
+        "controllerFields": {
+          "identity": "Identity:",
+          "email": "Email address:"
+        },
+        "dataHeading": "What personal data do we collect?",
+        "dataIntro": "We may collect the following personal data through our contact form and during the provision of services:",
+        "dataFields": {
+          "identification": "Identification data:",
+          "contact": "Contact data:",
+          "business": "Business data:"
+        },
+        "dataValues": {
+          "identification": "First name, last name.",
+          "contact": "Email address, phone number.",
+          "business": "Information about your company and project that you provide in your communications."
+        },
+        "purposeHeading": "Purpose and Legal Basis of Processing",
+        "purposeIntro": "We process your personal data for the following purposes:",
+        "purposes": {
+          "contact": "Manage information and contact requests: Respond to inquiries submitted through the contact form. The legal basis is the consent you provide by accepting the corresponding checkbox.",
+          "contract": "Provision of services and contractual relationship: Manage the commercial relationship if you decide to hire our services. The legal basis is the execution of a contract.",
+          "marketing": "Sending commercial communications: With your prior consent, we may send you information about our services and updates that may be of interest to you. You may withdraw this consent at any time.",
+          "legal": "Comply with legal obligations."
+        },
+        "retentionHeading": "Data Retention Period",
+        "retentionText": "Personal data will be retained for the time necessary to fulfill the purpose for which it was collected. Once the relationship ends, the data will be properly blocked for the legally established limitation periods to address potential liabilities. For marketing communications, we will retain your data until you request to unsubscribe.",
+        "recipientsHeading": "Data Recipients",
+        "recipientsText": "Data will not be disclosed to third parties except where legally required. Technology service providers (such as hosting or email services) acting as Data Processors may have access to your data, with whom we have signed the appropriate agreements in accordance with applicable regulations.",
+        "rightsHeading": "Your Rights",
+        "rightsText1": "You have the right to obtain confirmation as to whether we are processing your personal data. You also have the right to access your data, request rectification of inaccurate data, or request its deletion when, among other reasons, the data is no longer necessary for the purposes for which it was collected.",
+        "rightsText2": "In certain circumstances, you may request the restriction of processing or object to the processing of your data, in which case we will only retain it for the exercise or defense of legal claims.",
+        "rightsText3": "To exercise these rights, you may send a written request attaching a copy of your ID card or equivalent identification document to the following email address: info@koradigitalsolutions.com. You also have the right to lodge a complaint with the Spanish Data Protection Agency (AEPD)."
+      },
+      "cookies": {
+        "title": "3. COOKIE POLICY",
+        "intro": "At KORA SOLUTIONS, we use our own and third-party cookies to improve your browsing experience on our website, as well as to analyze traffic and user behavior. This policy explains what cookies are, which types we use, and how you can manage them.",
+        "whatHeading": "What are cookies?",
+        "whatText": "Cookies are small text files stored on your device (computer, tablet, mobile phone) when you visit a website. Their main purpose is to recognize you and remember information about your visit—such as your preferred language or configuration options—to make future visits easier and the site more useful.",
+        "typesHeading": "Types of cookies we use",
+        "typesIntro": "We classify cookies according to their purpose:",
+        "types": {
+          "technical": {
+            "title": "Technical Cookies (Necessary):",
+            "text": "These are essential for the basic operation of the website and browsing. They allow, for example, session identification or access to secure areas. Without these cookies, the website cannot function properly. They do not require your consent.",
+            "examples": "Examples: session cookies, load-balancing cookies."
+          },
+          "analytics": {
+            "title": "Analytics or Measurement Cookies:",
+            "text": "These cookies, whether processed by us or by third parties, allow us to quantify the number of visitors and statistically analyze how users use our website. This helps us improve the services we offer.",
+            "examples": "Example: Google Analytics (_ga, _gid, _gat)."
+          },
+          "preferences": {
+            "title": "Preference or Personalization Cookies:",
+            "text": "They allow information to be remembered so that the user accesses the service with certain features that can differentiate their experience from that of other users, such as language or currency.",
+            "examples": "Example: language cookies."
+          }
+        },
+        "note": "Note: Currently, this website only uses technical and analytics cookies. We do not use behavioral advertising or remarketing cookies.",
+        "thirdPartiesHeading": "Third-Party Cookies",
+        "thirdPartiesText": "On our website, we use third-party services to measure and analyze traffic. Providers of these services may set cookies on your device. Below is a list of the third parties we work with and links to their cookie/privacy policies so you can learn more:",
+        "googleAnalytics": {
+          "label": "Google Analytics:",
+          "textBeforeLinks": "Managed by Google, Inc. You can review its policy at",
+          "privacyLinkText": "Google Privacy Policy",
+          "middleText": "and the",
+          "optOutLinkText": "browser opt-out add-on"
+        },
+        "manageHeading": "Cookie Management and Settings",
+        "manageText1": "When you first access our website, you will see a cookie banner that allows you to accept or configure your preferences, except for technical cookies which are necessary for browsing.",
+        "manageText2": "You can allow, block, or delete cookies installed on your device through your browser settings. Below are links with information on how to manage cookies in the most common browsers:",
+        "browsers": {
+          "chrome": "Google Chrome",
+          "firefox": "Mozilla Firefox",
+          "safari": "Safari (Apple)",
+          "edge": "Microsoft Edge"
+        },
+        "warning": "Please note that if you block or do not accept cookies, certain services or website features may not be available or may not function properly."
+      }
+    }
   }
-}
 }
