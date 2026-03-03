@@ -109,6 +109,7 @@
       "follow": "Síguenos en redes sociales:",
 
       "form": {
+        "title": "Envíanos tu propuesta",
         "name": "Tu nombre",
         "email": "Tu correo electrónico",
         "subject": "Asunto",

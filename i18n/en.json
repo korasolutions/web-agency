@@ -109,6 +109,7 @@
       "follow": "Follow us on social media:",
 
       "form": {
+        "title": "Tell us about your project",
         "name": "Your name",
         "email": "Your email address",
         "subject": "Subject",
