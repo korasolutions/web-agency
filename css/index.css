@@ -98,28 +98,40 @@
 }
 
 .hero-h1 {
-    color: var(--text-secondary);
-    font-size: 1.3rem;
+    color: var(--text-primary);
+    font-size: 1.2rem;
     font-weight: 500;
     line-height: 1.6;
     max-width: 600px;
     animation: fadeInUp 1.5s ease-out 0.3s both;
-    padding: 1rem;
     position: relative;
-    border-radius: 12px;
+    padding-left: 1rem;
 }
 
 .hero-h1::before {
     content: '';
     position: absolute;
-    inset: 0;
-    border-radius: 8px;
-    padding: 1px;
-    background: linear-gradient(170deg, var(--accent-color), var(--accent-color),transparent, transparent, transparent);
-    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-    -webkit-mask-composite: xor;
-    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-    mask-composite: exclude;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    background: var(--accent-color);
+    border-radius: 2px;
+    box-shadow: 0 0 15px var(--accent-color);
+}
+
+.hero-h1::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 30px;
+    height: 30px;
+    background: var(--accent-color);
+    filter: blur(20px);
+    opacity: 0.3;
+    z-index: -1;
 }
 
 @keyframes fadeInUp {
@@ -694,17 +706,17 @@
 }
 
 /* EMAIL - Gmail */
-.contact-email i {
-    color: var(--accent-color);
+.contact-email:hover i {
+    color: rgb(80, 127, 197);
 }
 
 /* PHONE - Verde */
-.contact-phone i {
+.contact-phone:hover i {
     color: #25D366;
 }
 
 /* LOCATION */
-.contact-location i {
+.contact-location:hover i {
     color: #b99621;
 }
 
@@ -763,18 +775,18 @@
 }
 
 /* LinkedIn */
-.social-contact .social-links a[href*="linkedin"] {
+.social-contact:hover .social-links a[href*="linkedin"] {
     color: #b4e1ff;
 }
 
 /* Instagram */
-.social-contact .social-links a[href*="instagram"] {
+.social-contact:hover .social-links a[href*="instagram"] {
     color: #e654b5;
 }
 
 /* Twitter / X */
-.social-contact .social-links a[href*="x.com"],
-.social-contact .social-links a[href*="twitter"] {
+.social-contact:hover .social-links a[href*="x.com"],
+.social-contact:hover .social-links a[href*="twitter"] {
     color: #1DA1F2;
 }
 
@@ -797,7 +809,7 @@
     align-items: center;
     justify-content: center;
     font-size: 1.15rem;
-    color: var(--text-secondary);
+    color: var(--text-primary);
     text-decoration: none;
     transition:
         transform 0.4s cubic-bezier(0.22, 1, 0.36, 1),
@@ -1200,6 +1212,35 @@
 
     .hero-h1 {
         margin: 0 auto;
+        margin-top: 2rem;
+        padding-left: 0;
+        padding-top: 1.2rem;
+        font-weight: 200;
+    }
+
+    /* Línea horizontal centrada arriba */
+    .hero-h1::before {
+        left: 50%;
+        top: 0;
+        bottom: auto;
+        transform: translateX(-50%);
+        width: 70%; 
+        height: 2px; 
+        border-radius: 2px;
+        background: var(--accent-color);
+        box-shadow: 0 0 15px var(--accent-color);
+    }
+
+    .hero-h1::after {
+        left: 50%;
+        top: 0;
+        transform: translate(-50%, -50%);
+        width: 70%;
+        height: 3px;
+        filter: blur(40px);
+        opacity: 0.75;
+        background: var(--accent-color);
+        z-index: -1;
     }
 
     .contact-content {
@@ -1397,7 +1438,7 @@
     }
 
     .hero {
-        min-height: 90vh;
+        min-height: 95vh;
         padding: 5.5rem 2rem 4rem;
     }
 
@@ -1412,15 +1453,19 @@
     .section-header {
         margin-bottom: 30px;
     }
-}
 
-@media (max-width: 465px) {
     .visual-abstract {
         width: 220px;
         height: 220px;
     }
+}
 
+@media (max-width: 465px) {
     .section-title {
+        font-size: 1.8rem;
+    }
+
+    .hero-title {
         font-size: 1.8rem;
     }
 
