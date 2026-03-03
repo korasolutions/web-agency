@@ -50,7 +50,7 @@
         },
         "web": {
           "title": "Web Development",
-          "desc": "We create custom websites using modern, scalable technologies."
+          "desc": "We build your website from the ground up, shaping every detail to reflect the essence of your brand."
         },
         "ai": {
           "title": "AI Automations",
@@ -173,8 +173,8 @@
     "web": {
       "titlePrefix": "Web",
       "titleHighlight": "Development",
-      "intro": "We develop custom websites using modern, scalable technologies. From landing pages to complex e-commerce platforms.",
-      "visual": "Modern technology for scalable results.",
+      "intro": "We design and develop fully custom websites from the ground up, combining strategy, user experience, and technical performance. We don’t use generic templates — every project is built with your brand’s growth in mind.",
+      "visual": "Strategic web development, optimized performance, and architecture built to scale.",
       "list": {
         "1": "Corporate websites and portfolios",
         "2": "Online stores (E-commerce)",

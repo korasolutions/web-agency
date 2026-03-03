@@ -50,7 +50,7 @@
         },
         "web": {
           "title": "Desarrollo Web",
-          "desc": "Desarrollamos sitios web a medida con tecnologías modernas y escalables."
+          "desc": "Construimos tu sitio web a medida, cuidando cada detalle para reflejar la esencia de tu marca."
         },
         "ai": {
           "title": "Automatizaciones IA",
@@ -170,8 +170,8 @@
     "web": {
       "titlePrefix": "Desarrollo",
       "titleHighlight": "Web",
-      "intro": "Desarrollamos sitios web a medida con tecnologías modernas y escalables. Desde landing pages hasta complejas plataformas de e-commerce.",
-      "visual": "Tecnología moderna para resultados escalables.",
+      "intro": "Diseñamos y desarrollamos sitios web a medida desde cero, combinando estrategia, experiencia de usuario y rendimiento técnico. No usamos plantillas genéricas: cada proyecto se construye pensado para potenciar el crecimiento de la marca.",
+      "visual": "Desarrollo web estratégico, rendimiento optimizado y arquitectura preparada para crecer.",
       "list": {
         "1": "Webs corporativas y portafolios",
         "2": "Tiendas online (E-commerce)",
