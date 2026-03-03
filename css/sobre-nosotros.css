@@ -275,4 +275,8 @@
    .history-heading {
       font-size: 1.5rem;
    }
+
+   .section-header {
+      margin-bottom: 30px;
+   }
 }
