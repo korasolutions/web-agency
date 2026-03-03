@@ -114,7 +114,12 @@
         "subject": "Subject",
         "message": "Tell us about your project",
         "privacy": "I accept the privacy policy",
-        "send": "Send message"
+        "send": "Send message",
+        "status": {
+          "sending": "Sending...",
+          "success": "Message sent successfully. We'll contact you as soon as possible.",
+          "errorGeneric": "There was a problem sending the message."
+        }
       }
     },
     "legal": {

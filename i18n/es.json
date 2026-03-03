@@ -114,7 +114,12 @@
         "subject": "Asunto",
         "message": "Cuéntanos sobre tu proyecto",
         "privacy": "Acepto la política de privacidad",
-        "send": "Enviar mensaje"
+        "send": "Enviar mensaje",
+        "status": {
+          "sending": "Enviando...",
+          "success": "Mensaje enviado correctamente. Te responderemos lo antes posible.",
+          "errorGeneric": "Hubo un problema al enviar el mensaje."
+        }
       }
     },
     "legal": {

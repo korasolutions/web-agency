@@ -24,7 +24,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         if (btn) {
             btn.disabled = true;
-            btn.innerHTML = "Enviando...";
+            btn.innerHTML = I18N.t("home.contact.form.status.sending");
         }
 
         statusBox.className = "form-status";
@@ -57,15 +57,16 @@ document.addEventListener("DOMContentLoaded", () => {
 
             // Éxito
             statusBox.textContent =
-                "Mensaje enviado correctamente. Te responderemos lo antes posible.";
+                I18N.t("home.contact.form.status.success");
             statusBox.classList.add("show", "success");
 
             form.reset();
         } catch (error) {
             console.error("Error real:", error.message);
+            const fallback = I18N.t("home.contact.form.status.errorGeneric");
 
             statusBox.textContent =
-                "Error: " + (error.message || "Hubo un problema al enviar el mensaje.");
+                "Error: " + (error.message || fallback);
             statusBox.classList.add("show", "error");
         } finally {
             if (btn) {
