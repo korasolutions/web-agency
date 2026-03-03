@@ -99,12 +99,27 @@
 
 .hero-h1 {
     color: var(--text-secondary);
-    font-size: 1.1rem;
-    text-transform: uppercase;
-    font-weight: 500;
+    font-size: 1.2rem;
+    font-weight: 300;
+    line-height: 1.6;
+    max-width: 600px;
     animation: fadeInUp 1.5s ease-out 0.3s both;
-    border-left: solid 3px var(--accent-color);
-    padding-left: 1rem;
+    padding: 1.2rem;
+    position: relative;
+    border-radius: 12px;
+}
+
+.hero-h1::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 8px;
+    padding: 1px;
+    background: linear-gradient(170deg, var(--accent-color), var(--accent-color), transparent, transparent);
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask-composite: exclude;
 }
 
 @keyframes fadeInUp {
