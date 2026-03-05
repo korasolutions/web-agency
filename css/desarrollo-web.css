@@ -1,0 +1,419 @@
+/* ======================================================
+   ESTILOS ESPECÍFICOS PARA desarrollo-web.html
+   ====================================================== */
+
+/* HERO ESPECÍFICO */
+.hero-desarrollo {
+    padding: 12rem 2rem 6rem;
+    background: radial-gradient(circle at 30% 20%, rgba(255,107,107,0.15), transparent 40%),
+                radial-gradient(circle at 80% 80%, rgba(255,255,255,0.05), transparent 50%),
+                var(--bg-primary);
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-desarrollo .hero-content {
+    max-width: 900px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.hero-badge {
+    display: inline-block;
+    background: rgba(255,107,107,0.1);
+    border: 1px solid rgba(255,107,107,0.3);
+    color: #ff6b6b;
+    font-size: 0.9rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    padding: 0.5rem 1.2rem;
+    border-radius: 100px;
+    margin-bottom: 1.5rem;
+    backdrop-filter: blur(5px);
+    text-transform: uppercase;
+}
+
+.hero-title {
+    font-size: 4.5rem;
+    font-weight: 700;
+    line-height: 1.1;
+    margin-bottom: 1.5rem;
+    text-transform: uppercase;
+}
+
+.hero-title .highlight {
+    color: #ff6b6b;
+    display: inline-block;
+    position: relative;
+}
+
+.hero-title .highlight::after {
+    content: '';
+    position: absolute;
+    bottom: 5px;
+    left: 0;
+    width: 100%;
+    height: 10px;
+    background: rgba(255,107,107,0.2);
+    z-index: -1;
+}
+
+.hero-subtitle {
+    font-size: 1.3rem;
+    color: var(--text-secondary);
+    max-width: 700px;
+    margin: 0 auto 2.5rem;
+}
+
+.hero-cta {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.hero-cta .btn {
+    min-width: 200px;
+}
+
+/* INTRO */
+.intro-desarrollo {
+    padding: 80px 0;
+    background: var(--bg-secondary);
+    border-top: 1px solid var(--border-color);
+    border-bottom: 1px solid var(--border-color);
+}
+
+.intro-grid {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+    gap: 50px;
+    align-items: center;
+}
+
+.intro-text .section-title {
+    text-align: left;
+    font-size: 2.2rem;
+    margin-bottom: 1rem;
+}
+
+.intro-description {
+    color: var(--text-secondary);
+    font-size: 1.1rem;
+    line-height: 1.7;
+}
+
+.intro-stats {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    text-align: center;
+}
+
+.stat-item {
+    padding: 20px;
+    background: rgba(255,255,255,0.02);
+    border-radius: var(--border-radius);
+    border: 1px solid var(--border-color);
+    transition: transform 0.3s ease;
+}
+
+.stat-item:hover {
+    transform: translateY(-5px);
+    border-color: #ff6b6b;
+}
+
+.stat-number {
+    display: block;
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #ff6b6b;
+    line-height: 1.2;
+}
+
+.stat-label {
+    font-size: 0.9rem;
+    color: var(--text-tertiary);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+/* ESPECIFICACIONES */
+.especificaciones {
+    padding: 80px 0;
+}
+
+.especificaciones-header {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.especificaciones-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 25px;
+}
+
+.espec-card {
+    background: var(--bg-elevated);
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+    padding: 30px 20px;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.espec-card:hover {
+    transform: translateY(-8px);
+    border-color: #ff6b6b;
+    box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+}
+
+.espec-card:hover::before {
+    transform: scaleX(1);
+}
+
+.espec-card.highlight-card {
+    border: 1px solid rgba(255,107,107,0.5);
+    background: linear-gradient(145deg, rgba(255,107,107,0.05), var(--bg-elevated));
+}
+
+.espec-icon {
+    font-size: 2.5rem;
+    color: #ff6b6b;
+    margin-bottom: 1rem;
+}
+
+.espec-card h3 {
+    font-size: 1.3rem;
+    margin-bottom: 0.8rem;
+    color: var(--text-primary);
+}
+
+.espec-card p {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    margin-bottom: 1.2rem;
+    line-height: 1.5;
+}
+
+.espec-list {
+    list-style: none;
+    padding: 0;
+}
+
+.espec-list li {
+    color: var(--text-tertiary);
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.espec-list li i {
+    color: #ff6b6b;
+    font-size: 0.8rem;
+}
+
+/* PROCESO DE TRABAJO */
+.proceso-trabajo {
+    padding: 80px 0;
+    background: var(--bg-secondary);
+    border-top: 1px solid var(--border-color);
+    border-bottom: 1px solid var(--border-color);
+}
+
+.proceso-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px;
+    margin-top: 50px;
+}
+
+.proceso-item {
+    text-align: center;
+    padding: 30px 20px;
+    background: rgba(255,255,255,0.02);
+    border-radius: var(--border-radius);
+    border: 1px solid var(--border-color);
+    transition: transform 0.3s ease;
+    position: relative;
+}
+
+.proceso-item:hover {
+    transform: translateY(-5px);
+    border-color: #ff6b6b;
+}
+
+.proceso-num {
+    display: inline-block;
+    font-size: 3rem;
+    font-weight: 800;
+    color: rgba(255,107,107,0.2);
+    line-height: 1;
+    margin-bottom: 0.5rem;
+    font-family: 'Inter', sans-serif;
+}
+
+.proceso-item h3 {
+    font-size: 1.3rem;
+    margin-bottom: 0.8rem;
+    color: var(--text-primary);
+}
+
+.proceso-item p {
+    color: var(--text-tertiary);
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+/* CASOS DE ÉXITO */
+.casos-exito {
+    padding: 80px 0;
+}
+
+.casos-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.caso-card {
+    background: var(--bg-elevated);
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.caso-card:hover {
+    transform: translateY(-8px);
+    border-color: #ff6b6b;
+    box-shadow: 0 20px 30px rgba(0,0,0,0.3);
+}
+
+.caso-img {
+    height: 200px;
+    background-size: cover;
+    background-position: center;
+}
+
+.caso-info {
+    padding: 20px;
+}
+
+.caso-info h4 {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+    color: var(--text-primary);
+}
+
+.caso-info p {
+    color: var(--text-tertiary);
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+    line-height: 1.5;
+}
+
+.caso-tag {
+    display: inline-block;
+    background: rgba(255,107,107,0.1);
+    border: 1px solid rgba(255,107,107,0.3);
+    color: #ff6b6b;
+    font-size: 0.7rem;
+    font-weight: 600;
+    padding: 0.3rem 1rem;
+    border-radius: 100px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+/* CTA FINAL */
+.cta-final {
+    padding: 100px 0;
+    text-align: center;
+    background: radial-gradient(circle at 50% 50%, rgba(255,107,107,0.1), transparent 70%),
+                var(--bg-primary);
+    border-top: 1px solid var(--border-color);
+}
+
+.cta-final h2 {
+    font-size: 3rem;
+    margin-bottom: 1.5rem;
+}
+
+.cta-final p {
+    color: var(--text-secondary);
+    font-size: 1.2rem;
+    max-width: 600px;
+    margin: 0 auto 2rem;
+}
+
+/* ======================================================
+   RESPONSIVE
+   ====================================================== */
+
+@media (max-width: 1100px) {
+    .especificaciones-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .proceso-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 992px) {
+    .hero-title {
+        font-size: 3.5rem;
+    }
+    .intro-grid {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+    .intro-text .section-title {
+        text-align: center;
+    }
+    .casos-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .hero-title {
+        font-size: 2.8rem;
+    }
+    .hero-subtitle {
+        font-size: 1.1rem;
+    }
+    .intro-stats {
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+    .especificaciones-grid,
+    .proceso-grid,
+    .casos-grid {
+        grid-template-columns: 1fr;
+    }
+    .cta-final h2 {
+        font-size: 2.2rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-title {
+        font-size: 2.2rem;
+    }
+    .hero-badge {
+        font-size: 0.8rem;
+    }
+    .hero-cta {
+        flex-direction: column;
+        align-items: center;
+    }
+    .hero-cta .btn {
+        width: 100%;
+    }
+}
