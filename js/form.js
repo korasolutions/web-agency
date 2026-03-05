@@ -13,6 +13,21 @@ document.addEventListener("DOMContentLoaded", () => {
             ? "https://koradigitalsolutions.com/api/contact"
             : "/api/contact";
 
+    // Re-render del status cuando cambie el idioma
+    document.addEventListener("i18n:changed", () => {
+        const state = statusBox.dataset.state;
+        if (!state) return;
+
+        if (state === "success") {
+            statusBox.textContent = I18N.t("home.contact.form.status.success");
+        } else if (state === "error") {
+            statusBox.textContent = I18N.t("home.contact.form.status.errorGeneric");
+        } else if (state === "sending") {
+            const btn = form.querySelector("button");
+            if (btn && btn.disabled) btn.innerHTML = I18N.t("home.contact.form.status.sending");
+        }
+    });
+
     form.addEventListener("submit", async function (e) {
         e.preventDefault();
 
@@ -26,9 +41,11 @@ document.addEventListener("DOMContentLoaded", () => {
             btn.disabled = true;
             btn.innerHTML = I18N.t("home.contact.form.status.sending");
         }
+        statusBox.dataset.state = "sending";
 
         statusBox.className = "form-status";
         statusBox.textContent = "";
+        delete statusBox.dataset.state;
 
         try {
             const payload = {
@@ -51,11 +68,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
             if (!res.ok || !data.ok) {
                 throw new Error(
-                    data.detail || data.error || "Error desconocido en el envío"
+                    data.detail || data.error
                 );
             }
 
             // Éxito
+            statusBox.dataset.state = "success";
             statusBox.textContent =
                 I18N.t("home.contact.form.status.success");
             statusBox.classList.add("show", "success");
@@ -65,6 +83,7 @@ document.addEventListener("DOMContentLoaded", () => {
             console.error("Error real:", error.message);
             const fallback = I18N.t("home.contact.form.status.errorGeneric");
 
+            statusBox.dataset.state = "error";
             statusBox.textContent =
                 "Error: " + (error.message || fallback);
             statusBox.classList.add("show", "error");
