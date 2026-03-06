@@ -148,9 +148,9 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     Promise.all([
-        loadComponent("header-placeholder", "tpl/header.html"),
-        loadComponent("footer-placeholder", "tpl/footer.html"),
-        loadComponent("cookies-placeholder", "tpl/cookies.html")
+        loadComponent("header-placeholder", "/tpl/header.html"),
+        loadComponent("footer-placeholder", "/tpl/footer.html"),
+        loadComponent("cookies-placeholder", "/tpl/cookies.html")
     ]).then(() => {
         initHeaderAndMenu();
         initCurrentYear();

@@ -360,7 +360,7 @@
 
 .services-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(2, 1fr);
     gap: 25px;
     perspective: 1000px;
 }
@@ -1124,14 +1124,6 @@
         height: auto;
         display: block;
         margin: 0;
-    }
-
-    .services-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-
-    .services-grid .service-card:nth-child(odd):last-child {
-        grid-column: 1 / -1;
     }
 
     .legal-card {

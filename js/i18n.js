@@ -69,7 +69,7 @@
   const fetchDict = async (lang) => {
     if (DICT_CACHE.has(lang)) return DICT_CACHE.get(lang);
 
-    const res = await fetch(`i18n/${lang}.json`, {
+    const res = await fetch(`/i18n/${lang}.json`, {
       cache: "no-store",
       headers: { "Accept": "application/json" }
     });

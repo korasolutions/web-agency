@@ -280,8 +280,9 @@
     display: inline-block;
     position: absolute;
     bottom: -14px;
-    right: 20%;
-    user-select: none;
+    left: 50%;
+    transform: translateX(-50%);
+    white-space: nowrap;
     background: rgb(85, 42, 42);
     border: 1px solid rgba(255,107,107,0.3);
     color: #ff6b6b;

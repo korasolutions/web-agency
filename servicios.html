@@ -48,9 +48,9 @@
     <!-- ICONS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- CSS -->
-    <link rel="stylesheet" href="css/base.css">
-    <link rel="stylesheet" href="css/components.css">
-    <link rel="stylesheet" href="css/servicios.css">
+    <link rel="stylesheet" href="/css/base.css">
+    <link rel="stylesheet" href="/css/components.css">
+    <link rel="stylesheet" href="/css/servicios.css">
 </head>
 
 <body>
@@ -74,175 +74,71 @@
                 </h1>
                 <p class="page-subtitle"
                 data-i18n="services.hero.subtitle"
-                data-text="Explora en detalle cada una de las soluciones que ofrecemos para impulsar tu negocio.">
-                    Explora en detalle cada una de las soluciones que ofrecemos para impulsar tu negocio.
+                data-text="Soluciones digitales diseñadas para impulsar tu negocio. Elige el servicio que necesitas y descubre todo lo que podemos hacer por ti.">
+                    Soluciones digitales diseñadas para impulsar tu negocio. Elige el servicio que necesitas y descubre todo lo que podemos hacer por ti.
                 </p>
             </div>
         </section>
 
-        <!-- SERVICIO DESARROLLO WEB -->
-        <section class="service-detail" id="desarrollo">
+        <!-- GRID DE SERVICIOS (CARDS) -->
+        <section class="services-grid-section">
             <div class="container">
-                <div class="service-detail-grid">
-                    <div class="service-visual">
-                        <i class="fas fa-code"></i>
-                        <p data-i18n="services.web.visual"
-                        data-text="Desarrollo web estratégico, rendimiento optimizado y arquitectura preparada para crecer.">
-                            Desarrollo web estratégico, rendimiento optimizado y arquitectura preparada para crecer.
-                        </p>
+                <div class="services-grid">
+                    
+                    <!-- CARD 1: DESARROLLO WEB -->
+                    <div class="service-card web-card">
+                        <div class="card-image">
+                            <i class="fas fa-code"></i>
+                            <div class="card-overlay"></div>
+                        </div>
+                        <div class="card-content">
+                            <h2 class="card-title">
+                                <span data-i18n="services.web.card.title" data-text="Desarrollo">Desarrollo</span>
+                                <span class="highlight" data-i18n="services.web.card.titleHighlight" data-text="Web">Web</span>
+                            </h2>
+                            <p class="card-description" data-i18n="services.web.card.description" data-text="Creamos sitios web a medida, rápidos, seguros y optimizados para conversión.">
+                                Creamos sitios web a medida, rápidos, seguros y optimizados para conversión.
+                            </p>
+                            <a href="/servicios/desarrollo-web.html" class="btn btn-card" data-i18n="services.web.card.cta" data-text="Ver servicio">
+                                Ver servicio <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
                     </div>
 
-                    <div class="service-text">
-                        <h2 class="section-title">
-                            <span data-i18n="services.web.titlePrefix" data-text="Desarrollo">Desarrollo</span>
-                            <span class="highlight" data-i18n="services.web.titleHighlight" data-text="Web">Web</span>
-                        </h2>
-
-                        <p class="service-intro"
-                        data-i18n="services.web.intro">
-                            Diseñamos y desarrollamos sitios web a medida desde cero, combinando estrategia, experiencia de usuario y rendimiento técnico. No usamos plantillas genéricas: cada proyecto se construye pensado para potenciar el crecimiento de la marca.
-                        </p>
-
-                        <ul class="service-list">
-                            <li><i class="fas fa-check-circle"></i> 
-                                <span data-i18n="services.web.list.1" data-text="Webs corporativas y portafolios">Webs corporativas y portafolios</span>
-                            </li>
-                            <li><i class="fas fa-check-circle"></i> 
-                                <span data-i18n="services.web.list.2" data-text="Tiendas online (E-commerce)">Tiendas online (E-commerce)</span>
-                            </li>
-                            <li><i class="fas fa-check-circle"></i> 
-                                <span data-i18n="services.web.list.3" data-text="Aplicaciones web progresivas (PWA)">Aplicaciones web progresivas (PWA)</span>
-                            </li>
-                            <li><i class="fas fa-check-circle"></i> 
-                                <span data-i18n="services.web.list.4" data-text="Mantenimiento y soporte técnico">Mantenimiento y soporte técnico</span>
-                            </li>
-                        </ul>
-
-                        <a href="index.html#contacto"
-                        class="btn btn-primary"
-                        data-i18n="services.ctaInfo"
-                        data-text="Solicitar información">
-                            Solicitar información
-                        </a>
+                    <!-- CARD 2: AUTOMATIZACIONES IA -->
+                    <div class="service-card ia-card">
+                        <div class="card-image">
+                            <i class="fas fa-robot"></i>
+                            <div class="card-overlay"></div>
+                        </div>
+                        <div class="card-content">
+                            <h2 class="card-title">
+                                <span data-i18n="services.ai.card.title" data-text="Automatizaciones">Automatizaciones</span>
+                                <span class="highlight" data-i18n="services.ai.card.titleHighlight" data-text="IA">IA</span>
+                            </h2>
+                            <p class="card-description" data-i18n="services.ai.card.description" data-text="Integramos inteligencia artificial en tus procesos para ahorrar tiempo y recursos.">
+                                Integramos inteligencia artificial en tus procesos para ahorrar tiempo y recursos.
+                            </p>
+                            <a href="/servicios/automatizaciones-ia.html" class="btn btn-card" data-i18n="services.ai.card.cta" data-text="Ver servicio">
+                                Ver servicio <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
                     </div>
+
                 </div>
             </div>
         </section>
 
-        <!-- SERVICIO DISEÑO DE IDENTIDAD -->
-        <section class="service-detail" id="diseno">
-            <div class="container">
-                <div class="service-detail-grid">
-                    <div class="service-text">
-                        <h2 class="section-title">
-                            <span data-i18n="services.identity.titlePrefix" data-text="Diseño de">Diseño de</span>
-                            <span class="highlight" data-i18n="services.identity.titleHighlight" data-text="Identidad">Identidad</span>
-                        </h2>
-
-                        <p class="service-intro" data-i18n="services.identity.intro">
-                            Creamos identidades visuales únicas que comunican los valores de tu marca y la hacen inolvidable. No solo diseñamos un logotipo, creamos todo un ecosistema visual.
-                        </p>
-
-                        <ul class="service-list">
-                            <li><i class="fas fa-check-circle"></i> 
-                                <span data-i18n="services.identity.list.1" data-text="Branding estratégico y naming">Branding estratégico y naming</span>
-                            </li>
-                            <li><i class="fas fa-check-circle"></i> 
-                                <span data-i18n="services.identity.list.2" data-text="Diseño de logotipo y sus variantes">Diseño de logotipo y sus variantes</span>
-                            </li>
-                            <li><i class="fas fa-check-circle"></i> 
-                                <span data-i18n="services.identity.list.3" data-text="Guías de estilo visual y manual de marca">Guías de estilo visual y manual de marca</span>
-                            </li>
-                            <li><i class="fas fa-check-circle"></i> 
-                                <span data-i18n="services.identity.list.4" data-text="Diseño de papelería y merchandising">Diseño de papelería y merchandising</span>
-                            </li>
-                        </ul>
-
-                        <a href="index.html#contacto"
-                        class="btn btn-primary"
-                        data-i18n="services.ctaInfo"
-                        data-text="Solicitar información">
-                            Solicitar información
-                        </a>
-                    </div>
-
-                    <div class="service-visual">
-                        <i class="fas fa-paint-brush"></i>
-                        <p data-i18n="services.identity.visual"
-                        data-text="Construye una marca que perdure.">
-                            Construye una marca que perdure.
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </section> 
-
-        <!-- SERVICIO AUTOMATIZACIONES IA -->
-        <section class="service-detail" id="ia">
-            <div class="container">
-                <div class="service-detail-grid">
-                    <div class="service-text">
-                        <h2 class="section-title">
-                            <span data-i18n="services.ai.titlePrefix" data-text="Automatizaciones">Automatizaciones</span>
-                            <span class="highlight" data-i18n="services.ai.titleHighlight" data-text="IA">IA</span>
-                        </h2>
-
-                        <p class="service-intro"
-                        data-i18n="services.ai.intro">
-                            Automatizamos tareas repetitivas para ahorrar horas de trabajo y reducir errores. Implementamos inteligencia artificial para optimizar tus procesos de negocio.
-                        </p>
-
-                        <ul class="service-list">
-                            <li><i class="fas fa-check-circle"></i> 
-                                <span data-i18n="services.ai.list.1" data-text="Bots entrenados con IA para atención al cliente">Bots entrenados con IA para atención al cliente</span>
-                            </li>
-                            <li><i class="fas fa-check-circle"></i> 
-                                <span data-i18n="services.ai.list.2" data-text="Automatización de emails y marketing">Automatización de emails y marketing</span>
-                            </li>
-                            <li><i class="fas fa-check-circle"></i> 
-                                <span data-i18n="services.ai.list.3" data-text="Clasificación inteligente de documentos">Clasificación inteligente de documentos</span>
-                            </li>
-                            <li><i class="fas fa-check-circle"></i> 
-                                <span data-i18n="services.ai.list.4" data-text="Análisis predictivo de datos">Análisis predictivo de datos</span>
-                            </li>
-                        </ul>
-
-                        <a href="index.html#contacto"
-                        class="btn btn-primary"
-                        data-i18n="services.ctaInfo"
-                        data-text="Solicitar información">
-                            Solicitar información
-                        </a>
-                    </div>
-
-                    <div class="service-visual">
-                        <i class="fas fa-robot"></i>
-                        <p data-i18n="services.ai.visual"
-                        data-text="Deja que la IA haga el trabajo pesado.">
-                            Deja que la IA haga el trabajo pesado.
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- CTA FINAL -->
+        <!-- CTA FINAL (opcional) -->
         <section class="section-cta">
             <div class="container">
-                <h2 data-i18n="services.finalCta.title"
-                    data-text="¿Listo para empezar tu proyecto?">
+                <h2 data-i18n="services.finalCta.title" data-text="¿Listo para empezar tu proyecto?">
                     ¿Listo para empezar tu proyecto?
                 </h2>
-
-                <p data-i18n="services.finalCta.subtitle"
-                data-text="Hablemos y descubre cómo podemos ayudarte a alcanzar tus objetivos.">
+                <p data-i18n="services.finalCta.subtitle" data-text="Hablemos y descubre cómo podemos ayudarte a alcanzar tus objetivos.">
                     Hablemos y descubre cómo podemos ayudarte a alcanzar tus objetivos.
                 </p>
-
-                <a href="index.html#contacto"
-                class="btn btn-primary btn-large"
-                data-i18n="services.finalCta.button"
-                data-text="Contacta con nosotros">
+                <a href="/index.html#contacto" class="btn btn-primary btn-large" data-i18n="services.finalCta.button" data-text="Contacta con nosotros">
                     Contacta con nosotros
                 </a>
             </div>
@@ -260,8 +156,8 @@
     <div id="cookies-placeholder"></div>
 
     <!-- SCRIPTS -->
-    <script src="js/i18n.js"></script>
-    <script src="js/script.js"></script>
+    <script src="/js/i18n.js"></script>
+    <script src="/js/script.js"></script>
 </body>
 
 </html>
