@@ -11,16 +11,16 @@
     "hero": {
       "title": "En KORA no seguimos las tendencias del mercado, las",
       "titleAccent": "creamos",
-      "h1": "Agencia de marketing digital y diseño web a medida en Canarias."
+      "h1": "Agencia de Diseño Web a medida en Canarias."
     },
     "about": {
       "title1": "SOBRE",
       "title2": "NOSOTROS",
       "subtitle": "Más que una agencia, somos socios estratégicos en tu transformación digital.",
       "philosophyTitle": "Nuestra filosofía",
-      "philosophyText": "En KORA creemos en la autenticidad por encima de todo. No aplicamos plantillas ni soluciones genéricas. Cada proyecto nace de un análisis profundo de las necesidades específicas de tu negocio.",
+      "philosophyText": "En KORA apostamos por soluciones auténticas y a medida. Cada proyecto parte de las necesidades reales de tu negocio.",
       "focusTitle": "Nuestro enfoque",
-      "focusText": "Trabajamos con metodologías ágiles pero con una visión artesanal. Cada línea de código, cada diseño, cada estrategia está pensada para construir no solo un producto digital, sino una extensión de tu marca.",
+      "focusText": "Combinamos agilidad y precisión para crear experiencias digitales que reflejan tu marca y generan resultados.",
       "values": {
         "authenticity": {
           "title": "Autenticidad",
@@ -153,7 +153,7 @@
     "hero": {
       "titlePrefix": "Nuestros",
       "titleHighlight": "Servicios",
-      "subtitle": "Explora en detalle cada una de las soluciones que ofrecemos para impulsar tu negocio."
+      "subtitle": "Explora en detalle los servicios que ofrecemos para impulsar tu negocio."
     },
     "ctaInfo": "Solicitar información",
     "identity": {

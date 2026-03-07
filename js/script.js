@@ -1,4 +1,27 @@
+/** @type {any} */
+window.Lenis;
 document.addEventListener('DOMContentLoaded', function () {
+
+    function initLenis() {
+        const isDesktop = window.innerWidth > 1024;
+
+        if (!isDesktop || typeof window.Lenis === 'undefined') {
+            return null;
+        }
+
+        const lenis = new window.Lenis({
+            duration: 1.05,
+            smoothWheel: true,
+            syncTouch: false,
+            wheelMultiplier: 0.80,
+            touchMultiplier: 1,
+            autoRaf: true
+        });
+
+        return lenis;
+    }
+
+    const lenis = initLenis();
 
     // ========== CARGA DE COMPONENTES REUTILIZABLES ==========
     function loadComponent(id, file) {
@@ -139,9 +162,12 @@ document.addEventListener('DOMContentLoaded', function () {
                 const headerHeight = header ? header.offsetHeight : 0;
                 const targetPosition = targetElement.offsetTop - headerHeight;
 
-                window.scrollTo({ top: targetPosition, behavior: 'smooth' });
+                if (lenis) {
+                    lenis.scrollTo(targetPosition, { duration: 1.1 });
+                } else {
+                    window.scrollTo({ top: targetPosition, behavior: 'smooth' });
+                }
 
-                // Cierra menú móvil si estaba abierto
                 if (nav && nav.classList.contains('active')) closeMenu();
             });
         });
@@ -232,17 +258,25 @@ document.addEventListener('DOMContentLoaded', function () {
             layersContainer.appendChild(layer);
         }
 
-        // Aplicar efecto parallax al hacer scroll
-        window.addEventListener('scroll', () => {
-            const scrolled = window.pageYOffset;
-            const layers = document.querySelectorAll('.parallax-layer');
+        const layers = document.querySelectorAll('.parallax-layer');
 
+        const updateParallax = (scrolled) => {
             layers.forEach((layer, index) => {
                 const speed = 0.3 + (index * 0.1);
                 const yPos = -(scrolled * speed);
                 layer.style.transform = `translateY(${yPos}px)`;
             });
-        });
+        };
+
+        if (lenis) {
+            lenis.on('scroll', ({ scroll }) => {
+                updateParallax(scroll);
+            });
+        } else {
+            window.addEventListener('scroll', () => {
+                updateParallax(window.pageYOffset);
+            }, { passive: true });
+        }
     }
 
     createParallaxLayers();
