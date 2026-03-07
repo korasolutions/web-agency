@@ -340,6 +340,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }
 
         function calculatePrice() {
+
             const projectType = projectTypeSelect.value;
             const base = basePrices[projectType] || 1000;
 
@@ -356,7 +357,13 @@ document.addEventListener('DOMContentLoaded', function () {
             const rawMin = subtotal * urgencyMultiplier * 0.9;
             const min = toMarketingPrice(rawMin);
 
-            resultSpan.textContent = `${min}€`;
+            // precio "antes"
+            const before = toMarketingPrice(min * 1.2);
+
+            resultSpan.innerHTML = `
+                <div class="price-before"><span class="price-old">${before}€</span></div>
+                <div class="price-now">${min}€</div>
+            `;
         }
 
         projectTypeSelect.addEventListener('change', calculatePrice);
