@@ -178,7 +178,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         // cargar cookie-consent.js después de que exista #cookie-consent
         const s = document.createElement("script");
-        s.src = "js/cookie-consent.js";
+        s.src = "/js/cookie-consent.js";
         s.defer = true;
         document.body.appendChild(s);
     });

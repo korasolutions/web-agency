@@ -1,28 +1,29 @@
 /* ======================================================
    ESTILOS ESPECÍFICOS PARA automatizaciones-ia.html
+   TONALIDAD PRINCIPAL: #0ff (CIAN / AZUL)
+   ESTRUCTURA DIFERENTE A DESARROLLO WEB
    ====================================================== */
 
-/* HERO ESPECÍFICO - Automatizaciones IA */
-.hero-automatizaciones {
+/* HERO ESPECÍFICO (mismo estilo pero colores IA) */
+.hero-ia {
     padding: 10rem 2rem 5rem;
-    background: radial-gradient(circle at 30% 20%, rgba(0, 255, 255, 0.12), transparent 40%),
-                radial-gradient(circle at 80% 80%, rgba(101, 140, 211, 0.1), transparent 50%),
+    background: radial-gradient(circle at 30% 20%, rgba(0, 255, 255, 0.15), transparent 40%),
+                radial-gradient(circle at 80% 80%, rgba(0, 255, 255, 0.05), transparent 50%),
                 var(--bg-primary);
     position: relative;
     overflow: hidden;
 }
 
-.hero-automatizaciones .hero-content {
-    max-width: 900px;
+.hero-ia .hero-content {
     margin: 0 auto;
     text-align: center;
 }
 
-.hero-automatizaciones .hero-badge {
+.hero-ia .hero-badge {
     display: inline-block;
     background: rgba(0, 255, 255, 0.1);
     border: 1px solid rgba(0, 255, 255, 0.3);
-    color: #0ff; /* Cyan / Azul neón */
+    color: #0ff;
     font-size: 0.9rem;
     font-weight: 600;
     letter-spacing: 0.05em;
@@ -33,21 +34,21 @@
     text-transform: uppercase;
 }
 
-.hero-automatizaciones .hero-title {
-    font-size: 4.5rem;
+.hero-ia .hero-title {
+    font-size: 4rem;
     font-weight: 700;
     line-height: 1.1;
     margin-bottom: 1.5rem;
     text-transform: uppercase;
 }
 
-.hero-automatizaciones .hero-title .highlight {
-    color: #0ff; /* Cyan / Azul neón */
+.hero-ia .hero-title .highlight {
+    color: #0ff;
     display: inline-block;
     position: relative;
 }
 
-.hero-automatizaciones .hero-title .highlight::after {
+.hero-ia .hero-title .highlight::after {
     content: '';
     position: absolute;
     bottom: 5px;
@@ -58,14 +59,14 @@
     z-index: -1;
 }
 
-.hero-automatizaciones .hero-subtitle {
+.hero-ia .hero-subtitle {
     font-size: 1.3rem;
     color: var(--text-secondary);
     max-width: 700px;
     margin: 0 auto 2.5rem;
 }
 
-.hero-automatizaciones .hero-cta {
+.hero-ia .hero-cta {
     display: flex;
     gap: 1rem;
     justify-content: center;
@@ -73,469 +74,466 @@
     flex-wrap: wrap;
 }
 
-/* INTRO */
-.intro-automatizaciones {
-    padding: 80px 0;
+/* Botones específicos IA */
+.btn-primary-ia {
+    display: inline-block;
+    background: transparent;
+    color: #0ff;
+    font-weight: 600;
+    padding: 0.8rem 2rem;
+    border-radius: 100px;
+    text-decoration: none;
+    border: 1px solid #0ff;
+    transition: all 0.3s ease;
+    min-width: 240px;
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.1);
+}
+
+.btn-primary-ia:hover {
+    background: #0ff;
+    color: #000;
+}
+
+.btn-secondary-ia {
+    display: inline-block;
+    background: transparent;
+    color: var(--text-primary);
+    font-weight: 600;
+    padding: 0.8rem 2rem;
+    border-radius: 100px;
+    text-decoration: none;
+    border: 1px solid var(--border-color);
+    transition: all 0.3s ease;
+    min-width: 240px;
+}
+
+.btn-secondary-ia:hover {
+    border-color: #0ff;
+    color: #0ff;
+}
+
+.btn-outline-ia {
+    display: inline-block;
+    background: transparent;
+    color: #0ff;
+    font-weight: 600;
+    padding: 0.8rem 2rem;
+    border-radius: 100px;
+    text-decoration: none;
+    border: 1px solid #0ff;
+    transition: all 0.3s ease;
+}
+
+.btn-outline-ia:hover {
+    background: #0ff;
+    color: #000;
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
+}
+
+/* BLOQUE DE IMPACTO: ESTADÍSTICAS */
+.impacto-stats {
+    padding: 40px 0 60px;
     background: var(--bg-secondary);
-    border-top: 1px solid var(--border-color);
     border-bottom: 1px solid var(--border-color);
 }
 
-.intro-automatizaciones .intro-grid {
-    display: grid;
-    grid-template-columns: 1.5fr 1fr;
-    gap: 50px;
-    align-items: center;
-}
-
-.intro-automatizaciones .intro-text .section-title {
-    font-size: 2rem;
-    margin-bottom: 1rem;
-}
-
-.intro-automatizaciones .section-title {
-    width: 100%;
-    text-align: center;
-}
-
-.intro-automatizaciones .intro-description {
-    color: var(--text-secondary);
-    font-size: 1.1rem;
-    text-align: center;
-    line-height: 1.7;
-}
-
-.intro-automatizaciones .intro-stats {
+.stats-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 20px;
-    text-align: center;
+    gap: 30px;
 }
 
-.intro-automatizaciones .stat-item {
+.stat-card {
+    text-align: center;
     padding: 20px;
-    background: rgba(255,255,255,0.02);
+    background: var(--bg-elevated);
     border-radius: var(--border-radius);
     border: 1px solid var(--border-color);
     transition: transform 0.3s ease;
 }
 
-.intro-automatizaciones .stat-item:hover {
+.stat-card:hover {
     transform: translateY(-5px);
-    border-color: #0ff; /* Cyan */
+    border-color: #0ff;
 }
 
-.intro-automatizaciones .stat-number {
-    display: block;
+.stat-icon {
+    font-size: 2rem;
+    color: #0ff;
+    margin-bottom: 1rem;
+}
+
+.stat-number {
     font-size: 2.5rem;
     font-weight: 700;
-    color: #0ff; /* Cyan */
+    color: #0ff;
     line-height: 1.2;
+    margin-bottom: 0.5rem;
 }
 
-.intro-automatizaciones .stat-label {
+.stat-label {
     font-size: 0.9rem;
-    color: var(--text-tertiary);
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
+    color: var(--text-secondary);
+    line-height: 1.4;
 }
 
-/* ESPECIFICACIONES (reutiliza la misma estructura, pero con colores de acento azul) */
-.especificaciones {
+/* SECCIÓN: ¿QUÉ PUEDES AUTOMATIZAR? */
+.que-automatizar {
     padding: 80px 0;
+    background: var(--bg-primary);
 }
 
-.especificaciones-header {
+.section-header {
     text-align: center;
     margin-bottom: 50px;
 }
 
-.especificaciones-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 25px;
+.section-subtitle {
+    color: var(--text-secondary);
+    font-size: 1.1rem;
 }
 
-.espec-card {
+.areas-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+}
+
+.area-card {
     background: var(--bg-elevated);
     border: 1px solid var(--border-color);
-    border-radius: var(--border-radius);
-    padding: 30px 20px;
-    transition: all 0.3s ease;
-    position: relative;
+    border-radius: 24px;
     overflow: hidden;
+    transition: all 0.3s ease;
 }
 
-.espec-card:hover {
-    transform: translateY(-8px);
-    border-color: #0ff; /* Cyan */
-    box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+.area-card:hover {
+    border-color: #0ff;
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0, 255, 255, 0.1);
 }
 
-.espec-card:hover::before {
-    transform: scaleX(1);
-}
-
-/* Pequeña variación para el borde en la card destacada si la hubiera */
-.espec-card.highlight-card {
-    border: 1px solid rgba(0, 255, 255, 0.5);
-    background: linear-gradient(145deg, rgba(0, 255, 255, 0.05), var(--bg-elevated));
-}
-
-.espec-icon {
-    font-size: 2.5rem;
-    color: #0ff; /* Cyan */
-    margin-bottom: 1rem;
-}
-
-.espec-card h3 {
-    font-size: 1.3rem;
-    margin-bottom: 0.8rem;
-    color: var(--text-primary);
-}
-
-.espec-card p {
-    color: var(--text-secondary);
-    font-size: 0.95rem;
-    margin-bottom: 1.2rem;
-    line-height: 1.5;
-}
-
-.espec-list {
-    list-style: none;
-    padding: 0;
-}
-
-.espec-list li {
-    color: var(--text-tertiary);
-    font-size: 0.9rem;
-    margin-bottom: 0.5rem;
+.area-header {
+    padding: 20px 25px;
+    background: linear-gradient(145deg, rgba(0, 255, 255, 0.05), transparent);
+    border-bottom: 1px solid var(--border-color);
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 15px;
 }
 
-.espec-list li i {
-    color: #0ff; /* Cyan */
-    font-size: 0.8rem;
+.area-header i {
+    font-size: 2rem;
+    color: #0ff;
 }
 
-/* PROCESO DE TRABAJO */
-.proceso-trabajo {
-    padding: 80px 0;
+.area-header h3 {
+    font-size: 1.3rem;
+    margin: 0;
+}
+
+.area-content {
+    padding: 25px;
+}
+
+.area-list {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 20px 0;
+}
+
+.area-list li {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 12px;
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+}
+
+.area-list li i {
+    color: #0ff;
+    font-size: 1rem;
+    width: 20px;
+    text-align: center;
+}
+
+.area-impacto {
+    text-align: right;
+}
+
+.impacto-badge {
+    display: inline-block;
+    background: rgba(0, 255, 255, 0.1);
+    border: 1px solid rgba(0, 255, 255, 0.3);
+    color: #0ff;
+    font-weight: 600;
+    padding: 0.3rem 1rem;
+    border-radius: 100px;
+    font-size: 0.9rem;
+}
+
+/* SECCIÓN PRESENCIAL LANZAROTE (versión diferente) */
+.lanzarote-presencial {
+    padding: 60px 0;
     background: var(--bg-secondary);
     border-top: 1px solid var(--border-color);
     border-bottom: 1px solid var(--border-color);
 }
 
-.proceso-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 30px;
-    margin-top: 50px;
-}
-
-.proceso-item {
-    text-align: center;
-    padding: 30px 20px;
-    background: rgba(255,255,255,0.02);
-    border-radius: var(--border-radius);
-    border: 1px solid var(--border-color);
-    transition: transform 0.3s ease;
-    position: relative;
-}
-
-.proceso-item:hover {
-    transform: translateY(-5px);
-    border-color: #0ff; /* Cyan */
-}
-
-.proceso-num {
-    display: inline-block;
-    font-size: 3rem;
-    font-weight: 800;
-    color: #0ff; /* Cyan */
-    line-height: 1;
-    margin-bottom: 0.5rem;
-    font-family: 'Inter', sans-serif;
-}
-
-.proceso-item h3 {
-    font-size: 1.3rem;
-    margin-bottom: 0.8rem;
-    color: var(--text-primary);
-}
-
-.proceso-item p {
-    color: var(--text-tertiary);
-    font-size: 0.95rem;
-    line-height: 1.6;
-}
-
-/* ======================================================
-   METODOLOGÍA - AJUSTES Y SECCIÓN PRESENCIAL (con acento azul)
-   ====================================================== */
-
-/* Badge para el paso 2 (prototipo funcional) */
-.proceso-badge {
-    display: inline-block;
-    position: absolute;
-    bottom: -14px;
-    right: 20%;
-    user-select: none;
-    background: rgb(0, 40, 60);
-    border: 1px solid rgba(0, 255, 255, 0.3);
-    color: #0ff; /* Cyan */
-    font-size: 0.7rem;
-    font-weight: 600;
-    padding: 0.3rem 1rem;
-    border-radius: 100px;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-}
-
-/* Sección presencial Lanzarote (con acento azul) */
-.presencial-lanzarote {
-    margin-top: 70px;
-    background: linear-gradient(145deg, rgba(0, 255, 255, 0.05), rgba(0,0,0,0.2));
+.presencial-box {
+    background: linear-gradient(145deg, rgba(0, 255, 255, 0.05), rgba(0, 0, 0, 0.3));
     border: 1px solid rgba(0, 255, 255, 0.3);
     border-radius: 40px;
-    padding: 40px 50px;
+    padding: 50px;
     position: relative;
     overflow: hidden;
-    box-shadow: 0 20px 30px rgba(0,0,0,0.3);
 }
 
-.presencial-lanzarote::before {
+.presencial-box::before {
     content: '';
     position: absolute;
     top: -50%;
-    right: -20%;
+    right: -10%;
     width: 300px;
     height: 300px;
-    background: radial-gradient(circle, rgba(0, 255, 255, 0.2) 0%, transparent 70%);
+    background: radial-gradient(circle, rgba(0, 255, 255, 0.2), transparent 70%);
     border-radius: 50%;
-    z-index: 0;
-    animation: rotateSlow 30s linear infinite;
+    animation: float 10s ease-in-out infinite;
 }
 
-@keyframes rotateSlow {
-    from { transform: rotate(0deg); }
-    to { transform: rotate(360deg); }
+@keyframes float {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(-20px) rotate(5deg); }
 }
 
-.presencial-content {
-    display: flex;
+.presencial-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 50px;
     align-items: center;
-    gap: 40px;
     position: relative;
     z-index: 2;
 }
 
-.presencial-icon {
-    flex-shrink: 0;
-    width: 120px;
-    height: 120px;
-    background: rgba(0, 255, 255, 0.08);
-    border-radius: 50%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 5px;
-    border: 2px dashed #0ff; /* Cyan */
-    animation: pulseIcon 3s infinite ease-in-out;
+.presencial-tag {
+    display: inline-block;
+    background: rgba(0, 255, 255, 0.1);
+    border: 1px solid rgba(0, 255, 255, 0.3);
+    color: #0ff;
+    font-size: 0.9rem;
+    font-weight: 600;
+    padding: 0.3rem 1rem;
+    border-radius: 100px;
+    margin-bottom: 1rem;
 }
 
-@keyframes pulseIcon {
-    0%, 100% { box-shadow: 0 0 0 0 rgba(0, 255, 255, 0.3); }
-    50% { box-shadow: 0 0 0 15px rgba(0, 255, 255, 0); }
-}
-
-.presencial-icon img {
-    height: 70%;
-    color: #0ff; /* Cyan */
-}
-
-.presencial-icon i:first-child {
+.presencial-info h3 {
     font-size: 2.2rem;
-    margin-bottom: -5px;
-}
-
-.presencial-text {
-    flex: 1;
-}
-
-.presencial-text h3 {
-    font-size: 2rem;
-    margin-bottom: 15px;
+    margin-bottom: 20px;
     color: var(--text-primary);
-    display: flex;
-    align-items: center;
-    gap: 10px;
 }
 
-.presencial-text h3 i {
-    color: #0ff; /* Cyan */
-    font-size: 1.8rem;
-}
-
-.presencial-text p {
+.presencial-info p {
     color: var(--text-secondary);
     font-size: 1.1rem;
     line-height: 1.6;
-    margin-bottom: 20px;
-    max-width: 800px;
+    margin-bottom: 25px;
 }
 
 .presencial-features {
     display: flex;
-    flex-wrap: wrap;
-    gap: 20px 30px;
-    margin-bottom: 25px;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 30px;
 }
 
 .presencial-features span {
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 10px;
     color: var(--text-primary);
-    font-size: 1rem;
 }
 
 .presencial-features i {
-    color: #0ff; /* Cyan */
-    font-size: 1.1rem;
+    color: #0ff;
 }
 
-.btn-small {
-    padding: 0.8rem 1.8rem;
-    font-size: 0.9rem;
+.presencial-image {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.presencial-image i {
+    font-size: 8rem;
+    color: #0ff;
+    opacity: 0.6;
+    animation: pulse 3s infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { transform: scale(1); opacity: 0.6; }
+    50% { transform: scale(1.1); opacity: 0.8; }
+}
+
+.image-dots {
+    position: absolute;
+    width: 150px;
+    height: 150px;
+    border: 2px dashed #0ff;
+    border-radius: 50%;
+    animation: rotate 20s linear infinite;
+}
+
+@keyframes rotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
 }
 
 /* CTA FINAL */
-.cta-final {
-    padding: 100px 0;
+.cta-ia {
+    padding: 80px 0;
     text-align: center;
     background: radial-gradient(circle at 50% 50%, rgba(0, 255, 255, 0.1), transparent 70%),
                 var(--bg-primary);
-    border-top: 1px solid var(--border-color);
 }
 
-.cta-final h2 {
-    font-size: 3rem;
-    margin-bottom: 1.5rem;
+.cta-box {
+    max-width: 800px;
+    margin: 0 auto;
 }
 
-.cta-final p {
+.cta-box h2 {
+    font-size: 2.8rem;
+    margin-bottom: 20px;
+}
+
+.cta-box p {
     color: var(--text-secondary);
     font-size: 1.2rem;
-    max-width: 600px;
-    margin: 0 auto 2rem;
+    margin-bottom: 30px;
+}
+
+.btn-large {
+    padding: 1rem 3rem;
+    font-size: 1.1rem;
+    min-width: 280px;
 }
 
 /* ======================================================
-   RESPONSIVE (idéntico al original, solo cambian las referencias de clase si las hubiera)
+   RESPONSIVE
    ====================================================== */
 
 @media (max-width: 1100px) {
-    .especificaciones-grid {
+    .stats-grid {
         grid-template-columns: repeat(2, 1fr);
     }
-    .proceso-grid {
+    
+    .testimonios-grid {
         grid-template-columns: repeat(2, 1fr);
     }
 }
 
 @media (max-width: 992px) {
-    .hero-automatizaciones .hero-title {
+    .hero-ia .hero-title {
         font-size: 3.5rem;
     }
-    .intro-automatizaciones .intro-grid {
+    
+    .areas-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .presencial-grid {
         grid-template-columns: 1fr;
         text-align: center;
     }
-    .presencial-content {
-        flex-direction: column;
-        text-align: center;
-    }
-    
-    .presencial-text h3 {
-        justify-content: center;
-    }
     
     .presencial-features {
-        justify-content: center;
+        align-items: center;
+    }
+    
+    .presencial-image {
+        display: none;
     }
 }
 
 @media (max-width: 768px) {
-    .hero-automatizaciones .hero-title {
+    .hero-ia .hero-title {
         font-size: 2.8rem;
     }
-    .hero-automatizaciones .hero-subtitle {
+    
+    .hero-ia .hero-subtitle {
         font-size: 1.1rem;
     }
-    .intro-automatizaciones .intro-stats {
+    
+    .stats-grid {
         grid-template-columns: 1fr;
-        gap: 10px;
-    }
-    .especificaciones-grid,
-    .proceso-grid {
-        grid-template-columns: 1fr;
-    }
-    .presencial-lanzarote {
-        padding: 30px 20px;
+        gap: 15px;
     }
     
-    .presencial-text h3 {
-        font-size: 1.6rem;
+    .testimonios-grid {
+        grid-template-columns: 1fr;
     }
     
-    .presencial-text p {
+    .timeline::before {
+        left: 15px;
+    }
+    
+    .timeline-number {
+        width: 30px;
+        height: 30px;
         font-size: 1rem;
     }
     
-    .presencial-features {
-        flex-direction: column;
-        gap: 10px;
-        align-items: center;
+    .presencial-box {
+        padding: 30px 20px;
     }
-    .cta-final h2 {
-        font-size: 2.2rem;
+    
+    .presencial-info h3 {
+        font-size: 1.8rem;
     }
-}
-
-@media (max-width: 650px) {
-    .section-title {
+    
+    .cta-box h2 {
         font-size: 2rem;
     }
 }
 
 @media (max-width: 480px) {
-    .hero-automatizaciones .hero-title {
+    .hero-ia {
+        padding: 8rem 1rem 4rem;
+    }
+    
+    .hero-ia .hero-title {
         font-size: 2.2rem;
     }
-    .hero-automatizaciones .hero-badge {
-        font-size: 0.8rem;
-    }
-    .hero-automatizaciones .hero-cta {
+    
+    .hero-ia .hero-cta {
         flex-direction: column;
-        align-items: center;
     }
-    .hero-automatizaciones .hero-cta .btn {
+    
+    .hero-ia .hero-cta .btn {
         width: 100%;
     }
-    .presencial-icon {
-        width: 90px;
-        height: 90px;
+    
+    .section-title {
+        font-size: 1.8rem;
     }
     
-    .presencial-icon i {
-        font-size: 1.5rem;
+    .area-header {
+        padding: 15px 20px;
     }
     
-    .presencial-text h3 {
-        font-size: 1.3rem;
+    .area-content {
+        padding: 20px;
+    }
+    
+    .testimonio-card {
+        padding: 20px 15px;
+    }
+    
+    .cta-box h2 {
+        font-size: 1.8rem;
     }
 }

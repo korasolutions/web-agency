@@ -3,7 +3,7 @@
    ====================================================== */
 /* HERO */
 .page-hero {
-  padding: 8rem 2rem 2rem;
+  padding: 9rem 2rem 2rem;
   text-align: center;
   max-width: 100%;
 }
@@ -45,7 +45,7 @@
 
 
 .services-grid-section {
-    padding: 40px 0 0;
+    padding: 10px 0 0;
 }
 
 .services-grid {
@@ -279,7 +279,7 @@
     }
 
     .page-hero {
-        padding: 7rem 1.25rem 3rem !important;
+        padding: 7rem 1.25rem 2rem !important;
     }
 
     .page-title {
@@ -301,31 +301,21 @@
 
     .services-grid {
         grid-template-columns: 1fr;
-        max-width: 550px;
+        max-width: 650px;
         gap: 35px;
+    }
+    .card-image {
+        height: 90px;
+    }
+
+    .card-image i {
+        font-size: 3.5rem;
     }
 }
 
 @media (max-width: 768px) {
-
-    .page-title {
-        font-size: 2.05rem !important;
-    }
-
-    .page-subtitle {
-        font-size: 1rem !important;
-    }
-
     .section-cta h2 {
         font-size: 1.8rem !important;
-    }
-    
-    .card-image {
-        height: 140px;
-    }
-    
-    .card-image i {
-        font-size: 4rem;
     }
     
     .card-content {
@@ -363,6 +353,14 @@
     .btn-card {
         width: 100%;
         justify-content: center;
+    }
+
+    .card-image {
+        height: 80px;
+    }
+
+    .card-image i {
+        font-size: 3rem;
     }
 }
 
