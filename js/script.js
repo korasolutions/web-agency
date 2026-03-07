@@ -352,15 +352,13 @@ document.addEventListener('DOMContentLoaded', function () {
     const resultSpan = document.getElementById('result-value');
 
     if (projectTypeSelect && resultSpan) {
-        // Precios base por tipo de proyecto
         const basePrices = {
             landing: 700,
             corporate: 900,
-            ecommerce: 1250,
+            ecommerce: 1250
             // mobileapp: 2000
         };
 
-        // Precios de funcionalidades extra
         const featurePrices = {
             seo: 200,
             blog: 150,
@@ -370,12 +368,16 @@ document.addEventListener('DOMContentLoaded', function () {
             pagos: 250
         };
 
-        function calculatePrice() {
-            // Precio base
-            const projectType = projectTypeSelect.value;
-            let base = basePrices[projectType] || 1000;
+        function toMarketingPrice(value) {
+            const rounded = Math.round(value / 100) * 100;
+            return rounded - 1;
+        }
 
-            // Sumar funcionalidades seleccionadas
+        function calculatePrice() {
+
+            const projectType = projectTypeSelect.value;
+            const base = basePrices[projectType] || 1000;
+
             let featuresTotal = 0;
             checkboxesCalc.forEach(cb => {
                 if (cb.checked) {
@@ -383,33 +385,25 @@ document.addEventListener('DOMContentLoaded', function () {
                 }
             });
 
-            // Subtotal
-            let subtotal = base + featuresTotal;
+            const subtotal = base + featuresTotal;
+            const urgencyMultiplier = parseFloat(urgencySelect.value) || 1;
 
-            // Aplicar urgencia
-            const urgencyMultiplier = parseFloat(urgencySelect.value);
+            const rawMin = subtotal * urgencyMultiplier * 0.9;
+            const min = toMarketingPrice(rawMin);
 
-            // Calcular rango con variabilidad
-            const min = Math.round(subtotal * urgencyMultiplier * 0.9 / 100) * 100;
-            const max = Math.round(subtotal * urgencyMultiplier * 1.2 / 100) * 100;
+            // precio "antes"
+            const before = toMarketingPrice(min * 1.2);
 
-            // Formatear como moneda
-            const formatter = new Intl.NumberFormat('es-ES', {
-                style: 'currency',
-                currency: 'EUR',
-                minimumFractionDigits: 0,
-                maximumFractionDigits: 0
-            });
-
-            resultSpan.textContent = `${formatter.format(min)} – ${formatter.format(max)}`;
+            resultSpan.innerHTML = `
+                <div class="price-before"><span class="price-old">${before}€</span></div>
+                <div class="price-now">${min}€</div>
+            `;
         }
 
-        // Listeners
         projectTypeSelect.addEventListener('change', calculatePrice);
         urgencySelect.addEventListener('change', calculatePrice);
         checkboxesCalc.forEach(cb => cb.addEventListener('change', calculatePrice));
 
-        // Calcular inicial
         calculatePrice();
     }
 });
