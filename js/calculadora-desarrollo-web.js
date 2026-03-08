@@ -7,9 +7,9 @@ document.addEventListener("DOMContentLoaded", () => {
     if (!projectTypeSelect || !urgencySelect || !resultSpan) return;
 
     const basePrices = {
-        landing: 1000,
-        corporate: 1200,
-        ecommerce: 1800
+        landing: 600,
+        corporate: 700,
+        ecommerce: 800
     };
 
     const extraPrices = {

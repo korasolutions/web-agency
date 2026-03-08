@@ -7,10 +7,10 @@ document.addEventListener("DOMContentLoaded", () => {
     if (!projectTypeSelect || !urgencySelect || !resultSpan) return;
 
     const basePrices = {
-        "customer-support": 1800,
-        "social-media": 1500,
-        "administration": 2000,
-        "internal-processes": 2500
+        "customer-support": 600,
+        "social-media": 800,
+        "administration": 900,
+        "internal-processes": 700
     };
 
     const extraPrices = {

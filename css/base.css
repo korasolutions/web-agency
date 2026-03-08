@@ -48,10 +48,13 @@
 
     /* ---- Transiciones ---- */
     --transition-smooth: all 0.3s ease; 
+
+    /* ---- Automatizaciones IA ---- */
+    --ia-primary: rgb(70, 192, 230);
 }
 
 html {
-    scroll-behavior: auto;
+    scroll-behavior: smooth;
 }
 
 body {
