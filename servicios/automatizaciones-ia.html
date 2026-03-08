@@ -54,6 +54,7 @@
     <link rel="stylesheet" href="/css/components.css">
     <!-- CSS ESPECÍFICO DEL SERVICIO -->
     <link rel="stylesheet" href="/css/automatizaciones-ia.css">
+    <link rel="stylesheet" href="/css/calculadora-automatizaciones-ia.css">
 </head>
 
 <body>
@@ -223,6 +224,102 @@
             </div>
         </section>
 
+        <section class="calculator" id="calculadora-ia">
+    <div class="calculator-container">
+        <div class="calculator-header">
+            <h2 class="calculator-title">
+                Calcula tu inversión en automatización IA
+            </h2>
+
+            <p class="calculator-subtitle">
+                Estima cuánto podría costar automatizar una parte de tu negocio
+            </p>
+        </div>
+
+        <div class="calculator-form">
+            <div class="form-group">
+                <label class="form-group-title" for="ia-project-type">
+                    Tipo de automatización
+                </label>
+
+                <select id="ia-project-type" class="form-control">
+                    <option value="customer-support">Atención al cliente</option>
+                    <option value="social-media">Automatización de redes sociales</option>
+                    <option value="administration">Administración</option>
+                    <option value="internal-processes">Automatización de procesos internos</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <p class="form-group-title">
+                    Extras y complejidad
+                </p>
+
+                <div class="checkbox-group">
+                    <div>
+                        <input type="checkbox" id="ia-whatsapp" name="ia-extras" value="whatsapp">
+                        <label for="ia-whatsapp">Integración con WhatsApp</label>
+                    </div>
+
+                    <div>
+                        <input type="checkbox" id="ia-email" name="ia-extras" value="email">
+                        <label for="ia-email">Integración con Email</label>
+                    </div>
+
+                    <div>
+                        <input type="checkbox" id="ia-tools" name="ia-extras" value="tools">
+                        <label for="ia-tools">Integración con Sheets</label>
+                    </div>
+
+                    <div>
+                        <input type="checkbox" id="ia-calendar" name="ia-extras" value="calendar">
+                        <label for="ia-calendar">Integración con Calendario</label>
+                    </div>
+
+                    <div>
+                        <input type="checkbox" id="ia-alerts" name="ia-extras" value="alerts">
+                        <label for="ia-alerts">Alertas automáticas</label>
+                    </div>
+
+                    <div>
+                        <input type="checkbox" id="ia-documents" name="ia-extras" value="documents">
+                        <label for="ia-documents">Generación de documentos</label>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="form-group-title" for="ia-urgency">
+                    Urgencia
+                </label>
+
+                <select id="ia-urgency" class="form-control">
+                    <option value="1">Normal (2-3 semanas)</option>
+                    <option value="1.2">Prioritario (1-2 semanas)</option>
+                    <option value="1.4">Urgente (2-5 días)</option>
+                </select>
+            </div>
+
+            <div class="calculator-result">
+                <span class="result-label">
+                    Inversión estimada
+                </span>
+
+                <span class="result-value" id="ia-result-value">1.799€</span>
+
+                <p class="result-disclaimer">
+                    *Cálculo orientativo. El presupuesto real depende del número de integraciones, flujos, canales y lógica necesaria.
+                </p>
+            </div>
+
+            <a href="/index.html#contacto" class="btn btn-primary btn-block">
+                Solicitar diagnóstico personalizado
+            </a>
+        </div>
+    </div>
+</section>
+
         <!-- CTA FINAL -->
         <section class="cta-ia" id="diagnostico">
             <div class="container">
@@ -248,6 +345,7 @@
     <script src="https://unpkg.com/lenis@1.3.18/dist/lenis.min.js"></script>
     <link rel="stylesheet" href="https://unpkg.com/lenis@1.3.18/dist/lenis.css">
     <script src="/js/script.js"></script>
+    <script src="/js/calculadora-automatizaciones-ia.js"></script>
 </body>
 
 </html>
