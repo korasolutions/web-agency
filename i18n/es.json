@@ -245,9 +245,14 @@
     "history": {
       "title": "Nuestra Historia",
       "subtitle": "El origen de todo.",
-      "heading": "De una idea compartida a una realidad con propósito",
-      "text1": "KORA nació en 2026 de la mano de tres amigos canarios con una visión clara: crear una agencia que no solo ejecutara, sino que pensara. Cansados de las soluciones genéricas, decidimos fundar un espacio donde la estrategia y la artesanía digital se dieran la mano.",
-      "text2": "Nuestro propósito es simple. En un mundo cada vez más automatizado, queremos que las herramientas digitales sirvan para conectar marcas con personas de forma auténtica. No buscamos hacer \"páginas web\", buscamos construir plataformas que cuenten historias, resuelvan problemas y generen crecimiento real. Queremos ser ese socio tecnológico que entiende tu negocio y lo impulsa a través de tus acciones."
+      "heading": "Tres mentes, una misma visión",
+      "desc": "En 2026, tres amigos canarios fundan KORA con una idea clara: crear sitios web a medida, creando soluciones digitales cuidadas, útiles y pensadas para crecer.",
+      "title1": "El punto de partida",
+      "text1": "Muchas marcas siguen sin web y muchas otras no cuentan con una presencia digital a la altura de su negocio.",
+      "title2": "La decisión",
+      "text2": "Creamos esta agencia con la idea de desarrollar proyectos pensados a medida, sin plantillas genéricas.",
+      "title3": "Nuestro propósito",
+      "text3": "No buscamos hacer simples \"páginas web\", buscamos construir plataformas que cuenten historias, resuelvan problemas y generen crecimiento real."
     },
 
     "team": {

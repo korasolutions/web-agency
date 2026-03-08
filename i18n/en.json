@@ -250,9 +250,14 @@
     "history": {
       "title": "Our Story",
       "subtitle": "Where it all began.",
-      "heading": "From a shared idea to a purpose-driven reality",
-      "text1": "KORA was founded in 2026 by three friends from the Canary Islands with a clear vision: to create an agency that not only executes, but thinks. Tired of generic solutions, we decided to build a space where strategy and digital craftsmanship come together.",
-      "text2": "Our purpose is simple. In an increasingly automated world, we want digital tools to help brands connect with people in an authentic way. We are not looking to build \"websites\", we aim to create platforms that tell stories, solve problems, and generate real growth. We want to be the technological partner that truly understands your business and drives it forward."
+      "heading": "Three minds, one shared vision",
+      "desc": "In 2026, three friends from the Canary Islands founded KORA with a clear idea: to create custom websites, building thoughtful, effective digital solutions designed to grow.",
+      "title1": "The starting point",
+      "text1": "Many brands still don’t have a website, and many others lack a digital presence that truly reflects the level of their business.",
+      "title2": "The decision",
+      "text2": "We created this agency with the idea of developing tailored projects, without relying on generic templates.",
+      "title3": "Our purpose",
+      "text3": "We don’t aim to build simple \"websites\"; we aim to create platforms that tell stories, solve problems, and drive real growth."
     },
 
     "team": {
