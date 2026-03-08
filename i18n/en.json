@@ -256,27 +256,27 @@
     },
 
     "team": {
-      "title": "The Team",
+      "title": "THE TEAM",
       "subtitle": "Behind every project, there are people. Get to know us.",
 
       "iriem": {
         "role": "Strategy & Design",
-        "bio": "Passionate about creating digital experiences that not only look great but work flawlessly. His attention to detail and user-focused mindset ensure that every project tells a compelling and cohesive visual story."
+        "bio": "Passionate about creating digital experiences that not only look great but work flawlessly."
       },
 
       "fernando": {
         "role": "Development & Technology",
-        "bio": "With both an analytical and creative mindset, Fernando turns ideas into clean and efficient code. He ensures that technology not only works but impresses, always seeking the best technical solution for every challenge."
+        "bio": "Analytical and creative mindset. Paying attention to every detail and always seeking the best solution."
       },
 
       "fabio": {
         "role": "Innovation & Growth",
-        "bio": "The team's strategist. Fabio ensures that every action aligns with business objectives. His ability to understand client needs and translate them into opportunities makes him the engine of growth."
+        "bio": "The team's strategist. Ensuring every action is always aligned with the business goals."
       }
     },
 
     "cta": {
-      "title": "Like what you see?",
+      "title": "¿Like what you see?",
       "subtitle": "Let's talk about how we can help you achieve your goals.",
       "button": "Contact us"
     }
