@@ -146,10 +146,6 @@
     background: linear-gradient(90deg, #0ff, #6ff);
 }
 
-.service-card.ia-card .btn-card:hover {
-    color: #000;
-}
-
 /* CABECERA DE LA CARD CON ICONO (estilos base) */
 .card-image {
     height: 110px;
@@ -235,6 +231,7 @@
 .btn-card::before {
     content: '';
     position: absolute;
+    opacity: 0.4;
     top: 0;
     left: -100%;
     width: 100%;

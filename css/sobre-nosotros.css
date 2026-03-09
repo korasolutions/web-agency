@@ -4,16 +4,16 @@
 
 /* Hero de página */
 .page-hero {
-   padding: 6rem 2rem 1rem;
+   padding: 7rem 2rem 1rem;
    text-align: center;
 }
 .page-title {
-   font-size: 4rem;
-   margin-bottom: 1rem;
+   font-size: 3.5rem;
+   margin-bottom: 0.5rem;
 }
 
 .page-subtitle {
-   font-size: 1.4rem;
+   font-size: 1.3rem;
    color: var(--text-secondary);
    max-width: 600px;
    margin: 0 auto 30px;
@@ -79,6 +79,7 @@
 
 .kora-img {
    width: 90%;
+   max-width: 500px;
    opacity: 0.4;
    margin: auto;
 }
@@ -305,6 +306,11 @@
       padding: 40px 0 70px;
    }
 
+   .team-section {
+      padding: 70px 0;
+      background-color: var(--bg-primary);
+   }
+
    .history-step {
       grid-template-columns: 1fr;
       gap: 12px;
@@ -333,7 +339,7 @@
    }
 
    .team-section .container {
-      padding: 25px;
+      padding: 0 25px;
    }
 
    .team-card {
