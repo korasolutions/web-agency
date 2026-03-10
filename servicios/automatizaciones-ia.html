@@ -49,11 +49,11 @@
     <!-- ICONS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- CSS GLOBALES -->
-    <link rel="stylesheet" href="/css/base.css?v=2">
-    <link rel="stylesheet" href="/css/components.css?v=2">
+    <link rel="stylesheet" href="/css/base.css?v=3">
+    <link rel="stylesheet" href="/css/components.css?v=3">
     <!-- CSS ESPECÍFICO DEL SERVICIO -->
-    <link rel="stylesheet" href="/css/automatizaciones-ia.css?v=2">
-    <link rel="stylesheet" href="/css/calculadora-automatizaciones-ia.css?v=2">
+    <link rel="stylesheet" href="/css/automatizaciones-ia.css?v=3">
+    <link rel="stylesheet" href="/css/calculadora-automatizaciones-ia.css?v=3">
 </head>
 
 <body>
@@ -93,12 +93,12 @@
                     <div class="stat-card">
                         <div class="stat-icon"><i class="fas fa-clock"></i></div>
                         <div class="stat-number">+85%</div>
-                        <div class="stat-label">Tiempo ahorrado en tareas repetitivas</div>
+                        <div class="stat-label" data-i18n="ia.stats.stat1">Tiempo ahorrado en tareas repetitivas</div>
                     </div>
                     <div class="stat-card">
                         <div class="stat-icon"><i class="fas fa-chart-pie"></i></div>
                         <div class="stat-number">60%</div>
-                        <div class="stat-label">Reducción de costes operativos</div>
+                        <div class="stat-label" data-i18n="ia.stats.stat2">Reducción de costes operativos</div>
                     </div>
                 </div>
             </div>
@@ -126,7 +126,7 @@
                                 <li><i class="fas fa-message"></i> <span data-i18n="ia.areas.cliente.item3" data-text="Atención en WhatsApp automatizada">Atención en WhatsApp automatizada</span></li>
                             </ul>
                             <div class="area-impacto">
-                                <span class="impacto-badge">-65% tiempo respuesta</span>
+                                <span class="impacto-badge" data-i18n="ia.areas.cliente.badge">-65% tiempo respuesta</span>
                             </div>
                         </div>
                     </div>
@@ -161,7 +161,7 @@
                                 </li>
                             </ul>
                             <div class="area-impacto">
-                                <span class="impacto-badge">-60% tiempo gestión</span>
+                                <span class="impacto-badge" data-i18n="ia.areas.social.badge">-60% tiempo gestión</span>
                             </div>
                         </div>
                     </div>
@@ -176,10 +176,10 @@
                             <ul class="area-list">
                                 <li><i class="fas fa-file-invoice"></i> <span data-i18n="ia.areas.admin.item1" data-text="Facturación automática">Facturación automática</span></li>
                                 <li><i class="fas fa-calendar-check"></i> <span data-i18n="ia.areas.admin.item2" data-text="Gestión de agendas y citas">Gestión de agendas y citas</span></li>
-                                <li><i class="fas fa-file-pdf"></i> <span data-i18n="ia.areas.admin.item4" data-text="Generación de informes automáticos">Generación de informes automáticos</span></li>
+                                <li><i class="fas fa-file-pdf"></i> <span data-i18n="ia.areas.admin.item3" data-text="Generación de informes automáticos">Generación de informes automáticos</span></li>
                             </ul>
                             <div class="area-impacto">
-                                <span class="impacto-badge">-50% trabajo manual</span>
+                                <span class="impacto-badge" data-i18n="ia.areas.admin.badge">-50% trabajo manual</span>
                             </div>
                         </div>
                     </div>
@@ -208,13 +208,13 @@
                                 </li>
                                 <li>
                                     <i class="fas fa-bell"></i>
-                                    <span data-i18n="ia.areas.procesos.item4" data-text="Notificaciones automáticas de eventos clave">
+                                    <span data-i18n="ia.areas.procesos.item3" data-text="Notificaciones automáticas de eventos clave">
                                         Notificaciones automáticas de eventos clave
                                     </span>
                                 </li>
                             </ul>
                             <div class="area-impacto">
-                                <span class="impacto-badge">-50% trabajo operativo</span>
+                                <span class="impacto-badge" data-i18n="ia.areas.procesos.badge">-50% trabajo operativo</span>
                             </div>
                         </div>
                     </div>
@@ -224,100 +224,142 @@
         </section>
 
         <section class="calculator" id="calculadora-ia">
-    <div class="calculator-container">
-        <div class="calculator-header">
-            <h2 class="calculator-title">
-                Calcula tu inversión en automatización IA
-            </h2>
+            <div class="calculator-container">
+                <div class="calculator-header">
+                    <h2 class="calculator-title"
+                    data-i18n="ia.calculator.title"
+                    data-text="Calcula tu inversión en automatización IA">
+                        Calcula tu inversión en automatización IA
+                    </h2>
 
-            <p class="calculator-subtitle">
-                Estima cuánto podría costar automatizar una parte de tu negocio
-            </p>
-        </div>
+                    <p class="calculator-subtitle"
+                    data-i18n="ia.calculator.subtitle"
+                    data-text="Estima cuánto podría costar automatizar una parte de tu negocio">
+                        Estima cuánto podría costar automatizar una parte de tu negocio
+                    </p>
+                </div>
 
-        <div class="calculator-form">
-            <div class="form-group">
-                <label class="form-group-title" for="ia-project-type">
-                    Tipo de automatización
-                </label>
+                <div class="calculator-form">
+                    <div class="form-group">
+                        <label class="form-group-title" for="ia-project-type"
+                        data-i18n="ia.calculator.projectType"
+                        data-text="Tipo de automatización">
+                            Tipo de automatización
+                        </label>
 
-                <select id="ia-project-type" class="form-control">
-                    <option value="customer-support">Atención al cliente</option>
-                    <option value="social-media">Automatización de redes sociales</option>
-                    <option value="administration">Administración</option>
-                    <option value="internal-processes">Automatización de procesos internos</option>
-                </select>
-            </div>
-
-            <div class="form-group">
-                <p class="form-group-title">
-                    Extras y complejidad
-                </p>
-
-                <div class="checkbox-group">
-                    <div>
-                        <input type="checkbox" id="ia-whatsapp" name="ia-extras" value="whatsapp">
-                        <label for="ia-whatsapp">Integración con WhatsApp</label>
+                        <select id="ia-project-type" class="form-control">
+                            <option value="customer-support"
+                            data-i18n="ia.calculator.projectOptions.customerSupport"
+                            data-text="Atención al cliente">Atención al cliente</option>
+                            <option value="social-media"
+                            data-i18n="ia.calculator.projectOptions.socialMedia"
+                            data-text="Automatización de redes sociales">Automatización de redes sociales</option>
+                            <option value="administration"
+                            data-i18n="ia.calculator.projectOptions.administration"
+                            data-text="Administración">Administración</option>
+                            <option value="internal-processes"
+                            data-i18n="ia.calculator.projectOptions.internalProcesses"
+                            data-text="Automatización de procesos internos">Automatización de procesos internos</option>
+                        </select>
                     </div>
 
-                    <div>
-                        <input type="checkbox" id="ia-email" name="ia-extras" value="email">
-                        <label for="ia-email">Integración con Email</label>
+                    <div class="form-group">
+                        <p class="form-group-title"
+                        data-i18n="ia.calculator.extras"
+                        data-text="Extras y complejidad">
+                            Extras y complejidad
+                        </p>
+
+                        <div class="checkbox-group">
+                            <div>
+                                <input type="checkbox" id="ia-whatsapp" name="ia-extras" value="whatsapp">
+                                <label for="ia-whatsapp"
+                                data-i18n="ia.calculator.extrasOptions.whatsapp"
+                                data-text="Integración con WhatsApp">Integración con WhatsApp</label>
+                            </div>
+
+                            <div>
+                                <input type="checkbox" id="ia-email" name="ia-extras" value="email">
+                                <label for="ia-email"
+                                data-i18n="ia.calculator.extrasOptions.email"
+                                data-text="Integración con Email">Integración con Email</label>
+                            </div>
+
+                            <div>
+                                <input type="checkbox" id="ia-tools" name="ia-extras" value="tools">
+                                <label for="ia-tools"
+                                data-i18n="ia.calculator.extrasOptions.tools"
+                                data-text="Integración con Sheets">Integración con Sheets</label>
+                            </div>
+
+                            <div>
+                                <input type="checkbox" id="ia-calendar" name="ia-extras" value="calendar">
+                                <label for="ia-calendar"
+                                data-i18n="ia.calculator.extrasOptions.calendar"
+                                data-text="Integración con Calendario">Integración con Calendario</label>
+                            </div>
+
+                            <div>
+                                <input type="checkbox" id="ia-alerts" name="ia-extras" value="alerts">
+                                <label for="ia-alerts"
+                                data-i18n="ia.calculator.extrasOptions.alerts"
+                                data-text="Alertas automáticas">Alertas automáticas</label>
+                            </div>
+
+                            <div>
+                                <input type="checkbox" id="ia-documents" name="ia-extras" value="documents">
+                                <label for="ia-documents"
+                                data-i18n="ia.calculator.extrasOptions.documents"
+                                data-text="Generación de documentos">Generación de documentos</label>
+                            </div>
+
+                        </div>
                     </div>
 
-                    <div>
-                        <input type="checkbox" id="ia-tools" name="ia-extras" value="tools">
-                        <label for="ia-tools">Integración con Sheets</label>
+                    <div class="form-group">
+                        <label class="form-group-title" for="ia-urgency"
+                        data-i18n="ia.calculator.urgency"
+                        data-text="Urgencia">
+                            Urgencia
+                        </label>
+
+                        <select id="ia-urgency" class="form-control">
+                            <option value="1"
+                            data-i18n="ia.calculator.urgencyOptions.normal"
+                            data-text="Normal (2-3 semanas)">Normal (2-3 semanas)</option>
+                            <option value="1.2"
+                            data-i18n="ia.calculator.urgencyOptions.priority"
+                            data-text="Prioritario (1-2 semanas)">Prioritario (1-2 semanas)</option>
+                            <option value="1.4"
+                            data-i18n="ia.calculator.urgencyOptions.urgent"
+                            data-text="Urgente (2-5 días)">Urgente (2-5 días)</option>
+                        </select>
                     </div>
 
-                    <div>
-                        <input type="checkbox" id="ia-calendar" name="ia-extras" value="calendar">
-                        <label for="ia-calendar">Integración con Calendario</label>
+                    <div class="calculator-result">
+                        <span class="result-label"
+                        data-i18n="ia.calculator.rangeLabel"
+                        data-text="Desde">
+                            Desde
+                        </span>
+
+                        <span class="result-value" id="ia-result-value">1.799€</span>
+
+                        <p class="result-disclaimer"
+                        data-i18n="ia.calculator.disclaimer"
+                        data-text="*Cálculo orientativo. El presupuesto real depende de cada proyecto.">
+                            *Cálculo orientativo. El presupuesto real depende de cada proyecto.
+                        </p>
                     </div>
 
-                    <div>
-                        <input type="checkbox" id="ia-alerts" name="ia-extras" value="alerts">
-                        <label for="ia-alerts">Alertas automáticas</label>
-                    </div>
-
-                    <div>
-                        <input type="checkbox" id="ia-documents" name="ia-extras" value="documents">
-                        <label for="ia-documents">Generación de documentos</label>
-                    </div>
-
+                    <a href="/index.html#contacto" class="btn btn-primary btn-block"
+                    data-i18n="ia.calculator.cta"
+                    data-text="Solicitar diagnóstico personalizado">
+                        Solicitar diagnóstico personalizado
+                    </a>
                 </div>
             </div>
-
-            <div class="form-group">
-                <label class="form-group-title" for="ia-urgency">
-                    Urgencia
-                </label>
-
-                <select id="ia-urgency" class="form-control">
-                    <option value="1">Normal (2-3 semanas)</option>
-                    <option value="1.2">Prioritario (1-2 semanas)</option>
-                    <option value="1.4">Urgente (2-5 días)</option>
-                </select>
-            </div>
-
-            <div class="calculator-result">
-                <span class="result-label">
-                    Desde
-                </span>
-
-                <span class="result-value" id="ia-result-value">1.799€</span>
-
-                <p class="result-disclaimer">
-                    *Cálculo orientativo. El presupuesto real depende de cada proyecto.
-                </p>
-            </div>
-
-            <a href="/index.html#contacto" class="btn btn-primary btn-block">
-                Solicitar diagnóstico personalizado
-            </a>
-        </div>
-    </div>
-</section>
+        </section>
 
         <!-- CTA FINAL -->
         <section class="cta-ia" id="diagnostico">
@@ -327,7 +369,7 @@
                     <p data-i18n="ia.cta.subtitle" data-text="Respondemos cualquier duda que tengas sobre automatizaciones.">
                         Respondemos cualquier duda que tengas sobre automatizaciones.
                     </p>
-                    <a href="/index.html#contacto" class="btn btn-primary-ia btn-large" data-text="Contacta ahora">Contacta ahora</a>
+                    <a href="/index.html#contacto" class="btn btn-primary-ia btn-large" data-text="Contacta ahora" data-i18n="ia.cta.button">Contacta ahora</a>
                 </div>
             </div>
         </section>
@@ -340,11 +382,11 @@
     <div id="cookies-placeholder"></div>
 
     <!-- SCRIPTS -->
-    <script src="/js/i18n.js?v=2"></script>
+    <script src="/js/i18n.js?v=3"></script>
     <script src="https://unpkg.com/lenis@1.3.18/dist/lenis.min.js"></script>
     <link rel="stylesheet" href="https://unpkg.com/lenis@1.3.18/dist/lenis.css">
-    <script src="/js/script.js?v=2"></script>
-    <script src="/js/calculadora-automatizaciones-ia.js?v=2"></script>
+    <script src="/js/script.js?v=3"></script>
+    <script src="/js/calculadora-automatizaciones-ia.js?v=3"></script>
 </body>
 
 </html>

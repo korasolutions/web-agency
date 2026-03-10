@@ -44,10 +44,6 @@
       "more": "Saber más",
       "viewAll": "Ver todos los servicios",
       "cards": {
-        "identity": {
-          "title": "Diseño de Identidad",
-          "desc": "Creamos tu marca desde su base (colores, logotipo y branding) hasta su identidad digital."
-        },
         "web": {
           "title": "Desarrollo Web",
           "desc": "Construimos tu sitio web a medida, cuidando cada detalle para reflejar la esencia de tu marca."
@@ -55,59 +51,20 @@
         "ai": {
           "title": "Automatizaciones IA",
           "desc": "Automatizamos tareas repetitivas para ahorrar horas de trabajo."
-        },
-        "kiosk": {
-          "title": "Kioscos de Autopedido",
-          "desc": "Digitaliza tu local con pantallas interactivas de autoservicio estilo McDonald's."
         }
       }
-    },
-    "calculator": {
-      "title": "Descubre cuánto podría costar tu proyecto",
-      "subtitle": "Simula tu inversión digital",
-
-      "projectType": "Tipo de proyecto",
-      "projectOptions": {
-        "landing": "Landing page",
-        "corporate": "Web corporativa",
-        "ecommerce": "Tienda online"
-      },
-
-      "extras": "Funcionalidades extra",
-      "extrasOptions": {
-        "seo": "SEO avanzado",
-        "blog": "Blog",
-        "multilang": "Multidioma",
-        "booking": "Sistema de reservas",
-        "crm": "Gestión de clientes",
-        "payments": "Pasarela de pagos"
-      },
-
-      "urgency": "Urgencia",
-      "urgencyOptions": {
-        "normal": "Normal (2-3 semanas)",
-        "priority": "Prioritario (+30%, 1 semana)",
-        "vip": "VIP (+100%, 2-3 días)"
-      },
-
-      "rangeLabel": "Desde",
-      "disclaimer": "*Cálculo orientativo. Precio final sujeto a requisitos.",
-      "cta": "Propuesta personalizada"
     },
     "contact": {
       "title1": "CONTACTA",
       "title2": "CON NOSOTROS",
       "subtitle": "¿Listo para comenzar tu transformación digital? Hablemos de tu proyecto.",
-
       "ideaTitle": "Conversemos sobre tu idea",
       "ideaText": "Estamos aquí para escucharte, entender tus objetivos y diseñar una estrategia digital que se alinee perfectamente con tu visión de negocio.",
-
       "emailLabel": "Email",
       "phoneLabel": "Teléfonos",
       "locationLabel": "Ubicación",
       "location": "Lanzarote, España",
       "follow": "Síguenos en redes sociales:",
-
       "form": {
         "title": "Envíanos tu propuesta",
         "name": "Tu nombre",
@@ -156,40 +113,20 @@
       "subtitle": "Explora en detalle los servicios que ofrecemos para impulsar tu negocio."
     },
     "ctaInfo": "Solicitar información",
-    "identity": {
-      "titlePrefix": "Diseño de",
-      "titleHighlight": "Identidad",
-      "intro": "Creamos identidades visuales únicas que comunican los valores de tu marca y la hacen inolvidable. No solo diseñamos un logotipo, creamos todo un ecosistema visual.",
-      "visual": "Construye una marca que perdure.",
-      "list": {
-        "1": "Branding estratégico y naming",
-        "2": "Diseño de logotipo y sus variantes",
-        "3": "Guías de estilo visual y manual de marca",
-        "4": "Diseño de papelería y merchandising"
-      }
-    },
     "web": {
-      "titlePrefix": "Desarrollo",
-      "titleHighlight": "Web",
-      "intro": "Diseñamos y desarrollamos sitios web a medida desde cero, combinando estrategia, experiencia de usuario y rendimiento técnico. No usamos plantillas genéricas: cada proyecto se construye pensado para potenciar el crecimiento de la marca.",
-      "visual": "Desarrollo web estratégico, rendimiento optimizado y arquitectura preparada para crecer.",
-      "list": {
-        "1": "Webs corporativas y portafolios",
-        "2": "Tiendas online (E-commerce)",
-        "3": "Aplicaciones web progresivas (PWA)",
-        "4": "Mantenimiento y soporte técnico"
+      "card": {
+        "title": "Desarrollo",
+        "titleHighlight": "Web",
+        "description": "Creamos sitios web a medida, rápidos, seguros y optimizados para conversión.",
+        "cta": "Ver servicio"
       }
     },
     "ai": {
-      "titlePrefix": "Automatizaciones",
-      "titleHighlight": "IA",
-      "intro": "Automatizamos tareas repetitivas para ahorrar horas de trabajo y reducir errores. Implementamos inteligencia artificial para optimizar tus procesos de negocio.",
-      "visual": "Deja que la IA haga el trabajo pesado.",
-      "list": {
-        "1": "Bots entrenados con IA para atención al cliente",
-        "2": "Automatización de emails y marketing",
-        "3": "Clasificación inteligente de documentos",
-        "4": "Análisis predictivo de datos"
+      "card": {
+        "title": "Automatiza con",
+        "titleHighlight": "IA",
+        "description": "Integramos inteligencia artificial en tus procesos para ahorrar tiempo y recursos.",
+        "cta": "Ver servicio"
       }
     },
     "finalCta": {
@@ -199,41 +136,244 @@
     }
   },
 
+  "desarrollo": {
+    "hero": {
+      "badge": "Servicio principal",
+      "titlePrefix": "Desarrollo",
+      "titleHighlight": "Web",
+      "subtitle": "Creamos sitios web a medida, rápidos, seguros y preparados para crecer contigo.",
+      "cta": "Solicita tu presupuesto",
+      "back": "Volver a Servicios"
+    },
+    "intro": {
+      "title": "¿Por qué nosotros?",
+      "description": "Diseñamos sitios web a medida desde cero, combinando estrategia, experiencia de usuario y rendimiento. No usamos plantillas genéricas: cada proyecto se construye pensado para potenciar el crecimiento de tu marca.",
+      "stat1": "Tiempo medio de respuesta",
+      "stat3": "Proyectos a medida"
+    },
+    "especificaciones": {
+      "title": "Soluciones a medida",
+      "subtitle": "Elige el tipo de proyecto que mejor se adapta a tu negocio.",
+      "card1": {
+        "title": "Landing Pages",
+        "desc": "Páginas de alto impacto diseñadas para convertir visitantes en clientes.",
+        "list1": "Diseño persuasivo",
+        "list2": "Integración con analytics"
+      },
+      "card2": {
+        "title": "Webs Corporativas",
+        "desc": "Diseño profesional, contenido dinámico y presencia institucional sólida.",
+        "list1": "Optimización SEO",
+        "list2": "Alta velocidad"
+      },
+      "card3": {
+        "title": "Tiendas Online",
+        "desc": "Ecommerce completos, seguros y preparados para vender sin límites.",
+        "list1": "Pasarelas de pago",
+        "list2": "Marketing integrado"
+      },
+      "card4": {
+        "title": "Mantenimiento Web",
+        "desc": "Soporte técnico, actualizaciones y seguridad garantizada.",
+        "list1": "Backups automáticos",
+        "list2": "Actualizaciones"
+      }
+    },
+    "como": {
+      "title": "¿Cómo funciona?",
+      "subtitle": "De la idea a la realidad, paso a paso"
+    },
+    "timeline": {
+      "step1": {
+        "title": "Estrategia",
+        "desc": "Analizamos tu negocio, competencia y objetivos para definir la arquitectura de la web y la estrategia de contenidos."
+      },
+      "step2": {
+        "title": "Demo visual",
+        "desc": "Creamos un boceto interactivo de cómo podría verse tu web y ajustamos lo necesario contigo antes de empezar.",
+        "tag": "Feedback incluido"
+      },
+      "step3": {
+        "title": "Desarrollo",
+        "desc": "Convertimos el diseño acordado en una web sólida y con las últimas tecnologías para garantizar velocidad, seguridad y escalabilidad."
+      },
+      "step4": {
+        "title": "Lanzamiento",
+        "desc": "Pruebas, despliegue y optimización final. Tu web lista para captar clientes."
+      }
+    },
+    "presencial": {
+      "title": "¿Estás en Lanzarote?",
+      "desc": "Si estás en la isla, podemos reunirnos presencialmente sin coste adicional. Te mostraremos la demo del proyecto en diferentes dispositivos (móvil, tablet y ordenador) para que veas exactamente cómo lucirá la web y podamos ajustar cualquier detalle juntos.",
+      "feature1": "Sin coste adicional",
+      "feature2": "Prueba en múltiples dispositivos",
+      "feature3": "Ajustamos el diseño contigo",
+      "cta": "Solicita reunión presencial"
+    },
+    "cta": {
+      "title": "¿Hablamos sobre tu proyecto?",
+      "subtitle": "Cuéntanos tu idea y te asesoraremos sin compromiso.",
+      "button": "Contacta ahora"
+    },
+
+    "calculator": {
+      "title": "Calcula tu presupuesto web",
+      "subtitle": "Simula una inversión orientativa para tu proyecto",
+      "projectType": "Tipo de proyecto",
+      "projectOptions": {
+        "landing": "Landing page",
+        "corporate": "Web corporativa",
+        "ecommerce": "Tienda online"
+      },
+      "extras": "Funcionalidades extra",
+      "extrasOptions": {
+        "seo": "SEO avanzado",
+        "blog": "Blog",
+        "multilang": "Multidioma",
+        "booking": "Sistema de reservas",
+        "crm": "CRM / gestión de clientes",
+        "payments": "Pasarela de pagos"
+      },
+      "urgency": "Urgencia",
+      "urgencyOptions": {
+        "normal": "Normal (2-3 semanas)",
+        "priority": "Prioritario (1-2 semanas)",
+        "urgent": "Urgente (2-5 días)"
+      },
+      "rangeLabel": "Desde",
+      "disclaimer": "*Cálculo orientativo. El presupuesto real depende de cada proyecto.",
+      "cta": "Solicitar propuesta personalizada"
+    }
+  },
+
+  "ia": {
+    "hero": {
+      "badge": "Servicio IA",
+      "titlePrefix": "Automatiza con",
+      "titleHighlight": "IA",
+      "subtitle": "Automatizamos tareas, optimizamos procesos y liberamos el potencial de tu equipo.",
+      "cta": {
+        "primary": "Automatiza ya",
+        "secondary": "Volver a Servicios"
+      }
+    },
+
+    "stats": {
+      "stat1": "Tiempo ahorrado en tareas repetitivas",
+      "stat2": "Reducción de costes operativos"
+    },
+
+    "que": {
+      "title": "¿Qué puedes automatizar?",
+      "subtitle": "La IA aplicada a áreas clave de tu negocio"
+    },
+
+    "areas": {
+      "cliente": {
+        "title": "Atención al cliente",
+        "item1": "Chatbots 24/7 que resuelven dudas",
+        "item2": "Respuesta automática a emails",
+        "item3": "Atención en WhatsApp automatizada",
+        "badge": "-65% tiempo respuesta"
+      },
+
+      "social": {
+        "title": "Automatización de redes sociales",
+        "item1": "Publicación automática de contenido",
+        "item2": "Respuesta automática a mensajes y comentarios",
+        "item3": "Programación inteligente de publicaciones",
+        "badge": "-60% tiempo gestión"
+      },
+
+      "admin": {
+        "title": "Administración",
+        "item1": "Facturación automática",
+        "item2": "Gestión de agendas y citas",
+        "item3": "Generación de informes automáticos",
+        "badge": "-50% trabajo manual"
+      },
+
+      "procesos": {
+        "title": "Automatización de procesos internos",
+        "item1": "Automatización de tareas repetitivas",
+        "item2": "Sincronización entre herramientas (CRM, ERP, Sheets, Notion…)",
+        "item3": "Notificaciones automáticas de eventos clave",
+        "badge": "-50% trabajo operativo"
+      }
+    },
+
+    "calculator": {
+      "title": "Calcula tu inversión en automatización IA",
+      "subtitle": "Estima cuánto podría costar automatizar una parte de tu negocio",
+
+      "projectType": "Tipo de automatización",
+
+      "projectOptions": {
+        "customerSupport": "Atención al cliente",
+        "socialMedia": "Automatización de redes sociales",
+        "administration": "Administración",
+        "internalProcesses": "Automatización de procesos internos"
+      },
+
+      "extras": "Extras y complejidad",
+
+      "extrasOptions": {
+        "whatsapp": "Integración con WhatsApp",
+        "email": "Integración con Email",
+        "tools": "Integración con Sheets",
+        "calendar": "Integración con Calendario",
+        "alerts": "Alertas automáticas",
+        "documents": "Generación de documentos"
+      },
+
+      "urgency": "Urgencia",
+
+      "urgencyOptions": {
+        "normal": "Normal (2-3 semanas)",
+        "priority": "Prioritario (1-2 semanas)",
+        "urgent": "Urgente (2-5 días)"
+      },
+
+      "rangeLabel": "Desde",
+      "disclaimer": "*Cálculo orientativo. El presupuesto real depende de cada proyecto.",
+      "cta": "Solicitar diagnóstico personalizado"
+    },
+
+    "cta": {
+      "title": "¿Hablamos sobre tu proyecto?",
+      "subtitle": "Respondemos cualquier duda que tengas sobre automatizaciones.",
+      "button": "Contacta ahora"
+    }
+  },
+
   "projects": {
     "hero": {
       "titlePrefix": "Nuestros",
       "titleHighlight": "Proyectos",
       "subtitle": "Esta sección se encuentra en desarrollo."
     },
-
     "logos": {
       "label": "CLIENTES Y COLABORADORES"
     },
-
     "featured": {
       "titlePrefix": "Proyectos",
       "titleHighlight": "Destacados"
     },
-
     "items": {
       "link": "Ver proyecto →",
-
       "spotify": {
         "title": "Spotify Clone",
         "desc": "Desarrollo de una aplicación web similar a Spotify con funcionalidades de reproducción y listas personalizadas."
       },
-
       "booking": {
         "title": "Plataforma de Reservas",
         "desc": "Desarrollo de un sistema de reservas para alojamientos turísticos con pasarela de pago integrada."
       },
-
       "social": {
         "title": "Red Social Corporativa",
         "desc": "Desarrollo de una red social interna para una empresa, con perfiles, mensajería y paneles de administración."
       }
     },
-
     "cta": {
       "title": "¿Quieres ser el próximo?",
       "subtitle": "Cuéntanos tu idea y hagamos realidad tu proyecto.",
@@ -254,27 +394,22 @@
       "title3": "Nuestro propósito",
       "text3": "No buscamos hacer simples \"páginas web\", buscamos construir plataformas que cuenten historias, resuelvan problemas y generen crecimiento real."
     },
-
     "team": {
       "title": "EL EQUIPO",
       "subtitle": "Detrás de cada proyecto, hay personas. Conócenos.",
-
       "iriem": {
         "role": "Estrategia & Diseño",
         "bio": "Apasionado por crear experiencias digitales que no solo se vean bien, sino que funcionen a la perfección."
       },
-
       "fernando": {
         "role": "Desarrollo & Tecnología",
         "bio": "Con una mentalidad analítica y creativa. Cuidando cada detalle y buscando la mejor solución para cada proyecto."
       },
-
       "fabio": {
         "role": "Innovación & Crecimiento",
         "bio": "El estratega del equipo. Asegurando siempre que cada acción esté alineada con los objetivos del negocio."
       }
     },
-
     "cta": {
       "title": "¿Te gusta lo que ves?",
       "subtitle": "Hablemos de cómo podemos ayudarte a alcanzar tus metas.",

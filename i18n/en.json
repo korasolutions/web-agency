@@ -44,10 +44,6 @@
       "more": "Learn more",
       "viewAll": "View all services",
       "cards": {
-        "identity": {
-          "title": "Brand Identity Design",
-          "desc": "We build your brand from its foundation (colors, logo, and branding) to its digital identity."
-        },
         "web": {
           "title": "Web Development",
           "desc": "We build your website from the ground up, shaping every detail to reflect the essence of your brand."
@@ -55,44 +51,8 @@
         "ai": {
           "title": "AI Automations",
           "desc": "We automate repetitive tasks to save hours of work."
-        },
-        "kiosk": {
-          "title": "Self-Order Kiosks",
-          "desc": "Digitize your venue with interactive self-service screens like McDonald's."
         }
       }
-    },
-    "calculator": {
-      "title": "Discover how much your project could cost",
-      "subtitle": "Simulate your digital investment",
-
-      "projectType": "Project type",
-      "projectOptions": {
-        "landing": "Landing page",
-        "corporate": "Corporate website",
-        "ecommerce": "Online store"
-      },
-
-      "extras": "Extra features",
-      "extrasOptions": {
-        "seo": "Advanced SEO",
-        "blog": "Blog",
-        "multilang": "Multilanguage",
-        "booking": "Booking system",
-        "crm": "Customer management",
-        "payments": "Payment gateway"
-      },
-
-      "urgency": "Urgency",
-      "urgencyOptions": {
-        "normal": "Standard (2–3 weeks)",
-        "priority": "Priority (+30%, 1 week)",
-        "vip": "VIP (+100%, 2–3 days)"
-      },
-
-      "rangeLabel": "From",
-      "disclaimer": "*Approximate estimate. Final price depending on requirements.",
-      "cta": "Custom proposal"
     },
     "contact": {
       "title1": "CONTACT",
@@ -155,52 +115,236 @@
       "titleHighlight": "Services",
       "subtitle": "Explore in detail each of the solutions we offer to boost your business."
     },
-
     "ctaInfo": "Request information",
-
-    "identity": {
-      "titlePrefix": "Brand",
-      "titleHighlight": "Identity Design",
-      "intro": "We create unique visual identities that communicate your brand values and make it unforgettable. We don't just design a logo, we build a complete visual ecosystem.",
-      "visual": "Build a brand that lasts.",
-      "list": {
-        "1": "Strategic branding and naming",
-        "2": "Logo design and variations",
-        "3": "Visual style guides and brand manual",
-        "4": "Stationery and merchandising design"
-      }
-    },
-
     "web": {
-      "titlePrefix": "Web",
-      "titleHighlight": "Development",
-      "intro": "We design and develop fully custom websites from the ground up, combining strategy, user experience, and technical performance. We don’t use generic templates — every project is built with your brand’s growth in mind.",
-      "visual": "Strategic web development, optimized performance, and architecture built to scale.",
-      "list": {
-        "1": "Corporate websites and portfolios",
-        "2": "Online stores (E-commerce)",
-        "3": "Progressive Web Applications (PWA)",
-        "4": "Maintenance and technical support"
+      "card": {
+        "title": "Web",
+        "titleHighlight": "Development",
+        "description": "We create custom websites that are fast, secure, and optimized for conversion.",
+        "cta": "View service"
       }
     },
-
     "ai": {
-      "titlePrefix": "AI",
-      "titleHighlight": "Automations",
-      "intro": "We automate repetitive tasks to save working hours and reduce errors. We implement artificial intelligence to optimize your business processes.",
-      "visual": "Let AI handle the heavy lifting.",
-      "list": {
-        "1": "AI-powered customer service bots",
-        "2": "Email and marketing automation",
-        "3": "Intelligent document classification",
-        "4": "Predictive data analysis"
+      "card": {
+        "title": "Automate with",
+        "titleHighlight": "AI",
+        "description": "We integrate artificial intelligence into your processes to save time and resources.",
+        "cta": "View service"
       }
     },
-
     "finalCta": {
       "title": "Ready to start your project?",
       "subtitle": "Let's talk and discover how we can help you achieve your goals.",
       "button": "Contact us"
+    }
+  },
+
+  "desarrollo": {
+    "hero": {
+      "badge": "Main service",
+      "titlePrefix": "Web",
+      "titleHighlight": "Development",
+      "subtitle": "We create custom websites that are fast, secure, and built to grow with you.",
+      "cta": "Request your quote",
+      "back": "Back to Services"
+    },
+    "intro": {
+      "title": "Why us?",
+      "description": "We design custom websites from scratch, combining strategy, user experience, and performance. We do not use generic templates: every project is built to strengthen your brand’s growth.",
+      "stat1": "Average response time",
+      "stat3": "Custom projects"
+    },
+    "especificaciones": {
+      "title": "Tailored solutions",
+      "subtitle": "Choose the type of project that best fits your business.",
+      "card1": {
+        "title": "Landing Pages",
+        "desc": "High-impact pages designed to turn visitors into customers.",
+        "list1": "Persuasive design",
+        "list2": "Analytics integration"
+      },
+      "card2": {
+        "title": "Corporate Websites",
+        "desc": "Professional design, dynamic content and a strong institutional presence.",
+        "list1": "SEO optimization",
+        "list2": "High performance"
+      },
+      "card3": {
+        "title": "Online Stores",
+        "desc": "Complete ecommerce solutions, secure and ready to sell without limits.",
+        "list1": "Payment gateways",
+        "list2": "Integrated marketing"
+      },
+      "card4": {
+        "title": "Website Maintenance",
+        "desc": "Technical support, updates, and reliable security.",
+        "list1": "Automatic backups",
+        "list2": "Updates"
+      }
+    },
+    "como": {
+      "title": "How does it work?",
+      "subtitle": "From idea to reality, step by step"
+    },
+    "timeline": {
+      "step1": {
+        "title": "Strategy",
+        "desc": "We analyze your business, competitors, and goals to define the website architecture and content strategy."
+      },
+      "step2": {
+        "title": "Visual demo",
+        "desc": "We create an interactive mockup of how your website could look and refine it with you before development starts.",
+        "tag": "Feedback included"
+      },
+      "step3": {
+        "title": "Development",
+        "desc": "We turn the approved design into a solid website using the latest technologies to deliver speed, security, and scalability."
+      },
+      "step4": {
+        "title": "Launch",
+        "desc": "Testing, deployment, and final optimization. Your website, ready to attract clients."
+      }
+    },
+    "presencial": {
+      "title": "Are you in Lanzarote?",
+      "desc": "If you are on the island, we can meet in person at no additional cost. We will show you the project demo on different devices (mobile, tablet, and desktop) so you can see exactly how the website will look and fine-tune every detail together.",
+      "feature1": "No additional cost",
+      "feature2": "Test on multiple devices",
+      "feature3": "We refine the design with you",
+      "cta": "Let's meet"
+    },
+    "cta": {
+      "title": "Shall we talk about your project?",
+      "subtitle": "Tell us your idea and we will advise you with no obligation.",
+      "button": "Contact us now"
+    },
+    "calculator": {
+      "title": "Calculate your web project budget",
+      "subtitle": "Simulate an approximate investment for your project",
+      "projectType": "Project type",
+      "projectOptions": {
+        "landing": "Landing page",
+        "corporate": "Corporate website",
+        "ecommerce": "Online store"
+      },
+      "extras": "Extra features",
+      "extrasOptions": {
+        "seo": "Advanced SEO",
+        "blog": "Blog",
+        "multilang": "Multilanguage",
+        "booking": "Booking system",
+        "crm": "CRM / customer management",
+        "payments": "Payment gateway"
+      },
+      "urgency": "Urgency",
+      "urgencyOptions": {
+        "normal": "Standard (2–3 weeks)",
+        "priority": "Priority (1–2 weeks)",
+        "urgent": "Urgent (2–5 days)"
+      },
+      "rangeLabel": "From",
+      "disclaimer": "*Approximate estimate. Final price depends on project requirements.",
+      "cta": "Request custom proposal"
+    }
+  },
+
+  "ia": {
+    "hero": {
+      "badge": "AI Service",
+      "titlePrefix": "Automate with",
+      "titleHighlight": "AI",
+      "subtitle": "We automate tasks, optimize processes, and unlock your team's full potential.",
+      "cta": {
+        "primary": "Automate now",
+        "secondary": "Back to Services"
+      }
+    },
+
+    "stats": {
+      "stat1": "Time saved on repetitive tasks",
+      "stat2": "Reduction in operational costs"
+    },
+
+    "que": {
+      "title": "What can you automate?",
+      "subtitle": "AI applied to key areas of your business"
+    },
+
+    "areas": {
+      "cliente": {
+        "title": "Customer support",
+        "item1": "24/7 chatbots that answer questions",
+        "item2": "Automatic email responses",
+        "item3": "Automated WhatsApp support",
+        "badge": "-65% response time"
+      },
+
+      "social": {
+        "title": "Social media automation",
+        "item1": "Automatic content publishing",
+        "item2": "Automatic replies to messages and comments",
+        "item3": "Smart post scheduling",
+        "badge": "-60% management time"
+      },
+
+      "admin": {
+        "title": "Administration",
+        "item1": "Automatic invoicing",
+        "item2": "Schedule and appointment management",
+        "item3": "Automatic report generation",
+        "badge": "-50% manual work"
+      },
+
+      "procesos": {
+        "title": "Internal process automation",
+        "item1": "Automation of repetitive tasks",
+        "item2": "Tool synchronization (CRM, ERP, Sheets, Notion…)",
+        "item3": "Automatic notifications for key events",
+        "badge": "-50% operational workload"
+      }
+    },
+
+    "calculator": {
+      "title": "Calculate your AI automation investment",
+      "subtitle": "Estimate how much it could cost to automate part of your business",
+
+      "projectType": "Automation type",
+
+      "projectOptions": {
+        "customerSupport": "Customer support",
+        "socialMedia": "Social media automation",
+        "administration": "Administration",
+        "internalProcesses": "Internal process automation"
+      },
+
+      "extras": "Extras and complexity",
+
+      "extrasOptions": {
+        "whatsapp": "WhatsApp integration",
+        "email": "Email integration",
+        "tools": "Sheets integration",
+        "calendar": "Calendar integration",
+        "alerts": "Automatic alerts",
+        "documents": "Document generation"
+      },
+
+      "urgency": "Urgency",
+
+      "urgencyOptions": {
+        "normal": "Standard (2–3 weeks)",
+        "priority": "Priority (1–2 weeks)",
+        "urgent": "Urgent (2–5 days)"
+      },
+
+      "rangeLabel": "From",
+      "disclaimer": "*Approximate estimate. Final price depends on project requirements.",
+      "cta": "Request personalized diagnosis"
+    },
+
+    "cta": {
+      "title": "Shall we talk about your project?",
+      "subtitle": "We will answer any questions you have about automations.",
+      "button": "Contact us now"
     }
   },
 

@@ -49,11 +49,11 @@
     <!-- ICONS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- CSS GLOBALES -->
-    <link rel="stylesheet" href="/css/base.css?v=2">
-    <link rel="stylesheet" href="/css/components.css?v=2">
+    <link rel="stylesheet" href="/css/base.css?v=3">
+    <link rel="stylesheet" href="/css/components.css?v=3">
     <!-- CSS ESPECÍFICO DEL SERVICIO -->
-    <link rel="stylesheet" href="/css/desarrollo-web.css?v=2">
-    <link rel="stylesheet" href="/css/calculadora-desarrollo-web.css?v=2">
+    <link rel="stylesheet" href="/css/desarrollo-web.css?v=3">
+    <link rel="stylesheet" href="/css/calculadora-desarrollo-web.css?v=3">
 </head>
 
 <body>
@@ -134,31 +134,31 @@
                         </p>
                         <ul class="espec-list">
                             <li><i class="fas fa-check"></i> <span data-i18n="desarrollo.especificaciones.card1.list1" data-text="Diseño persuasivo">Diseño persuasivo</span></li>
-                            <li><i class="fas fa-check"></i> <span data-i18n="desarrollo.especificaciones.card1.list3" data-text="Integración con analytics">Integración con analytics</span></li>
+                            <li><i class="fas fa-check"></i> <span data-i18n="desarrollo.especificaciones.card1.list2" data-text="Integración con analytics">Integración con analytics</span></li>
                         </ul>
                     </div>
                     <!-- Tarjeta 1: Corporativas -->
                     <div class="espec-card">
                         <div class="espec-icon"><i class="fas fa-briefcase"></i></div>
-                        <h3 data-i18n="desarrollo.especificaciones.card1.title" data-text="Webs Corporativas">Webs Corporativas</h3>
-                        <p data-i18n="desarrollo.especificaciones.card1.desc" data-text="Diseño profesional, contenido dinámico y presencia institucional sólida.">
+                        <h3 data-i18n="desarrollo.especificaciones.card2.title" data-text="Webs Corporativas">Webs Corporativas</h3>
+                        <p data-i18n="desarrollo.especificaciones.card2.desc" data-text="Diseño profesional, contenido dinámico y presencia institucional sólida.">
                             Diseño profesional, contenido dinámico y presencia institucional sólida.
                         </p>
                         <ul class="espec-list">
-                            <li><i class="fas fa-check"></i> <span data-i18n="desarrollo.especificaciones.card1.list2" data-text="Optimización SEO">Optimización SEO</span></li>
-                            <li><i class="fas fa-check"></i> <span data-i18n="desarrollo.especificaciones.card1.list3" data-text="Alta velocidad">Alta velocidad</span></li>
+                            <li><i class="fas fa-check"></i> <span data-i18n="desarrollo.especificaciones.card2.list1" data-text="Optimización SEO">Optimización SEO</span></li>
+                            <li><i class="fas fa-check"></i> <span data-i18n="desarrollo.especificaciones.card2.list2" data-text="Alta velocidad">Alta velocidad</span></li>
                         </ul>
                     </div>
                     <!-- Tarjeta 2: E-commerce -->
                     <div class="espec-card">
                         <div class="espec-icon"><i class="fas fa-cart-shopping"></i></div>
-                        <h3 data-i18n="desarrollo.especificaciones.card2.title" data-text="Tiendas Online">Tiendas Online</h3>
-                        <p data-i18n="desarrollo.especificaciones.card2.desc" data-text="Ecommerce completos, seguros y preparados para vender sin límites.">
+                        <h3 data-i18n="desarrollo.especificaciones.card3.title" data-text="Tiendas Online">Tiendas Online</h3>
+                        <p data-i18n="desarrollo.especificaciones.card3.desc" data-text="Ecommerce completos, seguros y preparados para vender sin límites.">
                             Ecommerce completos, seguros y preparados para vender sin límites.
                         </p>
                         <ul class="espec-list">
-                            <li><i class="fas fa-check"></i> <span data-i18n="desarrollo.especificaciones.card2.list1" data-text="Pasarelas de pago">Pasarelas de pago</span></li>
-                            <li><i class="fas fa-check"></i> <span data-i18n="desarrollo.especificaciones.card2.list3" data-text="Marketing integrado">Marketing integrado</span></li>
+                            <li><i class="fas fa-check"></i> <span data-i18n="desarrollo.especificaciones.card3.list1" data-text="Pasarelas de pago">Pasarelas de pago</span></li>
+                            <li><i class="fas fa-check"></i> <span data-i18n="desarrollo.especificaciones.card3.list2" data-text="Marketing integrado">Marketing integrado</span></li>
                         </ul>
                     </div>
                     <!-- Tarjeta 4: Mantenimiento -->
@@ -170,7 +170,7 @@
                         </p>
                         <ul class="espec-list">
                             <li><i class="fas fa-check"></i> <span data-i18n="desarrollo.especificaciones.card4.list1" data-text="Backups automáticos">Backups automáticos</span></li>
-                            <li><i class="fas fa-check"></i> <span data-i18n="desarrollo.especificaciones.card4.list3" data-text="Actualizaciones">Actualizaciones</span></li>
+                            <li><i class="fas fa-check"></i> <span data-i18n="desarrollo.especificaciones.card4.list2" data-text="Actualizaciones">Actualizaciones</span></li>
                         </ul>
                     </div>
                 </div>
@@ -235,98 +235,136 @@
         </section>
 
         <section class="calculator" id="calculadora-web">
-    <div class="calculator-container">
-        <div class="calculator-header">
-            <h2 class="calculator-title">
-                Calcula tu presupuesto web
-            </h2>
+            <div class="calculator-container">
+                <div class="calculator-header">
+                    <h2 class="calculator-title"
+                    data-i18n="desarrollo.calculator.title"
+                    data-text="Calcula tu presupuesto web">
+                        Calcula tu presupuesto web
+                    </h2>
 
-            <p class="calculator-subtitle">
-                Simula una inversión orientativa para tu proyecto
-            </p>
-        </div>
+                    <p class="calculator-subtitle"
+                    data-i18n="desarrollo.calculator.subtitle"
+                    data-text="Simula una inversión orientativa para tu proyecto">
+                        Simula una inversión orientativa para tu proyecto
+                    </p>
+                </div>
 
-        <div class="calculator-form">
-            <div class="form-group">
-                <label class="form-group-title" for="web-project-type">
-                    Tipo de proyecto
-                </label>
+                <div class="calculator-form">
+                    <div class="form-group">
+                        <label class="form-group-title" for="web-project-type" data-i18n="desarrollo.calculator.projectType">
+                            Tipo de proyecto
+                        </label>
 
-                <select id="web-project-type" class="form-control">
-                    <option value="landing">Landing page</option>
-                    <option value="corporate">Web corporativa</option>
-                    <option value="ecommerce">Tienda online</option>
-                </select>
-            </div>
-
-            <div class="form-group">
-                <p class="form-group-title">
-                    Funcionalidades extra
-                </p>
-
-                <div class="checkbox-group">
-                    <div>
-                        <input type="checkbox" id="web-seo" name="web-extras" value="seo">
-                        <label for="web-seo">SEO avanzado</label>
+                        <select id="web-project-type" class="form-control">
+                            <option value="landing"
+                            data-i18n="desarrollo.calculator.projectOptions.landing"
+                            data-text="Landing page">Landing page</option>
+                            <option value="corporate"
+                            data-i18n="desarrollo.calculator.projectOptions.corporate"
+                            data-text="Web corporativa">Web corporativa</option>
+                            <option value="ecommerce"
+                            data-i18n="desarrollo.calculator.projectOptions.ecommerce"
+                            data-text="Tienda online">Tienda online</option>
+                        </select>
                     </div>
 
-                    <div>
-                        <input type="checkbox" id="web-blog" name="web-extras" value="blog">
-                        <label for="web-blog">Blog</label>
+                    <div class="form-group">
+                        <p class="form-group-title"
+                        data-i18n="desarrollo.calculator.extras"
+                        data-text="Funcionalidades extra">
+                            Funcionalidades extra
+                        </p>
+
+                        <div class="checkbox-group">
+                            <div>
+                                <input type="checkbox" id="web-seo" name="web-extras" value="seo">
+                                <label for="web-seo"
+                                data-i18n="desarrollo.calculator.extrasOptions.seo"
+                                data-text="SEO avanzado">SEO avanzado</label>
+                            </div>
+
+                            <div>
+                                <input type="checkbox" id="web-blog" name="web-extras" value="blog">
+                                <label for="web-blog"
+                                data-i18n="desarrollo.calculator.extrasOptions.blog"
+                                data-text="Blog">Blog</label>
+                            </div>
+
+                            <div>
+                                <input type="checkbox" id="web-multilang" name="web-extras" value="multilang">
+                                <label for="web-multilang"
+                                data-i18n="desarrollo.calculator.extrasOptions.multilang"
+                                data-text="Multidioma">Multidioma</label>
+                            </div>
+
+                            <div>
+                                <input type="checkbox" id="web-booking" name="web-extras" value="booking">
+                                <label for="web-booking"
+                                data-i18n="desarrollo.calculator.extrasOptions.booking"
+                                data-text="Sistema de reservas">Sistema de reservas</label>
+                            </div>
+
+                            <div>
+                                <input type="checkbox" id="web-crm" name="web-extras" value="crm">
+                                <label for="web-crm"
+                                data-i18n="desarrollo.calculator.extrasOptions.crm"
+                                data-text="CRM / gestión de clientes">CRM / gestión de clientes</label>
+                            </div>
+
+                            <div>
+                                <input type="checkbox" id="web-payments" name="web-extras" value="payments">
+                                <label for="web-payments"
+                                data-i18n="desarrollo.calculator.extrasOptions.payments"
+                                data-text="Pasarela de pagos">Pasarela de pagos</label>
+                            </div>
+                        </div>
                     </div>
 
-                    <div>
-                        <input type="checkbox" id="web-multilang" name="web-extras" value="multilang">
-                        <label for="web-multilang">Multidioma</label>
+                    <div class="form-group">
+                        <label class="form-group-title" for="web-urgency"
+                        data-i18n="desarrollo.calculator.urgency"
+                        data-text="Urgencia">
+                            Urgencia
+                        </label>
+
+                        <select id="web-urgency" class="form-control">
+                            <option value="1"
+                            data-i18n="desarrollo.calculator.urgencyOptions.normal"
+                            data-text="Normal (2-3 semanas)">Normal (2-3 semanas)</option>
+                            <option value="1.2"
+                            data-i18n="desarrollo.calculator.urgencyOptions.priority"
+                            data-text="Prioritario (1-2 semanas)">Prioritario (1-2 semanas)</option>
+                            <option value="1.4"
+                            data-i18n="desarrollo.calculator.urgencyOptions.urgent"
+                            data-text="Urgente (2-5 días)">Urgente (2-5 días)</option>
+                        </select>
                     </div>
 
-                    <div>
-                        <input type="checkbox" id="web-booking" name="web-extras" value="booking">
-                        <label for="web-booking">Sistema de reservas</label>
+                    <div class="calculator-result">
+                        <span class="result-label"
+                        data-i18n="desarrollo.calculator.rangeLabel"
+                        data-text="Desde">
+                            Desde
+                        </span>
+
+                        <span class="result-value" id="web-result-value">1.199€</span>
+
+                        <p class="result-disclaimer"
+                        data-i18n="desarrollo.calculator.disclaimer"
+                        data-text="*Cálculo orientativo. El presupuesto real dependerá de cada proyecto.">
+                            *Cálculo orientativo. El presupuesto real dependerá de cada proyecto.
+                        </p>
                     </div>
 
-                    <div>
-                        <input type="checkbox" id="web-crm" name="web-extras" value="crm">
-                        <label for="web-crm">CRM / gestión de clientes</label>
-                    </div>
-
-                    <div>
-                        <input type="checkbox" id="web-payments" name="web-extras" value="payments">
-                        <label for="web-payments">Pasarela de pagos</label>
-                    </div>
+                    <a href="/index.html#contacto" class="btn btn-primary btn-block"
+                    data-i18n="desarrollo.calculator.cta"
+                    data-text="Solicitar propuesta personalizada">
+                        Solicitar propuesta personalizada
+                    </a>
                 </div>
             </div>
-
-            <div class="form-group">
-                <label class="form-group-title" for="web-urgency">
-                    Urgencia
-                </label>
-
-                <select id="web-urgency" class="form-control">
-                    <option value="1">Normal (2-3 semanas)</option>
-                    <option value="1.2">Prioritario (1-2 semanas)</option>
-                    <option value="1.4">Urgente (2-5 días)</option>
-                </select>
-            </div>
-
-            <div class="calculator-result">
-                <span class="result-label">
-                    Desde
-                </span>
-
-                <span class="result-value" id="web-result-value">1.199€</span>
-
-                <p class="result-disclaimer">
-                    *Cálculo orientativo. El presupuesto real depende de cada proyecto.
-                </p>
-            </div>
-
-            <a href="/index.html#contacto" class="btn btn-primary btn-block">
-                Solicitar propuesta personalizada
-            </a>
-        </div>
-    </div>
-</section>
+        </section>
 
         <!-- REUNIONES PRESENCIALES EN LANZAROTE -->
         <section class="presencial-lanzarote-section" id="presencial">
@@ -375,11 +413,11 @@
     <div id="cookies-placeholder"></div>
 
     <!-- SCRIPTS -->
-    <script src="/js/i18n.js?v=2"></script>
+    <script src="/js/i18n.js?v=3"></script>
     <script src="https://unpkg.com/lenis@1.3.18/dist/lenis.min.js"></script>
     <link rel="stylesheet" href="https://unpkg.com/lenis@1.3.18/dist/lenis.css">
-    <script src="/js/script.js?v=2"></script>
-    <script src="/js/calculadora-desarrollo-web.js?v=2"></script>
+    <script src="/js/script.js?v=3"></script>
+    <script src="/js/calculadora-desarrollo-web.js?v=3"></script>
 </body>
 
 </html>
