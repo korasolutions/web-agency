@@ -433,7 +433,6 @@
         "ownerHeading": "Identificación del Titular",
         "ownerFields": {
           "companyName": "Denominación Social:",
-          "taxId": "NIF/CIF:",
           "address": "Domicilio Social:",
           "email": "Correo Electrónico de Contacto:",
           "phones": "Teléfonos de Contacto:"
@@ -442,8 +441,6 @@
         "purposeText": "La página web de KORA SOLUTIONS tiene como finalidad principal informar a los usuarios sobre los servicios ofrecidos por la agencia (Desarrollo Web, Diseño de Identidad y Automatizaciones con IA), así como proporcionar una vía de contacto para la solicitud de presupuestos y consultoría estratégica.",
         "ipHeading": "Propiedad Intelectual e Industrial",
         "ipText": "Todos los derechos de propiedad intelectual e industrial de los contenidos de este sitio web (incluyendo, a título enunciativo pero no limitativo, textos, imágenes, logotipos, diseño gráfico, estructura y base de datos) son titularidad de KORA SOLUTIONS, a menos que se indique lo contrario. Queda expresamente prohibida la reproducción, distribución, comunicación pública o transformación de estos contenidos sin la autorización expresa y por escrito de su titular.",
-        "liabilityHeading": "Exclusión de Responsabilidad",
-        "liabilityText": "KORA SOLUTIONS no se hace responsable de los daños o perjuicios derivados del uso de los contenidos de su sitio web. Tampoco garantiza la ausencia de virus u otros elementos lesivos que pudieran dañar el sistema informático del usuario. El usuario es el único responsable del uso que haga de los servicios y contenidos del sitio.",
         "lawHeading": "Legislación Aplicable y Jurisdicción",
         "lawText": "Las presentes condiciones se rigen por la legislación española. Para cualquier controversia que pudiera derivarse del acceso o uso de la web, las partes se someten a los juzgados y tribunales de la provincia de Las Palmas (Canarias), renunciando expresamente a cualquier otro fuero que pudiera corresponderles."
       },

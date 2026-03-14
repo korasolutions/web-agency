@@ -447,7 +447,6 @@
         "ownerHeading": "Owner Identification",
         "ownerFields": {
           "companyName": "Company name:",
-          "taxId": "Tax ID:",
           "address": "Registered address:",
           "email": "Contact email:",
           "phones": "Contact phone numbers:"
@@ -456,8 +455,6 @@
         "purposeText": "KORA SOLUTIONS’ website is primarily intended to inform users about the services offered by the agency (Web Development, Brand Identity Design and AI Automations), as well as to provide a contact channel for requesting quotes and strategic consulting.",
         "ipHeading": "Intellectual and Industrial Property",
         "ipText": "All intellectual and industrial property rights to the contents of this website (including, but not limited to, texts, images, logos, graphic design, structure, and database) belong to KORA SOLUTIONS, unless otherwise stated. Reproduction, distribution, public communication, or transformation of these contents is expressly prohibited without the owner’s prior written authorization.",
-        "liabilityHeading": "Disclaimer of Liability",
-        "liabilityText": "KORA SOLUTIONS is not responsible for any damages arising from the use of the content on its website. Nor does it guarantee the absence of viruses or other harmful elements that could damage the user’s computer system. The user is solely responsible for how they use the services and content of the site.",
         "lawHeading": "Applicable Law and Jurisdiction",
         "lawText": "These terms are governed by Spanish law. For any disputes arising from access to or use of the website, the parties submit to the courts and tribunals of the province of Las Palmas (Canary Islands), expressly waiving any other jurisdiction that may apply."
       },
