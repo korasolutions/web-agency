@@ -35,7 +35,7 @@
 .legal-document h2 {
    font-size: 1.6rem;
    margin-bottom: 1rem;
-   color: var(--text-primary);
+   color: #ff6b6b;
    font-weight: 500;
 }
 
@@ -65,7 +65,7 @@
    color: var(--text-primary);
 }
 
-.legal-document a {
+.legal-document a{
    color: #ff6b6b;
    text-decoration: none;
 }
