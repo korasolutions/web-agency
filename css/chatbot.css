@@ -2,107 +2,255 @@
     position: fixed;
     right: 24px;
     bottom: 24px;
-    z-index: 9999;
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    z-index: 9995;
+    font-family: var(--font-sans, 'Inter', -apple-system, BlinkMacSystemFont, sans-serif);
+    pointer-events: none;
 }
 
+#kora-chatbot-root * {
+    box-sizing: border-box;
+}
+
+#kora-chatbot-root .kora-chatbot-toggle,
+#kora-chatbot-root .kora-chatbot-panel {
+    pointer-events: auto;
+}
+
+/* ======================================================
+   BOTÓN FLOTANTE
+   ====================================================== */
 .kora-chatbot-toggle {
+    position: relative;
+    z-index: 3;
     width: 62px;
     height: 62px;
-    border: 1px solid rgba(255, 255, 255, 0.12);
-    border-radius: 50%;
-    background: linear-gradient(135deg, #171717, #0e0e0e);
-    color: #ffffff;
-    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.45);
-    cursor: pointer;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 20px;
+    background:
+        linear-gradient(180deg, rgba(26, 26, 26, 0.96), rgba(12, 12, 12, 0.98));
+    color: var(--text-primary, #ffffff);
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 1.25rem;
-    transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+    cursor: pointer;
+    overflow: hidden;
+    box-shadow:
+        0 18px 40px rgba(0, 0, 0, 0.45),
+        0 0 0 1px rgba(255, 255, 255, 0.02) inset;
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0) scale(1);
+    transition:
+        transform 0.25s ease,
+        border-color 0.25s ease,
+        box-shadow 0.25s ease,
+        background 0.25s ease,
+        opacity 0.22s ease,
+        visibility 0.22s ease;
+}
+
+.kora-chatbot-toggle.is-hidden {
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(10px) scale(0.92);
+    pointer-events: none;
+}
+
+.kora-chatbot-toggle::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+        radial-gradient(circle at top left, rgba(255, 131, 131, 0.16), transparent 45%),
+        radial-gradient(circle at bottom right, rgba(58, 90, 120, 0.12), transparent 40%);
+    pointer-events: none;
+}
+
+.kora-chatbot-toggle::after {
+    content: '';
+    position: absolute;
+    inset: 1px;
+    border-radius: 19px;
+    background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0));
+    pointer-events: none;
 }
 
 .kora-chatbot-toggle:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 16px 34px rgba(0, 0, 0, 0.55);
-    border-color: rgba(255, 255, 255, 0.22);
+    transform: translateY(-3px);
+    border-color: rgba(255, 131, 131, 0.22);
+    box-shadow:
+        0 24px 50px rgba(0, 0, 0, 0.52),
+        0 0 24px rgba(255, 131, 131, 0.08);
 }
 
+.kora-chatbot-toggle:active {
+    transform: translateY(-1px);
+}
+
+.kora-chatbot-toggle i,
+.kora-chatbot-toggle svg {
+    position: relative;
+    z-index: 2;
+    font-size: 1.15rem;
+}
+
+/* ======================================================
+   PANEL PRINCIPAL
+   ====================================================== */
 .kora-chatbot-panel {
     position: absolute;
     right: 0;
-    bottom: 78px;
-    width: 360px;
-    max-width: calc(100vw - 32px);
-    height: 520px;
-    max-height: calc(100vh - 120px);
-    background: #111111;
-    border: 1px solid #262626;
-    border-radius: 18px;
-    overflow: hidden;
-    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.55);
+    bottom: 0;
+    z-index: 2;
+    width: 380px;
+    max-width: calc(100vw - 28px);
+    height: 560px;
+    max-height: calc(100vh - 110px);
     display: flex;
     flex-direction: column;
+    justify-content: flex-start;
+    padding: 0;
+    overflow: hidden;
+    border-radius: 28px;
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    background:
+        linear-gradient(180deg, rgba(19, 19, 19, 0.97), rgba(10, 10, 10, 0.99));
+    box-shadow:
+        0 30px 70px rgba(0, 0, 0, 0.6),
+        0 0 0 1px rgba(255,255,255,0.02) inset;
+    backdrop-filter: blur(22px);
+    -webkit-backdrop-filter: blur(22px);
     opacity: 0;
+    visibility: hidden;
     pointer-events: none;
-    transform: translateY(12px) scale(0.98);
-    transition: opacity 0.22s ease, transform 0.22s ease;
+    transform: translateY(10px) scale(0.96);
+    transform-origin: bottom right;
+    transition:
+        opacity 0.28s ease,
+        transform 0.28s ease,
+        visibility 0.28s ease;
 }
 
 .kora-chatbot-panel.open {
+    z-index: 4;
     opacity: 1;
+    visibility: visible;
     pointer-events: auto;
     transform: translateY(0) scale(1);
 }
 
+.kora-chatbot-panel::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+        radial-gradient(circle at top left, rgba(255, 131, 131, 0.08), transparent 24%),
+        radial-gradient(circle at bottom right, rgba(58, 90, 120, 0.08), transparent 24%);
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* ======================================================
+   HEADER
+   ====================================================== */
 .kora-chatbot-header {
+    position: relative;
+    z-index: 2;
     display: flex;
     align-items: flex-start;
     justify-content: space-between;
-    gap: 12px;
+    gap: 14px;
     padding: 16px 16px 14px;
-    border-bottom: 1px solid #202020;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
     background:
-        radial-gradient(circle at top right, rgba(255, 131, 131, 0.12), transparent 35%),
-        linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0));
+        linear-gradient(180deg, rgba(255,255,255,0.025), rgba(255,255,255,0));
+    flex-shrink: 0;
+}
+
+.kora-chatbot-header > div {
+    min-width: 0;
 }
 
 .kora-chatbot-header h3 {
     margin: 0;
     font-size: 1rem;
-    color: #ffffff;
-    font-weight: 700;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    color: var(--text-primary, #ffffff);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.kora-chatbot-header h3::after {
+    content: "En línea";
+    font-size: 0.72rem;
+    font-weight: 600;
+    color: #7dffab;
+    background: rgba(125, 255, 171, 0.08);
+    border: 1px solid rgba(125, 255, 171, 0.14);
+    padding: 4px 8px;
+    border-radius: 999px;
+    letter-spacing: 0;
+}
+
+html[lang="en"] .kora-chatbot-header h3::after {
+    content: "Online";
 }
 
 .kora-chatbot-header p {
-    margin: 4px 0 0;
-    font-size: 0.875rem;
-    color: #a0a0a0;
+    margin: 6px 0 0;
+    color: var(--text-secondary, #a0a0a0);
+    font-size: 0.85rem;
+    line-height: 1.4;
 }
 
 .kora-chatbot-close {
-    background: transparent;
-    border: none;
-    color: #ffffff;
+    width: 38px;
+    height: 38px;
+    flex-shrink: 0;
+    border: 1px solid rgba(255,255,255,0.04);
+    border-radius: 14px;
+    background: rgba(255, 255, 255, 0.035);
+    color: var(--text-primary, #ffffff);
+    display: flex;
+    align-items: center;
+    justify-content: center;
     cursor: pointer;
-    font-size: 1rem;
-    padding: 4px;
+    transition:
+        transform 0.22s ease,
+        border-color 0.22s ease,
+        background 0.22s ease;
 }
 
+.kora-chatbot-close:hover {
+    transform: translateY(-1px);
+    border-color: rgba(255, 131, 131, 0.18);
+    background: rgba(255,255,255,0.06);
+}
+
+/* ======================================================
+   ZONA DE MENSAJES
+   ====================================================== */
 .kora-chatbot-messages {
-    flex: 1;
+    position: relative;
+    z-index: 1;
+    flex: 1 1 auto;
+    min-height: 0;
     overflow-y: auto;
-    padding: 14px;
     display: flex;
     flex-direction: column;
     gap: 12px;
-    background:
-        radial-gradient(circle at bottom left, rgba(120, 58, 58, 0.08), transparent 35%),
-        #111111;
+    padding: 14px;
+    scroll-behavior: smooth;
 }
 
 .kora-chatbot-message {
     display: flex;
+    width: 100%;
 }
 
 .kora-chatbot-message.bot {
@@ -114,91 +262,517 @@
 }
 
 .kora-chatbot-message .bubble {
-    max-width: 85%;
-    padding: 12px 14px;
-    border-radius: 14px;
-    font-size: 0.94rem;
-    line-height: 1.45;
+    position: relative;
+    max-width: min(84%, 300px);
+    padding: 13px 14px;
+    border-radius: 18px;
+    font-size: 0.95rem;
+    line-height: 1.5;
     word-break: break-word;
-    white-space: normal;
+    box-shadow: 0 10px 22px rgba(0, 0, 0, 0.16);
 }
 
 .kora-chatbot-message.bot .bubble {
-    background: #1a1a1a;
-    border: 1px solid #2a2a2a;
-    color: #f5f5f5;
+    background:
+        linear-gradient(180deg, rgba(28, 28, 28, 0.96), rgba(18, 18, 18, 0.96));
+    border: 1px solid rgba(255,255,255,0.06);
+    color: var(--text-primary, #f5f5f5);
+    border-top-left-radius: 8px;
 }
 
 .kora-chatbot-message.user .bubble {
-    background: #783a3a;
-    border: 1px solid rgba(255, 255, 255, 0.08);
+    background:
+        linear-gradient(135deg, var(--primary-light, #884a4a), var(--primary-color, #783a3a));
+    border: 1px solid rgba(255,131,131,0.18);
     color: #ffffff;
+    border-top-right-radius: 8px;
 }
 
 .kora-chatbot-message.typing .bubble {
-    color: #b5b5b5;
+    color: var(--text-light, #b0b0b0);
     font-style: italic;
 }
 
+/* ======================================================
+   BARRA INFERIOR
+   ====================================================== */
 .kora-chatbot-form {
-    display: flex;
+    position: relative;
+    z-index: 2;
+    flex-shrink: 0;
+    padding: 12px;
+    border-top: 1px solid rgba(255,255,255,0.06);
+    background:
+        linear-gradient(180deg, rgba(15,15,15,0.96), rgba(9,9,9,0.98));
+    display: grid;
+    grid-template-columns: 1fr auto;
     gap: 10px;
-    padding: 14px;
-    border-top: 1px solid #202020;
-    background: #101010;
+    align-items: center;
+}
+
+.kora-chatbot-form::before {
+    content: '';
+    position: absolute;
+    left: 12px;
+    right: 12px;
+    top: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.08), transparent);
+    pointer-events: none;
 }
 
 .kora-chatbot-input {
-    flex: 1;
+    width: 100%;
     min-width: 0;
-    background: #171717;
-    border: 1px solid #2a2a2a;
-    color: #ffffff;
-    border-radius: 12px;
+    min-height: 48px;
     padding: 12px 14px;
+    border-radius: 16px;
+    border: 1px solid var(--border-light, #333333);
+    background: rgba(0, 0, 0, 0.42);
+    color: var(--text-primary, #ffffff);
     outline: none;
-    font-size: 0.94rem;
+    font-family: inherit;
+    font-size: 1rem;
+    line-height: 1.4;
+    transition:
+        border-color 0.22s ease,
+        box-shadow 0.22s ease,
+        background 0.22s ease,
+        opacity 0.22s ease;
 }
 
 .kora-chatbot-input::placeholder {
-    color: #777777;
+    color: var(--text-tertiary, #6c6c6c);
 }
 
 .kora-chatbot-input:focus {
-    border-color: #783a3a;
-    box-shadow: 0 0 0 3px rgba(120, 58, 58, 0.18);
+    border-color: var(--accent-color, #ff8383);
+    box-shadow: 0 0 0 3px rgba(255, 131, 131, 0.12);
+    background: rgba(0,0,0,0.58);
 }
 
 .kora-chatbot-send {
-    border: none;
-    border-radius: 12px;
+    min-width: 52px;
+    height: 48px;
     padding: 0 16px;
-    background: #783a3a;
-    color: #ffffff;
+    border: none;
+    border-radius: 16px;
+    background:
+        linear-gradient(135deg, #ff6f6f, #ff8b8b);
+    color: #111111;
+    font-size: 0.94rem;
+    font-weight: 700;
     cursor: pointer;
-    font-weight: 600;
-    transition: transform 0.2s ease, opacity 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    white-space: nowrap;
+    box-shadow:
+        0 14px 24px rgba(255, 107, 107, 0.16);
+    transition:
+        transform 0.22s ease,
+        filter 0.22s ease,
+        box-shadow 0.22s ease,
+        opacity 0.22s ease;
 }
 
 .kora-chatbot-send:hover {
-    transform: translateY(-1px);
-    opacity: 0.95;
+    transform: translateY(-2px);
+    filter: brightness(1.03);
+    box-shadow:
+        0 16px 28px rgba(255, 107, 107, 0.22);
 }
 
-@media (max-width: 640px) {
+.kora-chatbot-send:active {
+    transform: translateY(0);
+}
+
+.kora-chatbot-input:disabled,
+.kora-chatbot-send:disabled {
+    opacity: 0.55;
+    cursor: not-allowed;
+}
+
+/* ======================================================
+   SCROLLBAR
+   ====================================================== */
+.kora-chatbot-messages::-webkit-scrollbar {
+    width: 8px;
+}
+
+.kora-chatbot-messages::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.kora-chatbot-messages::-webkit-scrollbar-thumb {
+    background: rgba(255, 131, 131, 0.32);
+    border-radius: 999px;
+}
+
+.kora-chatbot-messages::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 131, 131, 0.45);
+}
+
+/* ======================================================
+   ESTADO BLOQUEADO POR COOKIES
+   ====================================================== */
+.kora-chatbot-cookie-gate {
+    position: relative;
+    z-index: 2;
+    flex: 1 1 auto;
+    min-height: 0;
+    display: none;
+    padding: 18px;
+    align-items: center;
+    justify-content: center;
+}
+
+.kora-chatbot-panel.is-locked .kora-chatbot-cookie-gate {
+    display: flex;
+}
+
+.kora-chatbot-panel.is-locked .kora-chatbot-messages {
+    display: none;
+}
+
+.kora-chatbot-panel.is-locked .kora-chatbot-form {
+    display: grid;
+}
+
+.kora-chatbot-panel.is-locked .kora-chatbot-input,
+.kora-chatbot-panel.is-locked .kora-chatbot-send {
+    opacity: 0.45;
+}
+
+.kora-chatbot-cookie-card {
+    width: 100%;
+    max-width: 100%;
+    padding: 22px 18px;
+    border-radius: 22px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    background:
+        linear-gradient(180deg, rgba(28, 28, 28, 0.96), rgba(16, 16, 16, 0.98));
+    box-shadow:
+        0 18px 36px rgba(0, 0, 0, 0.32),
+        0 0 0 1px rgba(255,255,255,0.02) inset;
+    text-align: center;
+    overflow: hidden;
+}
+
+.kora-chatbot-cookie-icon {
+    width: 58px;
+    height: 58px;
+    margin: 0 auto 14px;
+    border-radius: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background:
+        radial-gradient(circle at top left, rgba(255, 131, 131, 0.22), transparent 55%),
+        linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.02));
+    border: 1px solid rgba(255, 131, 131, 0.14);
+    color: #ffb2b2;
+    box-shadow: 0 10px 24px rgba(255, 131, 131, 0.08);
+}
+
+.kora-chatbot-cookie-icon i,
+.kora-chatbot-cookie-icon svg {
+    font-size: 1.2rem;
+}
+
+.kora-chatbot-cookie-title {
+    margin: 0 0 10px;
+    font-size: 1rem;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    color: var(--text-primary, #ffffff);
+}
+
+.kora-chatbot-cookie-text {
+    margin: 0;
+    color: var(--text-secondary, #a0a0a0);
+    font-size: 0.93rem;
+    line-height: 1.55;
+}
+
+.kora-chatbot-cookie-actions {
+    margin-top: 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.kora-chatbot-cookie-accept {
+    width: 100%;
+    min-height: 48px;
+    padding: 0 16px;
+    border: none;
+    border-radius: 16px;
+    background: linear-gradient(135deg, #ff6f6f, #ff8b8b);
+    color: #111111;
+    font-size: 0.94rem;
+    font-weight: 700;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 14px 24px rgba(255, 107, 107, 0.16);
+    transition:
+        transform 0.22s ease,
+        filter 0.22s ease,
+        box-shadow 0.22s ease;
+}
+
+.kora-chatbot-cookie-accept:hover {
+    transform: translateY(-2px);
+    filter: brightness(1.03);
+    box-shadow: 0 16px 28px rgba(255, 107, 107, 0.22);
+}
+
+.kora-chatbot-cookie-accept:active {
+    transform: translateY(0);
+}
+
+.kora-chatbot-cookie-note {
+    margin: 2px 0 0;
+    font-size: 0.8rem;
+    line-height: 1.45;
+    color: var(--text-tertiary, #6c6c6c);
+}
+
+/* ======================================================
+   TABLET
+   ====================================================== */
+@media (max-width: 992px) {
     #kora-chatbot-root {
-        right: 16px;
-        bottom: 16px;
+        right: 18px;
+        bottom: 18px;
     }
 
     .kora-chatbot-panel {
-        width: min(92vw, 380px);
-        height: 72vh;
-        bottom: 74px;
+        width: 360px;
+        height: 540px;
+        bottom: 0;
+    }
+}
+
+/* ======================================================
+   MÓVIL
+   ====================================================== */
+@media (max-width: 768px) {
+    #kora-chatbot-root {
+        right: 14px;
+        bottom: 14px;
     }
 
     .kora-chatbot-toggle {
         width: 58px;
         height: 58px;
+        border-radius: 18px;
+    }
+
+    .kora-chatbot-panel {
+        right: 0;
+        bottom: 0;
+        width: min(94vw, 420px);
+        height: min(72vh, 580px);
+        max-height: calc(100vh - 90px);
+        border-radius: 24px;
+    }
+
+    .kora-chatbot-header {
+        padding: 14px 14px 12px;
+    }
+
+    .kora-chatbot-header h3 {
+        font-size: 0.97rem;
+    }
+
+    .kora-chatbot-header h3::after {
+        font-size: 0.68rem;
+        padding: 3px 7px;
+    }
+
+    .kora-chatbot-header p {
+        font-size: 0.82rem;
+    }
+
+    .kora-chatbot-messages {
+        padding: 12px;
+        gap: 10px;
+    }
+
+    .kora-chatbot-message .bubble {
+        max-width: 88%;
+        font-size: 0.93rem;
+        padding: 12px 13px;
+    }
+
+    .kora-chatbot-form {
+        padding: 10px;
+        gap: 8px;
+    }
+
+    .kora-chatbot-input {
+        min-height: 46px;
+        border-radius: 14px;
+        font-size: 0.93rem;
+    }
+
+    .kora-chatbot-send {
+        height: 46px;
+        border-radius: 14px;
+        padding: 0 14px;
+        font-size: 0.9rem;
+    }
+
+    .kora-chatbot-cookie-gate {
+        padding: 14px;
+    }
+
+    .kora-chatbot-cookie-card {
+        padding: 20px 16px;
+        border-radius: 20px;
+    }
+
+    .kora-chatbot-cookie-icon {
+        width: 54px;
+        height: 54px;
+        border-radius: 16px;
+        margin-bottom: 12px;
+    }
+
+    .kora-chatbot-cookie-title {
+        font-size: 0.97rem;
+    }
+
+    .kora-chatbot-cookie-text {
+        font-size: 0.9rem;
+    }
+
+    .kora-chatbot-cookie-accept {
+        min-height: 46px;
+        border-radius: 14px;
+        font-size: 0.91rem;
+    }
+}
+
+/* ======================================================
+   MÓVIL PEQUEÑO
+   ====================================================== */
+@media (max-width: 520px) {
+    #kora-chatbot-root {
+        right: 10px;
+        bottom: 10px;
+    }
+
+    .kora-chatbot-panel {
+        width: calc(100vw - 20px);
+        height: min(68vh, 540px);
+        bottom: 0;
+        border-radius: 22px;
+    }
+
+    .kora-chatbot-header {
+        padding: 13px 13px 11px;
+    }
+
+    .kora-chatbot-close {
+        width: 36px;
+        height: 36px;
+        border-radius: 12px;
+    }
+
+    .kora-chatbot-message .bubble {
+        max-width: 91%;
+        font-size: 0.91rem;
+    }
+
+    .kora-chatbot-form {
+        grid-template-columns: 1fr auto;
+    }
+
+    .kora-chatbot-input {
+        min-height: 44px;
+        padding: 11px 12px;
+    }
+
+    .kora-chatbot-send {
+        min-width: 46px;
+        height: 44px;
+        padding: 0 12px;
+        font-size: 0.88rem;
+    }
+
+    .kora-chatbot-cookie-gate {
+        padding: 12px;
+    }
+
+    .kora-chatbot-cookie-card {
+        padding: 18px 14px;
+        border-radius: 18px;
+    }
+
+    .kora-chatbot-cookie-title {
+        font-size: 0.95rem;
+    }
+
+    .kora-chatbot-cookie-text {
+        font-size: 0.88rem;
+    }
+
+    .kora-chatbot-cookie-note {
+        font-size: 0.77rem;
+    }
+}
+
+/* ======================================================
+   MÓVIL MUY PEQUEÑO
+   ====================================================== */
+@media (max-width: 380px) {
+    .kora-chatbot-toggle {
+        width: 54px;
+        height: 54px;
+        border-radius: 16px;
+    }
+
+    .kora-chatbot-panel {
+        width: calc(100vw - 14px);
+        right: -1px;
+        bottom: 0;
+        height: min(70vh, 520px);
+    }
+
+    .kora-chatbot-header p {
+        max-width: 220px;
+    }
+
+    .kora-chatbot-message .bubble {
+        max-width: 94%;
+        font-size: 0.89rem;
+    }
+}
+
+/* ======================================================
+   LANDSCAPE BAJO
+   ====================================================== */
+@media (max-height: 700px) and (max-width: 900px) {
+    .kora-chatbot-panel {
+        height: calc(100vh - 88px);
+        max-height: calc(100vh - 88px);
+    }
+}
+
+/* ======================================================
+   REDUCED MOTION
+   ====================================================== */
+@media (prefers-reduced-motion: reduce) {
+    .kora-chatbot-toggle,
+    .kora-chatbot-panel,
+    .kora-chatbot-close,
+    .kora-chatbot-input,
+    .kora-chatbot-send,
+    .kora-chatbot-cookie-accept {
+        transition: none !important;
     }
 }

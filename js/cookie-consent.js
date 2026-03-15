@@ -1,7 +1,5 @@
 (() => {
     const STORAGE_KEY = "cookieConsent_v1";
-
-    // Ajusta aquí tu ID de GTM (ya está en tu HTML)
     const GTM_ID = "GTM-T8RSJ7GH";
 
     const el = document.getElementById("cookie-consent");
@@ -27,6 +25,11 @@
         localStorage.setItem(STORAGE_KEY, JSON.stringify(value));
     };
 
+    const hasOptionalConsent = () => {
+        const consent = getConsent();
+        return !!consent?.analytics;
+    };
+
     const hideBanner = () => {
         el.classList.remove("is-visible");
     };
@@ -36,12 +39,14 @@
     };
 
     const loadGTM = () => {
-        // Evita doble carga
         if (window.__gtmLoaded) return;
         window.__gtmLoaded = true;
 
         window.dataLayer = window.dataLayer || [];
-        window.dataLayer.push({ "gtm.start": new Date().getTime(), event: "gtm.js" });
+        window.dataLayer.push({
+            "gtm.start": new Date().getTime(),
+            event: "gtm.js"
+        });
 
         const s = document.createElement("script");
         s.async = true;
@@ -49,46 +54,92 @@
         document.head.appendChild(s);
     };
 
-    const applyConsent = (consent) => {
-        // consent = { necessary: true, analytics: boolean, ts: number }
-        if (consent?.analytics) loadGTM();
+    const dispatchConsentUpdate = (consent) => {
+        window.dispatchEvent(
+            new CustomEvent("kora:cookie-consent-updated", {
+                detail: consent
+            })
+        );
     };
 
-    // UI
+    const applyConsent = (consent) => {
+        if (consent?.analytics) {
+            loadGTM();
+        }
+
+        dispatchConsentUpdate(consent);
+    };
+
+    const saveConsent = (consent) => {
+        setConsent(consent);
+        applyConsent(consent);
+        hideBanner();
+    };
+
+    const acceptOptionalCookies = () => {
+        const consent = {
+            necessary: true,
+            analytics: true,
+            ts: Date.now()
+        };
+
+        saveConsent(consent);
+        return consent;
+    };
+
+    const rejectOptionalCookies = () => {
+        const consent = {
+            necessary: true,
+            analytics: false,
+            ts: Date.now()
+        };
+
+        saveConsent(consent);
+        return consent;
+    };
+
     const openPrefs = () => {
+        if (!prefs) return;
         prefs.hidden = false;
         if (chkAnalytics) chkAnalytics.focus();
     };
+
     const closePrefs = () => {
+        if (!prefs) return;
         prefs.hidden = true;
     };
 
-    // Init
+    window.KoraCookieConsent = {
+        getConsent,
+        hasOptionalConsent,
+        acceptOptionalCookies,
+        rejectOptionalCookies
+    };
+
     const existing = getConsent();
+
     if (!existing) {
-        // Primera visita
         showBanner();
     } else {
         applyConsent(existing);
     }
 
-    // Eventos
     btnAccept?.addEventListener("click", () => {
-        const consent = { necessary: true, analytics: true, ts: Date.now() };
-        setConsent(consent);
-        applyConsent(consent);
-        hideBanner();
+        acceptOptionalCookies();
     });
 
     btnReject?.addEventListener("click", () => {
-        const consent = { necessary: true, analytics: false, ts: Date.now() };
-        setConsent(consent);
-        hideBanner();
+        rejectOptionalCookies();
     });
 
     btnSettings?.addEventListener("click", () => {
-        if (prefs.hidden) openPrefs();
-        else closePrefs();
+        if (!prefs) return;
+
+        if (prefs.hidden) {
+            openPrefs();
+        } else {
+            closePrefs();
+        }
     });
 
     btnCancel?.addEventListener("click", () => {
@@ -99,10 +150,9 @@
         const consent = {
             necessary: true,
             analytics: !!chkAnalytics?.checked,
-            ts: Date.now(),
+            ts: Date.now()
         };
-        setConsent(consent);
-        applyConsent(consent);
-        hideBanner();
+
+        saveConsent(consent);
     });
 })();
