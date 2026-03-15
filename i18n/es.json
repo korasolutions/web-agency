@@ -397,14 +397,18 @@
     "team": {
       "title": "EL EQUIPO",
       "subtitle": "Detrás de cada proyecto, hay personas. Conócenos.",
+      "cofounder": "Cofundador",
+
       "iriem": {
         "role": "Estrategia & Diseño",
         "bio": "Apasionado por crear experiencias digitales que no solo se vean bien, sino que funcionen a la perfección."
       },
+
       "fernando": {
         "role": "Desarrollo & Tecnología",
         "bio": "Con una mentalidad analítica y creativa. Cuidando cada detalle y buscando la mejor solución para cada proyecto."
       },
+      
       "fabio": {
         "role": "Innovación & Crecimiento",
         "bio": "El estratega del equipo. Asegurando siempre que cada acción esté alineada con los objetivos del negocio."

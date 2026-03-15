@@ -347,15 +347,15 @@
 .btn-about {
     text-decoration: none;
     border: solid 1px var(--text-tertiary);
-    padding: 13px;
+    padding: 13px 40px;
     border-radius: 30px;
-    width: 70%;
+    width: fit-content;
     text-align: center;
     color: var(--text-primary);
     background: var(--bg-secondary);
     z-index: 3;
     position: relative;
-    font-size: 1.3rem;
+    font-size: 1.1rem;
     transition: all 0.3s ease;
 }
 
