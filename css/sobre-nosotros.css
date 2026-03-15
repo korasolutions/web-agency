@@ -256,9 +256,9 @@
 }
 
 .team-image img {
-   height: 220px;
+   height: 190px;
    border-radius: 0 0 40% 40%;
-   margin-bottom: 10px;
+   margin-bottom: 20px;
    background: none;
    transition: transform 0.3s ease;
    -webkit-user-drag: none;
@@ -318,7 +318,7 @@
    display: inline-block;
 }
 
-.team-social a:hover {
+.team-image .team-social a:hover {
    color: var(--text-primary);
    transform: translateY(-3px);
    cursor: pointer;

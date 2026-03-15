@@ -408,7 +408,7 @@
         "role": "Desarrollo & Tecnología",
         "bio": "Con una mentalidad analítica y creativa. Cuidando cada detalle y buscando la mejor solución para cada proyecto."
       },
-      
+
       "fabio": {
         "role": "Innovación & Crecimiento",
         "bio": "El estratega del equipo. Asegurando siempre que cada acción esté alineada con los objetivos del negocio."
@@ -461,13 +461,25 @@
         "dataFields": {
           "identification": "Datos identificativos:",
           "contact": "Datos de contacto:",
-          "business": "Datos de negocio:"
+          "business": "Datos de negocio:",
+          "chat": "Datos introducidos en el chat:"
         },
         "dataValues": {
           "identification": "Nombre, apellidos.",
           "contact": "Dirección de correo electrónico, teléfono.",
-          "business": "Información sobre tu empresa y proyecto que nos facilites en tus comunicaciones."
+          "business": "Información sobre tu empresa y proyecto que nos facilites en tus comunicaciones.",
+          "chat": "Mensajes, preguntas y cualquier información que el usuario facilite voluntariamente al utilizar el asistente virtual."
         },
+        "aiHeading": "Uso de asistentes basados en inteligencia artificial",
+        "aiIntro": "Este sitio web puede incorporar un asistente virtual basado en inteligencia artificial para responder preguntas y ofrecer información sobre nuestros servicios.",
+        "aiProcessing": "Los mensajes, consultas y demás información que el usuario introduzca voluntariamente en el chat podrán ser procesados para generar respuestas automáticas.",
+        "aiThirdParties": "Para prestar esta funcionalidad, determinadas consultas pueden ser enviadas a proveedores tecnológicos externos especializados en servicios de inteligencia artificial e infraestructura asociada.",
+        "aiProvider": "Actualmente, esta funcionalidad puede prestarse mediante OpenRouter y modelos de lenguaje de terceros accesibles a través de dicha plataforma, en calidad de proveedores tecnológicos.",
+        "aiPurpose": "La finalidad de este tratamiento es atender solicitudes de información, responder consultas y mejorar la experiencia de atención al usuario.",
+        "aiWarning": "Recomendamos no introducir en el chat datos personales sensibles ni información confidencial, tales como contraseñas, datos bancarios, documentos identificativos, direcciones completas o información especialmente protegida.",
+        "aiNoDecisions": "El asistente virtual no adopta decisiones automatizadas que produzcan efectos jurídicos sobre el usuario ni que le afecten significativamente de modo similar.",
+        "aiDisclaimer": "Las respuestas generadas por el asistente son automáticas y pueden contener errores o inexactitudes, por lo que no constituyen asesoramiento profesional, jurídico ni contractual.",
+
         "purposeHeading": "Finalidad y Base Legal del Tratamiento",
         "purposeIntro": "Tratamos tus datos personales para las siguientes finalidades:",
         "purposes": {
@@ -479,7 +491,7 @@
         "retentionHeading": "Plazo de Conservación de los Datos",
         "retentionText": "Los datos personales serán conservados durante el tiempo necesario para cumplir con la finalidad para la que fueron recogidos. Una vez finalizada la relación, los datos se conservarán debidamente bloqueados durante los plazos legales de prescripción para atender posibles responsabilidades legales. Para el envío de comunicaciones, conservaremos tus datos hasta que solicites la baja.",
         "recipientsHeading": "Destinatarios de los Datos",
-        "recipientsText": "No se cederán datos a terceros, salvo obligación legal. Podrían tener acceso a tus datos proveedores de servicios tecnológicos (como nuestro servicio de hosting o email) que actúan como Encargados de Tratamiento, con quienes tenemos formalizados los correspondientes contratos conforme a la normativa.",
+        "recipientsText": "No se cederán datos a terceros, salvo obligación legal. No obstante, para la prestación de determinados servicios del sitio web, incluidos formularios de contacto, analítica web y asistentes virtuales basados en inteligencia artificial, podrán tener acceso a los datos proveedores de servicios tecnológicos que actúan por cuenta de KORA SOLUTIONS como Encargados del Tratamiento o proveedores subencargados, con quienes se hayan adoptado las garantías contractuales y organizativas exigidas por la normativa aplicable.",
         "rightsHeading": "Tus Derechos",
         "rightsText1": "Tienes derecho a obtener confirmación sobre si estamos tratando tus datos personales. También tienes derecho a acceder a tus datos, solicitar la rectificación de los datos inexactos o, en su caso, solicitar su supresión cuando, entre otros motivos, los datos ya no sean necesarios para los fines que fueron recogidos.",
         "rightsText2": "En determinadas circunstancias, podrás solicitar la limitación u oponerte al tratamiento de tus datos, en cuyo caso solo los conservaremos para el ejercicio o defensa de reclamaciones.",
