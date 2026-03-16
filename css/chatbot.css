@@ -1,7 +1,7 @@
 #kora-chatbot-root {
     position: fixed;
-    right: 24px;
-    bottom: 24px;
+    right: 30px;
+    bottom: 30px;
     z-index: 9995;
     font-family: var(--font-sans, 'Inter', -apple-system, BlinkMacSystemFont, sans-serif);
     pointer-events: none;
@@ -616,7 +616,7 @@ html[lang="en"] .kora-chatbot-header h3::after {
     .kora-chatbot-input {
         min-height: 46px;
         border-radius: 14px;
-        font-size: 0.93rem;
+        font-size: 1rem;
     }
 
     .kora-chatbot-send {
