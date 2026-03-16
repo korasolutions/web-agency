@@ -820,29 +820,3 @@ footer .logo {
         height: 23px;
     }
 }
-
-@media (max-width: 375px) {
-    .footer-content {
-        flex-direction: column;
-        text-align: center;
-        gap: 20px;
-        align-items: center;
-        justify-content: center;
-    }
-
-    .footer-section,
-    .footer-links,
-    .footer-social {
-        text-align: center;
-        align-items: center;
-        margin-left: auto;
-        margin-right: auto;
-    }
-
-    .footer-logo,
-    .footer-copyright {
-        display: flex;
-        justify-content: center;
-        width: 100%;
-    }
-}

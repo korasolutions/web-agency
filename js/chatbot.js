@@ -16,11 +16,12 @@ document.addEventListener("DOMContentLoaded", () => {
             error: "Ha ocurrido un error. Inténtalo de nuevo en unos segundos.",
             openLabel: "Abrir chat",
             closeLabel: "Cerrar chat",
-            consentTitle: "Necesitas aceptar las cookies opcionales",
+            consentTitle: "Activa las cookies para continuar",
             consentText:
-                "Para hablar con el chatbot IA necesitas aceptar las cookies opcionales.",
+                "Para usar el chatbot de IA necesitas aceptar las",
+            consentHref: "cookies opcionales.",
             consentButton: "Aceptar cookies opcionales",
-            consentNote: "Al aceptarlas, se activará el chat automáticamente."
+            consentNote: "Al aceptar, se activará el chat automáticamente."
         },
         en: {
             title: "KORA Assistant",
@@ -33,11 +34,12 @@ document.addEventListener("DOMContentLoaded", () => {
             error: "Something went wrong. Please try again in a few seconds.",
             openLabel: "Open chat",
             closeLabel: "Close chat",
-            consentTitle: "You need to accept optional cookies",
+            consentTitle: "Enable cookies to continue",
             consentText:
-                "To chat with the AI assistant, you need to accept optional cookies.",
+                "To chat with the chatbot you need to accept",
+            consentHref: "optional cookies.",
             consentButton: "Accept optional cookies",
-            consentNote: "Once accepted, the chat will unlock automatically."
+            consentNote: "Once accepted, the chat will start automatically."
         }
     };
 
@@ -113,7 +115,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
                     <h4 class="kora-chatbot-cookie-title">${copy.consentTitle}</h4>
 
-                    <p class="kora-chatbot-cookie-text">${copy.consentText}</p>
+                    <p class="kora-chatbot-cookie-text">
+                        ${copy.consentText}
+                        <a href="legal.html#legal-ia" class="legal-href">${copy.consentHref}</a>
+                    </p>
 
                     <div class="kora-chatbot-cookie-actions">
                         <button type="button" class="kora-chatbot-cookie-accept">
