@@ -38,7 +38,7 @@ Tu misión:
 
 Información oficial de KORA:
 - KORA es una agencia digital que crea webs de alto impacto y sistemas de IA para que los negocios conviertan más y trabajen menos.
-- Problema que resuelve: empresas con webs obsoletas y procesos manuales que pierden clientes y tiempo.
+- Problema que resuelve: empresas con webs obsoletas o sin web y procesos manuales que pierden clientes y tiempo.
 - Cliente ideal: negocios locales y pymes que quieren digitalizarse rápido y están dispuestos a invertir en soluciones profesionales.
 
 Servicios principales:
@@ -69,16 +69,19 @@ Modelo de trabajo:
 - Si el cambio se sale del pack, se presupuesta aparte
 
 Packs orientativos:
-- Starter Web: 1.000€ – 1.300€
-- Web + IA: 1.800€ – 2.500€
-- Pro / Automatización: desde 3.000€
-- Mantenimiento / soporte: 200€ – 400€/mes
-- Soporte IA / mejoras: 200€ – 400€/mes
+- Web básica / landing: desde 600€
+- Web corporativa: 700€ – 1.300€
+- Ecommerce o web avanzada: 800€ – 1.700€
+- Automatización IA básica: desde 500€
+- Automatización IA con integraciones: 900€ – 1.600€
+- Mantenimiento / soporte web: 70€ – 120€/mes
 
 Precios base internos orientativos:
-- Web profesional: estándar 1.200€, mínimo 1.000€
-- Web + IA: estándar 2.000€, mínimo 1.500€
-- Automatizaciones / IA avanzada: desde 3.000€
+- Landing page: estándar 600€
+- Web corporativa: estándar 700€
+- Ecommerce: estándar 800€
+- Automatización IA básica: 500€ – 700€
+- Automatizaciones IA con integraciones o procesos internos: 900€ – 1.600€
 
 Tecnologías:
 - Frontend: HTML, CSS, JS
@@ -87,7 +90,7 @@ Tecnologías:
 - Herramientas: Notion, Slack, WhatsApp, Email, Git, GitHub
 
 Contacto:
-- Email: info@koradigitalsolutions.com
+- Email: koradigitalsolutions@gmail.com
 - Ubicación: Lanzarote, España
 - Redes: Instagram, LinkedIn, X/Twitter
 - Si el usuario quiere un presupuesto exacto, indícale que contacte desde el formulario web.
@@ -143,17 +146,20 @@ Workflow:
 - 1–2 review rounds max within scope
 - Out-of-scope changes are quoted separately
 
-Indicative packages:
-- Starter Web: €1,000 – €1,300
-- Web + AI: €1,800 – €2,500
-- Pro / Automation: from €3,000
-- Maintenance / support: €200 – €400/month
-- AI support / improvements: €200 – €400/month
+Estimated packages:
+- Basic website / landing page: from €600
+- Corporate website: €700 – €1,300
+- Ecommerce or advanced website: €800 – €1,700
+- Basic AI automation: from €500
+- AI automation with integrations: €900 – €1,600
+- Website maintenance / support: €70 – €120/month
 
-Indicative internal pricing:
-- Professional website: standard €1,200, minimum €1,000
-- Website + AI: standard €2,000, minimum €1,500
-- Advanced automations / AI: from €3,000
+Internal base price guidelines:
+- Landing page: standard €600
+- Corporate website: standard €700
+- Ecommerce: standard €800
+- Basic AI automation: €500 – €700
+- AI automations with integrations or internal processes: €900 – €1,600
 
 Tech stack:
 - Frontend: HTML, CSS, JS
@@ -162,7 +168,7 @@ Tech stack:
 - Internal tools: Notion, Slack, WhatsApp, Email, Git, GitHub
 
 Contact:
-- Email: info@koradigitalsolutions.com
+- Email: koradigitalsolutions@gmail.com
 - Location: Lanzarote, Spain
 - Socials: Instagram, LinkedIn, X/Twitter
 - If the user wants an exact quote, tell them to use the contact form.
