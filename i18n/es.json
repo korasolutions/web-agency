@@ -398,20 +398,32 @@
       "title": "EL EQUIPO",
       "subtitle": "Detrás de cada proyecto, hay personas. Conócenos.",
       "cofounder": "Cofundador",
-
       "iriem": {
         "role": "Estrategia & Diseño",
-        "bio": "Apasionado por crear experiencias digitales que no solo se vean bien, sino que funcionen a la perfección."
+        "bio": "Apasionado por crear experiencias digitales que no solo se vean bien, sino que funcionen a la perfección.",
+        "studies": {
+          "1": "Bachillerato",
+          "2": "FP Desarrollo Multiplataforma",
+          "3": "Máster en IA y Automatización"
+        }
       },
-
       "fernando": {
         "role": "Desarrollo & Tecnología",
-        "bio": "Con una mentalidad analítica y creativa. Cuidando cada detalle y buscando la mejor solución para cada proyecto."
+        "bio": "Con una mentalidad analítica y creativa. Cuidando cada detalle y buscando la mejor solución para cada proyecto.",
+        "studies": {
+          "1": "Bachillerato",
+          "2": "FP Desarrollo Multiplataforma",
+          "3": "FP Desarrollo Web"
+        }
       },
-
       "fabio": {
         "role": "Innovación & Crecimiento",
-        "bio": "El estratega del equipo. Asegurando siempre que cada acción esté alineada con los objetivos del negocio."
+        "bio": "El estratega del equipo. Asegurando siempre que cada acción esté alineada con los objetivos del negocio.",
+        "studies": {
+          "1": "Bachillerato",
+          "2": "FP Desarrollo Multiplataforma",
+          "3": "FP Desarrollo Web"
+        }
       }
     },
     "cta": {

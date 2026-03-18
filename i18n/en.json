@@ -403,28 +403,38 @@
       "title3": "Our purpose",
       "text3": "We don’t aim to build simple \"websites\"; we aim to create platforms that tell stories, solve problems, and drive real growth."
     },
-
     "team": {
       "title": "THE TEAM",
       "subtitle": "Behind every project, there are people. Get to know us.",
       "cofounder": "Co-founder",
-
       "iriem": {
         "role": "Strategy & Design",
-        "bio": "Passionate about creating digital experiences that not only look great but work flawlessly."
+        "bio": "Passionate about creating digital experiences that not only look great but work flawlessly.",
+        "studies": {
+          "1": "High School Diploma",
+          "2": "Multiplatform Development (VET)",
+          "3": "Master’s in AI & Automation"
+        }
       },
-
       "fernando": {
         "role": "Development & Technology",
-        "bio": "Analytical and creative mindset. Paying attention to every detail and always seeking the best solution."
+        "bio": "Analytical and creative mindset. Paying attention to every detail and always seeking the best solution.",
+        "studies": {
+          "1": "High School Diploma",
+          "2": "Multiplatform Development (VET)",
+          "3": "Web Development (VET)"
+        }
       },
-
       "fabio": {
         "role": "Innovation & Growth",
-        "bio": "The team's strategist. Ensuring every action is always aligned with the business goals."
+        "bio": "The team's strategist. Ensuring every action is always aligned with the business goals.",
+        "studies": {
+          "1": "High School Diploma",
+          "2": "Multiplatform Development (VET)",
+          "3": "Web Development (VET)"
+        }
       }
     },
-
     "cta": {
       "title": "¿Like what you see?",
       "subtitle": "Let's talk about how we can help you achieve your goals.",
