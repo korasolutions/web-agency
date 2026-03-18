@@ -170,7 +170,7 @@
    position: relative;
    overflow: hidden;
    isolation: isolate;
-   min-height: 420px;
+   min-height: 460px;
    display: flex;
    flex-direction: column;
    user-select: none;
@@ -261,9 +261,9 @@
 }
 
 .team-image img {
-   height: 190px;
+   height: 180px;
    border-radius: 0 0 40% 40%;
-   margin-bottom: 20px;
+   margin-bottom: 10px;
    background: none;
    transition: transform 0.3s ease;
    -webkit-user-drag: none;
@@ -353,6 +353,72 @@
 }
 i.fa-plus {
    transition: transform 0.3s ease;
+}
+
+/* ======================================================
+   CARRUSEL MINIMALISTA DE ESTUDIOS
+   ====================================================== */
+.studies-carousel {
+    width: 100%;
+    max-width: 280px;
+    margin: 20px auto 15px;
+    position: relative;
+}
+
+.carousel-container {
+    overflow: hidden;
+    width: 100%;
+    border-radius: 10px;
+    background: rgba(0, 0, 0, 0.2);
+}
+
+.carousel-track {
+    display: flex;
+    transition: transform 0.4s ease-in-out;
+}
+
+.carousel-slide {
+    flex: 0 0 100%;
+    padding: 8px 20px;
+    text-align: center;
+    font-size: 0.9rem;
+    font-weight: 400;
+    color: var(--text-secondary);
+    letter-spacing: 0.02em;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.carousel-slide:last-child {
+    border-right: none;
+}
+
+.carousel-dots {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+}
+
+.dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--text-tertiary);
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.dot.active {
+    width: 20px;
+    border-radius: 10px;
+    background: var(--accent-color);
+    opacity: 1;
+}
+
+.dot:hover {
+    background: var(--accent-color);
+    opacity: 0.7;
 }
 
 /* Rotación del icono + al hacer hover en la tarjeta */
@@ -477,4 +543,16 @@ i.fa-plus {
    .history-step::before {
       display: none;
    }
+}
+
+/* Ajustes responsive para el carrusel */
+@media (max-width: 768px) {
+    .studies-carousel {
+        max-width: 240px;
+    }
+    
+    .carousel-slide {
+        font-size: 0.8rem;
+        padding: 10px 15px;
+    }
 }

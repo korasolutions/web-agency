@@ -372,7 +372,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
             // Si la tarjeta ya está activa, la desactivamos
             if (this.classList.contains('active')) {
-                this.classList.remove('active');
+                return;
             } else {
                 // Opcional: cerrar otras tarjetas abiertas
                 teamCards.forEach(c => c.classList.remove('active'));
@@ -380,4 +380,78 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         });
     });
+
+    // ========== CARRUSEL DE ESTUDIOS ==========
+    function initStudiesCarousels() {
+        const carousels = document.querySelectorAll('.studies-carousel');
+
+        carousels.forEach(carousel => {
+            const track = carousel.querySelector('.carousel-track');
+            const slides = carousel.querySelectorAll('.carousel-slide');
+            const dots = carousel.querySelectorAll('.dot');
+            let currentIndex = 0;
+            let interval;
+
+            // Función para actualizar el carrusel
+            function updateCarousel(index) {
+                if (index < 0) index = slides.length - 1;
+                if (index >= slides.length) index = 0;
+
+                currentIndex = index;
+                const translateValue = -currentIndex * 100;
+                track.style.transform = `translateX(${translateValue}%)`;
+
+                // Actualizar dots
+                dots.forEach((dot, i) => {
+                    dot.classList.toggle('active', i === currentIndex);
+                });
+            }
+
+            // Función para avanzar al siguiente slide
+            function nextSlide() {
+                updateCarousel(currentIndex + 1);
+            }
+
+            // Iniciar autoplay
+            function startAutoplay() {
+                if (interval) clearInterval(interval);
+                interval = setInterval(nextSlide, 3000);
+            }
+
+            // Click en dots para navegación manual
+            dots.forEach((dot, index) => {
+                dot.addEventListener('click', (e) => {
+                    e.stopPropagation(); // Evitar que el clic afecte a la tarjeta
+                    updateCarousel(index);
+                    clearInterval(interval);
+                    startAutoplay(); // Reiniciar autoplay después de clic manual
+                });
+            });
+
+            // Pausar autoplay cuando la tarjeta no está activa para ahorrar recursos
+            const teamCard = carousel.closest('.team-card');
+            if (teamCard) {
+                const observer = new MutationObserver((mutations) => {
+                    mutations.forEach((mutation) => {
+                        if (mutation.attributeName === 'class') {
+                            if (teamCard.classList.contains('active')) {
+                                startAutoplay();
+                            } else {
+                                clearInterval(interval);
+                            }
+                        }
+                    });
+                });
+
+                observer.observe(teamCard, { attributes: true });
+            }
+
+            // Iniciar autoplay solo si la tarjeta está activa
+            if (teamCard && teamCard.classList.contains('active')) {
+                startAutoplay();
+            }
+        });
+    }
+
+    initStudiesCarousels();
 });
