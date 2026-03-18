@@ -344,4 +344,40 @@ document.addEventListener('DOMContentLoaded', function () {
             card.style.transform = '';
         });
     });
+
+    // ========== TOGGLE DE TARJETAS DE EQUIPO CON CLIC ==========
+    const teamCards = document.querySelectorAll('.team-card');
+
+    teamCards.forEach(card => {
+        // Buscar el botón de cierre
+        const closeBtn = card.querySelector('.team-image-close');
+
+        if (closeBtn) {
+            // Evitar que el clic en el botón de cierre propague al card
+            closeBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                card.classList.remove('active');
+            });
+        }
+
+        // Toggle al hacer clic en la tarjeta
+        card.addEventListener('click', function (e) {
+            const clickedElement = e.target.closest('a');
+            const isInstagramLink = clickedElement && clickedElement.classList.contains('a-ig');
+
+            if (isInstagramLink) {
+                e.stopPropagation();
+                return;
+            }
+
+            // Si la tarjeta ya está activa, la desactivamos
+            if (this.classList.contains('active')) {
+                this.classList.remove('active');
+            } else {
+                // Opcional: cerrar otras tarjetas abiertas
+                teamCards.forEach(c => c.classList.remove('active'));
+                this.classList.add('active');
+            }
+        });
+    });
 });
