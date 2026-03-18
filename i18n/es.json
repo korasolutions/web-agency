@@ -170,7 +170,7 @@
         "title": "Tiendas Online",
         "desc": "Ecommerce completos, seguros y preparados para vender sin límites.",
         "list1": "Pasarelas de pago",
-        "list2": "Marketing integrado"
+        "list2": "Marketing inteFPGS"
       },
       "card4": {
         "title": "Mantenimiento Web",
@@ -403,7 +403,7 @@
         "bio": "Apasionado por crear experiencias digitales que no solo se vean bien, sino que funcionen a la perfección.",
         "studies": {
           "1": "Bachillerato",
-          "2": "FP Desarrollo Multiplataforma",
+          "2": "FPGS Desarrollo Multiplataforma",
           "3": "Máster en IA y Automatización"
         }
       },
@@ -412,8 +412,8 @@
         "bio": "Con una mentalidad analítica y creativa. Cuidando cada detalle y buscando la mejor solución para cada proyecto.",
         "studies": {
           "1": "Bachillerato",
-          "2": "FP Desarrollo Multiplataforma",
-          "3": "FP Desarrollo Web"
+          "2": "FPGS Desarrollo Multiplataforma",
+          "3": "FPGS Desarrollo Web"
         }
       },
       "fabio": {
@@ -421,8 +421,8 @@
         "bio": "El estratega del equipo. Asegurando siempre que cada acción esté alineada con los objetivos del negocio.",
         "studies": {
           "1": "Bachillerato",
-          "2": "FP Desarrollo Multiplataforma",
-          "3": "FP Desarrollo Web"
+          "2": "FPGS Desarrollo Multiplataforma",
+          "3": "FPGS Desarrollo Web"
         }
       }
     },
