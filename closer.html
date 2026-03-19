@@ -5,10 +5,27 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>KORA | Sistema Comercial</title>
+
+    <!-- FONTS -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- ICONS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+
+    <link rel="stylesheet" href="css/components.css ">
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/index.css">
+
     <link rel="icon" href="/assets/logo/icon/favicon.ico" sizes="any">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
     <meta name="robots" content="noindex, follow">
 
     <style>
@@ -66,6 +83,45 @@
             pointer-events: none;
             animation: bgPulse 10s ease-in-out infinite;
         }
+        .top-notification {
+    padding: 28px 0 10px;
+    position: relative;
+    z-index: 10;
+}
+
+.top-notification-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    max-width: 980px;
+    margin: 0 auto;
+    padding: 22px 28px;
+    border-radius: 20px;
+    background: linear-gradient(135deg, rgba(255, 107, 107, 0.16), rgba(120, 58, 58, 0.22));
+    border: 1px solid rgba(255, 107, 107, 0.32);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.28);
+    backdrop-filter: blur(10px);
+}
+
+.top-notification-box i {
+    font-size: 1.6rem;
+    color: var(--accent-color);
+    flex-shrink: 0;
+}
+
+.top-notification-box p {
+    margin: 0;
+    font-size: 1.2rem;
+    line-height: 1.6;
+    color: var(--text-primary);
+    text-align: center;
+}
+
+.top-notification-box strong {
+    color: #ffd0d0;
+    font-weight: 700;
+}
 
         @keyframes bgPulse {
 
@@ -497,6 +553,10 @@
             color: var(--text-tertiary);
         }
 
+        .divider {
+            margin-top: 220px;
+        }
+
         .divider-title {
             margin: 70px 0 24px;
             text-align: center;
@@ -568,13 +628,150 @@
                 padding: 22px;
             }
         }
+
+        /* FORMULARIO DE CONTACTO */
+
+        .form-title {
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+            color: var(--accent-color);
+        }
+
+        .contact-form-container:hover {
+            border-color: #ff6b6b;
+            box-shadow: 0 0 30px rgba(255, 107, 107, 0.2);
+        }
+
+        .contact-form .form-group {
+            margin-bottom: 20px;
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 10px 18px;
+            background: rgba(0, 0, 0, 0.6);
+            border: 1px solid var(--border-light);
+            border-radius: var(--border-radius);
+            color: var(--text-primary);
+            font-family: var(--font-sans);
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .contact-form input:focus,
+        .contact-form textarea:focus {
+            outline: none;
+            border-color: #ff6b6b;
+            box-shadow: 0 0 0 3px rgba(255, 107, 107, 0.2);
+            background: rgba(0, 0, 0, 0.8);
+        }
+
+        .contact-form input::placeholder,
+        .contact-form textarea::placeholder {
+            color: var(--text-tertiary);
+            font-weight: 300;
+        }
+
+        .contact-form .checkbox {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 10px 0;
+        }
+
+        .contact-form .checkbox input {
+            width: 18px;
+            height: 18px;
+            accent-color: #ff6b6b;
+            margin: 0;
+            flex-shrink: 0;
+        }
+
+        .contact-form .checkbox label {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            cursor: pointer;
+            margin: 0;
+            line-height: 1.4;
+        }
+
+        .btn-submit {
+            width: 100%;
+            background: linear-gradient(135deg, #ff6b6b, #ff8a8a);
+            color: #000;
+            border: none;
+            padding: 16px 24px;
+            border-radius: var(--border-radius);
+            font-weight: 700;
+            font-size: 1rem;
+            letter-spacing: 0.02em;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            box-shadow: 0 10px 10px rgba(255, 107, 107, 0.15);
+        }
+
+        .btn-submit:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 15px rgba(255, 107, 107, 0.15);
+            background: linear-gradient(135deg, #ff8a8a, #ff9f9f);
+        }
+
+        .btn-submit i {
+            font-size: 1.2rem;
+        }
+
+        .form-status {
+            display: none;
+            margin-top: 20px;
+            padding: 14px 18px;
+            border-radius: 14px;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transform: translateY(10px);
+            transition: all 0.4s ease;
+            text-align: center;
+            backdrop-filter: blur(10px);
+        }
+
+        .form-status.show {
+            display: block;
+            transform: translateY(0);
+        }
+
+        .form-status.success {
+            background: rgba(46, 204, 113, 0.08);
+            border: 1px solid rgba(46, 204, 113, 0.4);
+            color: #2ecc71;
+        }
+
+        .form-status.error {
+            background: rgba(255, 107, 107, 0.08);
+            border: 1px solid rgba(255, 107, 107, 0.4);
+            color: #ff6b6b;
+        }
     </style>
 </head>
 
 <body>
-
+    <div class="top-notification">
+    <div class="container">
+        <div class="top-notification-box">
+            <i class="fas fa-bell"></i>
+            <p>
+                Gracias por estar aquí y dedicar unos minutos a esta oportunidad.
+                <strong>En KORA valoramos mucho a las personas con ganas reales de crecer junto al proyecto.</strong>
+            </p>
+        </div>
+    </div>
+</div>
+</div>
     <section class="sales-system" id="sistema-comercial-kora">
-        <div class="container">
+        <section class="container">
 
             <div class="section-header">
                 <span class="hero-badge">Documento para equipo de ventas</span>
@@ -588,9 +785,14 @@
                 </p>
             </div>
 
+            <div class="divider-title">
+                <h2>1.Visión general de la agencia</h2>
+                <p>La venta se presenta siempre en paquetes claros. No se vende a medida en la fase inicial.</p>
+            </div>
+
             <div class="sales-top-grid">
                 <article class="sales-card">
-                    <span class="card-label">1. Visión general de la agencia</span>
+                    <span class="card-label">Visión general </span>
                     <h2>Qué es KORA</h2>
                     <p>
                         KORA es una agencia digital especializada en la creación de sistemas digitales orientados a
@@ -643,7 +845,7 @@
 
             <div class="three-col-grid">
                 <article class="offer-card">
-                    <span class="offer-tag">2. Propuesta de valor</span>
+                    <span class="offer-tag">Propuesta de valor</span>
                     <h3>Qué vendemos realmente</h3>
                     <p>No vendemos servicios técnicos. Vendemos resultados.</p>
                     <ul class="feature-list">
@@ -685,7 +887,7 @@
             </div>
 
             <div class="divider-title">
-                <h2>3. Estructura de la oferta</h2>
+                <h2>2. Estructura de la oferta</h2>
                 <p>La venta se presenta siempre en paquetes claros. No se vende a medida en la fase inicial.</p>
             </div>
 
@@ -700,7 +902,7 @@
                         <li>Estructura enfocada a conversión.</li>
                         <li>Formularios de contacto.</li>
                     </ul>
-                                        <div class="offer-subtext">
+                    <div class="offer-subtext">
                         Este es el producto principal que debe priorizar el equipo de ventas.
                     </div>
                 </article>
@@ -747,11 +949,12 @@
                     <h3>Enfoque de pricing</h3>
                     <p>
                         El precio no es fijo. Es escalable y se ajusta según el valor generado al cliente,
-                        la complejidad del proyecto, el nivel de urgencia y la capacidad económica del cliente. 
+                        la complejidad del proyecto, el nivel de urgencia y la capacidad económica del cliente.
                     </p>
 
-                                        <div class="offer-subtext">
-                        En la web de Kora mostramos una calculadora de precios con rangos orientativos, pero el precio final se define en la conversación de venta.
+                    <div class="offer-subtext">
+                        En la web de Kora mostramos una calculadora de precios con rangos orientativos, pero el precio
+                        final se define en la conversación de venta.
                     </div>
                 </article>
             </div>
@@ -779,7 +982,7 @@
 
             <div class="process-section">
                 <div class="process-header">
-                    <h2>4. Proceso de venta</h2>
+                    <h2>3. Proceso de venta</h2>
                     <p>
                         El closer lidera el proceso de principio a fin hasta el cierre, manteniendo control,
                         claridad y foco en el encaje del cliente.
@@ -849,7 +1052,7 @@
             </div>
 
             <div class="divider-title">
-                <h2>5. Proceso interno resumido</h2>
+                <h2>4. Proceso interno resumido</h2>
                 <p>Este proceso no se modifica. La consistencia operativa es parte del sistema.</p>
             </div>
 
@@ -897,7 +1100,7 @@
             </div>
 
             <div class="divider-title">
-                <h2>6. Filtro de clientes</h2>
+                <h2>5. Filtro de clientes</h2>
                 <p>Decir no forma parte del sistema. No todo lead debe convertirse en cliente.</p>
             </div>
 
@@ -962,7 +1165,7 @@
             </div>
 
             <div class="divider-title">
-                <h2>7. Resumen operativo</h2>
+                <h2>6. Resumen operativo</h2>
                 <p>KORA funciona bajo tres pilares. Si uno falla, la agencia pierde eficiencia.</p>
             </div>
 
@@ -985,10 +1188,143 @@
                     <p>Se trabaja con liderazgo, límites claros y un sistema ordenado de comunicación y entrega.</p>
                 </article>
             </div>
+            <div class="divider">
+            </div>
+            <div class="section-header">
+                <span class="hero-badge">Únete al equipo</span>
+                <h1 class="section-title">
+                    <span>¿ Listo para trabajar con</span>
+                    <span class="highlight">KORA</span>
+                    <span>?</span>
+                </h1>
+                <p class="section-subtitle">
+                    Rellena este formulario y nos pondremos en contacto contigo.
+                </p>
+            </div>
+            <!-- ============================================= -->
+            <!--  CONTACTO / APLICACIÓN CLOSERS  -->
+            <!-- ===================================================== -->
+            <section class="" id="contacto">
+                <div class="container">
+                    <div class="contact-content">
+                        <div class="contact-info">
+                            <h3 data-i18n="home.contact.ideaTitle" data-text="Únete como Closer">
+                                Únete como Closer
+                            </h3>
 
-        </div>
-    </section>
+                            <p data-i18n="home.contact.ideaText">
+                                Buscamos closers con mentalidad comercial, buena comunicación y enfoque en resultados.
+                                No es necesario ningún tipo de experiencia previa en ventas, solo echarle ganas, si
+                                quieres formar parte de un equipo dinámico, completa este formulario y revisaremos tu
+                                perfil.
+                            </p>
 
+                            <div class="contact-details">
+                                <div class="contact-item contact-email">
+                                    <i class="fas fa-envelope"></i>
+                                    <div>
+                                        <h4 data-i18n="home.contact.emailLabel" data-text="Email">Email</h4>
+                                        <p>info@koradigitalsolutions.com</p>
+                                    </div>
+                                </div>
+
+                                <div class="contact-item contact-phone">
+                                    <i class="fas fa-phone"></i>
+                                    <div>
+                                        <h4 data-i18n="home.contact.phoneLabel" data-text="Teléfonos">Teléfonos</h4>
+                                        <p><a href="tel:+34611486207">+34 611 48 62 07</a></p>
+                                        <p><a href="tel:+34689074945">+34 689 07 49 45</a></p>
+                                        <p><a href="tel:+34689237681">+34 689 23 76 81</a></p>
+                                    </div>
+                                </div>
+
+                                <div class="contact-item contact-location">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                    <div>
+                                        <h4 data-i18n="home.contact.locationLabel" data-text="Ubicación">Ubicación</h4>
+                                        <p data-i18n="home.contact.location">Lanzarote, España</p>
+                                    </div>
+                                </div>
+
+                                <div class="social-contact">
+                                    <p data-i18n="home.contact.follow">
+                                        Síguenos en redes sociales:
+                                    </p>
+
+                                    <div class="social-links">
+                                        <a href="https://www.linkedin.com/in/kora-solutions-5a93173b3/" target="_blank"
+                                            aria-label="LinkedIn">
+                                            <i class="fab fa-linkedin"></i>
+                                        </a>
+                                        <a href="https://www.instagram.com/kora.solutions/" target="_blank"
+                                            aria-label="Instagram">
+                                            <i class="fab fa-instagram"></i>
+                                        </a>
+                                        <a href="https://x.com/KoraSolutions" target="_blank" aria-label="Twitter">
+                                            <i class="fab fa-twitter"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="contact-form-container">
+                            <p class="form-title" data-i18n="home.contact.form.title">Aplica como Closer</p>
+                            <form class="contact-form" id="contact-form">
+
+                                <div class="form-group">
+                                    <input type="text" name="name" autocomplete="name" placeholder="Nombre completo"
+                                        data-i18n-placeholder="home.contact.form.name" required>
+                                </div>
+
+                                <div class="form-group">
+                                    <input type="email" name="email" autocomplete="email"
+                                        placeholder="Correo electrónico" data-i18n-placeholder="home.contact.form.email"
+                                        required>
+                                </div>
+
+                                <div class="form-group">
+                                    <input type="tel" name="phone" autocomplete="tel" placeholder="Teléfono / WhatsApp"
+                                        data-i18n-placeholder="home.contact.form.phone" required>
+                                </div>
+
+                                <div class="form-group">
+                                    <input type="text" name="experience" autocomplete="off"
+                                        placeholder="¿Cuánta experiencia tienes en ventas o closing?"
+                                        data-i18n-placeholder="home.contact.form.experience" required>
+                                </div>
+
+                                <div class="form-group">
+                                    <textarea name="message" autocomplete="off" rows="8"
+                                        placeholder="Cuéntanos sobre tu experiencia, tus resultados en ventas, ticket promedio que has manejado y por qué encajas como closer."
+                                        data-i18n-placeholder="home.contact.form.message" required></textarea>
+                                </div>
+                                
+                                <div class="form-group checkbox">
+                                    <input type="checkbox" name="privacy" id="privacy" required>
+                                    <label for="privacy" data-i18n="home.contact.form.privacy"
+                                        data-text="Acepto la política de privacidad">
+                                        Acepto la política de privacidad
+                                    </label>
+                                </div>
+
+                                <!-- honeypot anti-spam -->
+                                <input type="text" name="website" style="display:none">
+
+                                <button type="submit" class="btn-submit" data-i18n="home.contact.form.send"
+                                    data-text="Enviar candidatura">
+                                    <i class="fas fa-paper-plane"></i> Enviar candidatura
+                                </button>
+
+                                <div class="form-status" id="form-status"></div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </section>
+        <script src="/js/script.js?v=5"></script>
+        <script src="/js/form.js?v=5"></script>
 </body>
 
 </html>
