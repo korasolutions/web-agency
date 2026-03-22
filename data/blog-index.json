@@ -1,4 +1,24 @@
 {
-  "updatedAt": "",
-  "posts": []
+  "updatedAt": "2026-03-22T14:32:29.193Z",
+  "posts": [
+    {
+      "title": "Por qué una web bonita no siempre vende",
+      "slug": "por-que-una-web-bonita-no-siempre-vende",
+      "url": "/blog/por-que-una-web-bonita-no-siempre-vende.html",
+      "excerpt": "Descubre por qué la estética de una web no garantiza conversiones y qué elementos debes considerar para que tu sitio web realmente venda.",
+      "category": "Desarrollo web",
+      "categorySlug": "desarrollo-web",
+      "keywords": [
+        "diseño web",
+        "conversión",
+        "experiencia de usuario"
+      ],
+      "readingTime": "6 minutos",
+      "date": "22 de marzo de 2026",
+      "publishedAt": "2026-03-22T14:32:29.157Z",
+      "coverImage": "/assets/blog/default-cover.jpg",
+      "metaDescription": "Una web atractiva no siempre convierte. Conoce los factores clave que influyen en la venta online y cómo optimizar tu sitio para maximizar resultados.",
+      "seedTopic": "por qué una web bonita no siempre vende"
+    }
+  ]
 }

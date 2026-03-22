@@ -2,14 +2,38 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://koradigitalsolutions.com/</loc>
+    <lastmod>2026-03-22T14:32:29.194Z</lastmod>
   </url>
   <url>
-    <loc>https://koradigitalsolutions.com/servicios</loc>
+    <loc>https://koradigitalsolutions.com/</loc>
+    <lastmod>2026-03-22T14:32:29.194Z</lastmod>
   </url>
   <url>
-    <loc>https://koradigitalsolutions.com/servicios/desarrollo-web</loc>
+    <loc>https://koradigitalsolutions.com/sobre-nosotros.html</loc>
+    <lastmod>2026-03-22T14:32:29.194Z</lastmod>
   </url>
   <url>
-    <loc>https://koradigitalsolutions.com/servicios/automatizaciones-ia</loc>
+    <loc>https://koradigitalsolutions.com/servicios.html</loc>
+    <lastmod>2026-03-22T14:32:29.194Z</lastmod>
+  </url>
+  <url>
+    <loc>https://koradigitalsolutions.com/servicios/desarrollo-web.html</loc>
+    <lastmod>2026-03-22T14:32:29.194Z</lastmod>
+  </url>
+  <url>
+    <loc>https://koradigitalsolutions.com/servicios/automatizaciones-ia.html</loc>
+    <lastmod>2026-03-22T14:32:29.194Z</lastmod>
+  </url>
+  <url>
+    <loc>https://koradigitalsolutions.com/legal.html</loc>
+    <lastmod>2026-03-22T14:32:29.194Z</lastmod>
+  </url>
+  <url>
+    <loc>https://koradigitalsolutions.com/blog/</loc>
+    <lastmod>2026-03-22T14:32:29.194Z</lastmod>
+  </url>
+  <url>
+    <loc>https://koradigitalsolutions.com/blog/por-que-una-web-bonita-no-siempre-vende.html</loc>
+    <lastmod>2026-03-22T14:32:29.157Z</lastmod>
   </url>
 </urlset>
