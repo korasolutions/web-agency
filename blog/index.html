@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog | KORA Digital Solutions</title>
+    <meta name="description" content="Blog de KORA sobre desarrollo web, SEO, automatización e inteligencia artificial para empresas.">
+    <link rel="canonical" href="https://koradigitalsolutions.com/blog/">
+
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Blog | KORA Digital Solutions">
+    <meta property="og:description" content="Artículos sobre desarrollo web, IA y automatización para negocios.">
+    <meta property="og:url" content="https://koradigitalsolutions.com/blog/">
+    <meta property="og:image" content="https://koradigitalsolutions.com/assets/seo/og-kora-1200x630.jpg">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <link rel="stylesheet" href="/css/base.css?v=5">
+    <link rel="stylesheet" href="/css/components.css?v=6">
+    <link rel="stylesheet" href="/css/blog.css?v=1">
+</head>
+<body>
+    <div id="header-placeholder"></div>
+
+    <main class="blog-page">
+        <section class="blog-hero">
+            <div class="container">
+                <div class="blog-hero-content">
+                    <span class="blog-badge">BLOG</span>
+                    <h1>Ideas, guías y estrategias para crecer con web e IA</h1>
+                    <p>Contenido pensado para negocios que quieren captar más clientes, mejorar procesos y tener una presencia digital seria.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="blog-listing-section">
+            <div class="container">
+                <div class="blog-toolbar">
+                    <input id="blog-search" type="search" placeholder="Buscar artículos..." aria-label="Buscar artículos">
+                    <select id="blog-category">
+                        <option value="all">Todas las categorías</option>
+                        <option value="desarrollo-web">Desarrollo web</option>
+                        <option value="seo">SEO</option>
+                        <option value="automatizacion">Automatización</option>
+                        <option value="ia">IA</option>
+                        <option value="negocios">Negocios</option>
+                    </select>
+                </div>
+
+                <div id="blog-grid" class="blog-grid"></div>
+                <div id="blog-empty" class="blog-empty" hidden>No hay artículos que coincidan con tu búsqueda.</div>
+            </div>
+        </section>
+    </main>
+
+    <div id="footer-placeholder"></div>
+
+    <script src="/js/i18n.js?v=5"></script>
+    <script src="/js/script.js?v=5"></script>
+    <script src="/js/blog-index.js?v=1"></script>
+</body>
+</html>
