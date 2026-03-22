@@ -1,6 +1,25 @@
 {
-  "updatedAt": "2026-03-22T14:32:29.193Z",
+  "updatedAt": "2026-03-22T15:54:25.427Z",
   "posts": [
+    {
+      "title": "Contenido Efectivo para Posicionar tu Web de Servicios",
+      "slug": "contenido-efectivo-para-posicionar-web-servicios",
+      "url": "/blog/contenido-efectivo-para-posicionar-web-servicios.html",
+      "excerpt": "Descubre cómo crear contenido que impulse el posicionamiento de tu web de servicios y atraiga a más clientes potenciales.",
+      "category": "Desarrollo web",
+      "categorySlug": "desarrollo-web",
+      "keywords": [
+        "contenido web",
+        "posicionamiento SEO",
+        "servicios digitales"
+      ],
+      "readingTime": "7 minutos",
+      "date": "22 de marzo de 2026",
+      "publishedAt": "2026-03-22T15:54:25.399Z",
+      "coverImage": "/assets/blog/default-cover.jpg",
+      "metaDescription": "Aprende qué tipo de contenido es clave para posicionar tu web de servicios de manera efectiva y atraer a más clientes locales. Estrategias y consejos prácticos.",
+      "seedTopic": "qué contenido ayuda a posicionar una web de servicios"
+    },
     {
       "title": "Por qué una web bonita no siempre vende",
       "slug": "por-que-una-web-bonita-no-siempre-vende",
