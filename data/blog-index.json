@@ -1,6 +1,27 @@
 {
-  "updatedAt": "2026-03-22T17:16:55.363Z",
+  "updatedAt": "2026-03-22T19:16:36.394Z",
   "posts": [
+    {
+      "title": "Cómo Usar un Chatbot con IA para Captar Leads Efectivamente",
+      "slug": "como-usar-chatbot-ia-captar-leads",
+      "url": "/blog/como-usar-chatbot-ia-captar-leads.html",
+      "excerpt": "Descubre cómo implementar un chatbot inteligente para mejorar la captación de leads en tu negocio local o pyme. Aprende estrategias efectivas y consejos prácticos.",
+      "category": "Automatización",
+      "categorySlug": "automatizacion",
+      "keywords": [
+        "chatbot",
+        "captar leads",
+        "IA",
+        "negocios locales",
+        "pymes"
+      ],
+      "readingTime": "8 minutos",
+      "date": "22 de marzo de 2026",
+      "publishedAt": "2026-03-22T19:16:36.188Z",
+      "coverImage": "/assets/blog/default-cover.jpg",
+      "metaDescription": "Aprende a usar un chatbot con IA para captar leads en tu negocio. Estrategias y consejos prácticos para maximizar tu conversión. ¡Descúbrelos aquí!",
+      "seedTopic": "cómo usar un chatbot con IA para captar leads"
+    },
     {
       "title": "Cómo automatizar respuestas de clientes sin perder calidad",
       "slug": "automatizar-respuestas-clientes-sin-perder-calidad",
