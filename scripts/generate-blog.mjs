@@ -91,7 +91,7 @@ Instrucciones obligatorias:
 - Devuelve SOLO JSON válido.
 - No metas markdown de cierre ni comentarios.
 - El artículo debe ser original y profundo.
-- Longitud del contenido HTML: entre 1200 y 1800 palabras.
+- Longitud del contenido HTML: entre 1000 y 1400 palabras.
 - Enfocado en intención informacional/comercial.
 - Incluye al final un bloque CTA suave hacia KORA.
 - No inventes estadísticas concretas.
@@ -114,7 +114,7 @@ Estructura del JSON:
 }
 `;
 
-  const response = await fetch('https://openrouter.ai/api/v1/chat/completions', {
+  const raw = await fetchWithRetry('https://openrouter.ai/api/v1/chat/completions', {
     method: 'POST',
     headers: {
       'Authorization': `Bearer ${apiKey}`,
@@ -123,22 +123,20 @@ Estructura del JSON:
     body: JSON.stringify({
       model,
       messages: [
-        { role: 'system', content: 'Eres un redactor SEO senior especializado en webs corporativas, automatización e IA para empresas.' },
+        {
+          role: 'system',
+          content: 'Eres un redactor SEO senior especializado en webs corporativas, automatización e IA para empresas.'
+        },
         { role: 'user', content: prompt }
       ],
-      temperature: 0.8,
-      max_tokens: 4000
+      temperature: 0.7,
+      max_tokens: 2600
     })
-  });
+  }, 3, 90000);
 
-  if (!response.ok) {
-    const text = await response.text();
-    throw new Error(`Error OpenRouter: ${response.status} - ${text}`);
+  if (!raw) {
+    throw new Error('Respuesta vacía del modelo.');
   }
-
-  const result = await response.json();
-  const raw = result?.choices?.[0]?.message?.content?.trim();
-  if (!raw) throw new Error('Respuesta vacía del modelo.');
 
   const jsonText = extractJson(raw);
   const parsed = JSON.parse(jsonText);
@@ -149,12 +147,17 @@ Estructura del JSON:
 
   let finalSlug = slugify(parsed.slug);
   let finalTitle = String(parsed.title).trim();
+
   if (usedTitles.has(finalTitle.toLowerCase())) {
     finalSlug = `${finalSlug}-${Date.now()}`;
   }
 
   const publishedAt = new Date().toISOString();
-  const date = new Intl.DateTimeFormat('es-ES', { day: '2-digit', month: 'long', year: 'numeric' }).format(new Date(publishedAt));
+  const date = new Intl.DateTimeFormat('es-ES', {
+    day: '2-digit',
+    month: 'long',
+    year: 'numeric'
+  }).format(new Date(publishedAt));
 
   return {
     title: finalTitle,
@@ -325,6 +328,58 @@ async function readJson(filePath, fallback) {
   } catch {
     return fallback;
   }
+}
+
+async function fetchWithRetry(url, options, retries = 3, timeoutMs = 90000) {
+  let lastError;
+
+  for (let attempt = 1; attempt <= retries; attempt++) {
+    try {
+      console.log(`Intento ${attempt}/${retries} generando artículo...`);
+      const json = await fetchJsonWithTimeout(url, options, timeoutMs);
+      const raw = json?.choices?.[0]?.message?.content?.trim();
+
+      if (!raw) {
+        throw new Error('Respuesta vacía del modelo.');
+      }
+
+      return raw;
+    } catch (error) {
+      lastError = error;
+      console.error(`Intento ${attempt} fallido: ${error.message}`);
+
+      if (attempt < retries) {
+        await wait(4000 * attempt);
+      }
+    }
+  }
+
+  throw lastError;
+}
+
+async function fetchJsonWithTimeout(url, options, timeoutMs) {
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), timeoutMs);
+
+  try {
+    const response = await fetch(url, {
+      ...options,
+      signal: controller.signal
+    });
+
+    if (!response.ok) {
+      const text = await response.text();
+      throw new Error(`Error OpenRouter: ${response.status} - ${text}`);
+    }
+
+    return await response.json();
+  } finally {
+    clearTimeout(timeout);
+  }
+}
+
+function wait(ms) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
 function extractJson(text) {
