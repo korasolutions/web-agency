@@ -1,6 +1,27 @@
 {
-  "updatedAt": "2026-03-22T15:54:25.427Z",
+  "updatedAt": "2026-03-22T17:16:55.363Z",
   "posts": [
+    {
+      "title": "Cómo automatizar respuestas de clientes sin perder calidad",
+      "slug": "automatizar-respuestas-clientes-sin-perder-calidad",
+      "url": "/blog/automatizar-respuestas-clientes-sin-perder-calidad.html",
+      "excerpt": "Descubre estrategias efectivas para automatizar las respuestas a tus clientes, mejorando la eficiencia sin sacrificar la calidad del servicio.",
+      "category": "Automatización",
+      "categorySlug": "automatizacion",
+      "keywords": [
+        "automatización",
+        "atención al cliente",
+        "IA",
+        "chatbots",
+        "eficiencia empresarial"
+      ],
+      "readingTime": "7 minutos",
+      "date": "22 de marzo de 2026",
+      "publishedAt": "2026-03-22T17:16:55.091Z",
+      "coverImage": "/assets/blog/default-cover.jpg",
+      "metaDescription": "Aprende a implementar la automatización en la atención al cliente, optimizando tus recursos y manteniendo la calidad en las respuestas con soluciones inteligentes.",
+      "seedTopic": "cómo automatizar respuestas de clientes sin perder calidad"
+    },
     {
       "title": "Contenido Efectivo para Posicionar tu Web de Servicios",
       "slug": "contenido-efectivo-para-posicionar-web-servicios",
