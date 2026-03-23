@@ -1,6 +1,27 @@
 {
-  "updatedAt": "2026-03-23T11:48:48.657Z",
+  "updatedAt": "2026-03-23T11:54:07.789Z",
   "posts": [
+    {
+      "locale": "es",
+      "title": "Cómo mejorar la velocidad de una web para vender más",
+      "slug": "mejorar-velocidad-web-vender-mas",
+      "url": "/blog/mejorar-velocidad-web-vender-mas.html",
+      "excerpt": "Descubre estrategias efectivas para optimizar la velocidad de tu sitio web y aumentar tus conversiones.",
+      "category": "Desarrollo web",
+      "categorySlug": "desarrollo-web",
+      "keywords": [
+        "velocidad web",
+        "optimización web",
+        "aumentar conversiones"
+      ],
+      "readingTime": "8 minutos",
+      "date": "23 de marzo de 2026",
+      "publishedAt": "2026-03-23T11:53:51.044Z",
+      "coverImage": "/assets/blog/default-cover.jpg",
+      "metaDescription": "Aprende a mejorar la velocidad de tu web con técnicas prácticas que impulsarán tus ventas. Optimiza tu sitio y convierte más con estos consejos.",
+      "alternateUrl": "/en/blog/improve-website-speed-boost-sales.html",
+      "seedTopic": "cómo mejorar la velocidad de una web para vender más"
+    },
     {
       "locale": "es",
       "title": "¿Por qué una pyme necesita una web orientada a conversión?",
