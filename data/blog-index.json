@@ -1,4 +1,27 @@
 {
-  "updatedAt": "",
-  "posts": []
+  "updatedAt": "2026-03-23T11:48:48.657Z",
+  "posts": [
+    {
+      "locale": "es",
+      "title": "¿Por qué una pyme necesita una web orientada a conversión?",
+      "slug": "por-que-pyme-necesita-web-orientada-conversion",
+      "url": "/blog/por-que-pyme-necesita-web-orientada-conversion.html",
+      "excerpt": "Descubre por qué una página web enfocada en la conversión es esencial para el éxito de tu pyme en el entorno digital actual.",
+      "category": "Desarrollo web",
+      "categorySlug": "desarrollo-web",
+      "keywords": [
+        "web orientada a conversión",
+        "pymes",
+        "digitalización",
+        "marketing digital"
+      ],
+      "readingTime": "6 minutos",
+      "date": "23 de marzo de 2026",
+      "publishedAt": "2026-03-23T11:48:27.876Z",
+      "coverImage": "/assets/blog/default-cover.jpg",
+      "metaDescription": "Una web orientada a conversión es clave para que las pymes aumenten sus ventas y optimicen su trabajo. Aprende cómo puede beneficiarte.",
+      "alternateUrl": "/en/blog/why-smes-need-conversion-focused-website.html",
+      "seedTopic": "por qué una pyme necesita una web orientada a conversión"
+    }
+  ]
 }
