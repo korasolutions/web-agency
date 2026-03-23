@@ -1,6 +1,27 @@
 {
-  "updatedAt": "2026-03-23T11:11:48.567Z",
+  "updatedAt": "2026-03-23T11:23:30.592Z",
   "posts": [
+    {
+      "title": "Automatizaciones con IA: Transformando Negocios Locales para el Futuro",
+      "slug": "automatizaciones-ia-negocios-locales",
+      "url": "/blog/automatizaciones-ia-negocios-locales.html",
+      "excerpt": "Descubre cómo las automatizaciones con IA pueden optimizar la operación de tu negocio local, aumentando su eficiencia y mejorando la experiencia del cliente.",
+      "category": "Automatización",
+      "categorySlug": "automatizacion",
+      "keywords": [
+        "automatizaciones IA",
+        "negocios locales",
+        "eficiencia empresarial",
+        "pymes",
+        "tecnología"
+      ],
+      "readingTime": "7 minutos",
+      "date": "23 de marzo de 2026",
+      "publishedAt": "2026-03-23T11:23:30.192Z",
+      "coverImage": "/assets/blog/default-cover.jpg",
+      "metaDescription": "Aprende cómo implementar automatizaciones con IA en tu negocio local para mejorar la eficiencia y la experiencia del cliente. Soluciones prácticas para pymes.",
+      "seedTopic": "automatizaciones con IA para negocios locales"
+    },
     {
       "title": "¿Cuándo Necesita Rediseñar su Página Web? Claves para el Éxito Digital",
       "slug": "cuando-necesita-redisenar-pagina-web",
