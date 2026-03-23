@@ -1,6 +1,29 @@
 {
-  "updatedAt": "2026-03-23T12:34:44.640Z",
+  "updatedAt": "2026-03-23T12:39:30.057Z",
   "posts": [
+    {
+      "locale": "es",
+      "title": "Cómo usar un chatbot con IA para captar leads de manera efectiva",
+      "slug": "usar-chatbot-ia-captar-leads",
+      "url": "/blog/usar-chatbot-ia-captar-leads.html",
+      "excerpt": "Descubre cómo implementar un chatbot con inteligencia artificial para optimizar la captación de leads en tu negocio local o pyme.",
+      "category": "Automatización",
+      "categorySlug": "automatizacion",
+      "keywords": [
+        "chatbot",
+        "IA",
+        "captación de leads",
+        "negocios locales",
+        "pymes"
+      ],
+      "readingTime": "7 minutos",
+      "date": "23 de marzo de 2026",
+      "publishedAt": "2026-03-23T12:38:54.418Z",
+      "coverImage": "/assets/blog/default-cover.jpg",
+      "metaDescription": "Aprende a utilizar un chatbot con IA para mejorar la captación de leads en tu negocio. Conoce sus beneficios y cómo implementarlo de manera efectiva.",
+      "alternateUrl": "/en/blog/ai-chatbot-lead-generation.html",
+      "seedTopic": "cómo usar un chatbot con IA para captar leads"
+    },
     {
       "locale": "es",
       "title": "La IA como Aliada en Reservas, Formularios y Atención al Cliente",

@@ -1,6 +1,29 @@
 {
-  "updatedAt": "2026-03-23T12:34:44.640Z",
+  "updatedAt": "2026-03-23T12:39:30.057Z",
   "posts": [
+    {
+      "locale": "en",
+      "title": "How to Effectively Use an AI Chatbot for Lead Generation",
+      "slug": "ai-chatbot-lead-generation",
+      "url": "/en/blog/ai-chatbot-lead-generation.html",
+      "excerpt": "Discover how to implement an AI chatbot to optimize lead generation for your local business or SME.",
+      "category": "Automation",
+      "categorySlug": "automatizacion",
+      "keywords": [
+        "chatbot",
+        "AI",
+        "lead generation",
+        "local businesses",
+        "SMEs"
+      ],
+      "readingTime": "7 minutes",
+      "date": "March 23, 2026",
+      "publishedAt": "2026-03-23T12:38:54.418Z",
+      "coverImage": "/assets/blog/default-cover.jpg",
+      "metaDescription": "Learn how to utilize an AI chatbot to enhance lead generation for your business. Explore its benefits and how to implement it effectively.",
+      "alternateUrl": "/blog/usar-chatbot-ia-captar-leads.html",
+      "seedTopic": "cómo usar un chatbot con IA para captar leads"
+    },
     {
       "locale": "en",
       "title": "AI as an Ally in Reservations, Forms, and Customer Service",
