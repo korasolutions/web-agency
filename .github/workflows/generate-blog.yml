@@ -30,7 +30,7 @@ jobs:
         env:
           OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
           OPENROUTER_MODEL: openai/gpt-4o-mini
-          OPENROUTER_IMAGE_MODEL: google/gemini-2.5-flash-image-preview
+          OPENROUTER_IMAGE_MODEL: google/gemini-3.1-flash-image-preview
         run: node ./scripts/generate-blog.mjs
 
       - name: Commit and push if changed

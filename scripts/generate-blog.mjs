@@ -407,6 +407,10 @@ async function fetchImageGeneration({ model, messages }) {
       body: JSON.stringify({
         model,
         modalities: ['image', 'text'],
+        image_config: {
+          aspect_ratio: '16:9',
+          image_size: '1K'
+        },
         messages
       })
     },
