@@ -1,6 +1,29 @@
 {
-  "updatedAt": "2026-03-23T12:07:49.197Z",
+  "updatedAt": "2026-03-23T12:34:44.640Z",
   "posts": [
+    {
+      "locale": "es",
+      "title": "La IA como Aliada en Reservas, Formularios y Atención al Cliente",
+      "slug": "ia-aplicada-reservas-formularios-atencion-cliente",
+      "url": "/blog/ia-aplicada-reservas-formularios-atencion-cliente.html",
+      "excerpt": "Descubre cómo la inteligencia artificial transforma la gestión de reservas, formularios y atención al cliente, optimizando procesos y mejorando la experiencia del usuario.",
+      "category": "Negocios",
+      "categorySlug": "negocios",
+      "keywords": [
+        "inteligencia artificial",
+        "reservas",
+        "formulario inteligente",
+        "atención al cliente",
+        "automatización"
+      ],
+      "readingTime": "6 min",
+      "date": "23 de marzo de 2026",
+      "publishedAt": "2026-03-23T12:34:09.834Z",
+      "coverImage": "/assets/blog/default-cover.jpg",
+      "metaDescription": "Explora la aplicación de la inteligencia artificial en reservas, formularios inteligentes y atención al cliente. Mejora la eficiencia de tu negocio con estas herramientas.",
+      "alternateUrl": "/en/blog/ai-in-reservations-forms-customer-service.html",
+      "seedTopic": "ia aplicada a reservas, formularios y atención al cliente"
+    },
     {
       "locale": "es",
       "title": "Cómo Elegir la Agencia de Desarrollo Web y Automatización Ideal para Tu Negocio",

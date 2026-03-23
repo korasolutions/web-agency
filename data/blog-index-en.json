@@ -1,6 +1,29 @@
 {
-  "updatedAt": "2026-03-23T12:07:49.197Z",
+  "updatedAt": "2026-03-23T12:34:44.640Z",
   "posts": [
+    {
+      "locale": "en",
+      "title": "AI as an Ally in Reservations, Forms, and Customer Service",
+      "slug": "ai-in-reservations-forms-customer-service",
+      "url": "/en/blog/ai-in-reservations-forms-customer-service.html",
+      "excerpt": "Discover how artificial intelligence is transforming the management of reservations, forms, and customer service, optimizing processes and enhancing user experience.",
+      "category": "Business",
+      "categorySlug": "negocios",
+      "keywords": [
+        "artificial intelligence",
+        "reservations",
+        "smart forms",
+        "customer service",
+        "automation"
+      ],
+      "readingTime": "6 min",
+      "date": "March 23, 2026",
+      "publishedAt": "2026-03-23T12:34:09.834Z",
+      "coverImage": "/assets/blog/default-cover.jpg",
+      "metaDescription": "Explore the application of artificial intelligence in reservations, smart forms, and customer service. Enhance your business efficiency with these tools.",
+      "alternateUrl": "/blog/ia-aplicada-reservas-formularios-atencion-cliente.html",
+      "seedTopic": "ia aplicada a reservas, formularios y atención al cliente"
+    },
     {
       "locale": "en",
       "title": "How to Choose the Ideal Web Development and Automation Agency for Your Business",
