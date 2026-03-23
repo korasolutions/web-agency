@@ -1,16 +1,23 @@
 (function () {
+    const STORAGE_KEY = 'kora_lang';
+    const SUPPORTED = ['es', 'en'];
+
+    function isSupported(lang) {
+        return SUPPORTED.includes(lang);
+    }
+
     function getStoredLang() {
-        const keys = ['lang', 'language', 'site-lang', 'i18n-lang', 'locale'];
-        for (const key of keys) {
-            const value = localStorage.getItem(key);
-            if (value === 'es' || value === 'en') return value;
+        try {
+            const value = localStorage.getItem(STORAGE_KEY);
+            return isSupported(value) ? value : null;
+        } catch (_) {
+            return null;
         }
-        return null;
     }
 
     function getCurrentLang() {
         const bodyLang = document.body?.dataset?.pageLang;
-        if (bodyLang === 'es' || bodyLang === 'en') return bodyLang;
+        if (isSupported(bodyLang)) return bodyLang;
 
         const htmlLang = document.documentElement.lang?.toLowerCase();
         if (htmlLang?.startsWith('en')) return 'en';
@@ -35,50 +42,103 @@
         const currentLang = getCurrentLang();
         const blogHref = currentLang === 'en' ? '/en/blog/' : '/blog/';
 
-        document.querySelectorAll('a[href="/blog"], a[href="/blog/"]').forEach((link) => {
+        document.querySelectorAll('a[href="/blog"], a[href="/blog/"], a[href="/en/blog"], a[href="/en/blog/"]').forEach((link) => {
             link.setAttribute('href', blogHref);
         });
     }
 
-    function redirectIfBlogLanguageSwitch(event) {
+    function updateLangButtonsUI() {
+        const currentLang = getCurrentLang();
+        const buttons = document.querySelectorAll('.lang-btn');
+
+        buttons.forEach((button) => {
+            const isActive = button.dataset.lang === currentLang;
+            button.classList.toggle('active', isActive);
+            button.setAttribute('aria-pressed', isActive ? 'true' : 'false');
+        });
+    }
+
+    async function syncI18nWithCurrentPage() {
+        const currentLang = getCurrentLang();
+
+        try {
+            localStorage.setItem(STORAGE_KEY, currentLang);
+        } catch (_) {}
+
+        if (window.I18N?.lang !== currentLang) {
+            try {
+                await window.I18N.setLang(currentLang);
+            } catch (error) {
+                console.error('[blog-language-switch] Error sincronizando i18n:', error);
+            }
+        }
+
+        updateLangButtonsUI();
+        updateBlogNavLinks();
+    }
+
+    async function handleLanguageSwitch(event) {
         const button = event.target.closest('.lang-btn');
         if (!button) return;
 
         const targetLang = button.dataset.lang;
-        if (targetLang !== 'es' && targetLang !== 'en') return;
+        if (!isSupported(targetLang)) return;
 
         const currentLang = getCurrentLang();
         const altUrl = getAlternateUrl(targetLang);
 
-        if (!altUrl) return;
-
-        event.preventDefault();
-        event.stopPropagation();
-        event.stopImmediatePropagation?.();
-
-        if (targetLang === currentLang) return;
-
         try {
-            localStorage.setItem('lang', targetLang);
-        } catch (_) { }
+            localStorage.setItem(STORAGE_KEY, targetLang);
+        } catch (_) {}
 
-        window.location.href = altUrl;
+        updateLangButtonsUI();
+
+        if (altUrl && targetLang !== currentLang) {
+            event.preventDefault();
+            event.stopPropagation();
+            event.stopImmediatePropagation?.();
+            window.location.href = altUrl;
+            return;
+        }
+
+        if (window.I18N && targetLang !== window.I18N.lang) {
+            try {
+                await window.I18N.setLang(targetLang);
+            } catch (error) {
+                console.error('[blog-language-switch] Error cambiando idioma:', error);
+            }
+        }
+
+        updateLangButtonsUI();
+        updateBlogNavLinks();
     }
 
-    document.addEventListener('click', redirectIfBlogLanguageSwitch, true);
+    function observeDomChanges() {
+        const observer = new MutationObserver(() => {
+            updateLangButtonsUI();
+            updateBlogNavLinks();
+        });
 
-    const observer = new MutationObserver(() => {
+        observer.observe(document.documentElement, {
+            childList: true,
+            subtree: true
+        });
+    }
+
+    document.addEventListener('click', handleLanguageSwitch, true);
+    document.addEventListener('i18n:changed', updateLangButtonsUI);
+    document.addEventListener('i18n:applied', () => {
+        updateLangButtonsUI();
         updateBlogNavLinks();
-    });
-
-    observer.observe(document.documentElement, {
-        childList: true,
-        subtree: true
     });
 
     if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', updateBlogNavLinks);
+        document.addEventListener('DOMContentLoaded', async () => {
+            await syncI18nWithCurrentPage();
+            observeDomChanges();
+        });
     } else {
-        updateBlogNavLinks();
+        syncI18nWithCurrentPage();
+        observeDomChanges();
     }
 })();
