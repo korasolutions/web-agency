@@ -13,7 +13,7 @@ permissions:
 jobs:
   generate:
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 15
 
     steps:
       - name: Checkout
@@ -26,20 +26,21 @@ jobs:
         with:
           node-version: '20'
 
-      - name: Generate article
+      - name: Generate article and image
         env:
           OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
           OPENROUTER_MODEL: openai/gpt-4o-mini
+          OPENROUTER_IMAGE_MODEL: google/gemini-2.5-flash-image-preview
         run: node ./scripts/generate-blog.mjs
 
       - name: Commit and push if changed
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add blog en data sitemap.xml
+          git add blog en data assets/blog/generated sitemap.xml
           if git diff --cached --quiet; then
             echo "No changes to commit"
             exit 0
           fi
-          git commit -m "chore(blog): generate automated post"
+          git commit -m "chore(blog): generate automated post and image"
           git push

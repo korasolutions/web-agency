@@ -6,6 +6,7 @@ const BLOG_DIR = path.join(ROOT, 'blog');
 const EN_DIR = path.join(ROOT, 'en');
 const EN_BLOG_DIR = path.join(EN_DIR, 'blog');
 const DATA_DIR = path.join(ROOT, 'data');
+const GENERATED_IMAGES_DIR = path.join(ROOT, 'assets', 'blog', 'generated');
 
 const ES_INDEX_PATH = path.join(DATA_DIR, 'blog-index.json');
 const EN_INDEX_PATH = path.join(DATA_DIR, 'blog-index-en.json');
@@ -14,7 +15,8 @@ const SITEMAP_PATH = path.join(ROOT, 'sitemap.xml');
 const SITE_URL = 'https://koradigitalsolutions.com';
 
 const apiKey = process.env.OPENROUTER_API_KEY;
-const model = process.env.OPENROUTER_MODEL || 'openai/gpt-4o-mini';
+const textModel = process.env.OPENROUTER_MODEL || 'openai/gpt-4o-mini';
+const imageModel = process.env.OPENROUTER_IMAGE_MODEL || 'google/gemini-2.5-flash-image-preview';
 
 if (!apiKey) {
   throw new Error('Falta OPENROUTER_API_KEY en las variables del workflow.');
@@ -63,11 +65,21 @@ const usedTitlesEs = new Set((existingEsIndex.posts || []).map((post) => post.ti
 const recentTopics = new Set((existingEsIndex.posts || []).slice(0, 30).map((post) => (post.seedTopic || '').toLowerCase()));
 
 const selectedTopic = pickTopic(recentTopics);
-
 console.log(`Tema seleccionado: ${selectedTopic}`);
 
-const esPost = await generateSpanishArticle(selectedTopic, usedTitlesEs);
-const enPost = await generateEnglishVersion(esPost);
+const esPostDraft = await generateSpanishArticle(selectedTopic, usedTitlesEs);
+const coverImage = await generateCoverImage(esPostDraft);
+
+const esPost = {
+  ...esPostDraft,
+  coverImage
+};
+
+const enPostDraft = await generateEnglishVersion(esPost);
+const enPost = {
+  ...enPostDraft,
+  coverImage
+};
 
 const linkedEsPost = {
   ...esPost,
@@ -111,6 +123,7 @@ await updateSitemap(updatedEsPosts, updatedEnPosts);
 
 console.log(`Artículo ES generado: ${linkedEsPost.title}`);
 console.log(`Article EN generated: ${linkedEnPost.title}`);
+console.log(`Imagen generada: ${coverImage}`);
 
 function pickTopic(recentTopics) {
   const available = topicPool.filter((topic) => !recentTopics.has(topic.toLowerCase()));
@@ -160,25 +173,18 @@ Estructura del JSON:
 }
 `;
 
-  const raw = await fetchWithRetry('https://openrouter.ai/api/v1/chat/completions', {
-    method: 'POST',
-    headers: {
-      'Authorization': `Bearer ${apiKey}`,
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({
-      model,
-      messages: [
-        {
-          role: 'system',
-          content: 'Eres un redactor SEO senior especializado en webs corporativas, automatización e IA para empresas.'
-        },
-        { role: 'user', content: prompt }
-      ],
-      temperature: 0.7,
-      max_tokens: 2600
-    })
-  }, 3, 90000);
+  const raw = await fetchTextCompletion({
+    model: textModel,
+    messages: [
+      {
+        role: 'system',
+        content: 'Eres un redactor SEO senior especializado en webs corporativas, automatización e IA para empresas.'
+      },
+      { role: 'user', content: prompt }
+    ],
+    temperature: 0.7,
+    max_tokens: 2600
+  });
 
   const jsonText = extractJson(raw);
   const parsed = JSON.parse(jsonText);
@@ -261,25 +267,18 @@ JSON structure:
 }
 `;
 
-  const raw = await fetchWithRetry('https://openrouter.ai/api/v1/chat/completions', {
-    method: 'POST',
-    headers: {
-      'Authorization': `Bearer ${apiKey}`,
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({
-      model,
-      messages: [
-        {
-          role: 'system',
-          content: 'You are a senior SEO editor specialized in web development, automation and AI content for businesses.'
-        },
-        { role: 'user', content: prompt }
-      ],
-      temperature: 0.5,
-      max_tokens: 2600
-    })
-  }, 3, 90000);
+  const raw = await fetchTextCompletion({
+    model: textModel,
+    messages: [
+      {
+        role: 'system',
+        content: 'You are a senior SEO editor specialized in web development, automation and AI content for businesses.'
+      },
+      { role: 'user', content: prompt }
+    ],
+    temperature: 0.5,
+    max_tokens: 2600
+  });
 
   const jsonText = extractJson(raw);
   const parsed = JSON.parse(jsonText);
@@ -305,13 +304,171 @@ JSON structure:
     categorySlug: parsed.categorySlug in categoryMapEn ? parsed.categorySlug : esPost.categorySlug,
     category: categoryMapEn[parsed.categorySlug] || categoryMapEn[esPost.categorySlug] || 'Business',
     keywords: Array.isArray(parsed.keywords) ? parsed.keywords.slice(0, 8) : [],
-    coverImage: parsed.coverImage || esPost.coverImage || '/assets/blog/default-cover.jpg',
+    coverImage: esPost.coverImage,
     readingTime: parsed.readingTime || estimateReadingTime(parsed.contentHtml, 'en'),
     contentHtml: sanitizeHtml(parsed.contentHtml),
     publishedAt,
     date,
     url: `/en/blog/${finalSlug}.html`,
     seedTopic: esPost.seedTopic
+  };
+}
+
+async function generateCoverImage(post) {
+  const imagePrompt = buildImagePrompt(post);
+  const filename = `${post.slug}.webp`;
+  const relativePath = `/assets/blog/generated/${filename}`;
+  const absolutePath = path.join(GENERATED_IMAGES_DIR, filename);
+
+  try {
+    const imageDataUrl = await fetchImageGeneration({
+      model: imageModel,
+      messages: [
+        {
+          role: 'user',
+          content: imagePrompt
+        }
+      ]
+    });
+
+    const { mimeType, buffer } = dataUrlToBuffer(imageDataUrl);
+    console.log(`Imagen recibida (${mimeType}) para ${post.slug}`);
+
+    await fs.writeFile(absolutePath, buffer);
+    return relativePath;
+  } catch (error) {
+    console.error(`No se pudo generar imagen para ${post.slug}: ${error.message}`);
+    return '/assets/blog/default-cover.jpg';
+  }
+}
+
+function buildImagePrompt(post) {
+  return `
+Create a premium horizontal blog cover image for a digital agency article.
+
+Brand context:
+- Brand: KORA Digital Solutions
+- Industry: web development, AI automation, SEO, digital strategy
+- Audience: local businesses and SMEs
+- Style: premium, modern, dark, elegant, high-contrast, technological
+- Composition: clean editorial hero image, wide 16:9
+- No text, no letters, no words, no logo, no watermark
+- No people looking at camera
+- Avoid cliché stock-photo look
+- Cinematic lighting
+- Abstract or semi-realistic visual metaphor related to the article topic
+
+Article title:
+${post.title}
+
+Article excerpt:
+${post.excerpt}
+
+Topic:
+${post.seedTopic}
+
+Make it visually suitable as a professional blog cover for a premium tech agency website.
+`.trim();
+}
+
+async function fetchTextCompletion(body) {
+  const json = await fetchJsonWithRetry(
+    'https://openrouter.ai/api/v1/chat/completions',
+    {
+      method: 'POST',
+      headers: {
+        Authorization: `Bearer ${apiKey}`,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(body)
+    },
+    3,
+    90000
+  );
+
+  const raw = json?.choices?.[0]?.message?.content?.trim();
+
+  if (!raw) {
+    throw new Error('Respuesta vacía del modelo de texto.');
+  }
+
+  return raw;
+}
+
+async function fetchImageGeneration({ model, messages }) {
+  const json = await fetchJsonWithRetry(
+    'https://openrouter.ai/api/v1/chat/completions',
+    {
+      method: 'POST',
+      headers: {
+        Authorization: `Bearer ${apiKey}`,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        model,
+        modalities: ['image', 'text'],
+        messages
+      })
+    },
+    3,
+    120000
+  );
+
+  const message = json?.choices?.[0]?.message;
+  if (!message) {
+    throw new Error('Respuesta vacía del modelo de imagen.');
+  }
+
+  const possibleDataUrl =
+    message?.images?.[0]?.image_url ||
+    message?.images?.[0]?.url ||
+    message?.image_url ||
+    extractFirstDataUrlFromMessage(message);
+
+  if (!possibleDataUrl || !possibleDataUrl.startsWith('data:image/')) {
+    throw new Error('No se encontró una imagen válida en la respuesta.');
+  }
+
+  return possibleDataUrl;
+}
+
+function extractFirstDataUrlFromMessage(message) {
+  if (typeof message?.content === 'string') {
+    const match = message.content.match(/data:image\/[a-zA-Z0-9.+-]+;base64,[A-Za-z0-9+/=\s]+/);
+    return match ? match[0].replace(/\s+/g, '') : null;
+  }
+
+  if (Array.isArray(message?.content)) {
+    for (const part of message.content) {
+      if (typeof part?.image_url === 'string' && part.image_url.startsWith('data:image/')) {
+        return part.image_url;
+      }
+
+      if (typeof part?.url === 'string' && part.url.startsWith('data:image/')) {
+        return part.url;
+      }
+
+      if (typeof part?.text === 'string') {
+        const match = part.text.match(/data:image\/[a-zA-Z0-9.+-]+;base64,[A-Za-z0-9+/=\s]+/);
+        if (match) return match[0].replace(/\s+/g, '');
+      }
+    }
+  }
+
+  return null;
+}
+
+function dataUrlToBuffer(dataUrl) {
+  const match = dataUrl.match(/^data:(image\/[a-zA-Z0-9.+-]+);base64,(.+)$/);
+  if (!match) {
+    throw new Error('Formato de data URL no válido.');
+  }
+
+  const mimeType = match[1];
+  const base64 = match[2];
+  return {
+    mimeType,
+    buffer: Buffer.from(base64, 'base64')
   };
 }
 
@@ -327,7 +484,6 @@ function renderArticleHtml(locale, post) {
     ? 'At KORA, we build conversion-focused websites and AI automations designed to save time and create real business opportunities.'
     : 'En KORA desarrollamos webs orientadas a conversión y automatizaciones con IA pensadas para ahorrar tiempo y generar oportunidades reales.';
   const ctaLinkText = isEn ? 'Talk to KORA' : 'Hablar con KORA';
-  const contactHref = isEn ? '/index.html#contacto' : '/index.html#contacto';
 
   return `<!DOCTYPE html>
 <html lang="${locale}">
@@ -407,7 +563,7 @@ function renderArticleHtml(locale, post) {
           <div class="blog-cta-box">
             <h3>${ctaTitle}</h3>
             <p>${ctaText}</p>
-            <p><a class="blog-card-link" href="${contactHref}">${ctaLinkText} <i class="fas fa-arrow-right"></i></a></p>
+            <p><a class="blog-card-link" href="/index.html#contacto">${ctaLinkText} <i class="fas fa-arrow-right"></i></a></p>
           </div>
         </article>
       </div>
@@ -443,20 +599,20 @@ function toIndexEntry(locale, post) {
 
 async function updateSitemap(esPosts, enPosts) {
   const staticUrls = [
-    { url: '/', lang: 'es' },
-    { url: '/index.html', lang: 'es' },
-    { url: '/sobre-nosotros.html', lang: 'es' },
-    { url: '/servicios.html', lang: 'es' },
-    { url: '/servicios/desarrollo-web.html', lang: 'es' },
-    { url: '/servicios/automatizaciones-ia.html', lang: 'es' },
-    { url: '/legal.html', lang: 'es' },
-    { url: '/blog/', lang: 'es' },
-    { url: '/en/blog/', lang: 'en' }
+    '/',
+    '/index.html',
+    '/sobre-nosotros.html',
+    '/servicios.html',
+    '/servicios/desarrollo-web.html',
+    '/servicios/automatizaciones-ia.html',
+    '/legal.html',
+    '/blog/',
+    '/en/blog/'
   ];
 
   const urls = [
-    ...staticUrls.map((item) => ({
-      url: item.url,
+    ...staticUrls.map((url) => ({
+      url,
       lastmod: new Date().toISOString()
     })),
     ...esPosts.map((post) => ({
@@ -482,6 +638,7 @@ async function ensureBaseFiles() {
   await fs.mkdir(EN_DIR, { recursive: true });
   await fs.mkdir(EN_BLOG_DIR, { recursive: true });
   await fs.mkdir(DATA_DIR, { recursive: true });
+  await fs.mkdir(GENERATED_IMAGES_DIR, { recursive: true });
 
   try {
     await fs.access(ES_INDEX_PATH);
@@ -505,24 +662,16 @@ async function readJson(filePath, fallback) {
   }
 }
 
-async function fetchWithRetry(url, options, retries = 3, timeoutMs = 90000) {
+async function fetchJsonWithRetry(url, options, retries = 3, timeoutMs = 90000) {
   let lastError;
 
   for (let attempt = 1; attempt <= retries; attempt++) {
     try {
       console.log(`Intento ${attempt}/${retries}...`);
-      const json = await fetchJsonWithTimeout(url, options, timeoutMs);
-      const raw = json?.choices?.[0]?.message?.content?.trim();
-
-      if (!raw) {
-        throw new Error('Respuesta vacía del modelo.');
-      }
-
-      return raw;
+      return await fetchJsonWithTimeout(url, options, timeoutMs);
     } catch (error) {
       lastError = error;
       console.error(`Intento ${attempt} fallido: ${error.message}`);
-
       if (attempt < retries) {
         await wait(4000 * attempt);
       }
