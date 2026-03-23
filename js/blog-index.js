@@ -104,9 +104,9 @@ function renderPosts(posts, grid, empty) {
         <span>${escapeHtml(post.date || '')}</span>
         <span>${escapeHtml(post.readingTime || '')}</span>
       </div>
-      <h2><a href="${post.url}">${escapeHtml(post.title)}</a></h2>
+      <h2>${escapeHtml(post.title)}</h2>
       <p>${escapeHtml(post.excerpt || '')}</p>
-      <a class="blog-card-link" href="${post.url}">${t.readMore} <i class="fas fa-arrow-right"></i></a>
+      <a class="blog-preview-card-link" href="${post.url}">${t.readMore} <i class="fas fa-arrow-right"></i></a>
     </article>
   `).join('');
 }
