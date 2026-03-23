@@ -1,4 +1,26 @@
 {
-  "updatedAt": "2026-03-23T11:54:07.789Z",
-  "posts": []
+  "updatedAt": "2026-03-23T12:07:49.197Z",
+  "posts": [
+    {
+      "locale": "es",
+      "title": "Cómo Elegir la Agencia de Desarrollo Web y Automatización Ideal para Tu Negocio",
+      "slug": "elegir-agencia-desarrollo-web-automatizacion",
+      "url": "/blog/elegir-agencia-desarrollo-web-automatizacion.html",
+      "excerpt": "Descubre los criterios esenciales para seleccionar la agencia de desarrollo web y automatización que mejor se adapte a las necesidades de tu negocio.",
+      "category": "Desarrollo web",
+      "categorySlug": "desarrollo-web",
+      "keywords": [
+        "agencia de desarrollo web",
+        "automatización para pymes",
+        "elegir agencia digital"
+      ],
+      "readingTime": "6 min",
+      "date": "23 de marzo de 2026",
+      "publishedAt": "2026-03-23T12:07:29.543Z",
+      "coverImage": "/assets/blog/default-cover.jpg",
+      "metaDescription": "Aprende a elegir la agencia de desarrollo web y automatización adecuada para tu pyme. Conoce los aspectos clave a considerar para mejorar tu digitalización.",
+      "alternateUrl": "/en/blog/choose-web-development-agency.html",
+      "seedTopic": "cómo elegir una agencia de desarrollo web y automatización"
+    }
+  ]
 }
