@@ -1,5 +1,44 @@
 let allPosts = [];
 
+function detectBlogLanguage() {
+  const bodyLang = document.body?.dataset?.pageLang;
+  if (bodyLang === 'en' || bodyLang === 'es') return bodyLang;
+
+  const keys = ['lang', 'language', 'site-lang', 'i18n-lang', 'locale'];
+  for (const key of keys) {
+    const value = localStorage.getItem(key);
+    if (value === 'en') return 'en';
+    if (value === 'es') return 'es';
+  }
+
+  const htmlLang = document.documentElement.lang?.toLowerCase();
+  if (htmlLang?.startsWith('en')) return 'en';
+
+  return 'es';
+}
+
+function getBlogIndexPath() {
+  return detectBlogLanguage() === 'en'
+    ? '/data/blog-index-en.json'
+    : '/data/blog-index.json';
+}
+
+function getUiText() {
+  return detectBlogLanguage() === 'en'
+    ? {
+        loadErrorTitle: 'The blog could not be loaded',
+        loadErrorText: 'Check that the blog index file exists.',
+        readMore: 'Read article',
+        empty: 'No articles match your search.'
+      }
+    : {
+        loadErrorTitle: 'No se pudo cargar el blog',
+        loadErrorText: 'Verifica que exista el archivo del índice del blog.',
+        readMore: 'Leer artículo',
+        empty: 'No hay artículos que coincidan con tu búsqueda.'
+      };
+}
+
 async function initBlogIndex() {
   const grid = document.getElementById('blog-grid');
   const empty = document.getElementById('blog-empty');
@@ -8,8 +47,12 @@ async function initBlogIndex() {
 
   if (!grid) return;
 
+  if (empty) {
+    empty.textContent = getUiText().empty;
+  }
+
   try {
-    const response = await fetch('/data/blog-index.json?v=' + Date.now(), { cache: 'no-store' });
+    const response = await fetch(getBlogIndexPath() + '?v=' + Date.now(), { cache: 'no-store' });
     if (!response.ok) throw new Error('No se pudo cargar el índice');
 
     const data = await response.json();
@@ -34,16 +77,19 @@ async function initBlogIndex() {
     applyFilters();
   } catch (error) {
     console.error('[blog-index]', error);
+    const t = getUiText();
     grid.innerHTML = `
       <article class="blog-card">
-        <h2>No se pudo cargar el blog</h2>
-        <p>Verifica que exista el archivo /data/blog-index.json.</p>
+        <h2>${t.loadErrorTitle}</h2>
+        <p>${t.loadErrorText}</p>
       </article>
     `;
   }
 }
 
 function renderPosts(posts, grid, empty) {
+  const t = getUiText();
+
   if (!posts.length) {
     grid.innerHTML = '';
     if (empty) empty.hidden = false;
@@ -60,7 +106,7 @@ function renderPosts(posts, grid, empty) {
       </div>
       <h2><a href="${post.url}">${escapeHtml(post.title)}</a></h2>
       <p>${escapeHtml(post.excerpt || '')}</p>
-      <a class="blog-card-link" href="${post.url}">Leer artículo <i class="fas fa-arrow-right"></i></a>
+      <a class="blog-card-link" href="${post.url}">${t.readMore} <i class="fas fa-arrow-right"></i></a>
     </article>
   `).join('');
 }

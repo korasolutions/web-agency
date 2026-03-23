@@ -3,9 +3,14 @@ import path from 'node:path';
 
 const ROOT = process.cwd();
 const BLOG_DIR = path.join(ROOT, 'blog');
+const EN_DIR = path.join(ROOT, 'en');
+const EN_BLOG_DIR = path.join(EN_DIR, 'blog');
 const DATA_DIR = path.join(ROOT, 'data');
-const INDEX_PATH = path.join(DATA_DIR, 'blog-index.json');
+
+const ES_INDEX_PATH = path.join(DATA_DIR, 'blog-index.json');
+const EN_INDEX_PATH = path.join(DATA_DIR, 'blog-index-en.json');
 const SITEMAP_PATH = path.join(ROOT, 'sitemap.xml');
+
 const SITE_URL = 'https://koradigitalsolutions.com';
 
 const apiKey = process.env.OPENROUTER_API_KEY;
@@ -33,7 +38,7 @@ const topicPool = [
   'qué contenido ayuda a posicionar una web de servicios'
 ];
 
-const categoryMap = {
+const categoryMapEs = {
   'desarrollo-web': 'Desarrollo web',
   'seo': 'SEO',
   'automatizacion': 'Automatización',
@@ -41,30 +46,71 @@ const categoryMap = {
   'negocios': 'Negocios'
 };
 
+const categoryMapEn = {
+  'desarrollo-web': 'Web development',
+  'seo': 'SEO',
+  'automatizacion': 'Automation',
+  'ia': 'AI',
+  'negocios': 'Business'
+};
+
 await ensureBaseFiles();
-const existingIndex = await readJson(INDEX_PATH, { updatedAt: '', posts: [] });
-const usedTitles = new Set((existingIndex.posts || []).map((post) => post.title.toLowerCase()));
-const recentTopics = new Set((existingIndex.posts || []).slice(0, 30).map((post) => (post.seedTopic || '').toLowerCase()));
+
+const existingEsIndex = await readJson(ES_INDEX_PATH, { updatedAt: '', posts: [] });
+const existingEnIndex = await readJson(EN_INDEX_PATH, { updatedAt: '', posts: [] });
+
+const usedTitlesEs = new Set((existingEsIndex.posts || []).map((post) => post.title.toLowerCase()));
+const recentTopics = new Set((existingEsIndex.posts || []).slice(0, 30).map((post) => (post.seedTopic || '').toLowerCase()));
 
 const selectedTopic = pickTopic(recentTopics);
-const post = await generateArticle(selectedTopic, usedTitles);
-const html = renderArticleHtml(post);
 
-await fs.writeFile(path.join(BLOG_DIR, `${post.slug}.html`), html, 'utf8');
+console.log(`Tema seleccionado: ${selectedTopic}`);
 
-const updatedPosts = [
-  toIndexEntry(post),
-  ...(existingIndex.posts || [])
+const esPost = await generateSpanishArticle(selectedTopic, usedTitlesEs);
+const enPost = await generateEnglishVersion(esPost);
+
+const linkedEsPost = {
+  ...esPost,
+  alternateUrl: enPost.url
+};
+
+const linkedEnPost = {
+  ...enPost,
+  alternateUrl: esPost.url
+};
+
+const esHtml = renderArticleHtml('es', linkedEsPost);
+const enHtml = renderArticleHtml('en', linkedEnPost);
+
+await fs.writeFile(path.join(BLOG_DIR, `${linkedEsPost.slug}.html`), esHtml, 'utf8');
+await fs.writeFile(path.join(EN_BLOG_DIR, `${linkedEnPost.slug}.html`), enHtml, 'utf8');
+
+const updatedEsPosts = [
+  toIndexEntry('es', linkedEsPost),
+  ...(existingEsIndex.posts || [])
+].slice(0, 300);
+
+const updatedEnPosts = [
+  toIndexEntry('en', linkedEnPost),
+  ...(existingEnIndex.posts || [])
 ].slice(0, 300);
 
 await fs.writeFile(
-  INDEX_PATH,
-  JSON.stringify({ updatedAt: new Date().toISOString(), posts: updatedPosts }, null, 2),
+  ES_INDEX_PATH,
+  JSON.stringify({ updatedAt: new Date().toISOString(), posts: updatedEsPosts }, null, 2),
   'utf8'
 );
 
-await updateSitemap(updatedPosts);
-console.log(`Artículo generado: ${post.title}`);
+await fs.writeFile(
+  EN_INDEX_PATH,
+  JSON.stringify({ updatedAt: new Date().toISOString(), posts: updatedEnPosts }, null, 2),
+  'utf8'
+);
+
+await updateSitemap(updatedEsPosts, updatedEnPosts);
+
+console.log(`Artículo ES generado: ${linkedEsPost.title}`);
+console.log(`Article EN generated: ${linkedEnPost.title}`);
 
 function pickTopic(recentTopics) {
   const available = topicPool.filter((topic) => !recentTopics.has(topic.toLowerCase()));
@@ -72,7 +118,7 @@ function pickTopic(recentTopics) {
   return pool[Math.floor(Math.random() * pool.length)];
 }
 
-async function generateArticle(seedTopic, usedTitles) {
+async function generateSpanishArticle(seedTopic, usedTitles) {
   const prompt = `
 Eres el equipo editorial SEO de KORA Digital Solutions.
 
@@ -134,10 +180,6 @@ Estructura del JSON:
     })
   }, 3, 90000);
 
-  if (!raw) {
-    throw new Error('Respuesta vacía del modelo.');
-  }
-
   const jsonText = extractJson(raw);
   const parsed = JSON.parse(jsonText);
 
@@ -160,15 +202,16 @@ Estructura del JSON:
   }).format(new Date(publishedAt));
 
   return {
+    locale: 'es',
     title: finalTitle,
     slug: finalSlug,
     excerpt: String(parsed.excerpt || '').trim(),
     metaDescription: String(parsed.metaDescription || '').trim(),
-    categorySlug: parsed.categorySlug in categoryMap ? parsed.categorySlug : 'negocios',
-    category: categoryMap[parsed.categorySlug] || 'Negocios',
+    categorySlug: parsed.categorySlug in categoryMapEs ? parsed.categorySlug : 'negocios',
+    category: categoryMapEs[parsed.categorySlug] || 'Negocios',
     keywords: Array.isArray(parsed.keywords) ? parsed.keywords.slice(0, 8) : [],
     coverImage: parsed.coverImage || '/assets/blog/default-cover.jpg',
-    readingTime: parsed.readingTime || estimateReadingTime(parsed.contentHtml),
+    readingTime: parsed.readingTime || estimateReadingTime(parsed.contentHtml, 'es'),
     contentHtml: sanitizeHtml(parsed.contentHtml),
     publishedAt,
     date,
@@ -177,24 +220,133 @@ Estructura del JSON:
   };
 }
 
-function renderArticleHtml(post) {
+async function generateEnglishVersion(esPost) {
+  const prompt = `
+Translate and adapt this Spanish article into high-quality natural English for the KORA Digital Solutions blog.
+
+Requirements:
+- Return ONLY valid JSON.
+- Keep the same meaning and commercial intent.
+- Adapt the writing so it sounds native in English.
+- Keep SEO quality.
+- Do not translate word by word in a robotic way.
+- Keep HTML content with clean tags: <p>, <h2>, <h3>, <ul>, <li>, <strong>.
+- The CTA must sound natural in English.
+- Generate an English slug.
+- Do not invent data.
+
+Spanish source article:
+${JSON.stringify({
+  title: esPost.title,
+  excerpt: esPost.excerpt,
+  metaDescription: esPost.metaDescription,
+  categorySlug: esPost.categorySlug,
+  keywords: esPost.keywords,
+  coverImage: esPost.coverImage,
+  readingTime: esPost.readingTime,
+  contentHtml: esPost.contentHtml
+})}
+
+JSON structure:
+{
+  "title": "",
+  "slug": "",
+  "excerpt": "",
+  "metaDescription": "",
+  "categorySlug": "desarrollo-web|seo|automatizacion|ia|negocios",
+  "keywords": ["", "", ""],
+  "coverImage": "/assets/blog/default-cover.jpg",
+  "readingTime": "",
+  "contentHtml": ""
+}
+`;
+
+  const raw = await fetchWithRetry('https://openrouter.ai/api/v1/chat/completions', {
+    method: 'POST',
+    headers: {
+      'Authorization': `Bearer ${apiKey}`,
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      model,
+      messages: [
+        {
+          role: 'system',
+          content: 'You are a senior SEO editor specialized in web development, automation and AI content for businesses.'
+        },
+        { role: 'user', content: prompt }
+      ],
+      temperature: 0.5,
+      max_tokens: 2600
+    })
+  }, 3, 90000);
+
+  const jsonText = extractJson(raw);
+  const parsed = JSON.parse(jsonText);
+
+  if (!parsed.title || !parsed.contentHtml || !parsed.slug) {
+    throw new Error('The English JSON does not include title, slug or contentHtml.');
+  }
+
+  const finalSlug = slugify(parsed.slug);
+  const publishedAt = esPost.publishedAt;
+  const date = new Intl.DateTimeFormat('en-US', {
+    day: '2-digit',
+    month: 'long',
+    year: 'numeric'
+  }).format(new Date(publishedAt));
+
+  return {
+    locale: 'en',
+    title: String(parsed.title).trim(),
+    slug: finalSlug,
+    excerpt: String(parsed.excerpt || '').trim(),
+    metaDescription: String(parsed.metaDescription || '').trim(),
+    categorySlug: parsed.categorySlug in categoryMapEn ? parsed.categorySlug : esPost.categorySlug,
+    category: categoryMapEn[parsed.categorySlug] || categoryMapEn[esPost.categorySlug] || 'Business',
+    keywords: Array.isArray(parsed.keywords) ? parsed.keywords.slice(0, 8) : [],
+    coverImage: parsed.coverImage || esPost.coverImage || '/assets/blog/default-cover.jpg',
+    readingTime: parsed.readingTime || estimateReadingTime(parsed.contentHtml, 'en'),
+    contentHtml: sanitizeHtml(parsed.contentHtml),
+    publishedAt,
+    date,
+    url: `/en/blog/${finalSlug}.html`,
+    seedTopic: esPost.seedTopic
+  };
+}
+
+function renderArticleHtml(locale, post) {
+  const isEn = locale === 'en';
+  const canonicalUrl = `${SITE_URL}${post.url}`;
+  const esAlt = isEn ? `${SITE_URL}${post.alternateUrl}` : canonicalUrl;
+  const enAlt = isEn ? canonicalUrl : `${SITE_URL}${post.alternateUrl}`;
   const keywords = JSON.stringify(post.keywords || []);
+  const pageTitle = isEn ? `${post.title} | KORA Blog` : `${post.title} | Blog KORA`;
+  const ctaTitle = isEn ? 'Want to apply this to your business?' : '¿Quieres aplicar esto en tu negocio?';
+  const ctaText = isEn
+    ? 'At KORA, we build conversion-focused websites and AI automations designed to save time and create real business opportunities.'
+    : 'En KORA desarrollamos webs orientadas a conversión y automatizaciones con IA pensadas para ahorrar tiempo y generar oportunidades reales.';
+  const ctaLinkText = isEn ? 'Talk to KORA' : 'Hablar con KORA';
+  const contactHref = isEn ? '/index.html#contacto' : '/index.html#contacto';
 
   return `<!DOCTYPE html>
-<html lang="es">
+<html lang="${locale}">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>${escapeHtml(post.title)} | Blog KORA</title>
+  <title>${escapeHtml(pageTitle)}</title>
   <meta name="description" content="${escapeHtml(post.metaDescription || post.excerpt)}">
-  <link rel="canonical" href="${SITE_URL}${post.url}">
+  <link rel="canonical" href="${canonicalUrl}">
+  <link rel="alternate" hreflang="es" href="${esAlt}">
+  <link rel="alternate" hreflang="en" href="${enAlt}">
+  <link rel="alternate" hreflang="x-default" href="${esAlt}">
   <meta property="og:type" content="article">
-  <meta property="og:title" content="${escapeHtml(post.title)} | Blog KORA">
+  <meta property="og:title" content="${escapeHtml(pageTitle)}">
   <meta property="og:description" content="${escapeHtml(post.metaDescription || post.excerpt)}">
-  <meta property="og:url" content="${SITE_URL}${post.url}">
+  <meta property="og:url" content="${canonicalUrl}">
   <meta property="og:image" content="${SITE_URL}${post.coverImage}">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="${escapeHtml(post.title)} | Blog KORA">
+  <meta name="twitter:title" content="${escapeHtml(pageTitle)}">
   <meta name="twitter:description" content="${escapeHtml(post.metaDescription || post.excerpt)}">
   <meta name="twitter:image" content="${SITE_URL}${post.coverImage}">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -212,6 +364,7 @@ function renderArticleHtml(post) {
     "description": ${JSON.stringify(post.metaDescription || post.excerpt)},
     "datePublished": ${JSON.stringify(post.publishedAt)},
     "dateModified": ${JSON.stringify(post.publishedAt)},
+    "inLanguage": ${JSON.stringify(locale)},
     "author": {
       "@type": "Organization",
       "name": "KORA Digital Solutions"
@@ -224,13 +377,13 @@ function renderArticleHtml(post) {
         "url": "${SITE_URL}/assets/seo/logo-kora-512.png"
       }
     },
-    "mainEntityOfPage": "${SITE_URL}${post.url}",
+    "mainEntityOfPage": "${canonicalUrl}",
     "image": ["${SITE_URL}${post.coverImage}"],
     "keywords": ${keywords}
   }
   </script>
 </head>
-<body>
+<body data-page-lang="${locale}" data-alt-es-url="${isEn ? post.alternateUrl : post.url}" data-alt-en-url="${isEn ? post.url : post.alternateUrl}">
   <div id="header-placeholder"></div>
   <main class="blog-article-main">
     <div class="container">
@@ -252,9 +405,9 @@ function renderArticleHtml(post) {
         <article class="blog-article-content">
           ${post.contentHtml}
           <div class="blog-cta-box">
-            <h3>¿Quieres aplicar esto en tu negocio?</h3>
-            <p>En KORA desarrollamos webs orientadas a conversión y automatizaciones con IA pensadas para ahorrar tiempo y generar oportunidades reales.</p>
-            <p><a class="blog-card-link" href="/index.html#contacto">Hablar con KORA <i class="fas fa-arrow-right"></i></a></p>
+            <h3>${ctaTitle}</h3>
+            <p>${ctaText}</p>
+            <p><a class="blog-card-link" href="${contactHref}">${ctaLinkText} <i class="fas fa-arrow-right"></i></a></p>
           </div>
         </article>
       </div>
@@ -263,12 +416,14 @@ function renderArticleHtml(post) {
   <div id="footer-placeholder"></div>
   <script src="/js/i18n.js?v=5"></script>
   <script src="/js/script.js?v=5"></script>
+  <script src="/js/blog-language-switch.js?v=1"></script>
 </body>
 </html>`;
 }
 
-function toIndexEntry(post) {
+function toIndexEntry(locale, post) {
   return {
+    locale,
     title: post.title,
     slug: post.slug,
     url: post.url,
@@ -281,25 +436,37 @@ function toIndexEntry(post) {
     publishedAt: post.publishedAt,
     coverImage: post.coverImage,
     metaDescription: post.metaDescription,
+    alternateUrl: post.alternateUrl,
     seedTopic: post.seedTopic
   };
 }
 
-async function updateSitemap(posts) {
+async function updateSitemap(esPosts, enPosts) {
   const staticUrls = [
-    '/',
-    '/index.html',
-    '/sobre-nosotros.html',
-    '/servicios.html',
-    '/servicios/desarrollo-web.html',
-    '/servicios/automatizaciones-ia.html',
-    '/legal.html',
-    '/blog/'
+    { url: '/', lang: 'es' },
+    { url: '/index.html', lang: 'es' },
+    { url: '/sobre-nosotros.html', lang: 'es' },
+    { url: '/servicios.html', lang: 'es' },
+    { url: '/servicios/desarrollo-web.html', lang: 'es' },
+    { url: '/servicios/automatizaciones-ia.html', lang: 'es' },
+    { url: '/legal.html', lang: 'es' },
+    { url: '/blog/', lang: 'es' },
+    { url: '/en/blog/', lang: 'en' }
   ];
 
   const urls = [
-    ...staticUrls.map((url) => ({ url, lastmod: new Date().toISOString() })),
-    ...posts.map((post) => ({ url: post.url, lastmod: post.publishedAt }))
+    ...staticUrls.map((item) => ({
+      url: item.url,
+      lastmod: new Date().toISOString()
+    })),
+    ...esPosts.map((post) => ({
+      url: post.url,
+      lastmod: post.publishedAt
+    })),
+    ...enPosts.map((post) => ({
+      url: post.url,
+      lastmod: post.publishedAt
+    }))
   ];
 
   const xml = `<?xml version="1.0" encoding="UTF-8"?>
@@ -312,12 +479,20 @@ ${urls.map((item) => `  <url>\n    <loc>${SITE_URL}${item.url.replace('/index.ht
 
 async function ensureBaseFiles() {
   await fs.mkdir(BLOG_DIR, { recursive: true });
+  await fs.mkdir(EN_DIR, { recursive: true });
+  await fs.mkdir(EN_BLOG_DIR, { recursive: true });
   await fs.mkdir(DATA_DIR, { recursive: true });
 
   try {
-    await fs.access(INDEX_PATH);
+    await fs.access(ES_INDEX_PATH);
   } catch {
-    await fs.writeFile(INDEX_PATH, JSON.stringify({ updatedAt: '', posts: [] }, null, 2), 'utf8');
+    await fs.writeFile(ES_INDEX_PATH, JSON.stringify({ updatedAt: '', posts: [] }, null, 2), 'utf8');
+  }
+
+  try {
+    await fs.access(EN_INDEX_PATH);
+  } catch {
+    await fs.writeFile(EN_INDEX_PATH, JSON.stringify({ updatedAt: '', posts: [] }, null, 2), 'utf8');
   }
 }
 
@@ -335,7 +510,7 @@ async function fetchWithRetry(url, options, retries = 3, timeoutMs = 90000) {
 
   for (let attempt = 1; attempt <= retries; attempt++) {
     try {
-      console.log(`Intento ${attempt}/${retries} generando artículo...`);
+      console.log(`Intento ${attempt}/${retries}...`);
       const json = await fetchJsonWithTimeout(url, options, timeoutMs);
       const raw = json?.choices?.[0]?.message?.content?.trim();
 
@@ -395,11 +570,13 @@ function sanitizeHtml(html) {
     .trim();
 }
 
-function estimateReadingTime(html) {
+function estimateReadingTime(html, locale = 'es') {
   const text = String(html).replace(/<[^>]+>/g, ' ');
   const words = text.trim().split(/\s+/).filter(Boolean).length;
   const minutes = Math.max(4, Math.ceil(words / 180));
-  return `${minutes} min de lectura`;
+  return locale === 'en'
+    ? `${minutes} min read`
+    : `${minutes} min de lectura`;
 }
 
 function slugify(value) {
