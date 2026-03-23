@@ -1,6 +1,27 @@
 {
-  "updatedAt": "2026-03-23T12:39:30.057Z",
+  "updatedAt": "2026-03-23T20:02:19.561Z",
   "posts": [
+    {
+      "locale": "es",
+      "title": "Contenido que Ayuda a Posicionar una Web de Servicios",
+      "slug": "contenido-para-posicionar-web-servicios",
+      "url": "/blog/contenido-para-posicionar-web-servicios.html",
+      "excerpt": "Descubre cómo crear contenido efectivo que posicione tu web de servicios en los motores de búsqueda y atraiga a más clientes.",
+      "category": "SEO",
+      "categorySlug": "seo",
+      "keywords": [
+        "posicionamiento web",
+        "contenido SEO",
+        "marketing digital"
+      ],
+      "readingTime": "7 minutos",
+      "date": "23 de marzo de 2026",
+      "publishedAt": "2026-03-23T20:01:54.941Z",
+      "coverImage": "/assets/blog/default-cover.jpg",
+      "metaDescription": "Aprende qué tipo de contenido es esencial para posicionar tu web de servicios y aumentar tus conversiones. Estrategias prácticas y efectivas.",
+      "alternateUrl": "/en/blog/content-positioning-service-website.html",
+      "seedTopic": "qué contenido ayuda a posicionar una web de servicios"
+    },
     {
       "locale": "es",
       "title": "Cómo usar un chatbot con IA para captar leads de manera efectiva",

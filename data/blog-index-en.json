@@ -1,6 +1,27 @@
 {
-  "updatedAt": "2026-03-23T12:39:30.057Z",
+  "updatedAt": "2026-03-23T20:02:19.561Z",
   "posts": [
+    {
+      "locale": "en",
+      "title": "Content That Helps Position Your Service Website",
+      "slug": "content-positioning-service-website",
+      "url": "/en/blog/content-positioning-service-website.html",
+      "excerpt": "Learn how to create effective content that positions your service website in search engines and attracts more clients.",
+      "category": "SEO",
+      "categorySlug": "seo",
+      "keywords": [
+        "web positioning",
+        "SEO content",
+        "digital marketing"
+      ],
+      "readingTime": "7 minutes",
+      "date": "March 23, 2026",
+      "publishedAt": "2026-03-23T20:01:54.941Z",
+      "coverImage": "/assets/blog/default-cover.jpg",
+      "metaDescription": "Discover the essential types of content needed to position your service website and boost your conversions. Practical and effective strategies.",
+      "alternateUrl": "/blog/contenido-para-posicionar-web-servicios.html",
+      "seedTopic": "qué contenido ayuda a posicionar una web de servicios"
+    },
     {
       "locale": "en",
       "title": "How to Effectively Use an AI Chatbot for Lead Generation",
