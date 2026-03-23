@@ -1,6 +1,25 @@
 {
-  "updatedAt": "2026-03-22T19:16:36.394Z",
+  "updatedAt": "2026-03-23T11:11:48.567Z",
   "posts": [
+    {
+      "title": "¿Cuándo Necesita Rediseñar su Página Web? Claves para el Éxito Digital",
+      "slug": "cuando-necesita-redisenar-pagina-web",
+      "url": "/blog/cuando-necesita-redisenar-pagina-web.html",
+      "excerpt": "Descubra las señales que indican que su página web necesita un rediseño. Mejore su presencia digital y potencie su negocio.",
+      "category": "Desarrollo web",
+      "categorySlug": "desarrollo-web",
+      "keywords": [
+        "rediseño web",
+        "necesidad de rediseño",
+        "mejorar página web"
+      ],
+      "readingTime": "8 minutos",
+      "date": "23 de marzo de 2026",
+      "publishedAt": "2026-03-23T11:11:48.534Z",
+      "coverImage": "/assets/blog/default-cover.jpg",
+      "metaDescription": "Conozca las razones para rediseñar su página web y cómo esto puede impactar positivamente en su negocio. Atraiga más clientes con una web actualizada.",
+      "seedTopic": "cuándo una empresa necesita rediseñar su página web"
+    },
     {
       "title": "Cómo Usar un Chatbot con IA para Captar Leads Efectivamente",
       "slug": "como-usar-chatbot-ia-captar-leads",
