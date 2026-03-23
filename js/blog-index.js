@@ -102,7 +102,6 @@ function renderPosts(posts, grid, empty) {
       <div class="blog-card-meta">
         <span class="blog-tag">${escapeHtml(post.category || 'Blog')}</span>
         <span>${escapeHtml(post.date || '')}</span>
-        <span>${escapeHtml(post.readingTime || '')}</span>
       </div>
       <h2>${escapeHtml(post.title)}</h2>
       <p>${escapeHtml(post.excerpt || '')}</p>
