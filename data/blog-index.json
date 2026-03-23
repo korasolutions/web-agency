@@ -1,48 +1,4 @@
 {
   "updatedAt": "2026-03-23T11:54:07.789Z",
-  "posts": [
-    {
-      "locale": "es",
-      "title": "Cómo mejorar la velocidad de una web para vender más",
-      "slug": "mejorar-velocidad-web-vender-mas",
-      "url": "/blog/mejorar-velocidad-web-vender-mas.html",
-      "excerpt": "Descubre estrategias efectivas para optimizar la velocidad de tu sitio web y aumentar tus conversiones.",
-      "category": "Desarrollo web",
-      "categorySlug": "desarrollo-web",
-      "keywords": [
-        "velocidad web",
-        "optimización web",
-        "aumentar conversiones"
-      ],
-      "readingTime": "8 minutos",
-      "date": "23 de marzo de 2026",
-      "publishedAt": "2026-03-23T11:53:51.044Z",
-      "coverImage": "/assets/blog/default-cover.jpg",
-      "metaDescription": "Aprende a mejorar la velocidad de tu web con técnicas prácticas que impulsarán tus ventas. Optimiza tu sitio y convierte más con estos consejos.",
-      "alternateUrl": "/en/blog/improve-website-speed-boost-sales.html",
-      "seedTopic": "cómo mejorar la velocidad de una web para vender más"
-    },
-    {
-      "locale": "es",
-      "title": "¿Por qué una pyme necesita una web orientada a conversión?",
-      "slug": "por-que-pyme-necesita-web-orientada-conversion",
-      "url": "/blog/por-que-pyme-necesita-web-orientada-conversion.html",
-      "excerpt": "Descubre por qué una página web enfocada en la conversión es esencial para el éxito de tu pyme en el entorno digital actual.",
-      "category": "Desarrollo web",
-      "categorySlug": "desarrollo-web",
-      "keywords": [
-        "web orientada a conversión",
-        "pymes",
-        "digitalización",
-        "marketing digital"
-      ],
-      "readingTime": "6 minutos",
-      "date": "23 de marzo de 2026",
-      "publishedAt": "2026-03-23T11:48:27.876Z",
-      "coverImage": "/assets/blog/default-cover.jpg",
-      "metaDescription": "Una web orientada a conversión es clave para que las pymes aumenten sus ventas y optimicen su trabajo. Aprende cómo puede beneficiarte.",
-      "alternateUrl": "/en/blog/why-smes-need-conversion-focused-website.html",
-      "seedTopic": "por qué una pyme necesita una web orientada a conversión"
-    }
-  ]
+  "posts": []
 }
