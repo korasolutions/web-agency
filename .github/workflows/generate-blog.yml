@@ -10,10 +10,14 @@ on:
 permissions:
   contents: write
 
+concurrency:
+  group: generate-kora-blog
+  cancel-in-progress: false
+
 jobs:
   generate:
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 15
 
     steps:
       - name: Checkout
@@ -25,6 +29,7 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '20'
+          cache: 'npm'
 
       - name: Generate article
         env:
