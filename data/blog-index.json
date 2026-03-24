@@ -1,6 +1,33 @@
 {
-  "updatedAt": "2026-03-24T11:12:04.580Z",
+  "updatedAt": "2026-03-24T15:25:05.771Z",
   "posts": [
+    {
+      "locale": "es",
+      "title": "Automatización de Respuestas para Negocios Locales en Lanzarote: Mejora tu Atención al Cliente",
+      "slug": "automatizacion-respuestas-lanzarote",
+      "url": "/blog/automatizacion-respuestas-lanzarote.html",
+      "excerpt": "Descubre cómo automatizar las respuestas a tus clientes sin sacrificar la calidad en tu negocio local de Lanzarote.",
+      "category": "Automatización",
+      "categorySlug": "automatizacion",
+      "keywords": [
+        "automatización respuestas",
+        "atención al cliente",
+        "negocios Lanzarote",
+        "IA para empresas",
+        "Lanzarote",
+        "desarrollo web",
+        "automatización",
+        "IA",
+        "cómo automatizar respuestas de clientes sin perder calidad en negocios locales"
+      ],
+      "date": "24 de marzo de 2026",
+      "publishedAt": "2026-03-24T15:24:49.321Z",
+      "coverImage": "/assets/blog/articulo-automatizacion.webp",
+      "metaDescription": "Aprende a automatizar las respuestas de tus clientes en Lanzarote sin perder calidad en el servicio. Mejora tu negocio local hoy.",
+      "alternateUrl": "/en/blog/automating-responses-local-businesses-lanzarote.html",
+      "seedTopic": "cómo automatizar respuestas de clientes sin perder calidad en negocios locales",
+      "imageTopicSlug": "automatizacion"
+    },
     {
       "locale": "es",
       "title": "Cómo una pyme puede ahorrar tiempo automatizando procesos",
