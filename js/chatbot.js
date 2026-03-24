@@ -173,8 +173,31 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    function scrollMessagesToBottom() {
-        messages.scrollTop = messages.scrollHeight;
+    function cleanMarkdown(text) {
+        return String(text)
+            .replace(/\r\n/g, "\n")
+            .replace(/\*\*(.*?)\*\*/g, "$1")
+            .replace(/__(.*?)__/g, "$1")
+            .replace(/(^|\s)\*(.*?)\*(?=\s|$)/g, "$1$2")
+            .replace(/(^|\s)_(.*?)_(?=\s|$)/g, "$1$2")
+            .replace(/^\s*[-*]\s+/gm, "• ")
+            .replace(/^\s*\d+\.\s+/gm, "• ")
+            .replace(/`([^`]+)`/g, "$1")
+            .replace(/^#{1,6}\s*/gm, "")
+            .replace(/\[(.*?)\]\((.*?)\)/g, "$1")
+            .replace(/\n{3,}/g, "\n\n")
+            .trim();
+    }
+
+    function scrollMessagesToBottom(force = false) {
+        requestAnimationFrame(() => {
+            const distanceFromBottom =
+                messages.scrollHeight - messages.scrollTop - messages.clientHeight;
+
+            if (force || distanceFromBottom < 120) {
+                messages.scrollTop = messages.scrollHeight;
+            }
+        });
     }
 
     function appendMessage(role, text) {
@@ -183,11 +206,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
         const bubble = document.createElement("div");
         bubble.className = "bubble";
-        bubble.innerHTML = escapeHtml(text).replace(/\n/g, "<br>");
+
+        const cleanText = cleanMarkdown(text);
+        bubble.innerHTML = escapeHtml(cleanText).replace(/\n/g, "<br>");
 
         wrapper.appendChild(bubble);
         messages.appendChild(wrapper);
-        scrollMessagesToBottom();
+        scrollMessagesToBottom(true);
 
         return wrapper;
     }
@@ -202,7 +227,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         wrapper.appendChild(bubble);
         messages.appendChild(wrapper);
-        scrollMessagesToBottom();
+        scrollMessagesToBottom(true);
 
         return wrapper;
     }
@@ -322,6 +347,23 @@ document.addEventListener("DOMContentLoaded", () => {
         await sendMessage(message);
     });
 
+    input.addEventListener("keydown", async (e) => {
+        if (e.key === "Enter" && !e.shiftKey) {
+            e.preventDefault();
+
+            if (!hasOptionalConsent()) {
+                updateConsentUI();
+                cookieAcceptBtn?.focus();
+                return;
+            }
+
+            const message = input.value.trim();
+            if (!message || isSending) return;
+
+            await sendMessage(message);
+        }
+    });
+
     cookieAcceptBtn?.addEventListener("click", () => {
         acceptOptionalCookies();
         updateConsentUI();
@@ -348,6 +390,23 @@ document.addEventListener("DOMContentLoaded", () => {
             closeChat();
         }
     });
+
+    messages.addEventListener(
+        "wheel",
+        (e) => {
+            const isScrollable = messages.scrollHeight > messages.clientHeight;
+            if (!isScrollable) return;
+
+            const atTop = messages.scrollTop <= 0;
+            const atBottom =
+                Math.ceil(messages.scrollTop + messages.clientHeight) >= messages.scrollHeight;
+
+            if ((e.deltaY < 0 && !atTop) || (e.deltaY > 0 && !atBottom)) {
+                e.stopPropagation();
+            }
+        },
+        { passive: true }
+    );
 
     window.addEventListener("kora:cookie-consent-updated", () => {
         updateConsentUI();

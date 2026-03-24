@@ -4,7 +4,7 @@
     bottom: calc(30px + env(safe-area-inset-bottom, 0px));
     z-index: 9995;
     font-family: var(--font-sans, 'Inter', -apple-system, BlinkMacSystemFont, sans-serif);
-    pointer-events: none;
+    pointer-events: auto;
 }
 
 #kora-chatbot-root * {
@@ -242,11 +242,14 @@ html[lang="en"] .kora-chatbot-header h3::after {
     flex: 1 1 auto;
     min-height: 0;
     overflow-y: auto;
+    overflow-x: hidden;
     display: flex;
     flex-direction: column;
     gap: 12px;
     padding: 14px;
     scroll-behavior: smooth;
+    overscroll-behavior: contain;
+    -webkit-overflow-scrolling: touch;
 }
 
 .kora-chatbot-message {
@@ -270,6 +273,8 @@ html[lang="en"] .kora-chatbot-header h3::after {
     font-size: 0.95rem;
     line-height: 1.5;
     word-break: break-word;
+    overflow-wrap: anywhere;
+    white-space: normal;
     box-shadow: 0 10px 22px rgba(0, 0, 0, 0.16);
 }
 
