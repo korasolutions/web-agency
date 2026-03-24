@@ -2,9 +2,9 @@
     position: fixed;
     right: 30px;
     bottom: calc(30px + env(safe-area-inset-bottom, 0px));
-    z-index: 9995;
+    z-index: 999999;
     font-family: var(--font-sans, 'Inter', -apple-system, BlinkMacSystemFont, sans-serif);
-    pointer-events: auto;
+    pointer-events: none;
 }
 
 #kora-chatbot-root * {
@@ -12,13 +12,11 @@
 }
 
 #kora-chatbot-root .kora-chatbot-toggle,
-#kora-chatbot-root .kora-chatbot-panel {
+#kora-chatbot-root .kora-chatbot-panel,
+#kora-chatbot-root .kora-chatbot-panel * {
     pointer-events: auto;
 }
 
-/* ======================================================
-   BOTÓN FLOTANTE
-   ====================================================== */
 .kora-chatbot-toggle {
     position: relative;
     z-index: 3;
@@ -96,9 +94,6 @@
     font-size: 1.15rem;
 }
 
-/* ======================================================
-   PANEL PRINCIPAL
-   ====================================================== */
 .kora-chatbot-panel {
     position: absolute;
     right: 0;
@@ -152,9 +147,6 @@
     z-index: 0;
 }
 
-/* ======================================================
-   HEADER
-   ====================================================== */
 .kora-chatbot-header {
     position: relative;
     z-index: 2;
@@ -233,14 +225,12 @@ html[lang="en"] .kora-chatbot-header h3::after {
     background: rgba(255,255,255,0.06);
 }
 
-/* ======================================================
-   ZONA DE MENSAJES
-   ====================================================== */
 .kora-chatbot-messages {
     position: relative;
     z-index: 1;
     flex: 1 1 auto;
     min-height: 0;
+    height: 100%;
     overflow-y: auto;
     overflow-x: hidden;
     display: flex;
@@ -250,6 +240,7 @@ html[lang="en"] .kora-chatbot-header h3::after {
     scroll-behavior: smooth;
     overscroll-behavior: contain;
     -webkit-overflow-scrolling: touch;
+    scrollbar-gutter: stable;
 }
 
 .kora-chatbot-message {
@@ -299,9 +290,6 @@ html[lang="en"] .kora-chatbot-header h3::after {
     font-style: italic;
 }
 
-/* ======================================================
-   BARRA INFERIOR
-   ====================================================== */
 .kora-chatbot-form {
     position: relative;
     z-index: 2;
@@ -399,9 +387,6 @@ html[lang="en"] .kora-chatbot-header h3::after {
     cursor: not-allowed;
 }
 
-/* ======================================================
-   SCROLLBAR
-   ====================================================== */
 .kora-chatbot-messages::-webkit-scrollbar {
     width: 8px;
 }
@@ -419,9 +404,6 @@ html[lang="en"] .kora-chatbot-header h3::after {
     background: rgba(255, 131, 131, 0.45);
 }
 
-/* ======================================================
-   ESTADO BLOQUEADO POR COOKIES
-   ====================================================== */
 .kora-chatbot-cookie-gate {
     position: relative;
     z-index: 2;
@@ -550,9 +532,6 @@ html[lang="en"] .kora-chatbot-header h3::after {
     color: var(--text-primary);
 }
 
-/* ======================================================
-   TABLET
-   ====================================================== */
 @media (max-width: 992px) {
     #kora-chatbot-root {
         right: 25px;
@@ -566,9 +545,6 @@ html[lang="en"] .kora-chatbot-header h3::after {
     }
 }
 
-/* ======================================================
-   MÓVIL
-   ====================================================== */
 @media (max-width: 768px) {
     #kora-chatbot-root {
         right: 20px;
@@ -667,9 +643,6 @@ html[lang="en"] .kora-chatbot-header h3::after {
     }
 }
 
-/* ======================================================
-   MÓVIL PEQUEÑO
-   ====================================================== */
 @media (max-width: 520px) {
     #kora-chatbot-root {
         right: 15px;
@@ -729,9 +702,6 @@ html[lang="en"] .kora-chatbot-header h3::after {
     }
 }
 
-/* ======================================================
-   MÓVIL MUY PEQUEÑO
-   ====================================================== */
 @media (max-width: 380px) {
     .kora-chatbot-toggle {
         width: 54px;
@@ -749,9 +719,6 @@ html[lang="en"] .kora-chatbot-header h3::after {
     }
 }
 
-/* ======================================================
-   REDUCED MOTION
-   ====================================================== */
 @media (prefers-reduced-motion: reduce) {
     .kora-chatbot-toggle,
     .kora-chatbot-panel,

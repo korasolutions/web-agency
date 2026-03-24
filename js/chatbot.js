@@ -178,8 +178,6 @@ document.addEventListener("DOMContentLoaded", () => {
             .replace(/\r\n/g, "\n")
             .replace(/\*\*(.*?)\*\*/g, "$1")
             .replace(/__(.*?)__/g, "$1")
-            .replace(/(^|\s)\*(.*?)\*(?=\s|$)/g, "$1$2")
-            .replace(/(^|\s)_(.*?)_(?=\s|$)/g, "$1$2")
             .replace(/^\s*[-*]\s+/gm, "• ")
             .replace(/^\s*\d+\.\s+/gm, "• ")
             .replace(/`([^`]+)`/g, "$1")
@@ -332,6 +330,31 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
+    function handleWheelInsideMessages(e) {
+        const isScrollable = messages.scrollHeight > messages.clientHeight;
+        if (!isScrollable) return;
+
+        e.preventDefault();
+
+        messages.scrollTop += e.deltaY;
+    }
+
+    function handleTouchStart(e) {
+        const touch = e.touches?.[0];
+        if (!touch) return;
+        messages.dataset.touchStartY = String(touch.clientY);
+    }
+
+    function handleTouchMove(e) {
+        const touch = e.touches?.[0];
+        const startY = Number(messages.dataset.touchStartY || 0);
+        if (!touch || !startY) return;
+
+        const delta = startY - touch.clientY;
+        messages.scrollTop += delta;
+        messages.dataset.touchStartY = String(touch.clientY);
+    }
+
     form.addEventListener("submit", async (e) => {
         e.preventDefault();
 
@@ -391,22 +414,20 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
-    messages.addEventListener(
-        "wheel",
-        (e) => {
-            const isScrollable = messages.scrollHeight > messages.clientHeight;
-            if (!isScrollable) return;
+    messages.addEventListener("wheel", handleWheelInsideMessages, { passive: false });
+    messages.addEventListener("mousewheel", handleWheelInsideMessages, { passive: false });
+    messages.addEventListener("DOMMouseScroll", handleWheelInsideMessages, { passive: false });
 
-            const atTop = messages.scrollTop <= 0;
-            const atBottom =
-                Math.ceil(messages.scrollTop + messages.clientHeight) >= messages.scrollHeight;
+    panel.addEventListener("wheel", (e) => {
+        if (e.target.closest(".kora-chatbot-messages")) return;
+        const isScrollable = messages.scrollHeight > messages.clientHeight;
+        if (!isScrollable) return;
+        e.preventDefault();
+        messages.scrollTop += e.deltaY;
+    }, { passive: false });
 
-            if ((e.deltaY < 0 && !atTop) || (e.deltaY > 0 && !atBottom)) {
-                e.stopPropagation();
-            }
-        },
-        { passive: true }
-    );
+    messages.addEventListener("touchstart", handleTouchStart, { passive: true });
+    messages.addEventListener("touchmove", handleTouchMove, { passive: true });
 
     window.addEventListener("kora:cookie-consent-updated", () => {
         updateConsentUI();
