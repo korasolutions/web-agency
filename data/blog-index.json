@@ -1,6 +1,32 @@
 {
-  "updatedAt": "2026-03-24T16:42:30.069Z",
+  "updatedAt": "2026-03-24T20:02:58.064Z",
   "posts": [
+    {
+      "locale": "es",
+      "title": "Errores Comunes que Impiden que tu Web en Lanzarote Genere Clientes",
+      "slug": "errores-web-lanzarote",
+      "url": "/blog/errores-web-lanzarote.html",
+      "excerpt": "Descubre los errores más comunes que impiden a las empresas de Lanzarote convertir visitas en clientes a través de su página web.",
+      "category": "Desarrollo web",
+      "categorySlug": "desarrollo-web",
+      "keywords": [
+        "errores web",
+        "Lanzarote",
+        "conversión",
+        "negocios locales",
+        "desarrollo web",
+        "automatización",
+        "IA",
+        "errores que hacen que una web de empresa en lanzarote no genere clientes"
+      ],
+      "date": "24 de marzo de 2026",
+      "publishedAt": "2026-03-24T20:02:29.171Z",
+      "coverImage": "/assets/blog/articulo-desarrollo-web.webp",
+      "metaDescription": "Analiza los errores que afectan la conversión de tu web en Lanzarote y aprende a optimizar tu presencia digital para atraer más clientes.",
+      "alternateUrl": "/en/blog/common-mistakes-website-lanzarote.html",
+      "seedTopic": "errores que hacen que una web de empresa en lanzarote no genere clientes",
+      "imageTopicSlug": "desarrollo-web"
+    },
     {
       "locale": "es",
       "title": "Optimización de Reservas y Atención al Cliente con IA en Lanzarote",
