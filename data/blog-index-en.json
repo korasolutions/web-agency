@@ -1,6 +1,33 @@
 {
-  "updatedAt": "2026-03-24T15:25:05.772Z",
+  "updatedAt": "2026-03-24T16:42:30.070Z",
   "posts": [
+    {
+      "locale": "en",
+      "title": "Optimizing Reservations and Customer Service with AI in Lanzarote",
+      "slug": "optimizing-reservations-customer-service-ai-lanzarote",
+      "url": "/en/blog/optimizing-reservations-customer-service-ai-lanzarote.html",
+      "excerpt": "Discover how artificial intelligence transforms reservation management and customer service for businesses in Lanzarote, enhancing efficiency and satisfaction.",
+      "category": "Business",
+      "categorySlug": "negocios",
+      "keywords": [
+        "AI in reservations",
+        "customer service Lanzarote",
+        "process automation",
+        "technology for SMEs",
+        "Lanzarote",
+        "web development",
+        "automation",
+        "AI",
+        "AI applied to reservations forms and customer service in Lanzarote"
+      ],
+      "date": "March 24, 2026",
+      "publishedAt": "2026-03-24T16:42:01.688Z",
+      "coverImage": "/assets/blog/articulo-ia.webp",
+      "metaDescription": "Explore how AI optimizes reservations and customer service in Lanzarote, helping local businesses become more efficient and competitive.",
+      "alternateUrl": "/blog/ia-reservas-atencion-cliente-lanzarote.html",
+      "seedTopic": "ia aplicada a reservas formularios y atención al cliente en lanzarote",
+      "imageTopicSlug": "ia"
+    },
     {
       "locale": "en",
       "title": "Automating Responses for Local Businesses in Lanzarote: Enhance Your Customer Service",
