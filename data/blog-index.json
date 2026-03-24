@@ -1,6 +1,27 @@
 {
-  "updatedAt": "2026-03-23T20:02:19.561Z",
+  "updatedAt": "2026-03-24T11:12:04.580Z",
   "posts": [
+    {
+      "locale": "es",
+      "title": "Cómo una pyme puede ahorrar tiempo automatizando procesos",
+      "slug": "ahorrar-tiempo-automatizando-procesos-pyme",
+      "url": "/blog/ahorrar-tiempo-automatizando-procesos-pyme.html",
+      "excerpt": "Descubre cómo la automatización de procesos puede ayudar a tu pyme a ahorrar tiempo y mejorar la eficiencia operativa.",
+      "category": "Automatización",
+      "categorySlug": "automatizacion",
+      "keywords": [
+        "automatización de procesos",
+        "ahorrar tiempo pyme",
+        "eficiencia operativa"
+      ],
+      "readingTime": "7 minutos",
+      "date": "24 de marzo de 2026",
+      "publishedAt": "2026-03-24T11:11:48.780Z",
+      "coverImage": "/assets/blog/default-cover.jpg",
+      "metaDescription": "Aprende a automatizar procesos en tu pyme para ahorrar tiempo y aumentar la productividad. Estrategias y herramientas que transformarán tu negocio.",
+      "alternateUrl": "/en/blog/how-smes-can-save-time-automating-processes.html",
+      "seedTopic": "cómo una pyme puede ahorrar tiempo automatizando procesos"
+    },
     {
       "locale": "es",
       "title": "Contenido que Ayuda a Posicionar una Web de Servicios",

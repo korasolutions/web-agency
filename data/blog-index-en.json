@@ -1,6 +1,27 @@
 {
-  "updatedAt": "2026-03-23T20:02:19.561Z",
+  "updatedAt": "2026-03-24T11:12:04.580Z",
   "posts": [
+    {
+      "locale": "en",
+      "title": "How SMEs Can Save Time by Automating Processes",
+      "slug": "how-smes-can-save-time-automating-processes",
+      "url": "/en/blog/how-smes-can-save-time-automating-processes.html",
+      "excerpt": "Discover how process automation can help your SME save time and enhance operational efficiency.",
+      "category": "Automation",
+      "categorySlug": "automatizacion",
+      "keywords": [
+        "process automation",
+        "save time SME",
+        "operational efficiency"
+      ],
+      "readingTime": "7 minutes",
+      "date": "March 24, 2026",
+      "publishedAt": "2026-03-24T11:11:48.780Z",
+      "coverImage": "/assets/blog/default-cover.jpg",
+      "metaDescription": "Learn how to automate processes in your SME to save time and boost productivity. Strategies and tools that will transform your business.",
+      "alternateUrl": "/blog/ahorrar-tiempo-automatizando-procesos-pyme.html",
+      "seedTopic": "cómo una pyme puede ahorrar tiempo automatizando procesos"
+    },
     {
       "locale": "en",
       "title": "Content That Helps Position Your Service Website",
