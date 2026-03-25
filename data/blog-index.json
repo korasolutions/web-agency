@@ -1,6 +1,32 @@
 {
-  "updatedAt": "2026-03-24T20:02:58.064Z",
+  "updatedAt": "2026-03-25T10:35:55.774Z",
   "posts": [
+    {
+      "locale": "es",
+      "title": "Elementos Clave de una Landing Page para Negocios Locales en Lanzarote",
+      "slug": "landing-page-negocios-lanzarote",
+      "url": "/blog/landing-page-negocios-lanzarote.html",
+      "excerpt": "Descubre los elementos esenciales que debe tener una landing page efectiva para negocios locales en Lanzarote y cómo pueden potenciar tu conversión.",
+      "category": "Desarrollo web",
+      "categorySlug": "desarrollo-web",
+      "keywords": [
+        "landing page",
+        "negocios locales",
+        "Lanzarote",
+        "conversión",
+        "desarrollo web",
+        "automatización",
+        "IA",
+        "qué debe tener una landing page para negocios locales en lanzarote"
+      ],
+      "date": "25 de marzo de 2026",
+      "publishedAt": "2026-03-25T10:35:27.906Z",
+      "coverImage": "/assets/blog/articulo-landing-page.webp",
+      "metaDescription": "Aprende qué elementos son esenciales en una landing page para negocios locales en Lanzarote y mejora tu tasa de conversión con estos consejos prácticos.",
+      "alternateUrl": "/en/blog/key-elements-landing-page-local-business-lanzarote.html",
+      "seedTopic": "qué debe tener una landing page para negocios locales en lanzarote",
+      "imageTopicSlug": "landing-page"
+    },
     {
       "locale": "es",
       "title": "Errores Comunes que Impiden que tu Web en Lanzarote Genere Clientes",
