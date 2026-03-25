@@ -155,7 +155,7 @@ document.addEventListener("DOMContentLoaded", () => {
     let isOpen = false;
     let isSending = false;
     let welcomeRendered = false;
-    let touchScrollLockActive = false;
+    let lockedScrollY = 0;
 
     function escapeHtml(str) {
         return String(str).replace(/[&<>"']/g, (char) => {
@@ -185,12 +185,14 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     function scrollMessagesToBottom(force = false) {
-        const distanceFromBottom =
-            messages.scrollHeight - messages.scrollTop - messages.clientHeight;
+        requestAnimationFrame(() => {
+            const distanceFromBottom =
+                messages.scrollHeight - messages.scrollTop - messages.clientHeight;
 
-        if (force || distanceFromBottom < 120) {
-            messages.scrollTop = messages.scrollHeight;
-        }
+            if (force || distanceFromBottom < 120) {
+                messages.scrollTop = messages.scrollHeight;
+            }
+        });
     }
 
     function appendMessage(role, text) {
@@ -253,9 +255,38 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
-    function lockPageScroll(lock) {
-        document.documentElement.classList.toggle("kora-chatbot-scroll-lock", lock);
-        document.body.classList.toggle("kora-chatbot-scroll-lock", lock);
+    function isCoarsePointerDevice() {
+        return window.matchMedia("(pointer: coarse)").matches || navigator.maxTouchPoints > 0;
+    }
+
+    function lockPageScroll() {
+        if (document.body.classList.contains("kora-chatbot-scroll-lock")) return;
+
+        lockedScrollY = window.scrollY || window.pageYOffset || 0;
+
+        document.documentElement.classList.add("kora-chatbot-scroll-lock");
+        document.body.classList.add("kora-chatbot-scroll-lock");
+
+        document.body.style.position = "fixed";
+        document.body.style.top = `-${lockedScrollY}px`;
+        document.body.style.left = "0";
+        document.body.style.right = "0";
+        document.body.style.width = "100%";
+    }
+
+    function unlockPageScroll() {
+        if (!document.body.classList.contains("kora-chatbot-scroll-lock")) return;
+
+        document.documentElement.classList.remove("kora-chatbot-scroll-lock");
+        document.body.classList.remove("kora-chatbot-scroll-lock");
+
+        document.body.style.position = "";
+        document.body.style.top = "";
+        document.body.style.left = "";
+        document.body.style.right = "";
+        document.body.style.width = "";
+
+        window.scrollTo(0, lockedScrollY);
     }
 
     function openChat() {
@@ -267,6 +298,10 @@ document.addEventListener("DOMContentLoaded", () => {
         toggleBtn.classList.add("is-hidden");
 
         updateConsentUI();
+
+        if (isCoarsePointerDevice()) {
+            lockPageScroll();
+        }
 
         window.setTimeout(() => {
             if (hasOptionalConsent()) {
@@ -281,11 +316,10 @@ document.addEventListener("DOMContentLoaded", () => {
         if (!isOpen) return;
 
         isOpen = false;
-        touchScrollLockActive = false;
-        lockPageScroll(false);
-
         panel.classList.remove("open");
         panel.setAttribute("aria-hidden", "true");
+
+        unlockPageScroll();
 
         window.setTimeout(() => {
             toggleBtn.classList.remove("is-hidden");
@@ -354,6 +388,48 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
+    function redirectPanelWheelToMessages(e) {
+        if (!isOpen) return;
+        if (!panel.contains(e.target)) return;
+
+        const insideMessages = !!e.target.closest(".kora-chatbot-messages");
+        if (insideMessages) {
+            return;
+        }
+
+        const isInputArea =
+            e.target.closest(".kora-chatbot-input") ||
+            e.target.closest(".kora-chatbot-send") ||
+            e.target.closest(".kora-chatbot-cookie-accept");
+
+        if (isInputArea) {
+            return;
+        }
+
+        const isScrollable = messages.scrollHeight > messages.clientHeight;
+
+        e.stopPropagation();
+
+        if (!isScrollable) {
+            e.preventDefault();
+            return;
+        }
+
+        e.preventDefault();
+        messages.scrollTop += e.deltaY;
+    }
+
+    function handlePanelMouseEnter() {
+        if (!isOpen) return;
+        if (isCoarsePointerDevice()) return;
+        lockPageScroll();
+    }
+
+    function handlePanelMouseLeave() {
+        if (isCoarsePointerDevice()) return;
+        unlockPageScroll();
+    }
+
     form.addEventListener("submit", async (e) => {
         e.preventDefault();
 
@@ -413,45 +489,19 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
-    messages.addEventListener("mouseenter", () => {
-        if (isOpen) {
-            lockPageScroll(true);
-        }
+    panel.addEventListener("wheel", redirectPanelWheelToMessages, { passive: false });
+    panel.addEventListener("mouseenter", handlePanelMouseEnter);
+    panel.addEventListener("mouseleave", handlePanelMouseLeave);
+
+    panel.addEventListener("focusin", () => {
+        if (isOpen) lockPageScroll();
     });
 
-    messages.addEventListener("mouseleave", () => {
-        if (!touchScrollLockActive) {
-            lockPageScroll(false);
+    panel.addEventListener("focusout", (e) => {
+        if (!panel.contains(e.relatedTarget) && !isCoarsePointerDevice()) {
+            unlockPageScroll();
         }
     });
-
-    messages.addEventListener(
-        "touchstart",
-        () => {
-            if (!isOpen) return;
-            touchScrollLockActive = true;
-            lockPageScroll(true);
-        },
-        { passive: true }
-    );
-
-    messages.addEventListener(
-        "touchend",
-        () => {
-            touchScrollLockActive = false;
-            lockPageScroll(false);
-        },
-        { passive: true }
-    );
-
-    messages.addEventListener(
-        "touchcancel",
-        () => {
-            touchScrollLockActive = false;
-            lockPageScroll(false);
-        },
-        { passive: true }
-    );
 
     window.addEventListener("kora:cookie-consent-updated", () => {
         updateConsentUI();

@@ -1,8 +1,3 @@
-html.kora-chatbot-scroll-lock,
-body.kora-chatbot-scroll-lock {
-    overflow: hidden;
-}
-
 #kora-chatbot-root {
     position: fixed;
     right: 30px;
@@ -10,6 +5,11 @@ body.kora-chatbot-scroll-lock {
     z-index: 999999;
     font-family: var(--font-sans, 'Inter', -apple-system, BlinkMacSystemFont, sans-serif);
     pointer-events: none;
+}
+
+html.kora-chatbot-scroll-lock,
+body.kora-chatbot-scroll-lock {
+    overflow: hidden !important;
 }
 
 #kora-chatbot-root * {
@@ -244,6 +244,7 @@ html[lang="en"] .kora-chatbot-header h3::after {
     flex-direction: column;
     gap: 12px;
     padding: 14px;
+    scroll-behavior: smooth;
     overscroll-behavior: contain;
     overscroll-behavior-y: contain;
     -webkit-overflow-scrolling: touch;
