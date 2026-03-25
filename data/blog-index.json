@@ -1,6 +1,32 @@
 {
-  "updatedAt": "2026-03-25T10:35:55.774Z",
+  "updatedAt": "2026-03-25T16:47:16.740Z",
   "posts": [
+    {
+      "locale": "es",
+      "title": "Cómo Mejorar la Velocidad de una Web para Vender Más en Lanzarote",
+      "slug": "mejorar-velocidad-web-lanzarote",
+      "url": "/blog/mejorar-velocidad-web-lanzarote.html",
+      "excerpt": "Descubre estrategias efectivas para optimizar la velocidad de tu web y aumentar tus ventas en Lanzarote.",
+      "category": "Desarrollo web",
+      "categorySlug": "desarrollo-web",
+      "keywords": [
+        "velocidad web",
+        "optimización web",
+        "ventas Lanzarote",
+        "desarrollo web",
+        "Lanzarote",
+        "automatización",
+        "IA",
+        "cómo mejorar la velocidad de una web para vender más en lanzarote"
+      ],
+      "date": "25 de marzo de 2026",
+      "publishedAt": "2026-03-25T16:46:57.568Z",
+      "coverImage": "/assets/blog/articulo-desarrollo-web.webp",
+      "metaDescription": "Mejora la velocidad de tu web y aumenta tus ventas en Lanzarote con estos consejos prácticos y efectivos.",
+      "alternateUrl": "/en/blog/improve-website-speed-lanzarote.html",
+      "seedTopic": "cómo mejorar la velocidad de una web para vender más en lanzarote",
+      "imageTopicSlug": "desarrollo-web"
+    },
     {
       "locale": "es",
       "title": "Elementos Clave de una Landing Page para Negocios Locales en Lanzarote",
