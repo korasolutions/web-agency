@@ -12,7 +12,6 @@ document.addEventListener("DOMContentLoaded", () => {
                 "Hola, soy el asistente de KORA. Puedo ayudarte con dudas sobre desarrollo web, automatizaciones IA, precios orientativos, packs y cómo trabajamos.",
             placeholder: "Escribe tu pregunta...",
             send: "Enviar",
-            thinking: "Escribiendo",
             error: "Ha ocurrido un error. Inténtalo de nuevo en unos segundos.",
             openLabel: "Abrir chat",
             closeLabel: "Cerrar chat",
@@ -29,7 +28,6 @@ document.addEventListener("DOMContentLoaded", () => {
                 "Hi, I’m KORA’s assistant. I can help you with questions about web development, AI automations, pricing ranges, packages, and how we work.",
             placeholder: "Type your question...",
             send: "Send",
-            thinking: "Typing",
             error: "Something went wrong. Please try again in a few seconds.",
             openLabel: "Open chat",
             closeLabel: "Close chat",
@@ -220,7 +218,6 @@ document.addEventListener("DOMContentLoaded", () => {
         const bubble = document.createElement("div");
         bubble.className = "bubble typing-bubble";
         bubble.innerHTML = `
-            <span class="typing-label">${escapeHtml(copy.thinking)}</span>
             <span class="typing-dots" aria-hidden="true">
                 <span></span>
                 <span></span>
@@ -350,66 +347,52 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
-    function handleWheelInsideMessages(e) {
+    function trapScrollInsideChat(e) {
+        if (!isOpen) return;
+        if (!panel.contains(e.target)) return;
+
         const isScrollable = messages.scrollHeight > messages.clientHeight;
-        if (!isScrollable) return;
+        e.stopPropagation();
+
+        if (!isScrollable) {
+            e.preventDefault();
+            return;
+        }
 
         const delta = e.deltaY;
-        const atTop = messages.scrollTop <= 0;
-        const atBottom =
-            Math.ceil(messages.scrollTop + messages.clientHeight) >= messages.scrollHeight;
-
-        const scrollingUp = delta < 0;
-        const scrollingDown = delta > 0;
-
-        const shouldTrapScroll =
-            (scrollingUp && !atTop) ||
-            (scrollingDown && !atBottom) ||
-            (atTop && scrollingDown) ||
-            (atBottom && scrollingUp);
-
-        if (shouldTrapScroll) {
-            e.preventDefault();
-            e.stopPropagation();
-            messages.scrollTop += delta;
-        }
+        messages.scrollTop += delta;
+        e.preventDefault();
     }
 
     function handleTouchStart(e) {
+        if (!isOpen) return;
+        if (!panel.contains(e.target)) return;
+
         const touch = e.touches?.[0];
         if (!touch) return;
-        messages.dataset.touchStartY = String(touch.clientY);
+        panel.dataset.touchStartY = String(touch.clientY);
     }
 
     function handleTouchMove(e) {
-        const isScrollable = messages.scrollHeight > messages.clientHeight;
-        if (!isScrollable) return;
+        if (!isOpen) return;
+        if (!panel.contains(e.target)) return;
 
+        const isScrollable = messages.scrollHeight > messages.clientHeight;
         const touch = e.touches?.[0];
-        const startY = Number(messages.dataset.touchStartY || 0);
+        const startY = Number(panel.dataset.touchStartY || 0);
+
         if (!touch || !startY) return;
 
         const delta = startY - touch.clientY;
-        const atTop = messages.scrollTop <= 0;
-        const atBottom =
-            Math.ceil(messages.scrollTop + messages.clientHeight) >= messages.scrollHeight;
 
-        const scrollingUp = delta < 0;
-        const scrollingDown = delta > 0;
+        e.stopPropagation();
 
-        const shouldTrapScroll =
-            (scrollingUp && !atTop) ||
-            (scrollingDown && !atBottom) ||
-            (atTop && scrollingDown) ||
-            (atBottom && scrollingUp);
-
-        if (shouldTrapScroll) {
-            e.preventDefault();
-            e.stopPropagation();
+        if (isScrollable) {
             messages.scrollTop += delta;
         }
 
-        messages.dataset.touchStartY = String(touch.clientY);
+        e.preventDefault();
+        panel.dataset.touchStartY = String(touch.clientY);
     }
 
     form.addEventListener("submit", async (e) => {
@@ -471,9 +454,9 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
-    messages.addEventListener("wheel", handleWheelInsideMessages, { passive: false });
-    messages.addEventListener("touchstart", handleTouchStart, { passive: true });
-    messages.addEventListener("touchmove", handleTouchMove, { passive: false });
+    panel.addEventListener("wheel", trapScrollInsideChat, { passive: false });
+    panel.addEventListener("touchstart", handleTouchStart, { passive: true });
+    panel.addEventListener("touchmove", handleTouchMove, { passive: false });
 
     window.addEventListener("kora:cookie-consent-updated", () => {
         updateConsentUI();

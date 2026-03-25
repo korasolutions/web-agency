@@ -126,6 +126,8 @@
         opacity 0.28s ease,
         transform 0.28s ease,
         visibility 0.28s ease;
+    overscroll-behavior: contain;
+    overscroll-behavior-y: contain;
 }
 
 .kora-chatbot-panel.open {
@@ -242,7 +244,7 @@ html[lang="en"] .kora-chatbot-header h3::after {
     overscroll-behavior-y: contain;
     -webkit-overflow-scrolling: touch;
     scrollbar-gutter: stable;
-    touch-action: pan-y;
+    touch-action: none;
 }
 
 .kora-chatbot-message {
@@ -295,23 +297,19 @@ html[lang="en"] .kora-chatbot-header h3::after {
 .kora-chatbot-message.typing .bubble.typing-bubble {
     display: inline-flex;
     align-items: center;
-    gap: 10px;
+    justify-content: center;
+    gap: 5px;
     min-height: 44px;
+    min-width: 58px;
     padding-top: 12px;
     padding-bottom: 12px;
-}
-
-.typing-label {
-    color: var(--text-light, #b0b0b0);
-    font-size: 0.92rem;
-    line-height: 1;
-    white-space: nowrap;
 }
 
 .typing-dots {
     display: inline-flex;
     align-items: center;
     gap: 5px;
+    line-height: 1;
 }
 
 .typing-dots span {
@@ -658,11 +656,8 @@ html[lang="en"] .kora-chatbot-header h3::after {
     }
 
     .kora-chatbot-message.typing .bubble.typing-bubble {
-        gap: 8px;
-    }
-
-    .typing-label {
-        font-size: 0.88rem;
+        gap: 5px;
+        min-width: 54px;
     }
 
     .typing-dots span {
@@ -792,10 +787,6 @@ html[lang="en"] .kora-chatbot-header h3::after {
     .kora-chatbot-message .bubble {
         max-width: 94%;
         font-size: 0.89rem;
-    }
-
-    .typing-label {
-        font-size: 0.84rem;
     }
 }
 
