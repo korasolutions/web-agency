@@ -239,8 +239,10 @@ html[lang="en"] .kora-chatbot-header h3::after {
     padding: 14px;
     scroll-behavior: smooth;
     overscroll-behavior: contain;
+    overscroll-behavior-y: contain;
     -webkit-overflow-scrolling: touch;
     scrollbar-gutter: stable;
+    touch-action: pan-y;
 }
 
 .kora-chatbot-message {
