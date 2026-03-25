@@ -12,13 +12,12 @@ document.addEventListener("DOMContentLoaded", () => {
                 "Hola, soy el asistente de KORA. Puedo ayudarte con dudas sobre desarrollo web, automatizaciones IA, precios orientativos, packs y cómo trabajamos.",
             placeholder: "Escribe tu pregunta...",
             send: "Enviar",
-            thinking: "Escribiendo...",
+            thinking: "Escribiendo",
             error: "Ha ocurrido un error. Inténtalo de nuevo en unos segundos.",
             openLabel: "Abrir chat",
             closeLabel: "Cerrar chat",
             consentTitle: "Activa las cookies para continuar",
-            consentText:
-                "Para usar el chatbot de IA necesitas aceptar las",
+            consentText: "Para usar el chatbot de IA necesitas aceptar las",
             consentHref: "cookies opcionales.",
             consentButton: "Aceptar cookies opcionales",
             consentNote: "Al aceptar, se activará el chat automáticamente."
@@ -30,13 +29,12 @@ document.addEventListener("DOMContentLoaded", () => {
                 "Hi, I’m KORA’s assistant. I can help you with questions about web development, AI automations, pricing ranges, packages, and how we work.",
             placeholder: "Type your question...",
             send: "Send",
-            thinking: "Typing...",
+            thinking: "Typing",
             error: "Something went wrong. Please try again in a few seconds.",
             openLabel: "Open chat",
             closeLabel: "Close chat",
             consentTitle: "Enable cookies to continue",
-            consentText:
-                "To chat with the chatbot you need to accept",
+            consentText: "To chat with the chatbot you need to accept",
             consentHref: "optional cookies.",
             consentButton: "Accept optional cookies",
             consentNote: "Once accepted, the chat will start automatically."
@@ -220,8 +218,15 @@ document.addEventListener("DOMContentLoaded", () => {
         wrapper.className = "kora-chatbot-message bot typing";
 
         const bubble = document.createElement("div");
-        bubble.className = "bubble";
-        bubble.textContent = copy.thinking;
+        bubble.className = "bubble typing-bubble";
+        bubble.innerHTML = `
+            <span class="typing-label">${escapeHtml(copy.thinking)}</span>
+            <span class="typing-dots" aria-hidden="true">
+                <span></span>
+                <span></span>
+                <span></span>
+            </span>
+        `;
 
         wrapper.appendChild(bubble);
         messages.appendChild(wrapper);
@@ -294,6 +299,7 @@ document.addEventListener("DOMContentLoaded", () => {
         input.value = "";
 
         const typingNode = appendTyping();
+        const typingStartedAt = Date.now();
 
         try {
             const response = await fetch("/api/chatbot", {
@@ -309,6 +315,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
             const data = await response.json().catch(() => ({}));
 
+            const elapsed = Date.now() - typingStartedAt;
+            const minTypingTime = 700;
+
+            if (elapsed < minTypingTime) {
+                await new Promise((resolve) => setTimeout(resolve, minTypingTime - elapsed));
+            }
+
             typingNode.remove();
 
             if (!response.ok) {
@@ -318,6 +331,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
             appendMessage("bot", data?.reply || copy.error);
         } catch {
+            const elapsed = Date.now() - typingStartedAt;
+            const minTypingTime = 700;
+
+            if (elapsed < minTypingTime) {
+                await new Promise((resolve) => setTimeout(resolve, minTypingTime - elapsed));
+            }
+
             typingNode.remove();
             appendMessage("bot", copy.error);
         } finally {
