@@ -155,6 +155,7 @@ document.addEventListener("DOMContentLoaded", () => {
     let isOpen = false;
     let isSending = false;
     let welcomeRendered = false;
+    let touchScrollLockActive = false;
 
     function escapeHtml(str) {
         return String(str).replace(/[&<>"']/g, (char) => {
@@ -184,14 +185,12 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     function scrollMessagesToBottom(force = false) {
-        requestAnimationFrame(() => {
-            const distanceFromBottom =
-                messages.scrollHeight - messages.scrollTop - messages.clientHeight;
+        const distanceFromBottom =
+            messages.scrollHeight - messages.scrollTop - messages.clientHeight;
 
-            if (force || distanceFromBottom < 120) {
-                messages.scrollTop = messages.scrollHeight;
-            }
-        });
+        if (force || distanceFromBottom < 120) {
+            messages.scrollTop = messages.scrollHeight;
+        }
     }
 
     function appendMessage(role, text) {
@@ -254,6 +253,11 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
+    function lockPageScroll(lock) {
+        document.documentElement.classList.toggle("kora-chatbot-scroll-lock", lock);
+        document.body.classList.toggle("kora-chatbot-scroll-lock", lock);
+    }
+
     function openChat() {
         if (isOpen) return;
 
@@ -277,6 +281,9 @@ document.addEventListener("DOMContentLoaded", () => {
         if (!isOpen) return;
 
         isOpen = false;
+        touchScrollLockActive = false;
+        lockPageScroll(false);
+
         panel.classList.remove("open");
         panel.setAttribute("aria-hidden", "true");
 
@@ -347,54 +354,6 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
-    function trapScrollInsideChat(e) {
-        if (!isOpen) return;
-        if (!panel.contains(e.target)) return;
-
-        const isScrollable = messages.scrollHeight > messages.clientHeight;
-        e.stopPropagation();
-
-        if (!isScrollable) {
-            e.preventDefault();
-            return;
-        }
-
-        const delta = e.deltaY;
-        messages.scrollTop += delta;
-        e.preventDefault();
-    }
-
-    function handleTouchStart(e) {
-        if (!isOpen) return;
-        if (!panel.contains(e.target)) return;
-
-        const touch = e.touches?.[0];
-        if (!touch) return;
-        panel.dataset.touchStartY = String(touch.clientY);
-    }
-
-    function handleTouchMove(e) {
-        if (!isOpen) return;
-        if (!panel.contains(e.target)) return;
-
-        const isScrollable = messages.scrollHeight > messages.clientHeight;
-        const touch = e.touches?.[0];
-        const startY = Number(panel.dataset.touchStartY || 0);
-
-        if (!touch || !startY) return;
-
-        const delta = startY - touch.clientY;
-
-        e.stopPropagation();
-
-        if (isScrollable) {
-            messages.scrollTop += delta;
-        }
-
-        e.preventDefault();
-        panel.dataset.touchStartY = String(touch.clientY);
-    }
-
     form.addEventListener("submit", async (e) => {
         e.preventDefault();
 
@@ -454,9 +413,45 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
-    panel.addEventListener("wheel", trapScrollInsideChat, { passive: false });
-    panel.addEventListener("touchstart", handleTouchStart, { passive: true });
-    panel.addEventListener("touchmove", handleTouchMove, { passive: false });
+    messages.addEventListener("mouseenter", () => {
+        if (isOpen) {
+            lockPageScroll(true);
+        }
+    });
+
+    messages.addEventListener("mouseleave", () => {
+        if (!touchScrollLockActive) {
+            lockPageScroll(false);
+        }
+    });
+
+    messages.addEventListener(
+        "touchstart",
+        () => {
+            if (!isOpen) return;
+            touchScrollLockActive = true;
+            lockPageScroll(true);
+        },
+        { passive: true }
+    );
+
+    messages.addEventListener(
+        "touchend",
+        () => {
+            touchScrollLockActive = false;
+            lockPageScroll(false);
+        },
+        { passive: true }
+    );
+
+    messages.addEventListener(
+        "touchcancel",
+        () => {
+            touchScrollLockActive = false;
+            lockPageScroll(false);
+        },
+        { passive: true }
+    );
 
     window.addEventListener("kora:cookie-consent-updated", () => {
         updateConsentUI();
