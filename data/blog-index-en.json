@@ -1,6 +1,33 @@
 {
-  "updatedAt": "2026-03-25T16:47:16.741Z",
+  "updatedAt": "2026-03-25T19:59:34.395Z",
   "posts": [
+    {
+      "locale": "en",
+      "title": "The Importance of Having a High-Converting Website for Local Businesses in Lanzarote",
+      "slug": "high-converting-website-local-business-lanzarote",
+      "url": "/en/blog/high-converting-website-local-business-lanzarote.html",
+      "excerpt": "Discover why an effective website is essential for local businesses in Lanzarote and how it can boost your conversions.",
+      "category": "Web development",
+      "categorySlug": "desarrollo-web",
+      "keywords": [
+        "web development",
+        "local businesses Lanzarote",
+        "high-converting website",
+        "web optimization",
+        "Lanzarote",
+        "automation",
+        "AI",
+        "why a local business in Lanzarote needs a high-converting website",
+        "desarrollo web"
+      ],
+      "date": "March 25, 2026",
+      "publishedAt": "2026-03-25T19:59:18.110Z",
+      "coverImage": "/assets/blog/articulo-desarrollo-web.webp",
+      "metaDescription": "Learn about the importance of a high-converting website for local businesses in Lanzarote and how to optimize your digital presence.",
+      "alternateUrl": "/blog/web-conversora-lanzarote.html",
+      "seedTopic": "por qué un negocio local en lanzarote necesita una web que convierta",
+      "imageTopicSlug": "desarrollo-web"
+    },
     {
       "locale": "en",
       "title": "How to Improve Your Website Speed to Boost Sales in Lanzarote",
