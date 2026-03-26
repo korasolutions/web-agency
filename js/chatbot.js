@@ -155,7 +155,6 @@ document.addEventListener("DOMContentLoaded", () => {
     let isOpen = false;
     let isSending = false;
     let welcomeRendered = false;
-    let lockedScrollY = 0;
 
     function escapeHtml(str) {
         return String(str).replace(/[&<>"']/g, (char) => {
@@ -255,40 +254,6 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
-    function isCoarsePointerDevice() {
-        return window.matchMedia("(pointer: coarse)").matches || navigator.maxTouchPoints > 0;
-    }
-
-    function lockPageScroll() {
-        if (document.body.classList.contains("kora-chatbot-scroll-lock")) return;
-
-        lockedScrollY = window.scrollY || window.pageYOffset || 0;
-
-        document.documentElement.classList.add("kora-chatbot-scroll-lock");
-        document.body.classList.add("kora-chatbot-scroll-lock");
-
-        document.body.style.position = "fixed";
-        document.body.style.top = `-${lockedScrollY}px`;
-        document.body.style.left = "0";
-        document.body.style.right = "0";
-        document.body.style.width = "100%";
-    }
-
-    function unlockPageScroll() {
-        if (!document.body.classList.contains("kora-chatbot-scroll-lock")) return;
-
-        document.documentElement.classList.remove("kora-chatbot-scroll-lock");
-        document.body.classList.remove("kora-chatbot-scroll-lock");
-
-        document.body.style.position = "";
-        document.body.style.top = "";
-        document.body.style.left = "";
-        document.body.style.right = "";
-        document.body.style.width = "";
-
-        window.scrollTo(0, lockedScrollY);
-    }
-
     function openChat() {
         if (isOpen) return;
 
@@ -298,10 +263,6 @@ document.addEventListener("DOMContentLoaded", () => {
         toggleBtn.classList.add("is-hidden");
 
         updateConsentUI();
-
-        if (isCoarsePointerDevice()) {
-            lockPageScroll();
-        }
 
         window.setTimeout(() => {
             if (hasOptionalConsent()) {
@@ -318,8 +279,6 @@ document.addEventListener("DOMContentLoaded", () => {
         isOpen = false;
         panel.classList.remove("open");
         panel.setAttribute("aria-hidden", "true");
-
-        unlockPageScroll();
 
         window.setTimeout(() => {
             toggleBtn.classList.remove("is-hidden");
@@ -388,46 +347,32 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
-    function redirectPanelWheelToMessages(e) {
+    function getMaxScrollTop(el) {
+        return Math.max(0, el.scrollHeight - el.clientHeight);
+    }
+
+    function handleMessagesWheel(e) {
         if (!isOpen) return;
-        if (!panel.contains(e.target)) return;
 
-        const insideMessages = !!e.target.closest(".kora-chatbot-messages");
-        if (insideMessages) {
-            return;
-        }
+        const maxScrollTop = getMaxScrollTop(messages);
+        if (maxScrollTop <= 0) return;
 
-        const isInputArea =
-            e.target.closest(".kora-chatbot-input") ||
-            e.target.closest(".kora-chatbot-send") ||
-            e.target.closest(".kora-chatbot-cookie-accept");
+        const deltaY = e.deltaY;
+        const currentScrollTop = messages.scrollTop;
+        const isScrollingDown = deltaY > 0;
+        const isScrollingUp = deltaY < 0;
 
-        if (isInputArea) {
-            return;
-        }
+        const canScrollDown = currentScrollTop < maxScrollTop;
+        const canScrollUp = currentScrollTop > 0;
 
-        const isScrollable = messages.scrollHeight > messages.clientHeight;
-
-        e.stopPropagation();
-
-        if (!isScrollable) {
+        if (
+            (isScrollingDown && canScrollDown) ||
+            (isScrollingUp && canScrollUp)
+        ) {
             e.preventDefault();
-            return;
+            e.stopPropagation();
+            messages.scrollTop += deltaY;
         }
-
-        e.preventDefault();
-        messages.scrollTop += e.deltaY;
-    }
-
-    function handlePanelMouseEnter() {
-        if (!isOpen) return;
-        if (isCoarsePointerDevice()) return;
-        lockPageScroll();
-    }
-
-    function handlePanelMouseLeave() {
-        if (isCoarsePointerDevice()) return;
-        unlockPageScroll();
     }
 
     form.addEventListener("submit", async (e) => {
@@ -489,19 +434,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
-    panel.addEventListener("wheel", redirectPanelWheelToMessages, { passive: false });
-    panel.addEventListener("mouseenter", handlePanelMouseEnter);
-    panel.addEventListener("mouseleave", handlePanelMouseLeave);
-
-    panel.addEventListener("focusin", () => {
-        if (isOpen) lockPageScroll();
-    });
-
-    panel.addEventListener("focusout", (e) => {
-        if (!panel.contains(e.relatedTarget) && !isCoarsePointerDevice()) {
-            unlockPageScroll();
-        }
-    });
+    messages.addEventListener("wheel", handleMessagesWheel, { passive: false });
 
     window.addEventListener("kora:cookie-consent-updated", () => {
         updateConsentUI();

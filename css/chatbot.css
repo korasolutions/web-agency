@@ -7,11 +7,6 @@
     pointer-events: none;
 }
 
-html.kora-chatbot-scroll-lock,
-body.kora-chatbot-scroll-lock {
-    overflow: hidden !important;
-}
-
 #kora-chatbot-root * {
     box-sizing: border-box;
 }
@@ -131,8 +126,6 @@ body.kora-chatbot-scroll-lock {
         opacity 0.28s ease,
         transform 0.28s ease,
         visibility 0.28s ease;
-    overscroll-behavior: contain;
-    overscroll-behavior-y: contain;
 }
 
 .kora-chatbot-panel.open {
@@ -244,12 +237,12 @@ html[lang="en"] .kora-chatbot-header h3::after {
     flex-direction: column;
     gap: 12px;
     padding: 14px;
-    scroll-behavior: smooth;
     overscroll-behavior: contain;
     overscroll-behavior-y: contain;
     -webkit-overflow-scrolling: touch;
     scrollbar-gutter: stable;
     touch-action: pan-y;
+    will-change: scroll-position;
 }
 
 .kora-chatbot-message {
