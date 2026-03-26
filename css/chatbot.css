@@ -569,6 +569,16 @@ html[lang="en"] .kora-chatbot-header h3::after {
     color: var(--text-primary);
 }
 
+#kora-chatbot-root.kora-chatbot-preload {
+    opacity: 0 !important;
+    pointer-events: none !important;
+}
+
+#kora-chatbot-root.kora-chatbot-no-animate .kora-chatbot-toggle,
+#kora-chatbot-root.kora-chatbot-no-animate .kora-chatbot-panel {
+    transition: none !important;
+}
+
 @keyframes koraTypingBounce {
     0%, 80%, 100% {
         transform: translateY(0);

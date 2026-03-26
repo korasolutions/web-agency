@@ -2,7 +2,8 @@ document.addEventListener("DOMContentLoaded", () => {
     if (document.getElementById("kora-chatbot-root")) return;
 
     const lang = document.documentElement.lang || "es";
-    const STORAGE_KEY = "cookieConsent_v1";
+    const CONSENT_STORAGE_KEY = "cookieConsent_v1";
+    const SESSION_STORAGE_KEY = "koraChatbotSession_v2";
 
     const t = {
         es: {
@@ -41,13 +42,30 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const copy = lang.startsWith("en") ? t.en : t.es;
 
+    clearSessionIfPageWasReloaded();
+
+    function clearSessionIfPageWasReloaded() {
+        try {
+            const navEntry = performance.getEntriesByType("navigation")[0];
+            const isReload =
+                navEntry?.type === "reload" ||
+                performance?.navigation?.type === 1;
+
+            if (isReload) {
+                sessionStorage.removeItem(SESSION_STORAGE_KEY);
+            }
+        } catch {
+            // no-op
+        }
+    }
+
     function getConsent() {
         try {
             if (window.KoraCookieConsent?.getConsent) {
                 return window.KoraCookieConsent.getConsent();
             }
 
-            return JSON.parse(localStorage.getItem(STORAGE_KEY));
+            return JSON.parse(localStorage.getItem(CONSENT_STORAGE_KEY));
         } catch {
             return null;
         }
@@ -72,7 +90,7 @@ document.addEventListener("DOMContentLoaded", () => {
             ts: Date.now()
         };
 
-        localStorage.setItem(STORAGE_KEY, JSON.stringify(consent));
+        localStorage.setItem(CONSENT_STORAGE_KEY, JSON.stringify(consent));
 
         window.dispatchEvent(
             new CustomEvent("kora:cookie-consent-updated", {
@@ -83,8 +101,53 @@ document.addEventListener("DOMContentLoaded", () => {
         return consent;
     }
 
+    function getInitialState() {
+        return {
+            isOpen: false,
+            messages: [],
+            draft: "",
+            welcomeRendered: false
+        };
+    }
+
+    function getSessionState() {
+        try {
+            const raw = sessionStorage.getItem(SESSION_STORAGE_KEY);
+            if (!raw) return getInitialState();
+
+            const parsed = JSON.parse(raw);
+
+            return {
+                isOpen: !!parsed?.isOpen,
+                messages: Array.isArray(parsed?.messages) ? parsed.messages : [],
+                draft: typeof parsed?.draft === "string" ? parsed.draft : "",
+                welcomeRendered: !!parsed?.welcomeRendered
+            };
+        } catch {
+            return getInitialState();
+        }
+    }
+
+    function saveSessionState() {
+        try {
+            sessionStorage.setItem(
+                SESSION_STORAGE_KEY,
+                JSON.stringify({
+                    isOpen,
+                    messages: conversationHistory,
+                    draft: input?.value || "",
+                    welcomeRendered
+                })
+            );
+        } catch {
+            // no-op
+        }
+    }
+
     const root = document.createElement("div");
-    root.id = "kora-chatbot-root";
+root.id = "kora-chatbot-root";
+root.classList.add("kora-chatbot-no-animate", "kora-chatbot-preload");
+
     root.innerHTML = `
         <button class="kora-chatbot-toggle" aria-label="${copy.openLabel}" type="button">
             <i class="fas fa-comment-dots" aria-hidden="true"></i>
@@ -113,7 +176,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
                     <p class="kora-chatbot-cookie-text">
                         ${copy.consentText}
-                        <a href="legal.html#legal-ia" class="legal-href">${copy.consentHref}</a>
+                        <a href="/legal.html#legal-ia" class="legal-href">${copy.consentHref}</a>
                     </p>
 
                     <div class="kora-chatbot-cookie-actions">
@@ -152,9 +215,12 @@ document.addEventListener("DOMContentLoaded", () => {
     const sendBtn = root.querySelector(".kora-chatbot-send");
     const cookieAcceptBtn = root.querySelector(".kora-chatbot-cookie-accept");
 
-    let isOpen = false;
+    const storedState = getSessionState();
+
+    let isOpen = storedState.isOpen;
     let isSending = false;
-    let welcomeRendered = false;
+    let welcomeRendered = storedState.welcomeRendered;
+    let conversationHistory = Array.isArray(storedState.messages) ? [...storedState.messages] : [];
 
     function escapeHtml(str) {
         return String(str).replace(/[&<>"']/g, (char) => {
@@ -194,7 +260,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    function appendMessage(role, text) {
+    function renderMessage(role, text) {
         const wrapper = document.createElement("div");
         wrapper.className = `kora-chatbot-message ${role}`;
 
@@ -206,9 +272,21 @@ document.addEventListener("DOMContentLoaded", () => {
 
         wrapper.appendChild(bubble);
         messages.appendChild(wrapper);
-        scrollMessagesToBottom(true);
 
         return wrapper;
+    }
+
+    function appendMessage(role, text, persist = true) {
+        renderMessage(role, text);
+        scrollMessagesToBottom(true);
+
+        if (persist) {
+            conversationHistory.push({ role, text: String(text) });
+            if (role === "bot" && String(text).trim() === copy.welcome.trim()) {
+                welcomeRendered = true;
+            }
+            saveSessionState();
+        }
     }
 
     function appendTyping() {
@@ -232,37 +310,78 @@ document.addEventListener("DOMContentLoaded", () => {
         return wrapper;
     }
 
+    function restoreMessagesFromSession() {
+        messages.innerHTML = "";
+
+        if (!conversationHistory.length) return;
+
+        conversationHistory.forEach((item) => {
+            if (!item || !item.role || typeof item.text !== "string") return;
+            renderMessage(item.role, item.text);
+        });
+
+        scrollMessagesToBottom(true);
+    }
+
     function ensureWelcomeMessage() {
         if (welcomeRendered) return;
-        messages.innerHTML = "";
-        appendMessage("bot", copy.welcome);
+
+        if (conversationHistory.some((msg) => msg?.role === "bot")) {
+            welcomeRendered = true;
+            return;
+        }
+
+        appendMessage("bot", copy.welcome, true);
         welcomeRendered = true;
+        saveSessionState();
     }
 
     function updateConsentUI() {
         const unlocked = hasOptionalConsent();
 
         panel.classList.toggle("is-locked", !unlocked);
-        input.disabled = !unlocked;
-        sendBtn.disabled = !unlocked;
+        input.disabled = !unlocked || isSending;
+        sendBtn.disabled = !unlocked || isSending;
 
         if (unlocked) {
             input.placeholder = copy.placeholder;
-            ensureWelcomeMessage();
+            if (!conversationHistory.length) {
+                ensureWelcomeMessage();
+            }
         } else {
             input.placeholder = copy.consentButton;
         }
     }
 
+    function applyOpenState() {
+        if (isOpen) {
+            panel.classList.add("open");
+            panel.setAttribute("aria-hidden", "false");
+            toggleBtn.classList.add("is-hidden");
+        } else {
+            panel.classList.remove("open");
+            panel.setAttribute("aria-hidden", "true");
+            toggleBtn.classList.remove("is-hidden");
+        }
+    }
+
+    function finishInitialRender() {
+    requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+            root.classList.remove("kora-chatbot-preload");
+            root.classList.remove("kora-chatbot-no-animate");
+            root.classList.add("kora-chatbot-ready");
+        });
+    });
+}
+
     function openChat() {
         if (isOpen) return;
 
         isOpen = true;
-        panel.classList.add("open");
-        panel.setAttribute("aria-hidden", "false");
-        toggleBtn.classList.add("is-hidden");
-
+        applyOpenState();
         updateConsentUI();
+        saveSessionState();
 
         window.setTimeout(() => {
             if (hasOptionalConsent()) {
@@ -277,12 +396,8 @@ document.addEventListener("DOMContentLoaded", () => {
         if (!isOpen) return;
 
         isOpen = false;
-        panel.classList.remove("open");
-        panel.setAttribute("aria-hidden", "true");
-
-        window.setTimeout(() => {
-            toggleBtn.classList.remove("is-hidden");
-        }, 180);
+        applyOpenState();
+        saveSessionState();
     }
 
     async function sendMessage(message) {
@@ -292,8 +407,9 @@ document.addEventListener("DOMContentLoaded", () => {
         input.disabled = true;
         sendBtn.disabled = true;
 
-        appendMessage("user", message);
+        appendMessage("user", message, true);
         input.value = "";
+        saveSessionState();
 
         const typingNode = appendTyping();
         const typingStartedAt = Date.now();
@@ -322,11 +438,11 @@ document.addEventListener("DOMContentLoaded", () => {
             typingNode.remove();
 
             if (!response.ok) {
-                appendMessage("bot", data?.error || copy.error);
+                appendMessage("bot", data?.error || copy.error, true);
                 return;
             }
 
-            appendMessage("bot", data?.reply || copy.error);
+            appendMessage("bot", data?.reply || copy.error, true);
         } catch {
             const elapsed = Date.now() - typingStartedAt;
             const minTypingTime = 700;
@@ -336,10 +452,11 @@ document.addEventListener("DOMContentLoaded", () => {
             }
 
             typingNode.remove();
-            appendMessage("bot", copy.error);
+            appendMessage("bot", copy.error, true);
         } finally {
             isSending = false;
             updateConsentUI();
+            saveSessionState();
 
             if (hasOptionalConsent()) {
                 input.focus();
@@ -407,9 +524,14 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
+    input.addEventListener("input", () => {
+        saveSessionState();
+    });
+
     cookieAcceptBtn?.addEventListener("click", () => {
         acceptOptionalCookies();
         updateConsentUI();
+        saveSessionState();
 
         window.setTimeout(() => {
             input.focus();
@@ -438,7 +560,20 @@ document.addEventListener("DOMContentLoaded", () => {
 
     window.addEventListener("kora:cookie-consent-updated", () => {
         updateConsentUI();
+        saveSessionState();
     });
 
-    updateConsentUI();
+    restoreMessagesFromSession();
+input.value = storedState.draft || "";
+updateConsentUI();
+applyOpenState();
+finishInitialRender();
+
+    if (isOpen) {
+        window.setTimeout(() => {
+            if (hasOptionalConsent()) {
+                input.focus();
+            }
+        }, 180);
+    }
 });
