@@ -253,7 +253,7 @@ Estructura del JSON:
     contentHtml: sanitizeHtml(parsed.contentHtml),
     publishedAt,
     date,
-    url: `/blog/${finalSlug}.html`,
+    url: `/blog/${finalSlug}`,
     seedTopic
   };
 }
@@ -358,7 +358,7 @@ JSON structure:
     contentHtml: sanitizeHtml(parsed.contentHtml),
     publishedAt,
     date,
-    url: `/en/blog/${finalSlug}.html`,
+    url: `/en/blog/${finalSlug}`,
     seedTopic: esPost.seedTopic
   };
 }
@@ -376,7 +376,7 @@ function renderArticleHtml(locale, post) {
     : 'En KORA creamos webs orientadas a conversión y automatizaciones con IA pensadas para ahorrar tiempo y generar oportunidades reales para negocios.';
   const ctaLinkText = isEn ? 'Talk to KORA' : 'Hablar con KORA';
   const backText = isEn ? 'Back to blog' : 'Volver al blog';
-  const contactHref = '/index.html#contacto';
+  const contactHref = '/#contacto';
   const blogHref = isEn ? '/en/blog/' : '/blog/';
 
   return `<!DOCTYPE html>
@@ -514,14 +514,11 @@ async function updateSitemap(esPosts, enPosts) {
 
   const staticUrls = [
     { url: '/', lastmod: now },
-    { url: '/index.html', lastmod: now },
-    { url: '/sobre-nosotros.html', lastmod: now },
-    { url: '/servicios.html', lastmod: now },
-    { url: '/servicios/desarrollo-web.html', lastmod: now },
-    { url: '/servicios/automatizaciones-ia.html', lastmod: now },
-    { url: '/legal.html', lastmod: now },
-    { url: '/blog/', lastmod: now },
-    { url: '/en/blog/', lastmod: now }
+    { url: '/sobre-nosotros', lastmod: now },
+    { url: '/servicios', lastmod: now },
+    { url: '/servicios/desarrollo-web', lastmod: now },
+    { url: '/servicios/automatizaciones-ia', lastmod: now },
+    { url: '/blog/', lastmod: now }
   ];
 
   const dynamicUrls = [
