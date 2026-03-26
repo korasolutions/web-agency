@@ -437,6 +437,20 @@
     <script src="/js/form.js?v=5"></script>
     <script src="/js/blog-preview.js"></script>
     <script src="/js/blog-index.js"></script>
+    <script>
+        (() => {
+            const cameFromCloser = sessionStorage.getItem('came_from_closer') === 'true';
+            if (!cameFromCloser) return;
+
+            const button = document.createElement('a');
+            button.href = '/closer.html';
+            button.className = 'closer-return-button';
+            button.innerHTML = '<i class="fas fa-arrow-left"></i><span>Volver a Closer</span>';
+            button.setAttribute('aria-label', 'Volver a la pantalla de closer');
+
+            document.body.appendChild(button);
+        })();
+    </script>
 </body>
 
 </html>
