@@ -106,7 +106,8 @@ document.addEventListener("DOMContentLoaded", () => {
             isOpen: false,
             messages: [],
             draft: "",
-            welcomeRendered: false
+            welcomeRendered: false,
+            scrollTop: 0
         };
     }
 
@@ -121,7 +122,8 @@ document.addEventListener("DOMContentLoaded", () => {
                 isOpen: !!parsed?.isOpen,
                 messages: Array.isArray(parsed?.messages) ? parsed.messages : [],
                 draft: typeof parsed?.draft === "string" ? parsed.draft : "",
-                welcomeRendered: !!parsed?.welcomeRendered
+                welcomeRendered: !!parsed?.welcomeRendered,
+                scrollTop: Number.isFinite(parsed?.scrollTop) ? parsed.scrollTop : 0
             };
         } catch {
             return getInitialState();
@@ -136,7 +138,8 @@ document.addEventListener("DOMContentLoaded", () => {
                     isOpen,
                     messages: conversationHistory,
                     draft: input?.value || "",
-                    welcomeRendered
+                    welcomeRendered,
+                    scrollTop: messages ? messages.scrollTop : 0
                 })
             );
         } catch {
@@ -145,8 +148,8 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     const root = document.createElement("div");
-root.id = "kora-chatbot-root";
-root.classList.add("kora-chatbot-no-animate", "kora-chatbot-preload");
+    root.id = "kora-chatbot-root";
+    root.classList.add("kora-chatbot-no-animate", "kora-chatbot-preload");
 
     root.innerHTML = `
         <button class="kora-chatbot-toggle" aria-label="${copy.openLabel}" type="button">
@@ -221,6 +224,9 @@ root.classList.add("kora-chatbot-no-animate", "kora-chatbot-preload");
     let isSending = false;
     let welcomeRendered = storedState.welcomeRendered;
     let conversationHistory = Array.isArray(storedState.messages) ? [...storedState.messages] : [];
+    let restoredScrollTop = Number.isFinite(storedState.scrollTop) ? storedState.scrollTop : 0;
+    let isRestoringScroll = conversationHistory.length > 0;
+    let isRestoringOpenState = storedState.isOpen;
 
     function escapeHtml(str) {
         return String(str).replace(/[&<>"']/g, (char) => {
@@ -250,6 +256,8 @@ root.classList.add("kora-chatbot-no-animate", "kora-chatbot-preload");
     }
 
     function scrollMessagesToBottom(force = false) {
+        if (isRestoringScroll && !force) return;
+
         requestAnimationFrame(() => {
             const distanceFromBottom =
                 messages.scrollHeight - messages.scrollTop - messages.clientHeight;
@@ -260,9 +268,33 @@ root.classList.add("kora-chatbot-no-animate", "kora-chatbot-preload");
         });
     }
 
-    function renderMessage(role, text) {
+    function restoreScrollPosition() {
+        if (!messages) {
+            isRestoringScroll = false;
+            return;
+        }
+
+        requestAnimationFrame(() => {
+            requestAnimationFrame(() => {
+                const maxScrollTop = Math.max(0, messages.scrollHeight - messages.clientHeight);
+                messages.scrollTop = Math.min(restoredScrollTop, maxScrollTop);
+                isRestoringScroll = false;
+            });
+        });
+    }
+
+    function saveScrollPosition() {
+        if (isRestoringScroll) return;
+        saveSessionState();
+    }
+
+    function renderMessage(role, text, animate = true) {
         const wrapper = document.createElement("div");
         wrapper.className = `kora-chatbot-message ${role}`;
+
+        if (!animate) {
+            wrapper.style.animation = "none";
+        }
 
         const bubble = document.createElement("div");
         bubble.className = "bubble";
@@ -277,8 +309,11 @@ root.classList.add("kora-chatbot-no-animate", "kora-chatbot-preload");
     }
 
     function appendMessage(role, text, persist = true) {
-        renderMessage(role, text);
-        scrollMessagesToBottom(true);
+        renderMessage(role, text, true);
+
+        if (!isRestoringScroll) {
+            scrollMessagesToBottom(true);
+        }
 
         if (persist) {
             conversationHistory.push({ role, text: String(text) });
@@ -317,10 +352,8 @@ root.classList.add("kora-chatbot-no-animate", "kora-chatbot-preload");
 
         conversationHistory.forEach((item) => {
             if (!item || !item.role || typeof item.text !== "string") return;
-            renderMessage(item.role, item.text);
+            renderMessage(item.role, item.text, false);
         });
-
-        scrollMessagesToBottom(true);
     }
 
     function ensureWelcomeMessage() {
@@ -366,18 +399,31 @@ root.classList.add("kora-chatbot-no-animate", "kora-chatbot-preload");
     }
 
     function finishInitialRender() {
-    requestAnimationFrame(() => {
-        requestAnimationFrame(() => {
-            root.classList.remove("kora-chatbot-preload");
-            root.classList.remove("kora-chatbot-no-animate");
-            root.classList.add("kora-chatbot-ready");
-        });
-    });
-}
+        const reveal = () => {
+            requestAnimationFrame(() => {
+                requestAnimationFrame(() => {
+                    root.classList.remove("kora-chatbot-preload");
+                    root.classList.add("kora-chatbot-ready");
+
+                    requestAnimationFrame(() => {
+                        root.classList.remove("kora-chatbot-no-animate");
+                        isRestoringOpenState = false;
+                    });
+                });
+            });
+        };
+
+        if (document.readyState === "complete") {
+            reveal();
+        } else {
+            window.addEventListener("load", reveal, { once: true });
+        }
+    }
 
     function openChat() {
         if (isOpen) return;
 
+        isRestoringOpenState = false;
         isOpen = true;
         applyOpenState();
         updateConsentUI();
@@ -403,6 +449,7 @@ root.classList.add("kora-chatbot-no-animate", "kora-chatbot-preload");
     async function sendMessage(message) {
         if (isSending || !hasOptionalConsent()) return;
 
+        isRestoringScroll = false;
         isSending = true;
         input.disabled = true;
         sendBtn.disabled = true;
@@ -528,6 +575,9 @@ root.classList.add("kora-chatbot-no-animate", "kora-chatbot-preload");
         saveSessionState();
     });
 
+    messages.addEventListener("scroll", saveScrollPosition, { passive: true });
+    messages.addEventListener("wheel", handleMessagesWheel, { passive: false });
+
     cookieAcceptBtn?.addEventListener("click", () => {
         acceptOptionalCookies();
         updateConsentUI();
@@ -556,20 +606,23 @@ root.classList.add("kora-chatbot-no-animate", "kora-chatbot-preload");
         }
     });
 
-    messages.addEventListener("wheel", handleMessagesWheel, { passive: false });
-
     window.addEventListener("kora:cookie-consent-updated", () => {
         updateConsentUI();
         saveSessionState();
     });
 
-    restoreMessagesFromSession();
-input.value = storedState.draft || "";
-updateConsentUI();
-applyOpenState();
-finishInitialRender();
+    window.addEventListener("pagehide", () => {
+        saveSessionState();
+    });
 
-    if (isOpen) {
+    restoreMessagesFromSession();
+    input.value = storedState.draft || "";
+    updateConsentUI();
+    applyOpenState();
+    restoreScrollPosition();
+    finishInitialRender();
+
+    if (isOpen && !isRestoringOpenState) {
         window.setTimeout(() => {
             if (hasOptionalConsent()) {
                 input.focus();

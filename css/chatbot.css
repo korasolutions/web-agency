@@ -575,7 +575,18 @@ html[lang="en"] .kora-chatbot-header h3::after {
 }
 
 #kora-chatbot-root.kora-chatbot-no-animate .kora-chatbot-toggle,
-#kora-chatbot-root.kora-chatbot-no-animate .kora-chatbot-panel {
+#kora-chatbot-root.kora-chatbot-no-animate .kora-chatbot-panel,
+#kora-chatbot-root.kora-chatbot-no-animate .kora-chatbot-close,
+#kora-chatbot-root.kora-chatbot-no-animate .kora-chatbot-input,
+#kora-chatbot-root.kora-chatbot-no-animate .kora-chatbot-send,
+#kora-chatbot-root.kora-chatbot-no-animate .kora-chatbot-cookie-accept,
+#kora-chatbot-root.kora-chatbot-no-animate .kora-chatbot-message,
+#kora-chatbot-root.kora-chatbot-no-animate .typing-dots span {
+    transition: none !important;
+    animation: none !important;
+}
+
+#kora-chatbot-root.kora-chatbot-no-animate .kora-chatbot-input:focus {
     transition: none !important;
 }
 
