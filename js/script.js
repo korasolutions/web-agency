@@ -198,9 +198,18 @@ document.addEventListener('DOMContentLoaded', function () {
             });
         }
 
+        function updateBlogLink(lang) {
+            document.querySelectorAll('a[href^="/blog"], a[href^="/en/blog"]').forEach(a => {
+                if (a.dataset.i18n === 'nav.blog') a.setAttribute('href', lang === 'en' ? '/en/blog' : '/blog');
+            });
+        }
+
         document.addEventListener("i18n:changed", (e) => {
             paintLangActive(e.detail.lang);
+            updateBlogLink(e.detail.lang);
         });
+
+        updateBlogLink(localStorage.getItem("kora_lang") || "es");
 
         // cargar cookie-consent.js después de que exista #cookie-consent
         const s = document.createElement("script");
