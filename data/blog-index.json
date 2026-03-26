@@ -1,6 +1,33 @@
 {
-  "updatedAt": "2026-03-25T19:59:34.395Z",
+  "updatedAt": "2026-03-26T11:16:54.181Z",
   "posts": [
+    {
+      "locale": "es",
+      "title": "Cómo Digitalizar un Negocio Local en Lanzarote: Guía Paso a Paso",
+      "slug": "digitalizar-negocio-lanzarote",
+      "url": "/blog/digitalizar-negocio-lanzarote.html",
+      "excerpt": "Descubre cómo digitalizar tu negocio local en Lanzarote con esta guía completa. Mejora tu visibilidad y eficiencia con herramientas digitales.",
+      "category": "Desarrollo web",
+      "categorySlug": "desarrollo-web",
+      "keywords": [
+        "digitalización de negocios",
+        "desarrollo web Lanzarote",
+        "automatización para pymes",
+        "IA para negocios locales",
+        "Lanzarote",
+        "desarrollo web",
+        "automatización",
+        "IA",
+        "cómo digitalizar un negocio local en lanzarote paso a paso"
+      ],
+      "date": "26 de marzo de 2026",
+      "publishedAt": "2026-03-26T11:16:30.546Z",
+      "coverImage": "/assets/blog/articulo-negocios.webp",
+      "metaDescription": "Aprende a digitalizar tu negocio local en Lanzarote paso a paso. Optimiza tu operativa y aumenta tus conversiones con herramientas digitales.",
+      "alternateUrl": "/en/blog/digitize-local-business-lanzarote.html",
+      "seedTopic": "cómo digitalizar un negocio local en lanzarote paso a paso",
+      "imageTopicSlug": "negocios"
+    },
     {
       "locale": "es",
       "title": "La Importancia de Tener una Web que Convierta para Negocios Locales en Lanzarote",
