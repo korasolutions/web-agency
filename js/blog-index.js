@@ -106,9 +106,10 @@ function renderPosts(posts, grid, empty) {
         <a class="blog-card-cover-link" href="${escapeHtml(post.url)}" aria-label="${escapeHtml(post.title)}">
           <img
             class="blog-card-cover"
-            src="${escapeHtml(post.coverImage || '/assets/blog/articulo-negocios.webp')}"
+            src="${escapeHtml(post.coverImage || '/assets/blog/article-default-image.webp')}"
             alt="${escapeHtml(post.title)}"
             loading="lazy"
+            onerror="this.onerror=null;this.src='/assets/blog/article-default-image.webp';"
           >
         </a>
 
