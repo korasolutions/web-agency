@@ -395,6 +395,12 @@ function renderArticleHtml(locale, post) {
   <meta property="og:description" content="${escapeHtml(post.metaDescription || post.excerpt)}">
   <meta property="og:url" content="${canonicalUrl}">
   <meta property="og:image" content="${SITE_URL}${post.coverImage}">
+  <!-- FAVICONS -->
+  <link rel="icon" href="/assets/logo/icon/favicon.ico" sizes="any">
+  <link rel="icon" type="image/svg+xml" href="/assets/logo/icon/favicon.svg">
+  <link rel="icon" type="image/png" sizes="48x48" href="/assets/logo/icon/favicon-48.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="/assets/logo/icon/favicon-192.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/logo/icon/apple-touch-icon.png">
   <meta property="article:published_time" content="${post.publishedAt}">
   <meta property="article:section" content="${escapeHtml(post.category)}">
   ${post.keywords.map((keyword) => `<meta property="article:tag" content="${escapeHtml(keyword)}">`).join('\n  ')}
