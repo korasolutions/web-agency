@@ -57,10 +57,22 @@ document.addEventListener("DOMContentLoaded", () => {
                 body: JSON.stringify(payload),
             });
 
-            const data = await res.json().catch(() => ({}));
+            const rawText = await res.text();
+            let data = {};
+
+            try {
+                data = rawText ? JSON.parse(rawText) : {};
+            } catch {
+                data = {};
+            }
 
             if (!res.ok || !data.ok) {
-                throw new Error(data.detail || data.error || "Error desconocido");
+                throw new Error(
+                    data.detail ||
+                    data.error ||
+                    rawText ||
+                    `HTTP ${res.status}`
+                );
             }
 
             statusBox.dataset.state = "success";
@@ -70,7 +82,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
             form.reset();
         } catch (error) {
-            console.error("Error real en closer:", error.message);
+            console.error("Error real en closer:", error);
 
             statusBox.dataset.state = "error";
             statusBox.textContent =

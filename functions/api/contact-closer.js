@@ -11,9 +11,26 @@ export async function onRequestPost({ request, env }) {
         return json({ ok: false, error: "Bad JSON" }, 400);
     }
 
-    // Honeypot
     if (body.website && String(body.website).trim() !== "") {
         return json({ ok: true }, 200);
+    }
+
+    const missingEnv = [
+        "EMAILJS_CLOSER_SERVICE_ID",
+        "EMAILJS_CLOSER_TEMPLATE_INTERNAL_ID",
+        "EMAILJS_CLOSER_PUBLIC_KEY",
+        "EMAILJS_CLOSER_PRIVATE_KEY",
+    ].filter((key) => !env[key]);
+
+    if (missingEnv.length) {
+        return json(
+            {
+                ok: false,
+                error: "Missing Cloudflare env vars",
+                detail: `Faltan variables: ${missingEnv.join(", ")}`
+            },
+            500
+        );
     }
 
     const name = clean(body.name, 80);
@@ -31,68 +48,36 @@ export async function onRequestPost({ request, env }) {
         return json({ ok: false, error: "Invalid email" }, 400);
     }
 
-    const templateParams = {
-        name,
-        email,
-        phone,
-        experience,
-        message,
-        subject,
-    };
-
-    // 1) Correo interno
-    const internalPayload = {
+    const payload = {
         service_id: env.EMAILJS_CLOSER_SERVICE_ID,
         template_id: env.EMAILJS_CLOSER_TEMPLATE_INTERNAL_ID,
         user_id: env.EMAILJS_CLOSER_PUBLIC_KEY,
         accessToken: env.EMAILJS_CLOSER_PRIVATE_KEY,
-        template_params: templateParams,
+        template_params: {
+            name,
+            email,
+            phone,
+            experience,
+            message,
+            subject,
+        },
     };
 
-    const internalRes = await fetch("https://api.emailjs.com/api/v1.0/email/send", {
+    const res = await fetch("https://api.emailjs.com/api/v1.0/email/send", {
         method: "POST",
         headers: {
             "content-type": "application/json",
         },
-        body: JSON.stringify(internalPayload),
+        body: JSON.stringify(payload),
     });
 
-    if (!internalRes.ok) {
-        const detail = await internalRes.text().catch(() => "");
+    if (!res.ok) {
+        const detail = await res.text().catch(() => "");
         return json(
             {
                 ok: false,
-                error: "Internal email send failed",
-                detail,
-            },
-            502
-        );
-    }
-
-    // 2) Auto-reply
-    const autoReplyPayload = {
-        service_id: env.EMAILJS_CLOSER_SERVICE_ID,
-        template_id: env.EMAILJS_CLOSER_TEMPLATE_AUTOREPLY_ID,
-        user_id: env.EMAILJS_CLOSER_PUBLIC_KEY,
-        accessToken: env.EMAILJS_CLOSER_PRIVATE_KEY,
-        template_params: templateParams,
-    };
-
-    const autoReplyRes = await fetch("https://api.emailjs.com/api/v1.0/email/send", {
-        method: "POST",
-        headers: {
-            "content-type": "application/json",
-        },
-        body: JSON.stringify(autoReplyPayload),
-    });
-
-    if (!autoReplyRes.ok) {
-        const detail = await autoReplyRes.text().catch(() => "");
-        return json(
-            {
-                ok: false,
-                error: "Autoreply email send failed",
-                detail,
+                error: "EmailJS send failed",
+                detail: detail || "EmailJS no devolvió detalle"
             },
             502
         );
@@ -112,7 +97,7 @@ function json(data, status = 200) {
     return new Response(JSON.stringify(data), {
         status,
         headers: {
-            "content-type": "application/json",
+            "content-type": "application/json; charset=utf-8",
             "cache-control": "no-store",
         },
     });
