@@ -18,8 +18,9 @@ export async function onRequestPost({ request, env }) {
     const name = clean(body.name, 80);
     const email = clean(body.email, 120);
     const phone = clean(body.phone, 40);
-    const experience = clean(body.experience, 200);
+    const experience = clean(body.experience, 180);
     const message = clean(body.message, 4000);
+    const subject = "Candidatura Closer KORA";
 
     if (!name || !email || !phone || !experience || !message) {
         return json({ ok: false, error: "Missing fields" }, 400);
@@ -27,6 +28,21 @@ export async function onRequestPost({ request, env }) {
 
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) {
         return json({ ok: false, error: "Invalid email" }, 400);
+    }
+
+    if (
+        !env.EMAILJS_CLOSER_SERVICE_ID ||
+        !env.EMAILJS_CLOSER_TEMPLATE_INTERNAL_ID ||
+        !env.EMAILJS_CLOSER_PUBLIC_KEY ||
+        !env.EMAILJS_CLOSER_PRIVATE_KEY
+    ) {
+        return json(
+            {
+                ok: false,
+                error: "Missing Cloudflare env vars"
+            },
+            500
+        );
     }
 
     const payload = {
@@ -40,21 +56,42 @@ export async function onRequestPost({ request, env }) {
             phone,
             experience,
             message,
-        },
+            subject
+        }
     };
 
-    const r = await fetch("https://api.emailjs.com/api/v1.0/email/send", {
-        method: "POST",
-        headers: { "content-type": "application/json" },
-        body: JSON.stringify(payload),
-    });
+    try {
+        const r = await fetch("https://api.emailjs.com/api/v1.0/email/send", {
+            method: "POST",
+            headers: {
+                "content-type": "application/json"
+            },
+            body: JSON.stringify(payload)
+        });
 
-    if (!r.ok) {
-        const t = await r.text().catch(() => "");
-        return json({ ok: false, error: "Email send failed", detail: t }, 502);
+        if (!r.ok) {
+            const t = await r.text().catch(() => "");
+            return json(
+                {
+                    ok: false,
+                    error: "Email send failed",
+                    detail: t || `HTTP ${r.status}`
+                },
+                502
+            );
+        }
+
+        return json({ ok: true }, 200);
+    } catch (error) {
+        return json(
+            {
+                ok: false,
+                error: "Unhandled function error",
+                detail: error instanceof Error ? error.message : String(error)
+            },
+            500
+        );
     }
-
-    return json({ ok: true }, 200);
 }
 
 function clean(v, max) {
@@ -68,8 +105,8 @@ function json(obj, status = 200) {
     return new Response(JSON.stringify(obj), {
         status,
         headers: {
-            "content-type": "application/json",
-            "cache-control": "no-store",
-        },
+            "content-type": "application/json; charset=utf-8",
+            "cache-control": "no-store"
+        }
     });
 }

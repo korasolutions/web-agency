@@ -36,7 +36,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 phone: form.phone.value.trim(),
                 experience: form.experience.value.trim(),
                 message: form.message.value.trim(),
-                website: form.website.value,
+                website: form.website.value
             };
 
             if (
@@ -52,9 +52,9 @@ document.addEventListener("DOMContentLoaded", () => {
             const res = await fetch(API_URL, {
                 method: "POST",
                 headers: {
-                    "content-type": "application/json",
+                    "content-type": "application/json"
                 },
-                body: JSON.stringify(payload),
+                body: JSON.stringify(payload)
             });
 
             const rawText = await res.text();
@@ -67,10 +67,17 @@ document.addEventListener("DOMContentLoaded", () => {
             }
 
             if (!res.ok || !data.ok) {
+                const trimmed = rawText.trim();
+                const isHtml =
+                    trimmed.startsWith("<!DOCTYPE html") ||
+                    trimmed.startsWith("<html");
+
                 throw new Error(
                     data.detail ||
                     data.error ||
-                    rawText ||
+                    (isHtml
+                        ? `Error del servidor (${res.status}). Inténtalo de nuevo en unos minutos.`
+                        : rawText) ||
                     `HTTP ${res.status}`
                 );
             }
@@ -86,7 +93,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
             statusBox.dataset.state = "error";
             statusBox.textContent =
-                "Error: " + (error.message || "Ha ocurrido un error al enviar la candidatura.");
+                "Error: " +
+                (error.message || "Ha ocurrido un error al enviar la candidatura.");
             statusBox.classList.add("show", "error");
         } finally {
             if (btn) {
