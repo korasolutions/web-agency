@@ -10,9 +10,8 @@ export async function onRequestOptions() {
 }
 
 export async function onRequestPost({ request, env }) {
-    const vars = getEnvVars(env);
-
     try {
+        const vars = getEnvVars(env);
         if (!vars.serviceId || !vars.templateId || !vars.publicKey || !vars.privateKey) {
             return json(
                 {
