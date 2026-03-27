@@ -4,7 +4,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (!form || !statusBox) return;
 
-    const WHATSAPP_NUMBER = "34689074945";
+    const API_URL =
+        location.hostname === "localhost"
+            ? "https://koradigitalsolutions.com/api/contact-closer"
+            : "/api/contact-closer";
 
     function setStatus(state, message) {
         statusBox.dataset.state = state;
@@ -31,7 +34,7 @@ document.addEventListener("DOMContentLoaded", () => {
         return {
             name: clean(formEl.name?.value, 80),
             email: clean(formEl.email?.value, 120),
-            phone: clean(formEl.phone?.value, 30),
+            phone: clean(formEl.phone?.value, 20),
             experience: clean(formEl.experience?.value, 200),
             message: clean(formEl.message?.value, 4000),
             website: clean(formEl.website?.value, 200),
@@ -59,34 +62,44 @@ document.addEventListener("DOMContentLoaded", () => {
         return { ok: true };
     }
 
-    function buildWhatsAppMessage(data) {
-        return [
-            "Nueva candidatura de closer",
-            "",
-            `Nombre: ${data.name}`,
-            `Email: ${data.email}`,
-            `Teléfono: ${data.phone}`,
-            `Tiempo experiencia en ventas/closing: ${data.experience}`,
-            "",
-            "Experiencia:",
-            data.message
-        ].join("\n");
-    }
+    async function sendForm(data) {
+        const payload = {
+            name: data.name,
+            email: data.email,
+            phone: data.phone,
+            experience: data.experience,
+            message: data.message,
+            website: data.website
+        };
 
-    function openWhatsApp(data) {
-        const message = buildWhatsAppMessage(data);
-        const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
+        const res = await fetch(API_URL, {
+            method: "POST",
+            headers: {
+                "content-type": "application/json"
+            },
+            body: JSON.stringify(payload)
+        });
 
-        const newWindow = window.open(url, "_blank", "noopener,noreferrer");
-        if (!newWindow) {
-            window.location.href = url;
+        const text = await res.text();
+        let jsonData = null;
+
+        try {
+            jsonData = JSON.parse(text);
+        } catch {
+            throw new Error(text || "Respuesta inválida del servidor");
         }
+
+        if (!res.ok || !jsonData?.ok) {
+            throw new Error(jsonData?.error || jsonData?.detail || "Error desconocido");
+        }
+
+        return jsonData;
     }
 
-    form.addEventListener("submit", function (e) {
+    form.addEventListener("submit", async function (e) {
         e.preventDefault();
 
-        const btn = form.querySelector("button[type='submit']");
+        const btn = form.querySelector("button");
         const originalHTML = btn ? btn.innerHTML : "";
 
         const data = getFormData(form);
@@ -101,18 +114,24 @@ document.addEventListener("DOMContentLoaded", () => {
 
         if (btn) {
             btn.disabled = true;
-            btn.innerHTML = "Abriendo WhatsApp...";
+            btn.innerHTML = "Enviando...";
         }
 
-        setStatus("sending", "Abriendo WhatsApp...");
+        setStatus("sending", "");
 
         try {
-            openWhatsApp(data);
-            setStatus("success", "WhatsApp abierto con el mensaje preparado.");
+            await sendForm(data);
+            setStatus("success", "Mensaje enviado correctamente.");
             form.reset();
         } catch (error) {
-            console.error("Error al abrir WhatsApp:", error);
-            setStatus("error", "Error: No se pudo abrir WhatsApp.");
+            console.error("Error real:", error);
+
+            const msg = error?.message || "Fallo en el envío";
+            const cleanMsg = msg.includes("<!DOCTYPE html>")
+                ? "El backend devolvió HTML en vez de JSON. Revisa la ruta /api/contact-closer."
+                : msg;
+
+            setStatus("error", "Error: " + cleanMsg);
         } finally {
             if (btn) {
                 btn.disabled = false;
