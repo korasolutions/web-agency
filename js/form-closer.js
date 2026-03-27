@@ -93,9 +93,15 @@ document.addEventListener("DOMContentLoaded", () => {
             form.reset();
 
         } catch (error) {
-            console.error("Error real:", error);
-            setStatus("error", "Error: " + (error.message || "Fallo en el envío"));
-        } finally {
+    console.error("Error real:", error);
+
+    const msg = error?.message || "Fallo en el envío";
+    const cleanMsg = msg.includes("<!DOCTYPE html>")
+        ? "El backend devolvió un 502. Mira el detail JSON de la function."
+        : msg;
+
+    setStatus("error", "Error: " + cleanMsg);
+} finally {
             if (btn) {
                 btn.disabled = false;
                 btn.innerHTML = originalHTML;
