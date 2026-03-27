@@ -66,20 +66,21 @@ document.addEventListener("DOMContentLoaded", () => {
                 data = {};
             }
 
-            if (!res.ok || !data.ok) {
-                const trimmed = rawText.trim();
-                const isHtml =
-                    trimmed.startsWith("<!DOCTYPE html") ||
-                    trimmed.startsWith("<html");
+            console.log("Closer API status:", res.status);
+            console.log("Closer API raw response:", rawText);
+            console.log("Closer API parsed response:", data);
 
-                throw new Error(
-                    data.detail ||
-                    data.error ||
-                    (isHtml
-                        ? `Error del servidor (${res.status}). Inténtalo de nuevo en unos minutos.`
-                        : rawText) ||
-                    `HTTP ${res.status}`
-                );
+            if (!res.ok || !data.ok) {
+                const debugMessage = [
+                    data.step ? `step=${data.step}` : null,
+                    data.error ? `error=${data.error}` : null,
+                    data.detail ? `detail=${data.detail}` : null,
+                    data.status ? `status=${data.status}` : null
+                ]
+                    .filter(Boolean)
+                    .join(" | ");
+
+                throw new Error(debugMessage || rawText || `HTTP ${res.status}`);
             }
 
             statusBox.dataset.state = "success";
