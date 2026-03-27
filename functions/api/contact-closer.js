@@ -7,17 +7,20 @@ export async function onRequestGet() {
     });
 }
 
-export async function onRequestPost({ request }) {
-    let raw = "";
-
+export async function onRequestPost({ request, env }) {
     try {
-        raw = await request.text();
+        const contentType = request.headers.get("content-type") || "";
+        const raw = await request.text();
 
         return new Response(
             JSON.stringify({
                 ok: true,
-                method: "POST",
-                received: raw
+                contentType,
+                hasCloserServiceId: !!env.EMAILJS_CLOSER_SERVICE_ID,
+                hasCloserTemplateId: !!env.EMAILJS_CLOSER_TEMPLATE_INTERNAL_ID,
+                hasCloserPublicKey: !!env.EMAILJS_CLOSER_PUBLIC_KEY,
+                hasCloserPrivateKey: !!env.EMAILJS_CLOSER_PRIVATE_KEY,
+                raw
             }),
             {
                 status: 200,
