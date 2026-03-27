@@ -20,27 +20,57 @@ if (!apiKey) {
   throw new Error('Falta OPENROUTER_API_KEY en las variables del workflow.');
 }
 
+// scope: 'lanzarote' | 'canarias' | 'generic'
 const topicPool = [
-  'seo local en lanzarote para negocios de servicios',
-  'cómo captar clientes en lanzarote con una web profesional',
-  'por qué un negocio local en lanzarote necesita una web que convierta',
-  'automatizaciones con ia para negocios locales en lanzarote',
-  'cómo usar un chatbot con ia para captar leads en lanzarote',
-  'errores que hacen que una web de empresa en lanzarote no genere clientes',
-  'cómo mejorar la velocidad de una web para vender más en lanzarote',
-  'qué debe tener una landing page para negocios locales en lanzarote',
-  'cuándo una empresa en lanzarote necesita rediseñar su página web',
-  'cómo automatizar respuestas de clientes sin perder calidad en negocios locales',
-  'ia aplicada a reservas formularios y atención al cliente en lanzarote',
-  'por qué una web bonita no siempre vende en negocios locales',
-  'cómo una pyme en lanzarote puede ahorrar tiempo automatizando procesos',
-  'diferencias entre una web corporativa y una landing page para captar clientes',
-  'cómo elegir una agencia de desarrollo web y automatización en lanzarote',
-  'qué contenido ayuda a posicionar una web de servicios en lanzarote',
-  'seo para clínicas restaurantes y negocios turísticos en lanzarote',
-  'cómo digitalizar un negocio local en lanzarote paso a paso',
-  'cómo conseguir más contactos desde una web de empresa en lanzarote',
-  'automatización de whatsapp y formularios para negocios en lanzarote'
+  // --- Lanzarote ---
+  { topic: 'seo local en lanzarote para negocios de servicios', scope: 'lanzarote', category: 'seo' },
+  { topic: 'cómo captar clientes en lanzarote con una web profesional', scope: 'lanzarote', category: 'desarrollo-web' },
+  { topic: 'por qué un negocio local en lanzarote necesita una web que convierta', scope: 'lanzarote', category: 'desarrollo-web' },
+  { topic: 'automatizaciones con ia para negocios locales en lanzarote', scope: 'lanzarote', category: 'automatizacion' },
+  { topic: 'cómo usar un chatbot con ia para captar leads en lanzarote', scope: 'lanzarote', category: 'ia' },
+  { topic: 'errores que hacen que una web de empresa en lanzarote no genere clientes', scope: 'lanzarote', category: 'desarrollo-web' },
+  { topic: 'qué debe tener una landing page para negocios locales en lanzarote', scope: 'lanzarote', category: 'desarrollo-web' },
+  { topic: 'cuándo una empresa en lanzarote necesita rediseñar su página web', scope: 'lanzarote', category: 'desarrollo-web' },
+  { topic: 'ia aplicada a reservas formularios y atención al cliente en lanzarote', scope: 'lanzarote', category: 'ia' },
+  { topic: 'cómo una pyme en lanzarote puede ahorrar tiempo automatizando procesos', scope: 'lanzarote', category: 'automatizacion' },
+  { topic: 'cómo elegir una agencia de desarrollo web y automatización en lanzarote', scope: 'lanzarote', category: 'desarrollo-web' },
+  { topic: 'qué contenido ayuda a posicionar una web de servicios en lanzarote', scope: 'lanzarote', category: 'seo' },
+  { topic: 'seo para clínicas restaurantes y negocios turísticos en lanzarote', scope: 'lanzarote', category: 'seo' },
+  { topic: 'cómo digitalizar un negocio local en lanzarote paso a paso', scope: 'lanzarote', category: 'negocios' },
+  { topic: 'cómo conseguir más contactos desde una web de empresa en lanzarote', scope: 'lanzarote', category: 'desarrollo-web' },
+  { topic: 'automatización de whatsapp y formularios para negocios en lanzarote', scope: 'lanzarote', category: 'automatizacion' },
+  { topic: 'cómo mejorar la velocidad de una web para vender más en lanzarote', scope: 'lanzarote', category: 'desarrollo-web' },
+  { topic: 'estrategia de contenidos para negocios locales en lanzarote', scope: 'lanzarote', category: 'seo' },
+  { topic: 'cómo los negocios turísticos de lanzarote pueden usar la ia para crecer', scope: 'lanzarote', category: 'ia' },
+
+  // --- Canarias ---
+  { topic: 'marketing digital para negocios locales en canarias', scope: 'canarias', category: 'negocios' },
+  { topic: 'cómo posicionar una empresa en canarias con seo local', scope: 'canarias', category: 'seo' },
+  { topic: 'automatización de procesos para pymes en canarias', scope: 'canarias', category: 'automatizacion' },
+  { topic: 'ia para el sector turístico en canarias', scope: 'canarias', category: 'ia' },
+  { topic: 'desarrollo web para negocios en las islas canarias', scope: 'canarias', category: 'desarrollo-web' },
+  { topic: 'cómo una empresa canaria puede competir online con grandes marcas', scope: 'canarias', category: 'negocios' },
+  { topic: 'seo local para restaurantes y hoteles en canarias', scope: 'canarias', category: 'seo' },
+  { topic: 'digitalización de pymes en canarias oportunidades y retos', scope: 'canarias', category: 'negocios' },
+  { topic: 'chatbots e ia para el comercio local en canarias', scope: 'canarias', category: 'ia' },
+  { topic: 'landing pages que convierten para negocios de servicios en canarias', scope: 'canarias', category: 'desarrollo-web' },
+
+  // --- Genérico ---
+  { topic: 'cómo automatizar respuestas de clientes sin perder calidad en negocios locales', scope: 'generic', category: 'automatizacion' },
+  { topic: 'diferencias entre una web corporativa y una landing page para captar clientes', scope: 'generic', category: 'desarrollo-web' },
+  { topic: 'por qué una web bonita no siempre vende en negocios locales', scope: 'generic', category: 'desarrollo-web' },
+  { topic: 'qué es un chatbot con ia y cómo puede aumentar las ventas de tu negocio', scope: 'generic', category: 'ia' },
+  { topic: 'cómo medir si tu web está generando clientes de verdad', scope: 'generic', category: 'negocios' },
+  { topic: 'automatización del proceso de onboarding para clientes de servicios', scope: 'generic', category: 'automatizacion' },
+  { topic: 'por qué los formularios de contacto mal diseñados pierden clientes', scope: 'generic', category: 'desarrollo-web' },
+  { topic: 'cómo crear un embudo de ventas digital para un negocio de servicios', scope: 'generic', category: 'negocios' },
+  { topic: 'qué es el seo local y por qué importa para cualquier negocio', scope: 'generic', category: 'seo' },
+  { topic: 'inteligencia artificial aplicada a la atención al cliente en pymes', scope: 'generic', category: 'ia' },
+  { topic: 'cómo reducir el tiempo de respuesta a clientes con automatizaciones', scope: 'generic', category: 'automatizacion' },
+  { topic: 'por qué tu empresa necesita una landing page además de una web corporativa', scope: 'generic', category: 'desarrollo-web' },
+  { topic: 'cómo el diseño web influye en la tasa de conversión de un negocio', scope: 'generic', category: 'desarrollo-web' },
+  { topic: 'señales de que tu web necesita una actualización urgente', scope: 'generic', category: 'desarrollo-web' },
+  { topic: 'automatización de emails y seguimiento para negocios de servicios', scope: 'generic', category: 'automatizacion' },
 ];
 
 const categoryMapEs = {
@@ -83,12 +113,10 @@ const secondLastCategory = lastTwoCategories[1] || null;
 
 let selectedTopic;
 if (lastCategory && lastCategory === secondLastCategory) {
-  const forcedTopic = pickTopic(recentTopics, lastCategory);
-  selectedTopic = forcedTopic;
+  selectedTopic = pickTopic(recentTopics, lastCategory);
 } else {
   selectedTopic = pickTopic(recentTopics, null);
 }
-
 
 const esPost = await generateSpanishArticle(selectedTopic, usedTitlesEs, usedSlugsEs);
 const enPost = await generateEnglishVersion(esPost, usedSlugsEn);
@@ -137,44 +165,16 @@ console.log(`Artículo ES generado: ${linkedEsPost.title}`);
 console.log(`Article EN generated: ${linkedEnPost.title}`);
 
 function pickTopic(recentTopicsSet, lastCategory) {
-  let available = topicPool.filter((topic) => !recentTopicsSet.has(topic.toLowerCase()));
-  
+  const available = topicPool.filter((t) => !recentTopicsSet.has(t.topic.toLowerCase()));
   const pool = available.length >= 3 ? available : topicPool;
-  
-  // Si tenemos categoría anterior, intentar evitar temas de esa categoría
+
   if (lastCategory) {
-    const topicToCategory = {
-      'seo local en lanzarote para negocios de servicios': 'seo',
-      'cómo captar clientes en lanzarote con una web profesional': 'desarrollo-web',
-      'por qué un negocio local en lanzarote necesita una web que convierta': 'desarrollo-web',
-      'automatizaciones con ia para negocios locales en lanzarote': 'automatizacion',
-      'cómo usar un chatbot con ia para captar leads en lanzarote': 'ia',
-      'errores que hacen que una web de empresa en lanzarote no genere clientes': 'desarrollo-web',
-      'cómo mejorar la velocidad de una web para vender más en lanzarote': 'desarrollo-web',
-      'qué debe tener una landing page para negocios locales en lanzarote': 'desarrollo-web',
-      'cuándo una empresa en lanzarote necesita rediseñar su página web': 'desarrollo-web',
-      'cómo automatizar respuestas de clientes sin perder calidad en negocios locales': 'automatizacion',
-      'ia aplicada a reservas formularios y atención al cliente en lanzarote': 'ia',
-      'por qué una web bonita no siempre vende en negocios locales': 'desarrollo-web',
-      'cómo una pyme en lanzarote puede ahorrar tiempo automatizando procesos': 'automatizacion',
-      'diferencias entre una web corporativa y una landing page para captar clientes': 'desarrollo-web',
-      'cómo elegir una agencia de desarrollo web y automatización en lanzarote': 'desarrollo-web',
-      'qué contenido ayuda a posicionar una web de servicios en lanzarote': 'seo',
-      'seo para clínicas restaurantes y negocios turísticos en lanzarote': 'seo',
-      'cómo digitalizar un negocio local en lanzarote paso a paso': 'negocios',
-      'cómo conseguir más contactos desde una web de empresa en lanzarote': 'desarrollo-web',
-      'automatización de whatsapp y formularios para negocios en lanzarote': 'automatizacion'
-    };
-    
-    const differentCategoryTopics = pool.filter(topic => 
-      topicToCategory[topic.toLowerCase()] !== lastCategory
-    );
-    
-    if (differentCategoryTopics.length > 0) {
-      return differentCategoryTopics[Math.floor(Math.random() * differentCategoryTopics.length)];
+    const differentCategory = pool.filter((t) => t.category !== lastCategory);
+    if (differentCategory.length > 0) {
+      return differentCategory[Math.floor(Math.random() * differentCategory.length)];
     }
   }
-  
+
   return pool[Math.floor(Math.random() * pool.length)];
 }
 
@@ -188,7 +188,33 @@ function getLastCategories(posts, count = 2) {
   return categories;
 }
 
-async function generateSpanishArticle(seedTopic, usedTitles, usedSlugs) {
+function buildGeoContext(scope) {
+  if (scope === 'lanzarote') {
+    return {
+      positioningLine: 'Zona de posicionamiento principal: Lanzarote.',
+      contentGuideline: 'Incluye referencias naturales al contexto de negocios locales en Lanzarote cuando tenga sentido.',
+      enPreserveLine: 'Preserve the local Lanzarote context where relevant.'
+    };
+  }
+  if (scope === 'canarias') {
+    return {
+      positioningLine: 'Zona de posicionamiento: Canarias (islas canarias en general).',
+      contentGuideline: 'Haz referencia al contexto canario cuando tenga sentido, sin limitarte a una sola isla.',
+      enPreserveLine: 'Preserve the Canary Islands context where relevant, without limiting to a single island.'
+    };
+  }
+  // generic
+  return {
+    positioningLine: 'Dirigido a cualquier pyme o negocio local, sin referencia geográfica específica.',
+    contentGuideline: 'No hagas referencias geográficas específicas. Habla de negocios locales o pymes en general.',
+    enPreserveLine: 'Do not add geographic references. Keep the content general, applicable to any local business.'
+  };
+}
+
+async function generateSpanishArticle(topicObj, usedTitles, usedSlugs) {
+  const { topic: seedTopic, scope } = topicObj;
+  const geo = buildGeoContext(scope);
+
   const prompt = `
 Eres el equipo editorial SEO de KORA Digital Solutions.
 
@@ -196,12 +222,12 @@ Contexto de marca:
 - KORA es una agencia digital que crea webs de alto impacto y sistemas de IA para que los negocios conviertan más y trabajen menos.
 - Cliente ideal: negocios locales y pymes que quieren digitalizarse rápido.
 - Servicios: desarrollo web, rediseño web, automatizaciones con IA, chatbots, formularios inteligentes, reservas, FAQs dinámicas.
-- Zona de posicionamiento principal: Lanzarote.
+- ${geo.positioningLine}
 - Tono: profesional, claro, cercano, práctico, sin relleno.
 - Debe sonar experto, local y útil de verdad.
 
 Objetivo:
-Crear un artículo SEO en español, de alta calidad, pensado para posicionar búsquedas relacionadas con desarrollo web, automatización e IA para empresas en Lanzarote.
+Crear un artículo SEO en español, de alta calidad, pensado para posicionar búsquedas relacionadas con desarrollo web, automatización e IA para empresas.
 
 Tema semilla:
 ${seedTopic}
@@ -212,7 +238,7 @@ Instrucciones obligatorias:
 - El artículo debe ser original y profundo.
 - Longitud del contenido HTML: entre 1200 y 1700 palabras.
 - Enfocado en intención informacional + comercial.
-- Debe incluir referencias naturales al contexto de negocios locales en Lanzarote cuando tenga sentido.
+- ${geo.contentGuideline}
 - No inventes estadísticas ni casos falsos.
 - No abuses del nombre KORA.
 - No escribas frases vacías.
@@ -302,18 +328,21 @@ Estructura del JSON:
     metaDescription: trimMetaDescription(parsed.metaDescription, parsed.excerpt),
     categorySlug: parsed.categorySlug in categoryMapEs ? parsed.categorySlug : 'negocios',
     category: categoryMapEs[parsed.categorySlug] || 'Negocios',
-    keywords: normalizeKeywords(parsed.keywords, seedTopic),
+    keywords: normalizeKeywords(parsed.keywords, seedTopic, scope),
     imageTopicSlug,
     coverImage,
     contentHtml: sanitizeHtml(parsed.contentHtml),
     publishedAt,
     date,
     url: `/blog/${finalSlug}`,
-    seedTopic
+    seedTopic,
+    scope
   };
 }
 
 async function generateEnglishVersion(esPost, usedSlugsEn) {
+  const geo = buildGeoContext(esPost.scope);
+
   const prompt = `
 Translate and adapt this Spanish article into high-quality natural English for the KORA Digital Solutions blog.
 
@@ -324,7 +353,7 @@ Requirements:
 - Keep SEO quality.
 - Do not translate word by word in a robotic way.
 - Keep HTML content with clean tags: <p>, <h2>, <h3>, <ul>, <li>, <strong>.
-- Preserve the local Lanzarote context where relevant.
+- ${geo.enPreserveLine}
 - Keep the CTA natural in English.
 - Keep the FAQ block in English.
 - Generate an English slug.
@@ -404,17 +433,18 @@ JSON structure:
     title: cleanText(parsed.title),
     slug: finalSlug,
     excerpt: cleanText(parsed.excerpt),
-    metaDescription: trimMetaDescription(parsed.metaDescription, parsed.excerpt, 'en'),
+    metaDescription: trimMetaDescription(parsed.metaDescription, parsed.excerpt),
     categorySlug: parsed.categorySlug in categoryMapEn ? parsed.categorySlug : esPost.categorySlug,
     category: categoryMapEn[parsed.categorySlug] || categoryMapEn[esPost.categorySlug] || 'Business',
-    keywords: normalizeKeywords(parsed.keywords, esPost.seedTopic),
+    keywords: normalizeKeywords(parsed.keywords, esPost.seedTopic, esPost.scope),
     imageTopicSlug,
     coverImage,
     contentHtml: sanitizeHtml(parsed.contentHtml),
     publishedAt,
     date,
     url: `/en/blog/${finalSlug}`,
-    seedTopic: esPost.seedTopic
+    seedTopic: esPost.seedTopic,
+    scope: esPost.scope
   };
 }
 
@@ -560,7 +590,8 @@ function toIndexEntry(locale, post) {
     metaDescription: post.metaDescription,
     alternateUrl: post.alternateUrl,
     seedTopic: post.seedTopic,
-    imageTopicSlug: post.imageTopicSlug
+    imageTopicSlug: post.imageTopicSlug,
+    scope: post.scope
   };
 }
 
@@ -709,9 +740,17 @@ function cleanText(value) {
   return String(value || '').replace(/\s+/g, ' ').trim();
 }
 
-function normalizeKeywords(keywords, seedTopic) {
+function normalizeKeywords(keywords, seedTopic, scope) {
   const base = Array.isArray(keywords) ? keywords : [];
-  const merged = [...base, 'Lanzarote', 'desarrollo web', 'automatización', 'IA', seedTopic];
+  const geoKeyword = scope === 'lanzarote' ? 'Lanzarote' : scope === 'canarias' ? 'Canarias' : null;
+  const merged = [
+    ...base,
+    ...(geoKeyword ? [geoKeyword] : []),
+    'desarrollo web',
+    'automatización',
+    'IA',
+    seedTopic
+  ];
   const cleaned = merged
     .map((item) => cleanText(item))
     .filter(Boolean)
@@ -720,14 +759,12 @@ function normalizeKeywords(keywords, seedTopic) {
   return Array.from(new Set(cleaned));
 }
 
-function trimMetaDescription(metaDescription, fallback = '', locale = 'es') {
+function trimMetaDescription(metaDescription, fallback = '') {
   const source = cleanText(metaDescription) || cleanText(fallback);
   const max = 160;
 
   if (!source) {
-    return locale === 'en'
-      ? 'Web development, automation, and AI insights for businesses in Lanzarote.'
-      : 'Ideas de desarrollo web, automatización e IA para negocios en Lanzarote.';
+    return 'Ideas sobre desarrollo web, automatización e IA para negocios y pymes.';
   }
 
   return source.length <= max ? source : `${source.slice(0, max - 1).trim()}…`;
