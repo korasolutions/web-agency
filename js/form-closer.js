@@ -93,8 +93,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
             statusBox.dataset.state = "error";
             statusBox.textContent =
-                "Error: " +
-                (error.message || "Ha ocurrido un error al enviar la candidatura.");
+                "Error: " + (error.message || "Ha ocurrido un error al enviar la candidatura.");
             statusBox.classList.add("show", "error");
         } finally {
             if (btn) {

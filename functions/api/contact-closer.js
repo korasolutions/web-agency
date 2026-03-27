@@ -1,59 +1,106 @@
 export async function onRequestGet() {
-    return new Response("OK GET CLOSER", {
-        status: 200,
-        headers: {
-            "content-type": "text/plain; charset=utf-8"
-        }
-    });
+    return json({
+        ok: true,
+        route: "/api/contact-closer",
+        method: "GET"
+    }, 200);
 }
 
 export async function onRequestPost({ request, env }) {
-    try {
-        const contentType = request.headers.get("content-type") || "";
-        const raw = await request.text();
+    const contentType = request.headers.get("content-type") || "";
+    if (!contentType.includes("application/json")) {
+        return json({ ok: false, error: "Unsupported Media Type" }, 415);
+    }
 
-        return new Response(
-            JSON.stringify({
-                ok: true,
-                contentType,
-                hasCloserServiceId: !!env.EMAILJS_CLOSER_SERVICE_ID,
-                hasCloserTemplateId: !!env.EMAILJS_CLOSER_TEMPLATE_INTERNAL_ID,
-                hasCloserPublicKey: !!env.EMAILJS_CLOSER_PUBLIC_KEY,
-                hasCloserPrivateKey: !!env.EMAILJS_CLOSER_PRIVATE_KEY,
-                raw
-            }),
-            {
-                status: 200,
-                headers: {
-                    "content-type": "application/json; charset=utf-8",
-                    "cache-control": "no-store"
-                }
-            }
-        );
-    } catch (error) {
-        return new Response(
-            JSON.stringify({
+    let body;
+    try {
+        body = await request.json();
+    } catch {
+        return json({ ok: false, error: "Bad JSON" }, 400);
+    }
+
+    if (body.website && String(body.website).trim() !== "") {
+        return json({ ok: true }, 200);
+    }
+
+    const name = clean(body.name, 80);
+    const email = clean(body.email, 120);
+    const phone = clean(body.phone, 40);
+    const experience = clean(body.experience, 180);
+    const message = clean(body.message, 4000);
+    const subject = "Candidatura Closer KORA";
+
+    if (!name || !email || !phone || !experience || !message) {
+        return json({ ok: false, error: "Missing fields" }, 400);
+    }
+
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) {
+        return json({ ok: false, error: "Invalid email" }, 400);
+    }
+
+    if (
+        !env.EMAILJS_CLOSER_SERVICE_ID ||
+        !env.EMAILJS_CLOSER_TEMPLATE_INTERNAL_ID ||
+        !env.EMAILJS_CLOSER_PUBLIC_KEY ||
+        !env.EMAILJS_CLOSER_PRIVATE_KEY
+    ) {
+        return json({ ok: false, error: "Missing Cloudflare env vars" }, 500);
+    }
+
+    const payload = {
+        service_id: env.EMAILJS_CLOSER_SERVICE_ID,
+        template_id: env.EMAILJS_CLOSER_TEMPLATE_INTERNAL_ID,
+        user_id: env.EMAILJS_CLOSER_PUBLIC_KEY,
+        accessToken: env.EMAILJS_CLOSER_PRIVATE_KEY,
+        template_params: {
+            name,
+            email,
+            phone,
+            experience,
+            message,
+            subject
+        }
+    };
+
+    try {
+        const r = await fetch("https://api.emailjs.com/api/v1.0/email/send", {
+            method: "POST",
+            headers: { "content-type": "application/json" },
+            body: JSON.stringify(payload)
+        });
+
+        if (!r.ok) {
+            const t = await r.text().catch(() => "");
+            return json({
                 ok: false,
-                error: error instanceof Error ? error.message : String(error)
-            }),
-            {
-                status: 500,
-                headers: {
-                    "content-type": "application/json; charset=utf-8",
-                    "cache-control": "no-store"
-                }
-            }
-        );
+                error: "Email send failed",
+                detail: t || `HTTP ${r.status}`
+            }, 502);
+        }
+
+        return json({ ok: true }, 200);
+    } catch (error) {
+        return json({
+            ok: false,
+            error: "Unhandled function error",
+            detail: error instanceof Error ? error.message : String(error)
+        }, 500);
     }
 }
 
-export async function onRequestOptions() {
-    return new Response(null, {
-        status: 204,
+function clean(v, max) {
+    return String(v || "")
+        .replace(/\u0000/g, "")
+        .trim()
+        .slice(0, max);
+}
+
+function json(obj, status = 200) {
+    return new Response(JSON.stringify(obj), {
+        status,
         headers: {
-            "Access-Control-Allow-Origin": "*",
-            "Access-Control-Allow-Methods": "GET, POST, OPTIONS",
-            "Access-Control-Allow-Headers": "Content-Type"
+            "content-type": "application/json; charset=utf-8",
+            "cache-control": "no-store"
         }
     });
 }
