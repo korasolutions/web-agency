@@ -1,6 +1,31 @@
 {
-  "updatedAt": "2026-03-26T11:16:54.181Z",
+  "updatedAt": "2026-03-27T10:41:34.948Z",
   "posts": [
+    {
+      "locale": "es",
+      "title": "Cómo Conseguir Más Contactos desde Tu Web de Empresa en Lanzarote",
+      "slug": "contactos-web-lanzarote",
+      "url": "/blog/contactos-web-lanzarote",
+      "excerpt": "Descubre estrategias efectivas para optimizar tu web y atraer más contactos en Lanzarote. Aumenta tu conversión con desarrollo web y automatización.",
+      "category": "Desarrollo web",
+      "categorySlug": "desarrollo-web",
+      "keywords": [
+        "contactos web Lanzarote",
+        "desarrollo web",
+        "automatización",
+        "empresas locales",
+        "Lanzarote",
+        "IA",
+        "cómo conseguir más contactos desde una web de empresa en lanzarote"
+      ],
+      "date": "27 de marzo de 2026",
+      "publishedAt": "2026-03-27T10:41:17.280Z",
+      "coverImage": "/assets/blog/articulo-desarrollo-web.webp",
+      "metaDescription": "Aprende a optimizar tu web en Lanzarote para conseguir más contactos. Estrategias de desarrollo web y automatización que impulsan tu negocio.",
+      "alternateUrl": "/en/blog/generate-more-leads-lanzarote",
+      "seedTopic": "cómo conseguir más contactos desde una web de empresa en lanzarote",
+      "imageTopicSlug": "desarrollo-web"
+    },
     {
       "locale": "es",
       "title": "Cómo Digitalizar un Negocio Local en Lanzarote: Guía Paso a Paso",
