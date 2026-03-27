@@ -23,34 +23,92 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
+    function clean(value, max) {
+        return String(value || "")
+            .replace(/\u0000/g, "")
+            .trim()
+            .slice(0, max);
+    }
+
+    function getFormData(formEl) {
+        return {
+            name: clean(formEl.name?.value, 80),
+            email: clean(formEl.email?.value, 120),
+            phone: clean(formEl.phone?.value, 20),
+            experience: clean(formEl.experience?.value, 200),
+            message: clean(formEl.message?.value, 4000),
+            website: clean(formEl.website?.value, 200),
+            privacyChecked: !!formEl.privacy?.checked
+        };
+    }
+
+    function validateForm(data) {
+        if (data.website !== "") {
+            return { ok: false, honeypot: true };
+        }
+
+        if (!data.name || !data.email || !data.phone || !data.experience || !data.message) {
+            return { ok: false, message: "Error: Completa todos los campos." };
+        }
+
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(data.email)) {
+            return { ok: false, message: "Error: Email inválido." };
+        }
+
+        if (!data.privacyChecked) {
+            return { ok: false, message: "Error: Acepta la política de privacidad." };
+        }
+
+        return { ok: true };
+    }
+
+    async function sendForm(data) {
+        const payload = {
+            name: data.name,
+            email: data.email,
+            phone: data.phone,
+            experience: data.experience,
+            message: data.message,
+            website: data.website
+        };
+
+        const res = await fetch(API_URL, {
+            method: "POST",
+            headers: {
+                "content-type": "application/json"
+            },
+            body: JSON.stringify(payload)
+        });
+
+        const text = await res.text();
+        let jsonData = null;
+
+        try {
+            jsonData = JSON.parse(text);
+        } catch {
+            throw new Error(text || "Respuesta inválida del servidor");
+        }
+
+        if (!res.ok || !jsonData?.ok) {
+            throw new Error(jsonData?.error || jsonData?.detail || "Error desconocido");
+        }
+
+        return jsonData;
+    }
+
     form.addEventListener("submit", async function (e) {
         e.preventDefault();
-
-        // Honeypot
-        if (this.website && this.website.value !== "") return;
 
         const btn = form.querySelector("button");
         const originalHTML = btn ? btn.innerHTML : "";
 
-        const name = form.name?.value.trim() || "";
-        const email = form.email?.value.trim() || "";
-        const phone = form.phone?.value.trim() || "";
-        const experience = form.experience?.value.trim() || "";
-        const message = form.message?.value.trim() || "";
-        const privacyChecked = form.privacy?.checked;
+        const data = getFormData(form);
+        const validation = validateForm(data);
 
-        if (!name || !email || !phone || !experience || !message) {
-            setStatus("error", "Error: Completa todos los campos.");
-            return;
-        }
+        if (validation.honeypot) return;
 
-        if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) {
-            setStatus("error", "Error: Email inválido.");
-            return;
-        }
-
-        if (!privacyChecked) {
-            setStatus("error", "Error: Acepta la política de privacidad.");
+        if (!validation.ok) {
+            setStatus("error", validation.message);
             return;
         }
 
@@ -62,46 +120,19 @@ document.addEventListener("DOMContentLoaded", () => {
         setStatus("sending", "");
 
         try {
-            const res = await fetch(API_URL, {
-                method: "POST",
-                headers: {
-                    "content-type": "application/json",
-                },
-                body: JSON.stringify({
-                    name,
-                    email,
-                    phone,
-                    experience,
-                    message,
-                }),
-            });
-
-            const text = await res.text();
-            let data;
-
-            try {
-                data = JSON.parse(text);
-            } catch {
-                throw new Error(text || "Respuesta inválida del servidor");
-            }
-
-            if (!res.ok || !data.ok) {
-                throw new Error(data.error || data.detail || "Error desconocido");
-            }
-
+            await sendForm(data);
             setStatus("success", "Mensaje enviado correctamente.");
             form.reset();
-
         } catch (error) {
-    console.error("Error real:", error);
+            console.error("Error real:", error);
 
-    const msg = error?.message || "Fallo en el envío";
-    const cleanMsg = msg.includes("<!DOCTYPE html>")
-        ? "El backend devolvió un 502. Mira el detail JSON de la function."
-        : msg;
+            const msg = error?.message || "Fallo en el envío";
+            const cleanMsg = msg.includes("<!DOCTYPE html>")
+                ? "El backend devolvió HTML en vez de JSON. Revisa la ruta /api/contact-closer."
+                : msg;
 
-    setStatus("error", "Error: " + cleanMsg);
-} finally {
+            setStatus("error", "Error: " + cleanMsg);
+        } finally {
             if (btn) {
                 btn.disabled = false;
                 btn.innerHTML = originalHTML;

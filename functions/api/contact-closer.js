@@ -1,78 +1,50 @@
 export async function onRequestPost({ request, env }) {
+    const vars = getEnvVars(env);
+
     try {
         const contentType = request.headers.get("content-type") || "";
-
         if (!contentType.includes("application/json")) {
             return json({ ok: false, error: "Unsupported Media Type" }, 415);
         }
 
-        let body;
-        try {
-            body = await request.json();
-        } catch {
+        const body = await request.json().catch(() => null);
+        if (!body) {
             return json({ ok: false, error: "Bad JSON" }, 400);
         }
 
+        // Honeypot
         if (body.website && String(body.website).trim() !== "") {
             return json({ ok: true }, 200);
         }
 
-        const name = clean(body.name, 80);
-        const email = clean(body.email, 120);
-        const phone = clean(body.phone, 20);
-        const experience = clean(body.experience, 200);
-        const message = clean(body.message, 4000);
+        const res = await fetch("https://api.emailjs.com/api/v1.0/email/send", {
+            method: "POST",
+            headers: {
+                "content-type": "application/json"
+            },
+            body: JSON.stringify({
+                service_id: vars.serviceId,
+                template_id: vars.templateId,
+                user_id: vars.publicKey,
+                accessToken: vars.privateKey,
+                template_params: {
+                    name: String(body.name || ""),
+                    email: String(body.email || ""),
+                    phone: String(body.phone || ""),
+                    experience: String(body.experience || ""),
+                    message: String(body.message || "")
+                }
+            })
+        });
 
-        if (!name || !email || !phone || !experience || !message) {
-            return json({ ok: false, error: "Missing fields" }, 400);
-        }
+        const text = await res.text().catch(() => "");
 
-        if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) {
-            return json({ ok: false, error: "Invalid email" }, 400);
-        }
-
-        const payload = {
-            service_id: env.EMAILJS_CLOSER_SERVICE_ID,
-            template_id: env.EMAILJS_CLOSER_TEMPLATE_INTERNAL_ID,
-            user_id: env.EMAILJS_CLOSER_PUBLIC_KEY,
-            accessToken: env.EMAILJS_CLOSER_PRIVATE_KEY,
-            template_params: {
-                name,
-                email,
-                phone,
-                experience,
-                message
-            }
-        };
-
-        let r;
-        try {
-            r = await fetch("https://api.emailjs.com/api/v1.0/email/send", {
-                method: "POST",
-                headers: {
-                    "content-type": "application/json"
-                },
-                body: JSON.stringify(payload)
-            });
-        } catch (fetchError) {
-            return json(
-                {
-                    ok: false,
-                    error: "Fallo al conectar con EmailJS",
-                    detail: fetchError?.message || String(fetchError)
-                },
-                502
-            );
-        }
-
-        const text = await r.text().catch(() => "");
-
-        if (!r.ok) {
+        if (!res.ok) {
             return json(
                 {
                     ok: false,
                     error: "EmailJS respondió error",
-                    detail: text || `HTTP ${r.status}`
+                    detail: text || `HTTP ${res.status}`
                 },
                 502
             );
@@ -91,11 +63,13 @@ export async function onRequestPost({ request, env }) {
     }
 }
 
-function clean(v, max) {
-    return String(v || "")
-        .replace(/\u0000/g, "")
-        .trim()
-        .slice(0, max);
+function getEnvVars(env) {
+    return {
+        serviceId: env.EMAILJS_CLOSER_SERVICE_ID,
+        templateId: env.EMAILJS_CLOSER_TEMPLATE_INTERNAL_ID,
+        publicKey: env.EMAILJS_CLOSER_PUBLIC_KEY,
+        privateKey: env.EMAILJS_CLOSER_PRIVATE_KEY
+    };
 }
 
 function json(obj, status = 200) {
