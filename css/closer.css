@@ -702,5 +702,13 @@ section {
         gap: 5px;
         flex-direction: column;
     }
+
+    #contacto .container {
+        padding: 0 0;
+    }
+
+    .contact-form-container {
+        padding: 25px 20px 30px;
+    }
 }
 
