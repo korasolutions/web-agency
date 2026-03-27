@@ -1,13 +1,6 @@
-export async function onRequestOptions() {
-    return new Response(null, {
-        status: 204,
-        headers: corsHeaders(),
-    });
-}
-
 export async function onRequestPost({ request, env }) {
+    // 1) Solo JSON
     const contentType = request.headers.get("content-type") || "";
-
     if (!contentType.includes("application/json")) {
         return json({ ok: false, error: "Unsupported Media Type" }, 415);
     }
@@ -19,86 +12,48 @@ export async function onRequestPost({ request, env }) {
         return json({ ok: false, error: "Bad JSON" }, 400);
     }
 
+    // 3) Honeypot: respuesta neutra
     if (body.website && String(body.website).trim() !== "") {
         return json({ ok: true }, 200);
     }
 
+    // 4) Validación / saneado
     const name = clean(body.name, 80);
     const email = clean(body.email, 120);
-    const phone = clean(body.phone, 30);
+    const phone = clean(body.phone, 20);
     const experience = clean(body.experience, 200);
     const message = clean(body.message, 4000);
 
-    if (!name || !email || !phone || !experience || !message) {
+    if (!name || !email || !message || !phone || !experience) {
         return json({ ok: false, error: "Missing fields" }, 400);
     }
 
+    // Validación simple email
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) {
         return json({ ok: false, error: "Invalid email" }, 400);
     }
 
-    const requiredEnv = [
-        "EMAILJS_CLOSER_SERVICE_ID",
-        "EMAILJS_CLOSER_TEMPLATE_INTERNAL_ID",
-        "EMAILJS_CLOSER_PUBLIC_KEY",
-        "EMAILJS_CLOSER_PRIVATE_KEY"
-    ];
-
-    for (const key of requiredEnv) {
-        if (!env[key]) {
-            return json(
-                { ok: false, error: `Missing server env: ${key}` },
-                500
-            );
-        }
-    }
-
+    // 5) Enviar con EmailJS REST
     const payload = {
         service_id: env.EMAILJS_CLOSER_SERVICE_ID,
         template_id: env.EMAILJS_CLOSER_TEMPLATE_INTERNAL_ID,
         user_id: env.EMAILJS_CLOSER_PUBLIC_KEY,
         accessToken: env.EMAILJS_CLOSER_PRIVATE_KEY,
-        template_params: {
-            name,
-            email,
-            phone,
-            experience,
-            message
-        }
+        template_params: { name, email, phone, experience, message },
     };
 
-    try {
-        const r = await fetch("https://api.emailjs.com/api/v1.0/email/send", {
-            method: "POST",
-            headers: {
-                "content-type": "application/json"
-            },
-            body: JSON.stringify(payload)
-        });
+    const r = await fetch("https://api.emailjs.com/api/v1.0/email/send", {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify(payload),
+    });
 
-        if (!r.ok) {
-            const t = await r.text().catch(() => "");
-            return json(
-                {
-                    ok: false,
-                    error: "Email send failed",
-                    detail: t || "Unknown provider error"
-                },
-                502
-            );
-        }
-
-        return json({ ok: true }, 200);
-    } catch (error) {
-        return json(
-            {
-                ok: false,
-                error: "Server request failed",
-                detail: error?.message || "Unknown error"
-            },
-            500
-        );
+    if (!r.ok) {
+        const t = await r.text().catch(() => "");
+        return json({ ok: false, error: "Email send failed", detail: t }, 502);
     }
+
+    return json({ ok: true }, 200);
 }
 
 function clean(v, max) {
@@ -114,15 +69,6 @@ function json(obj, status = 200) {
         headers: {
             "content-type": "application/json",
             "cache-control": "no-store",
-            ...corsHeaders()
-        }
+        },
     });
-}
-
-function corsHeaders() {
-    return {
-        "access-control-allow-origin": "*",
-        "access-control-allow-methods": "POST, OPTIONS",
-        "access-control-allow-headers": "Content-Type"
-    };
 }

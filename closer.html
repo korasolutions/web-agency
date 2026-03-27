@@ -6,11 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>KORA | Sistema Comercial</title>
 
+    <!-- FONTS -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
         rel="stylesheet">
 
+    <!-- ICONS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <link rel="stylesheet" href="css/components.css?v=1">
@@ -19,6 +21,10 @@
     <link rel="stylesheet" href="css/closer.css?v=1">
 
     <link rel="icon" href="/assets/logo/icon/favicon.ico" sizes="any">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
 
     <meta name="robots" content="noindex, follow">
 </head>
@@ -39,7 +45,6 @@
             </nav>
         </div>
     </header>
-
     <section class="container" id="section1">
         <div class="top-notification">
             <div class="top-notification-box">
@@ -50,7 +55,6 @@
                 </p>
             </div>
         </div>
-
         <div class="section-header">
             <span class="hero-badge">Documento para equipo de ventas</span>
             <h1 class="section-title">
@@ -466,9 +470,8 @@
                 <p>Se trabaja con liderazgo, límites claros y un sistema ordenado de comunicación y entrega.</p>
             </article>
         </div>
-
-        <div class="divider"></div>
-
+        <div class="divider">
+        </div>
         <div class="section-header">
             <span class="hero-badge">Únete al equipo</span>
             <h2 class="section-title">
@@ -480,12 +483,16 @@
                 Rellena este formulario y nos pondremos en contacto contigo.
             </p>
         </div>
-
-        <section id="contacto">
+        <!-- ============================================= -->
+        <!--  CONTACTO / APLICACIÓN CLOSERS  -->
+        <!-- ===================================================== -->
+        <section class="" id="contacto">
             <div class="container">
                 <div class="contact-content">
                     <div class="contact-info">
-                        <h3>Únete como Closer</h3>
+                        <h3>
+                            Únete como Closer
+                        </h3>
 
                         <p>
                             Buscamos closers con mentalidad comercial, buena comunicación y enfoque en resultados.
@@ -522,19 +529,20 @@
                             </div>
 
                             <div class="social-contact">
-                                <p>Síguenos en redes sociales:</p>
+                                <p>
+                                    Síguenos en redes sociales:
+                                </p>
 
                                 <div class="social-links">
                                     <a href="https://www.linkedin.com/in/kora-solutions-5a93173b3/" target="_blank"
-                                        rel="noopener noreferrer" aria-label="LinkedIn">
+                                        aria-label="LinkedIn">
                                         <i class="fab fa-linkedin"></i>
                                     </a>
                                     <a href="https://www.instagram.com/kora.solutions/" target="_blank"
-                                        rel="noopener noreferrer" aria-label="Instagram">
+                                        aria-label="Instagram">
                                         <i class="fab fa-instagram"></i>
                                     </a>
-                                    <a href="https://x.com/KoraSolutions" target="_blank"
-                                        rel="noopener noreferrer" aria-label="Twitter">
+                                    <a href="https://x.com/KoraSolutions" target="_blank" aria-label="Twitter">
                                         <i class="fab fa-twitter"></i>
                                     </a>
                                 </div>
@@ -544,8 +552,8 @@
 
                     <div class="contact-form-container">
                         <p class="form-title" data-i18n="home.contact.form.title">Aplica como Closer</p>
-
                         <form class="contact-form" id="closer-form">
+
                             <div class="form-group">
                                 <input type="text" name="name" autocomplete="name" placeholder="Nombre completo"
                                     required>
@@ -579,21 +587,20 @@
                                 </label>
                             </div>
 
-                            <input type="text" name="website" tabindex="-1" autocomplete="off"
-                                style="display:none">
+                            <!-- honeypot anti-spam -->
+                            <input type="text" name="website" style="display:none">
 
                             <button type="submit" class="btn-submit">
                                 <i class="fas fa-paper-plane"></i> Enviar candidatura
                             </button>
 
-                            <div class="form-status" id="closer-form-status" aria-live="polite"></div>
+                            <div class="form-status" id="closer-form-status"></div>
                         </form>
                     </div>
                 </div>
             </div>
         </section>
     </section>
-
     <footer class="footer">
         <div class="container">
             <div class="footer-content">
@@ -608,7 +615,9 @@
                 </div>
 
                 <div class="footer-links">
-                    <h3 class="footer-title-2">NAVEGACIÓN</h3>
+                    <h3 class="footer-title-2">
+                        NAVEGACIÓN
+                    </h3>
                     <ul>
                         <li><a href="#section1">Visión general</a></li>
                         <li><a href="#section2">Estructura oferta</a></li>
@@ -637,21 +646,19 @@
             </div>
         </div>
     </footer>
-
     <script>
-        sessionStorage.removeItem("came_from_closer");
-
+        sessionStorage.removeItem('came_from_closer');
         document.querySelectorAll('a[href^="/index.html"], a[href="/"], a[href^="/#"]').forEach((link) => {
-            link.addEventListener("click", () => {
-                sessionStorage.setItem("came_from_closer", "true");
+            link.addEventListener('click', () => {
+                sessionStorage.setItem('came_from_closer', 'true');
             });
         });
     </script>
-
-    <link rel="stylesheet" href="https://unpkg.com/lenis@1.3.18/dist/lenis.css">
     <script src="https://unpkg.com/lenis@1.3.18/dist/lenis.min.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/lenis@1.3.18/dist/lenis.css">
     <script src="/js/script.js?v=7"></script>
-    <script src="/js/form-closer.js?v=102"></script>
+    <script src="/js/form-closer.js?v=105"></script>
+    <script src="/js/i18n.js?v=5"></script>
 </body>
 
 </html>

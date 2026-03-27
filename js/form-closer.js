@@ -7,70 +7,45 @@ document.addEventListener("DOMContentLoaded", () => {
         return;
     }
 
+    // Detectar entorno
     const API_URL =
         location.hostname === "localhost"
             ? "https://koradigitalsolutions.com/api/contact-closer"
             : "/api/contact-closer";
 
-    const getText = (key, fallback) => {
-        try {
-            if (typeof I18N !== "undefined" && typeof I18N.t === "function") {
-                return I18N.t(key) || fallback;
-            }
-            return fallback;
-        } catch {
-            return fallback;
-        }
-    };
-
-    const renderStatusByState = () => {
+    // Re-render del status cuando cambie el idioma
+    document.addEventListener("i18n:changed", () => {
         const state = statusBox.dataset.state;
         if (!state) return;
 
         if (state === "success") {
-            statusBox.textContent = getText(
-                "home.contact.form.status.success",
-                "Tu candidatura se ha enviado correctamente."
-            );
+            statusBox.textContent = I18N.t("home.contact.form.status.success");
         } else if (state === "error") {
-            statusBox.textContent = getText(
-                "home.contact.form.status.errorGeneric",
-                "Ha ocurrido un error. Inténtalo de nuevo en unos segundos."
-            );
-        }
-    };
-
-    document.addEventListener("i18n:changed", () => {
-        renderStatusByState();
-
-        const btn = form.querySelector('button[type="submit"]');
-        if (statusBox.dataset.state === "sending" && btn && btn.disabled) {
-            btn.innerHTML = getText(
-                "home.contact.form.status.sending",
-                "Enviando..."
-            );
+            statusBox.textContent = I18N.t("home.contact.form.status.errorGeneric");
+        } else if (state === "sending") {
+            const btn = form.querySelector("button");
+            if (btn && btn.disabled) btn.innerHTML = I18N.t("home.contact.form.status.sending");
         }
     });
 
     form.addEventListener("submit", async function (e) {
         e.preventDefault();
 
-        if (this.website && this.website.value.trim() !== "") return;
+        // Honeypot
+        if (this.website && this.website.value !== "") return;
 
-        const btn = form.querySelector('button[type="submit"]');
+        const btn = form.querySelector("button");
         const originalHTML = btn ? btn.innerHTML : "";
-
-        statusBox.className = "form-status";
-        statusBox.textContent = "";
-        statusBox.dataset.state = "sending";
 
         if (btn) {
             btn.disabled = true;
-            btn.innerHTML = getText(
-                "home.contact.form.status.sending",
-                "Enviando..."
-            );
+            btn.innerHTML = I18N.t("home.contact.form.status.sending");
         }
+        statusBox.dataset.state = "sending";
+
+        statusBox.className = "closer-form-status";
+        statusBox.textContent = "";
+        delete statusBox.dataset.state;
 
         try {
             const payload = {
@@ -78,40 +53,39 @@ document.addEventListener("DOMContentLoaded", () => {
                 email: form.email.value.trim(),
                 phone: form.phone.value.trim(),
                 experience: form.experience.value.trim(),
-                message: form.message.value.trim(),
-                website: form.website ? form.website.value.trim() : ""
+                message: form.message.value.trim()
             };
 
             const res = await fetch(API_URL, {
                 method: "POST",
                 headers: {
-                    "content-type": "application/json"
+                    "content-type": "application/json",
                 },
-                body: JSON.stringify(payload)
+                body: JSON.stringify(payload),
             });
 
             const data = await res.json().catch(() => ({}));
 
             if (!res.ok || !data.ok) {
-                throw new Error(data.detail || data.error || "Request failed");
+                throw new Error(
+                    data.detail || data.error
+                );
             }
 
+            // Éxito
             statusBox.dataset.state = "success";
-            statusBox.textContent = getText(
-                "home.contact.form.status.success",
-                "Tu candidatura se ha enviado correctamente."
-            );
+            statusBox.textContent =
+                I18N.t("home.contact.form.status.success");
             statusBox.classList.add("show", "success");
 
             form.reset();
         } catch (error) {
-            console.error("Error real:", error);
+            console.error("Error real:", error.message);
+            const fallback = I18N.t("home.contact.form.status.errorGeneric");
 
             statusBox.dataset.state = "error";
-            statusBox.textContent = getText(
-                "home.contact.form.status.errorGeneric",
-                "Ha ocurrido un error. Inténtalo de nuevo en unos segundos."
-            );
+            statusBox.textContent =
+                "Error: " + (error.message || fallback);
             statusBox.classList.add("show", "error");
         } finally {
             if (btn) {
