@@ -528,7 +528,7 @@ async function updateSitemap(esPosts, enPosts) {
 
   const uniqueMap = new Map();
   [...staticUrls, ...dynamicUrls].forEach((item) => {
-    const normalizedUrl = item.url === '/index.html' ? '/' : item.url;
+    const normalizedUrl = item.url.replace(/\.html$/, '');
     uniqueMap.set(normalizedUrl, {
       url: normalizedUrl,
       lastmod: item.lastmod
