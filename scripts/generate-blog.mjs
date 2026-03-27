@@ -77,9 +77,18 @@ const usedSlugsEs = new Set((existingEsIndex.posts || []).map((post) => String(p
 const usedSlugsEn = new Set((existingEnIndex.posts || []).map((post) => String(post.slug || '').toLowerCase()));
 const recentTopics = new Set((existingEsIndex.posts || []).slice(0, 40).map((post) => String(post.seedTopic || '').toLowerCase()));
 
-const selectedTopic = pickTopic(recentTopics);
+const lastTwoCategories = getLastCategories(existingEsIndex.posts || [], 2);
+const lastCategory = lastTwoCategories[0] || null;
+const secondLastCategory = lastTwoCategories[1] || null;
 
-console.log(`Tema seleccionado: ${selectedTopic}`);
+let selectedTopic;
+if (lastCategory && lastCategory === secondLastCategory) {
+  const forcedTopic = pickTopic(recentTopics, lastCategory);
+  selectedTopic = forcedTopic;
+} else {
+  selectedTopic = pickTopic(recentTopics, null);
+}
+
 
 const esPost = await generateSpanishArticle(selectedTopic, usedTitlesEs, usedSlugsEs);
 const enPost = await generateEnglishVersion(esPost, usedSlugsEn);
@@ -127,10 +136,56 @@ await updateSitemap(updatedEsPosts, updatedEnPosts);
 console.log(`Artículo ES generado: ${linkedEsPost.title}`);
 console.log(`Article EN generated: ${linkedEnPost.title}`);
 
-function pickTopic(recentTopicsSet) {
-  const available = topicPool.filter((topic) => !recentTopicsSet.has(topic.toLowerCase()));
-  const pool = available.length ? available : topicPool;
+function pickTopic(recentTopicsSet, lastCategory) {
+  let available = topicPool.filter((topic) => !recentTopicsSet.has(topic.toLowerCase()));
+  
+  const pool = available.length >= 3 ? available : topicPool;
+  
+  // Si tenemos categoría anterior, intentar evitar temas de esa categoría
+  if (lastCategory) {
+    const topicToCategory = {
+      'seo local en lanzarote para negocios de servicios': 'seo',
+      'cómo captar clientes en lanzarote con una web profesional': 'desarrollo-web',
+      'por qué un negocio local en lanzarote necesita una web que convierta': 'desarrollo-web',
+      'automatizaciones con ia para negocios locales en lanzarote': 'automatizacion',
+      'cómo usar un chatbot con ia para captar leads en lanzarote': 'ia',
+      'errores que hacen que una web de empresa en lanzarote no genere clientes': 'desarrollo-web',
+      'cómo mejorar la velocidad de una web para vender más en lanzarote': 'desarrollo-web',
+      'qué debe tener una landing page para negocios locales en lanzarote': 'desarrollo-web',
+      'cuándo una empresa en lanzarote necesita rediseñar su página web': 'desarrollo-web',
+      'cómo automatizar respuestas de clientes sin perder calidad en negocios locales': 'automatizacion',
+      'ia aplicada a reservas formularios y atención al cliente en lanzarote': 'ia',
+      'por qué una web bonita no siempre vende en negocios locales': 'desarrollo-web',
+      'cómo una pyme en lanzarote puede ahorrar tiempo automatizando procesos': 'automatizacion',
+      'diferencias entre una web corporativa y una landing page para captar clientes': 'desarrollo-web',
+      'cómo elegir una agencia de desarrollo web y automatización en lanzarote': 'desarrollo-web',
+      'qué contenido ayuda a posicionar una web de servicios en lanzarote': 'seo',
+      'seo para clínicas restaurantes y negocios turísticos en lanzarote': 'seo',
+      'cómo digitalizar un negocio local en lanzarote paso a paso': 'negocios',
+      'cómo conseguir más contactos desde una web de empresa en lanzarote': 'desarrollo-web',
+      'automatización de whatsapp y formularios para negocios en lanzarote': 'automatizacion'
+    };
+    
+    const differentCategoryTopics = pool.filter(topic => 
+      topicToCategory[topic.toLowerCase()] !== lastCategory
+    );
+    
+    if (differentCategoryTopics.length > 0) {
+      return differentCategoryTopics[Math.floor(Math.random() * differentCategoryTopics.length)];
+    }
+  }
+  
   return pool[Math.floor(Math.random() * pool.length)];
+}
+
+function getLastCategories(posts, count = 2) {
+  const categories = [];
+  for (let i = 0; i < Math.min(count, posts.length); i++) {
+    if (posts[i] && posts[i].categorySlug) {
+      categories.push(posts[i].categorySlug);
+    }
+  }
+  return categories;
 }
 
 async function generateSpanishArticle(seedTopic, usedTitles, usedSlugs) {
