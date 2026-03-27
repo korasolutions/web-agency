@@ -61,14 +61,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function buildWhatsAppMessage(data) {
         return [
-            "Nueva candidatura de closer",
+            "*Nueva candidatura de closer*",
             "",
-            `Nombre: ${data.name}`,
-            `Email: ${data.email}`,
-            `Teléfono: ${data.phone}`,
-            `Tiempo experiencia en ventas/closing: ${data.experience}`,
+            `*Nombre:* ${data.name}`,
+            `*Email:* ${data.email}`,
+            `*Teléfono:* ${data.phone}`,
+            `*Tiempo experiencia en ventas/closing:* ${data.experience}`,
             "",
-            "Experiencia:",
+            "*Experiencia:*",
             data.message
         ].join("\n");
     }
