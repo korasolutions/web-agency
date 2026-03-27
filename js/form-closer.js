@@ -2,50 +2,32 @@ document.addEventListener("DOMContentLoaded", () => {
     const form = document.getElementById("closer-form");
     const statusBox = document.getElementById("closer-form-status");
 
-    if (!form || !statusBox) {
-        console.error("Formulario o statusBox no encontrado");
-        return;
-    }
+    if (!form || !statusBox) return;
 
-    // Detectar entorno
     const API_URL =
         location.hostname === "localhost"
             ? "https://koradigitalsolutions.com/api/contact-closer"
             : "/api/contact-closer";
 
-    // Re-render del status cuando cambie el idioma
-    document.addEventListener("i18n:changed", () => {
-        const state = statusBox.dataset.state;
-        if (!state) return;
-
-        if (state === "success") {
-            statusBox.textContent = I18N.t("home.contact.form.status.success");
-        } else if (state === "error") {
-            statusBox.textContent = I18N.t("home.contact.form.status.errorGeneric");
-        } else if (state === "sending") {
-            const btn = form.querySelector("button");
-            if (btn && btn.disabled) btn.innerHTML = I18N.t("home.contact.form.status.sending");
-        }
-    });
-
     form.addEventListener("submit", async function (e) {
         e.preventDefault();
 
-        // Honeypot
+        // Honeypot anti-spam
         if (this.website && this.website.value !== "") return;
 
         const btn = form.querySelector("button");
         const originalHTML = btn ? btn.innerHTML : "";
 
+        // Estado: enviando
         if (btn) {
             btn.disabled = true;
             btn.innerHTML = I18N.t("home.contact.form.status.sending");
         }
-        statusBox.dataset.state = "sending";
 
-        statusBox.className = "closer-form-status";
+        statusBox.dataset.state = "sending";
+        statusBox.className = "form-status";
         statusBox.textContent = "";
-        delete statusBox.dataset.state;
+        statusBox.classList.remove("show", "success", "error");
 
         try {
             const payload = {
@@ -53,7 +35,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 email: form.email.value.trim(),
                 phone: form.phone.value.trim(),
                 experience: form.experience.value.trim(),
-                message: form.message.value.trim()
+                message: form.message.value.trim(),
             };
 
             const res = await fetch(API_URL, {
@@ -64,28 +46,44 @@ document.addEventListener("DOMContentLoaded", () => {
                 body: JSON.stringify(payload),
             });
 
-            const data = await res.json().catch(() => ({}));
+            // 🔥 CLAVE: capturamos respuesta REAL (JSON o HTML o lo que sea)
+            const rawText = await res.text();
+            let data = null;
 
-            if (!res.ok || !data.ok) {
+            try {
+                data = rawText ? JSON.parse(rawText) : null;
+            } catch {
+                data = null;
+            }
+
+            if (!res.ok || !data?.ok) {
                 throw new Error(
-                    data.detail || data.error
+                    data?.detail ||
+                    data?.error ||
+                    rawText ||
+                    `HTTP ${res.status} ${res.statusText}` ||
+                    "Error desconocido"
                 );
             }
 
             // Éxito
             statusBox.dataset.state = "success";
-            statusBox.textContent =
-                I18N.t("home.contact.form.status.success");
+            statusBox.textContent = I18N.t("home.contact.form.status.success");
             statusBox.classList.add("show", "success");
 
             form.reset();
         } catch (error) {
-            console.error("Error real:", error.message);
+            console.error("Error real completo:", error);
+
             const fallback = I18N.t("home.contact.form.status.errorGeneric");
 
+            const realMessage =
+                error?.message && error.message !== "undefined"
+                    ? error.message
+                    : fallback;
+
             statusBox.dataset.state = "error";
-            statusBox.textContent =
-                "Error: " + (error.message || fallback);
+            statusBox.textContent = "Error: " + realMessage;
             statusBox.classList.add("show", "error");
         } finally {
             if (btn) {
