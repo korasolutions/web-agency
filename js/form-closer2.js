@@ -4,10 +4,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (!form || !statusBox) return;
 
-    const API_URL =
-        location.hostname === "localhost"
-            ? "https://koradigitalsolutions.com/api/contact-closer2"
-            : "/api/contact-closer2";
+    const isLocal = location.hostname === "localhost" || location.hostname === "127.0.0.1";
+    const API_URL = isLocal
+        ? "https://koradigitalsolutions.com/api/contact-closer2"
+        : "/api/contact-closer2";
 
     function setStatus(state, message) {
         statusBox.dataset.state = state;

@@ -1,3 +1,14 @@
+export async function onRequestOptions() {
+    return new Response(null, {
+        status: 204,
+        headers: {
+            "Access-Control-Allow-Origin": "*",
+            "Access-Control-Allow-Methods": "POST, OPTIONS",
+            "Access-Control-Allow-Headers": "Content-Type, Accept"
+        }
+    });
+}
+
 export async function onRequestPost({ request, env }) {
     const vars = getEnvVars(env);
 
@@ -87,7 +98,8 @@ function json(obj, status = 200) {
         status,
         headers: {
             "content-type": "application/json",
-            "cache-control": "no-store"
+            "cache-control": "no-store",
+            "Access-Control-Allow-Origin": "*"
         }
     });
 }
