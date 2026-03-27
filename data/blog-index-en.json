@@ -1,6 +1,33 @@
 {
-  "updatedAt": "2026-03-26T11:16:54.181Z",
+  "updatedAt": "2026-03-27T10:41:34.948Z",
   "posts": [
+    {
+      "locale": "en",
+      "title": "How to Generate More Leads from Your Business Website in Lanzarote",
+      "slug": "generate-more-leads-lanzarote",
+      "url": "/en/blog/generate-more-leads-lanzarote",
+      "excerpt": "Discover effective strategies to optimize your website and attract more leads in Lanzarote. Boost your conversion rates with web development and automation.",
+      "category": "Web development",
+      "categorySlug": "desarrollo-web",
+      "keywords": [
+        "Lanzarote web leads",
+        "web development",
+        "automation",
+        "local businesses",
+        "Lanzarote",
+        "AI",
+        "how to generate more leads from a business website in Lanzarote",
+        "desarrollo web",
+        "automatización"
+      ],
+      "date": "March 27, 2026",
+      "publishedAt": "2026-03-27T10:41:17.280Z",
+      "coverImage": "/assets/blog/articulo-desarrollo-web.webp",
+      "metaDescription": "Learn how to optimize your website in Lanzarote to generate more leads. Web development and automation strategies that drive your business forward.",
+      "alternateUrl": "/blog/contactos-web-lanzarote",
+      "seedTopic": "cómo conseguir más contactos desde una web de empresa en lanzarote",
+      "imageTopicSlug": "desarrollo-web"
+    },
     {
       "locale": "en",
       "title": "How to Digitize a Local Business in Lanzarote: Step-by-Step Guide",
