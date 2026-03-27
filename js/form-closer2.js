@@ -63,38 +63,49 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     async function sendForm(data) {
-        const payload = {
-            name: data.name,
-            email: data.email,
-            phone: data.phone,
-            experience: data.experience,
-            message: data.message,
-            website: data.website
-        };
+    const payload = {
+        name: data.name,
+        email: data.email,
+        phone: data.phone,
+        experience: data.experience,
+        message: data.message,
+        website: data.website
+    };
 
-        const res = await fetch(API_URL, {
-            method: "POST",
-            headers: {
-                "content-type": "application/json"
-            },
-            body: JSON.stringify(payload)
-        });
+    const res = await fetch(API_URL, {
+        method: "POST",
+        headers: {
+            "content-type": "application/json",
+            "accept": "application/json"
+        },
+        body: JSON.stringify(payload)
+    });
 
-        const text = await res.text();
-        let jsonData = null;
+    const contentType = res.headers.get("content-type") || "";
+    const raw = await res.text();
 
+    console.log("STATUS:", res.status);
+    console.log("CONTENT-TYPE:", contentType);
+    console.log("RAW RESPONSE:", raw);
+
+    let jsonData = null;
+
+    if (contentType.includes("application/json")) {
         try {
-            jsonData = JSON.parse(text);
-        } catch {
-            throw new Error(text || "Respuesta inválida del servidor");
+            jsonData = JSON.parse(raw);
+        } catch (e) {
+            throw new Error("El servidor dijo que era JSON, pero devolvió un JSON inválido.");
         }
-
-        if (!res.ok || !jsonData?.ok) {
-            throw new Error(jsonData?.error || jsonData?.detail || "Error desconocido");
-        }
-
-        return jsonData;
+    } else {
+        throw new Error(raw || "El servidor no devolvió JSON.");
     }
+
+    if (!res.ok || !jsonData?.ok) {
+        throw new Error(jsonData?.error || jsonData?.detail || "Error desconocido");
+    }
+
+    return jsonData;
+}
 
     form.addEventListener("submit", async function (e) {
         e.preventDefault();

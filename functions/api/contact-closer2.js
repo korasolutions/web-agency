@@ -2,6 +2,16 @@ export async function onRequestPost({ request, env }) {
     const vars = getEnvVars(env);
 
     try {
+        if (!vars.serviceId || !vars.templateId || !vars.publicKey || !vars.privateKey) {
+            return json(
+                {
+                    ok: false,
+                    error: "Faltan variables de entorno en Cloudflare"
+                },
+                500
+            );
+        }
+
         const contentType = request.headers.get("content-type") || "";
         if (!contentType.includes("application/json")) {
             return json({ ok: false, error: "Unsupported Media Type" }, 415);
@@ -12,7 +22,6 @@ export async function onRequestPost({ request, env }) {
             return json({ ok: false, error: "Bad JSON" }, 400);
         }
 
-        // Honeypot
         if (body.website && String(body.website).trim() !== "") {
             return json({ ok: true }, 200);
         }
@@ -20,7 +29,8 @@ export async function onRequestPost({ request, env }) {
         const res = await fetch("https://api.emailjs.com/api/v1.0/email/send", {
             method: "POST",
             headers: {
-                "content-type": "application/json"
+                "content-type": "application/json",
+                "accept": "application/json"
             },
             body: JSON.stringify({
                 service_id: vars.serviceId,
