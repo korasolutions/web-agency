@@ -1,7 +1,22 @@
+// functions/api/contact-closer.js
 export async function onRequestPost({ request, env }) {
+    // Manejar CORS para desarrollo local
+    const headers = {
+        "content-type": "application/json; charset=utf-8",
+        "cache-control": "no-store",
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods": "POST, OPTIONS",
+        "Access-Control-Allow-Headers": "Content-Type",
+    };
+
+    // Manejar preflight OPTIONS request
+    if (request.method === "OPTIONS") {
+        return new Response(null, { headers, status: 204 });
+    }
+
     const contentType = request.headers.get("content-type") || "";
     if (!contentType.includes("application/json")) {
-        return json({ ok: false, step: "content-type", error: "Unsupported Media Type" }, 415);
+        return json({ ok: false, step: "content-type", error: "Unsupported Media Type" }, 415, headers);
     }
 
     let body;
@@ -13,11 +28,12 @@ export async function onRequestPost({ request, env }) {
             step: "json-parse",
             error: "Bad JSON",
             detail: error instanceof Error ? error.message : String(error)
-        }, 400);
+        }, 400, headers);
     }
 
+    // Honeypot anti-spam
     if (body.website && String(body.website).trim() !== "") {
-        return json({ ok: true, step: "honeypot" }, 200);
+        return json({ ok: true, step: "honeypot" }, 200, headers);
     }
 
     const name = clean(body.name, 80);
@@ -27,14 +43,27 @@ export async function onRequestPost({ request, env }) {
     const message = clean(body.message, 4000);
     const subject = "Candidatura Closer KORA";
 
+    // Validación de campos requeridos
     if (!name || !email || !phone || !experience || !message) {
-        return json({ ok: false, step: "field-validation", error: "Missing fields" }, 400);
+        return json({ 
+            ok: false, 
+            step: "field-validation", 
+            error: "Missing fields",
+            fields: {
+                name: !!name,
+                email: !!email,
+                phone: !!phone,
+                experience: !!experience,
+                message: !!message
+            }
+        }, 400, headers);
     }
 
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) {
-        return json({ ok: false, step: "email-validation", error: "Invalid email" }, 400);
+        return json({ ok: false, step: "email-validation", error: "Invalid email" }, 400, headers);
     }
 
+    // Verificar variables de entorno
     const envCheck = {
         EMAILJS_CLOSER_SERVICE_ID: !!env.EMAILJS_CLOSER_SERVICE_ID,
         EMAILJS_CLOSER_TEMPLATE_INTERNAL_ID: !!env.EMAILJS_CLOSER_TEMPLATE_INTERNAL_ID,
@@ -47,13 +76,13 @@ export async function onRequestPost({ request, env }) {
         .map(([key]) => key);
 
     if (missingEnv.length) {
+        console.error("Missing env vars:", missingEnv);
         return json({
             ok: false,
             step: "env-check",
             error: "Missing Cloudflare env vars",
-            detail: missingEnv.join(", "),
-            envCheck
-        }, 500);
+            detail: missingEnv.join(", ")
+        }, 500, headers);
     }
 
     const payload = {
@@ -78,44 +107,55 @@ export async function onRequestPost({ request, env }) {
             body: JSON.stringify(payload)
         });
 
-        const detail = await res.text().catch(() => "");
+        let detail = "";
+        try {
+            detail = await res.text();
+        } catch {
+            detail = "No response body";
+        }
+
+        if (!res.ok) {
+            console.error("EmailJS error:", res.status, detail);
+            return json({
+                ok: false,
+                step: "emailjs-response-not-ok",
+                status: res.status,
+                detail: detail || "Sin detalle"
+            }, 502, headers);
+        }
 
         return json({
-            ok: res.ok,
-            step: res.ok ? "done" : "emailjs-response-not-ok",
-            status: res.status,
-            detail: detail || "Sin detalle",
-            payloadPreview: {
-                service_id: payload.service_id,
-                template_id: payload.template_id,
-                has_user_id: !!payload.user_id,
-                has_accessToken: !!payload.accessToken,
-                template_param_keys: Object.keys(payload.template_params)
-            }
-        }, res.ok ? 200 : 502);
+            ok: true,
+            step: "done",
+            message: "Candidatura enviada correctamente"
+        }, 200, headers);
+        
     } catch (error) {
+        console.error("EmailJS fetch error:", error);
         return json({
             ok: false,
             step: "emailjs-fetch",
             error: "Fetch to EmailJS failed",
             detail: error instanceof Error ? error.message : String(error)
-        }, 500);
+        }, 500, headers);
     }
 }
 
 function clean(v, max) {
-    return String(v || "")
+    if (!v) return "";
+    return String(v)
         .replace(/\u0000/g, "")
         .trim()
         .slice(0, max);
 }
 
-function json(obj, status = 200) {
+function json(obj, status = 200, headers = {}) {
     return new Response(JSON.stringify(obj), {
         status,
         headers: {
             "content-type": "application/json; charset=utf-8",
-            "cache-control": "no-store"
+            "cache-control": "no-store",
+            ...headers
         }
     });
 }

@@ -7,10 +7,7 @@ document.addEventListener("DOMContentLoaded", () => {
         return;
     }
 
-    const API_URL =
-        location.hostname === "localhost"
-            ? "https://koradigitalsolutions.com/api/contact-closer"
-            : "/api/contact-closer";
+    const API_URL = "/api/contact-closer"; // Siempre usar ruta relativa
 
     form.addEventListener("submit", async function (e) {
         e.preventDefault();
@@ -27,7 +24,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         statusBox.className = "form-status";
         statusBox.textContent = "";
-        delete statusBox.dataset.state;
+        statusBox.classList.remove("show", "success", "error");
 
         try {
             const payload = {
@@ -39,62 +36,43 @@ document.addEventListener("DOMContentLoaded", () => {
                 website: form.website.value
             };
 
-            if (
-                !payload.name ||
-                !payload.email ||
-                !payload.phone ||
-                !payload.experience ||
-                !payload.message
-            ) {
+            if (!payload.name || !payload.email || !payload.phone || !payload.experience || !payload.message) {
                 throw new Error("Por favor, completa todos los campos.");
             }
+
+            console.log("Enviando a:", API_URL);
+            console.log("Payload:", payload);
 
             const res = await fetch(API_URL, {
                 method: "POST",
                 headers: {
-                    "content-type": "application/json"
+                    "Content-Type": "application/json"
                 },
                 body: JSON.stringify(payload)
             });
 
-            const rawText = await res.text();
-            let data = {};
-
+            let data;
+            const responseText = await res.text();
+            
             try {
-                data = rawText ? JSON.parse(rawText) : {};
+                data = JSON.parse(responseText);
             } catch {
-                data = {};
+                data = { ok: false, detail: responseText };
             }
 
-            console.log("Closer API status:", res.status);
-            console.log("Closer API raw response:", rawText);
-            console.log("Closer API parsed response:", data);
+            console.log("Respuesta:", res.status, data);
 
             if (!res.ok || !data.ok) {
-                const debugMessage = [
-                    data.step ? `step=${data.step}` : null,
-                    data.error ? `error=${data.error}` : null,
-                    data.detail ? `detail=${data.detail}` : null,
-                    data.status ? `status=${data.status}` : null
-                ]
-                    .filter(Boolean)
-                    .join(" | ");
-
-                throw new Error(debugMessage || rawText || `HTTP ${res.status}`);
+                throw new Error(data.detail || data.error || `Error ${res.status}: ${responseText.substring(0, 100)}`);
             }
 
-            statusBox.dataset.state = "success";
-            statusBox.textContent =
-                "Candidatura enviada correctamente. Te responderemos pronto.";
+            statusBox.textContent = "✅ Candidatura enviada correctamente. Te responderemos pronto.";
             statusBox.classList.add("show", "success");
-
             form.reset();
+            
         } catch (error) {
-            console.error("Error real en closer:", error);
-
-            statusBox.dataset.state = "error";
-            statusBox.textContent =
-                "Error: " + (error.message || "Ha ocurrido un error al enviar la candidatura.");
+            console.error("Error:", error);
+            statusBox.textContent = `❌ ${error.message || "Ha ocurrido un error al enviar la candidatura."}`;
             statusBox.classList.add("show", "error");
         } finally {
             if (btn) {
