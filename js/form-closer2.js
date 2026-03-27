@@ -6,8 +6,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const API_URL =
         location.hostname === "localhost"
-            ? "https://koradigitalsolutions.com/api/contact-closer"
-            : "/api/contact-closer";
+            ? "https://koradigitalsolutions.com/api/contact-closer2"
+            : "/api/contact-closer2";
 
     function setStatus(state, message) {
         statusBox.dataset.state = state;
