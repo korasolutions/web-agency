@@ -73,14 +73,27 @@ document.addEventListener("DOMContentLoaded", () => {
         ].join("\n");
     }
 
-    function openWhatsApp(data) {
+    function buildWhatsAppUrl(data) {
         const message = buildWhatsAppMessage(data);
-        const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
+        return `https://web.whatsapp.com/send?phone=${WHATSAPP_NUMBER}&text=${encodeURIComponent(message)}`;
+    }
 
-        const newWindow = window.open(url, "_blank", "noopener,noreferrer");
+    function openWhatsAppInNewTab(data) {
+        const url = buildWhatsAppUrl(data);
+
+        const newWindow = window.open("", "_blank");
+
         if (!newWindow) {
-            window.location.href = url;
+            throw new Error("Popup bloqueado por el navegador");
         }
+
+        try {
+            newWindow.opener = null;
+        } catch (e) {
+            // Algunos navegadores pueden ignorarlo
+        }
+
+        newWindow.location.href = url;
     }
 
     form.addEventListener("submit", function (e) {
@@ -107,12 +120,15 @@ document.addEventListener("DOMContentLoaded", () => {
         setStatus("sending", "Abriendo WhatsApp...");
 
         try {
-            openWhatsApp(data);
-            setStatus("success", "WhatsApp abierto con el mensaje preparado.");
+            openWhatsAppInNewTab(data);
+            setStatus("success", "Se abrió una nueva pestaña con WhatsApp preparado.");
             form.reset();
         } catch (error) {
             console.error("Error al abrir WhatsApp:", error);
-            setStatus("error", "Error: No se pudo abrir WhatsApp.");
+            setStatus(
+                "error",
+                "Error: El navegador bloqueó la nueva pestaña. Permite pop-ups para esta web e inténtalo otra vez."
+            );
         } finally {
             if (btn) {
                 btn.disabled = false;
