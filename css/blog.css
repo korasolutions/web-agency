@@ -64,6 +64,17 @@
   outline: none;
 }
 
+#blog-search::-webkit-search-cancel-button {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 17px;
+  height: 17px;
+  cursor: pointer;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cline x1='4' y1='4' x2='16' y2='16' stroke='%23ff8383' stroke-width='2.5' stroke-linecap='round'/%3E%3Cline x1='16' y1='4' x2='4' y2='16' stroke='%23ff8383' stroke-width='2.5' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
 .blog-toolbar input:focus,
 .blog-toolbar select:focus {
   border-color: var(--accent-color, #ff8383);
@@ -83,7 +94,7 @@
 
 .blog-grid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr)); /* Alternativa: repeat(2, minmax(0, 1fr)) con 4 artículos por página */
   gap: 22px;
 }
 
@@ -170,8 +181,23 @@
 }
 
 .blog-empty {
-  margin-top: 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 25px;
+  padding: 20px 0 36px;
   color: var(--text-secondary, #a0a0a0);
+  text-align: center;
+}
+
+.blog-empty-text {
+  font-size: 1.3rem;
+}
+
+.blog-empty-icon {
+  font-size: 12rem;
+  color: var(--accent-color);
+  opacity: 0.06;
 }
 
 .blog-preview-home {
@@ -289,6 +315,57 @@
 .blog-cta-box h3 {
   margin-top: 0;
 }
+
+/* ===== PAGINACIÓN ===== */
+.pagination-controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+  margin: 18px 0;
+}
+
+.pagination-controls[hidden] {
+  display: none;
+}
+
+.pagination-btn {
+  background: rgba(18, 18, 18, 0.92);
+  border: 1px solid var(--border-color, #222);
+  border-radius: 8px;
+  width: 38px;
+  height: 38px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s, border-color 0.2s;
+}
+
+.pagination-btn i {
+  color: var(--accent-color, #ff8383);
+}
+
+.pagination-btn:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+.pagination-btn:not(:disabled):hover {
+  background: var(--accent-color, #ff8383);
+  border-color: var(--accent-color, #ff8383);
+}
+
+.pagination-btn:not(:disabled):hover i {
+  color: #fff;
+}
+
+.pagination-info {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-secondary, #a0a0a0);
+}
+
 
 @media (max-width: 1100px) {
   .blog-grid {

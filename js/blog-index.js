@@ -1,4 +1,7 @@
+const POSTS_PER_PAGE = 6; // Alternativa: 4 artículos con 2 columnas
 let allPosts = [];
+let currentPage = 1;
+let currentFiltered = [];
 
 function detectBlogLanguage() {
   const bodyLang = document.body?.dataset?.pageLang;
@@ -26,17 +29,35 @@ function getBlogIndexPath() {
 function getUiText() {
   return detectBlogLanguage() === 'en'
     ? {
-        loadErrorTitle: 'The blog could not be loaded',
-        loadErrorText: 'Check that the blog index file exists.',
         readMore: 'Read article',
-        empty: 'No articles match your search.'
+        emptyFilter: 'No articles match your search.',
+        emptyUnavailable: 'No articles available.',
+        prev: 'Previous page',
+        next: 'Next page'
       }
     : {
-        loadErrorTitle: 'No se pudo cargar el blog',
-        loadErrorText: 'Verifica que exista el archivo del índice del blog.',
         readMore: 'Leer artículo',
-        empty: 'No hay artículos que coincidan con tu búsqueda.'
+        emptyFilter: 'No hay artículos que coincidan con tu búsqueda.',
+        emptyUnavailable: 'No hay artículos disponibles.',
+        prev: 'Página anterior',
+        next: 'Página siguiente'
       };
+}
+
+function updateCategoryCounts(select, posts) {
+  if (!select) return;
+
+  const counts = {};
+  for (const post of posts) {
+    counts[post.categorySlug] = (counts[post.categorySlug] || 0) + 1;
+  }
+
+  for (const option of select.options) {
+    const base = option.dataset.label || option.textContent.replace(/\s*\(\d+\)$/, '').trim();
+    option.dataset.label = base;
+    const count = option.value === 'all' ? posts.length : (counts[option.value] || 0);
+    option.textContent = `${base} (${count})`;
+  }
 }
 
 async function initBlogIndex() {
@@ -47,29 +68,28 @@ async function initBlogIndex() {
 
   if (!grid) return;
 
-  if (empty) {
-    empty.textContent = getUiText().empty;
-  }
-
   try {
     const response = await fetch(`${getBlogIndexPath()}?v=${Date.now()}`, { cache: 'no-store' });
-    if (!response.ok) throw new Error('No se pudo cargar el índice');
+    if (!response.ok) throw new Error('fetch failed');
 
     const data = await response.json();
     allPosts = Array.isArray(data.posts) ? data.posts : [];
+
+    updateCategoryCounts(category, allPosts);
 
     const applyFilters = () => {
       const query = (search?.value || '').trim().toLowerCase();
       const currentCategory = category?.value || 'all';
 
-      const filtered = allPosts.filter((post) => {
+      currentFiltered = allPosts.filter((post) => {
         const text = `${post.title} ${post.excerpt} ${post.metaDescription || ''} ${(post.keywords || []).join(' ')}`.toLowerCase();
         const matchQuery = !query || text.includes(query);
         const matchCategory = currentCategory === 'all' || post.categorySlug === currentCategory;
         return matchQuery && matchCategory;
       });
 
-      renderPosts(filtered, grid, empty);
+      currentPage = 1;
+      renderPage(grid, empty);
     };
 
     search?.addEventListener('input', applyFilters);
@@ -77,27 +97,107 @@ async function initBlogIndex() {
     applyFilters();
   } catch (error) {
     console.error('[blog-index]', error);
-    const t = getUiText();
-
-    grid.innerHTML = `
-      <article class="blog-card">
-        <h2>${t.loadErrorTitle}</h2>
-        <p>${t.loadErrorText}</p>
-      </article>
-    `;
+    grid.innerHTML = '';
+    showEmptyState(empty, 'unavailable');
+    hidePagination();
   }
 }
 
-function renderPosts(posts, grid, empty) {
-  const t = getUiText();
-
-  if (!posts.length) {
+function renderPage(grid, empty) {
+  if (currentFiltered.length === 0) {
     grid.innerHTML = '';
-    if (empty) empty.hidden = false;
+    showEmptyState(empty, allPosts.length === 0 ? 'unavailable' : 'filter');
+    hidePagination();
     return;
   }
 
-  if (empty) empty.hidden = true;
+  hideEmptyState(empty);
+
+  const totalPages = Math.ceil(currentFiltered.length / POSTS_PER_PAGE);
+  if (currentPage > totalPages) currentPage = totalPages;
+
+  const start = (currentPage - 1) * POSTS_PER_PAGE;
+  const pagePosts = currentFiltered.slice(start, start + POSTS_PER_PAGE);
+
+  renderPosts(pagePosts, grid);
+  renderPagination(totalPages);
+}
+
+function showEmptyState(empty, type) {
+  if (!empty) return;
+  const t = getUiText();
+  const isFilter = type === 'filter';
+  empty.innerHTML = `
+    <span class="blog-empty-text">${isFilter ? t.emptyFilter : t.emptyUnavailable}</span>
+    <i class="fas ${isFilter ? 'fa-magnifying-glass' : 'fa-newspaper'} blog-empty-icon"></i>
+  `;
+  empty.hidden = false;
+}
+
+function hideEmptyState(empty) {
+  if (!empty) return;
+  empty.hidden = true;
+  empty.innerHTML = '';
+}
+
+function hidePagination() {
+  const top = document.getElementById('blog-pagination-top');
+  const bottom = document.getElementById('blog-pagination-bottom');
+  if (top) top.hidden = true;
+  if (bottom) bottom.hidden = true;
+}
+
+function renderPagination(totalPages) {
+  const paginationTop = document.getElementById('blog-pagination-top');
+  const paginationBottom = document.getElementById('blog-pagination-bottom');
+
+  if (!paginationTop || !paginationBottom) return;
+
+  paginationTop.hidden = false;
+  paginationBottom.hidden = totalPages <= 1;
+
+  const t = getUiText();
+  const html = `
+    <button class="pagination-btn" data-dir="prev" ${currentPage === 1 ? 'disabled' : ''} aria-label="${t.prev}">
+      <i class="fas fa-chevron-left"></i>
+    </button>
+    <span class="pagination-info">${currentPage} / ${totalPages}</span>
+    <button class="pagination-btn" data-dir="next" ${currentPage === totalPages ? 'disabled' : ''} aria-label="${t.next}">
+      <i class="fas fa-chevron-right"></i>
+    </button>
+  `;
+
+  paginationTop.innerHTML = html;
+  paginationBottom.innerHTML = html;
+
+  const grid = document.getElementById('blog-grid');
+  const empty = document.getElementById('blog-empty');
+  const listingSection = document.querySelector('.blog-listing-section');
+
+  paginationTop.querySelectorAll('.pagination-btn').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const dir = btn.dataset.dir;
+      const total = Math.ceil(currentFiltered.length / POSTS_PER_PAGE);
+      if (dir === 'prev' && currentPage > 1) currentPage--;
+      if (dir === 'next' && currentPage < total) currentPage++;
+      renderPage(grid, empty);
+    });
+  });
+
+  paginationBottom.querySelectorAll('.pagination-btn').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const dir = btn.dataset.dir;
+      const total = Math.ceil(currentFiltered.length / POSTS_PER_PAGE);
+      if (dir === 'prev' && currentPage > 1) currentPage--;
+      if (dir === 'next' && currentPage < total) currentPage++;
+      renderPage(grid, empty);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  });
+}
+
+function renderPosts(posts, grid) {
+  const t = getUiText();
 
   grid.innerHTML = posts
     .map(
