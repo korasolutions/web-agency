@@ -274,6 +274,10 @@
   font-weight: 600;
 }
 
+.blog-empty[hidden] {
+  display: none;
+}
+
 .blog-empty {
   display: flex;
   flex-direction: column;
