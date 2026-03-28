@@ -49,14 +49,20 @@
             <div class="container">
                 <div class="blog-toolbar">
                     <input id="blog-search" type="search" placeholder="Search articles..." aria-label="Search articles">
-                    <select id="blog-category">
-                        <option value="all">All categories</option>
-                        <option value="desarrollo-web">Web development</option>
-                        <option value="seo">SEO</option>
-                        <option value="automatizacion">Automation</option>
-                        <option value="ia">AI</option>
-                        <option value="negocios">Business</option>
-                    </select>
+                    <div class="blog-category-dropdown" id="blog-category-wrapper">
+                        <button class="blog-category-btn" id="blog-category-btn" type="button">
+                            <span class="blog-category-selected">All categories</span>
+                            <i class="fas fa-chevron-down blog-category-arrow"></i>
+                        </button>
+                        <ul class="blog-category-list" id="blog-category-list" hidden>
+                            <li class="blog-category-option active" data-value="all"><span class="blog-category-label">All categories</span><span class="blog-category-count"></span></li>
+                            <li class="blog-category-option" data-value="desarrollo-web"><span class="blog-category-label">Web development</span><span class="blog-category-count"></span></li>
+                            <li class="blog-category-option" data-value="seo"><span class="blog-category-label">SEO</span><span class="blog-category-count"></span></li>
+                            <li class="blog-category-option" data-value="automatizacion"><span class="blog-category-label">Automation</span><span class="blog-category-count"></span></li>
+                            <li class="blog-category-option" data-value="ia"><span class="blog-category-label">AI</span><span class="blog-category-count"></span></li>
+                            <li class="blog-category-option" data-value="negocios"><span class="blog-category-label">Business</span><span class="blog-category-count"></span></li>
+                        </ul>
+                    </div>
                 </div>
 
                 <div id="blog-pagination-top" class="pagination-controls" hidden></div>
