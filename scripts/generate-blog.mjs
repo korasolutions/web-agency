@@ -548,7 +548,7 @@ function renderArticleHtml(locale, post) {
         </header>
 
         <div class="blog-article-cover">
-          <img src="${post.coverImage}" alt="${escapeHtml(post.title)}" loading="eager" fetchpriority="high">
+          <img src="${post.coverImage}" alt="${escapeHtml(post.title)}" loading="eager" fetchpriority="high" onerror="this.onerror=null;this.src='/assets/blog/article-default-image.webp';">
         </div>
 
         <article class="blog-article-content">
