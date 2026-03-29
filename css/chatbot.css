@@ -698,7 +698,8 @@ html[lang="en"] .kora-chatbot-header h3::after {
     .kora-chatbot-send {
         height: 46px;
         border-radius: 14px;
-        padding: 0 14px;
+        padding: 0 10px;
+        text-align: center;
         font-size: 0.9rem;
     }
 
