@@ -388,7 +388,7 @@ async function ensureCoverImage(post) {
   } catch {}
 
   const categoryFallbackPath = path.join(BLOG_ASSETS_DIR, `articulo-${post.imageTopicSlug}.webp`);
-  const defaultFallbackImage = '/assets/blog/article-default-image.webp';
+  const defaultFallbackImage = '/assets/blog/article-default-image.webp?v=2';
 
   async function resolveFallback() {
     try {
@@ -578,7 +578,7 @@ function renderArticleHtml(locale, post, sidebarPosts) {
             </header>
 
             <div class="blog-article-cover">
-              <img src="${post.coverImage}" alt="${escapeHtml(post.title)}" loading="eager" fetchpriority="high" onerror="this.onerror=null;this.src='/assets/blog/article-default-image.webp';">
+              <img src="${post.coverImage}" alt="${escapeHtml(post.title)}" loading="eager" fetchpriority="high" onerror="this.onerror=null;this.src='/assets/blog/article-default-image.webp?v=2';">
             </div>
 
             <article class="blog-article-content">
