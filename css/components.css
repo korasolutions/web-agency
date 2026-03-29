@@ -224,7 +224,7 @@
     user-select: none;
 }
 
-.kora-logo:hover {
+.logo:hover .kora-logo {
     filter: brightness(1.3);
 }
 
@@ -524,7 +524,7 @@ footer .logo {
     background: transparent;
     color: var(--text-primary);
     border: 1px solid var(--border-light);
-    padding: 6px 32px;
+    padding: 7px 32px;
     border-radius: 40px;
     text-decoration: none;
     transition: var(--transition-smooth);
