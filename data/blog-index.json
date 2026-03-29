@@ -1,6 +1,31 @@
 {
-  "updatedAt": "2026-03-29T18:14:05.070Z",
+  "updatedAt": "2026-03-29T19:49:19.630Z",
   "posts": [
+    {
+      "locale": "es",
+      "title": "Cómo Digitalizar un Negocio Local en Lanzarote: Guía Paso a Paso",
+      "slug": "digitalizar-negocio-lanzarote",
+      "url": "/blog/digitalizar-negocio-lanzarote.html",
+      "excerpt": "Descubre cómo digitalizar tu negocio local en Lanzarote con esta guía práctica que incluye estrategias de desarrollo web y automatización.",
+      "category": "Negocios",
+      "categorySlug": "negocios",
+      "keywords": [
+        "digitalización",
+        "negocios locales",
+        "Lanzarote",
+        "desarrollo web",
+        "automatización",
+        "IA",
+        "cómo digitalizar un negocio local en lanzarote paso a paso"
+      ],
+      "date": "29 de marzo de 2026",
+      "publishedAt": "2026-03-29T19:49:01.428Z",
+      "coverImage": "/assets/blog/article-default-image.webp",
+      "metaDescription": "Aprende a digitalizar tu negocio local en Lanzarote con nuestra guía paso a paso sobre desarrollo web y automatización.",
+      "alternateUrl": "/en/blog/digitize-local-business-lanzarote.html",
+      "seedTopic": "cómo digitalizar un negocio local en lanzarote paso a paso",
+      "imageTopicSlug": "negocios"
+    },
     {
       "locale": "es",
       "title": "¿Por qué una web bonita no siempre vende en negocios locales?",
