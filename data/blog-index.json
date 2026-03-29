@@ -1,6 +1,33 @@
 {
-  "updatedAt": "2026-03-29T03:49:36.180Z",
+  "updatedAt": "2026-03-29T18:09:52.942Z",
   "posts": [
+    {
+      "locale": "es",
+      "title": "Ahorra Tiempo en Tu Pyme de Lanzarote a Través de la Automatización de Procesos",
+      "slug": "ahorrar-tiempo-pyme-lanzarote",
+      "url": "/blog/ahorrar-tiempo-pyme-lanzarote.html",
+      "excerpt": "Descubre cómo la automatización puede optimizar procesos en tu pyme en Lanzarote y permitirte enfocar recursos en lo que realmente importa.",
+      "category": "Negocios",
+      "categorySlug": "negocios",
+      "keywords": [
+        "automatización de procesos",
+        "ahorrar tiempo pyme",
+        "eficiencia negocios Lanzarote",
+        "IA en pymes",
+        "Lanzarote",
+        "desarrollo web",
+        "automatización",
+        "IA",
+        "cómo una pyme en lanzarote puede ahorrar tiempo automatizando procesos"
+      ],
+      "date": "29 de marzo de 2026",
+      "publishedAt": "2026-03-29T18:09:44.506Z",
+      "coverImage": "/assets/blog/articulo-automatizacion.webp",
+      "metaDescription": "Optimiza tu pyme en Lanzarote ahorrando tiempo con la automatización de procesos. Mejora la eficiencia y aumenta tu rentabilidad.",
+      "alternateUrl": "/en/blog/save-time-lanzarote-sme-automation.html",
+      "seedTopic": "cómo una pyme en lanzarote puede ahorrar tiempo automatizando procesos",
+      "imageTopicSlug": "automatizacion"
+    },
     {
       "locale": "es",
       "title": "Diferencias Clave entre una Web Corporativa y una Landing Page en Lanzarote",

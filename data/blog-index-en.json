@@ -1,6 +1,33 @@
 {
-  "updatedAt": "2026-03-29T03:49:36.181Z",
+  "updatedAt": "2026-03-29T18:09:52.942Z",
   "posts": [
+    {
+      "locale": "en",
+      "title": "Save Time in Your Lanzarote SME Through Process Automation",
+      "slug": "save-time-lanzarote-sme-automation",
+      "url": "/en/blog/save-time-lanzarote-sme-automation.html",
+      "excerpt": "Discover how automation can optimize processes in your SME in Lanzarote, allowing you to focus resources on what truly matters.",
+      "category": "Business",
+      "categorySlug": "negocios",
+      "keywords": [
+        "process automation",
+        "saving time SME",
+        "business efficiency Lanzarote",
+        "AI in SMEs",
+        "Lanzarote",
+        "web development",
+        "automation",
+        "AI",
+        "how an SME in Lanzarote can save time by automating processes"
+      ],
+      "date": "March 29, 2026",
+      "publishedAt": "2026-03-29T18:09:44.506Z",
+      "coverImage": "/assets/blog/articulo-automatizacion.webp",
+      "metaDescription": "Optimize your SME in Lanzarote by saving time with process automation. Improve efficiency and increase your profitability.",
+      "alternateUrl": "/blog/ahorrar-tiempo-pyme-lanzarote.html",
+      "seedTopic": "cómo una pyme en lanzarote puede ahorrar tiempo automatizando procesos",
+      "imageTopicSlug": "automatizacion"
+    },
     {
       "locale": "en",
       "title": "Key Differences Between a Corporate Website and a Landing Page in Lanzarote",
