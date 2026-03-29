@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog | KORA Digital Solutions</title>
+    <meta name="description" content="Blog de KORA sobre desarrollo web, SEO, automatización e inteligencia artificial para empresas.">
+    <link rel="canonical" href="https://koradigitalsolutions.com/blog/">
+    <link rel="alternate" hreflang="es" href="https://koradigitalsolutions.com/blog/">
+    <link rel="alternate" hreflang="en" href="https://koradigitalsolutions.com/en/blog/">
+    <link rel="alternate" hreflang="x-default" href="https://koradigitalsolutions.com/blog/">
+
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Blog | KORA Digital Solutions">
+    <meta property="og:description" content="Artículos sobre desarrollo web, IA y automatización para negocios.">
+    <meta property="og:url" content="https://koradigitalsolutions.com/blog/">
+    <meta property="og:image" content="https://koradigitalsolutions.com/assets/seo/og-kora-1200x630.jpg">
+    <!-- FAVICONS -->
+  <link rel="icon" href="/assets/logo/icon/favicon.ico" sizes="any">
+  <link rel="icon" type="image/svg+xml" href="/assets/logo/icon/favicon.svg">
+  <link rel="icon" type="image/png" sizes="48x48" href="/assets/logo/icon/favicon-48.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="/assets/logo/icon/favicon-192.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/logo/icon/apple-touch-icon.png">
+
+    <!-- FAVICONS -->
+    <link rel="icon" href="/assets/logo/icon/favicon.ico" sizes="any">
+    <link rel="icon" type="image/svg+xml" href="/assets/logo/icon/favicon.svg">
+    <link rel="icon" type="image/png" sizes="48x48" href="/assets/logo/icon/favicon-48.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="/assets/logo/icon/favicon-192.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/logo/icon/apple-touch-icon.png">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"></noscript>
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"></noscript>
+
+    <link rel="stylesheet" href="/css/base.css?v=2.2">
+    <link rel="stylesheet" href="/css/components.css?v=2.2">
+    <link rel="stylesheet" href="/css/blog.css?v=2.1">
+</head>
+<body data-page-lang="es" data-alt-es-url="/blog/" data-alt-en-url="/en/blog/">
+    <div id="header-placeholder"></div>
+
+    <main class="blog-page">
+        <section class="blog-hero">
+            <div class="container">
+                <div class="blog-hero-content">
+                    <span class="blog-badge">BLOG</span>
+                    <h1>Ideas, guías y estrategias para crecer con web e IA</h1>
+                    <p>Contenido pensado para negocios que quieren captar más clientes, mejorar procesos y tener una presencia digital seria.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="blog-listing-section">
+            <div class="container">
+                <div class="blog-toolbar">
+                    <input id="blog-search" type="search" placeholder="Buscar artículos..." aria-label="Buscar artículos">
+                    <div class="blog-category-dropdown" id="blog-category-wrapper">
+                        <button class="blog-category-btn" id="blog-category-btn" type="button">
+                            <span class="blog-category-selected">Todas las categorías</span>
+                            <i class="fas fa-chevron-down blog-category-arrow"></i>
+                        </button>
+                        <ul class="blog-category-list" id="blog-category-list" hidden>
+                            <li class="blog-category-option active" data-value="all"><span class="blog-category-label">Todas las categorías</span><span class="blog-category-count"></span></li>
+                            <li class="blog-category-option" data-value="desarrollo-web"><span class="blog-category-label">Desarrollo web</span><span class="blog-category-count"></span></li>
+                            <li class="blog-category-option" data-value="seo"><span class="blog-category-label">SEO</span><span class="blog-category-count"></span></li>
+                            <li class="blog-category-option" data-value="automatizacion"><span class="blog-category-label">Automatización</span><span class="blog-category-count"></span></li>
+                            <li class="blog-category-option" data-value="ia"><span class="blog-category-label">IA</span><span class="blog-category-count"></span></li>
+                            <li class="blog-category-option" data-value="negocios"><span class="blog-category-label">Negocios</span><span class="blog-category-count"></span></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div id="blog-pagination-top" class="pagination-controls" hidden></div>
+                <div id="blog-grid" class="blog-grid"></div>
+                <div id="blog-empty" class="blog-empty" hidden>No hay artículos que coincidan con tu búsqueda.</div>
+                <div id="blog-pagination-bottom" class="pagination-controls" hidden></div>
+            </div>
+        </section>
+    </main>
+
+    <div id="footer-placeholder"></div>
+
+    <script src="/js/i18n.js?v=2.1"></script>
+    <script src="https://unpkg.com/lenis@1.3.18/dist/lenis.min.js" defer></script>
+    <link rel="stylesheet" href="https://unpkg.com/lenis@1.3.18/dist/lenis.css">
+    <script src="/js/script.js?v=2.1"></script>
+    <script src="/js/blog-language-switch.js?v=2.1"></script>
+    <script src="/js/blog-index.js?v=2.1"></script>
+</body>
+</html>
