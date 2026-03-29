@@ -47,11 +47,11 @@
       "cards": {
         "web": {
           "title": "Desarrollo Web",
-          "desc": "Construimos tu sitio web a medida, cuidando cada detalle para reflejar la esencia de tu marca."
+          "desc": "Construimos sitios web a medida, cuidando cada detalle para transmitir tu marca y generar resultados reales."
         },
         "ai": {
           "title": "Automatizaciones IA",
-          "desc": "Automatizamos tareas repetitivas para ahorrar horas de trabajo."
+          "desc": "Automatizamos procesos de tu negocio para ahorrar tiempo, reducir errores y mejorar la eficiencia diaria."
         }
       }
     },
