@@ -270,7 +270,7 @@ Estructura del JSON:
     contentHtml: sanitizeHtml(parsed.contentHtml),
     publishedAt,
     date,
-    url: `/blog/${finalSlug}`,
+    url: `/blog/${finalSlug}.html`,
     seedTopic
   };
 }
@@ -372,7 +372,7 @@ JSON structure:
     contentHtml: sanitizeHtml(parsed.contentHtml),
     publishedAt,
     date,
-    url: `/en/blog/${finalSlug}`,
+    url: `/en/blog/${finalSlug}.html`,
     seedTopic: esPost.seedTopic
   };
 }
@@ -412,86 +412,28 @@ async function ensureCoverImage(post) {
 }
 
 function generateImagePrompt(post) {
-  const baseStyle = `
-High-end editorial photography, ultra realistic.
-
-Style:
-- Dark environment, night or low light scene
-- Realistic lighting with soft warm highlights
-- Cinematic depth of field
-- Matte materials
-- Minimalist composition
-- Photorealistic
-- No text, no logos, no UI overlays
-- No futuristic sci-fi
-- No neon overload
-- No abstract concepts
-
-Mood:
-Premium, calm, modern, professional
-`;
-
-  const compositions = [
-    'slightly angled desk composition',
-    'close-up composition with depth of field',
-    'wide minimal composition with one main focus',
-    'soft side perspective',
-    'editorial product-like composition'
-  ];
-
-  const scenesByCategory = {
-    'desarrollo-web': [
-      'a laptop on a clean desk displaying a modern website layout',
-      'a minimalist workspace with a laptop showing a structured website interface',
-      'a desk with a laptop and subtle web design elements on screen'
-    ],
-    'seo': [
-      'a laptop displaying analytics and growth charts in a dark environment',
-      'a workspace showing a screen with website traffic and ranking metrics',
-      'a computer with a clean dashboard representing SEO performance'
-    ],
-    'automatizacion': [
-      'a laptop and smartphone on a desk showing automated communication',
-      'a workspace with devices connected representing automation',
-      'a laptop with a messaging interface and a phone beside it'
-    ],
-    'ia': [
-      'a laptop with a clean AI assistant interface in a dark workspace',
-      'a smart assistant experience on a screen in a premium desk setup',
-      'a minimal desk setup with an AI interface on screen'
-    ],
-    'negocios': [
-      'a premium desk setup with a laptop and subtle business documents',
-      'a modern workspace representing planning and growth',
-      'a clean executive desk in a dark elegant environment'
-    ]
+  const categoryHints = {
+    'desarrollo-web': 'web development, websites, digital design, code, interfaces',
+    'seo': 'search engine optimization, online visibility, search rankings, digital growth',
+    'automatizacion': 'automation, workflows, connected systems, efficiency, technology',
+    'ia': 'artificial intelligence, machine learning, smart systems, data',
+    'negocios': 'business, entrepreneurship, strategy, local commerce, growth'
   };
 
   const category = post.categorySlug || 'negocios';
-  const sceneList = scenesByCategory[category] || scenesByCategory.negocios;
-  const scene = sceneList[Math.floor(Math.random() * sceneList.length)];
-  const composition = compositions[Math.floor(Math.random() * compositions.length)];
+  const hint = categoryHints[category] || categoryHints.negocios;
 
-  return `
-${baseStyle}
+  return `Create a cover image for a blog article about: ${post.title}
 
-Scene:
-${scene}
+Category context: ${hint}
 
-Article context:
-${post.title}
+Rules (strictly required):
+- Dark overall tone — dark background, no bright or white backgrounds
+- Wide horizontal format
+- No text, letters, numbers, words, labels or readable symbols of any kind anywhere in the image
+- No UI mockups or screens with legible content
 
-Composition:
-${composition}
-
-Important:
-- Must look like real photography
-- Must feel premium and consistent with a dark minimalist brand
-- Avoid generic stock-photo look
-- Avoid repetition
-- One main subject only
-- Clean and elegant
-`;
+Everything else — style, composition, realism, abstraction, lighting, color palette — is your creative choice. Surprise us, but always stay closely related to the article topic and category. The image must feel relevant to someone reading about this subject.`;
 }
 
 async function generateImageWithOpenAI(prompt) {
@@ -507,7 +449,9 @@ async function generateImageWithOpenAI(prompt) {
         body: JSON.stringify({
           model: 'gpt-image-1',
           prompt,
-          size: '1536x1024'
+          size: '1536x1024',
+          output_format: 'webp',
+          output_quality: 45
         })
       },
       120000
@@ -573,221 +517,7 @@ function renderArticleHtml(locale, post, sidebarPosts) {
   <link rel="stylesheet" href="/css/base.css?v=6">
   <link rel="stylesheet" href="/css/components.css?v=7">
   <link rel="stylesheet" href="/css/blog.css?v=2">
-  <style>
-    .blog-article-shell {
-      display: grid;
-      grid-template-columns: minmax(0, 760px) 300px;
-      gap: 56px;
-      align-items: start;
-    }
-
-    .blog-article-primary {
-      min-width: 0;
-    }
-
-    .blog-article-sidebar {
-      position: sticky;
-      top: 120px;
-      min-width: 0;
-      display: flex;
-      flex-direction: column;
-      gap: 24px;
-      align-self: start;
-    }
-
-    .blog-article-header {
-      margin-bottom: 28px;
-    }
-
-    .blog-article-header h1 {
-      max-width: 14ch;
-      line-height: 0.98;
-      letter-spacing: -0.04em;
-    }
-
-    .blog-article-excerpt {
-      max-width: 58ch;
-      font-size: 1.08rem;
-      line-height: 1.75;
-      color: rgba(255,255,255,0.72);
-    }
-
-    .blog-article-cover {
-      width: 100%;
-      max-width: 760px;
-      margin: 0 0 34px;
-    }
-
-    .blog-article-cover img {
-      width: 100%;
-      aspect-ratio: 16 / 8;
-      object-fit: cover;
-      border-radius: 24px;
-      display: block;
-    }
-
-    .blog-article-content {
-      max-width: 720px;
-    }
-
-    .blog-article-content > p:first-child {
-      font-size: 1.08rem;
-      color: rgba(255,255,255,0.82);
-    }
-
-    .blog-sidebar-section {
-      background: transparent;
-      border: 0;
-      padding: 0;
-    }
-
-    .blog-sidebar-kicker {
-      margin: 0 0 14px;
-      font-size: 0.76rem;
-      line-height: 1.2;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: rgba(255,255,255,0.42);
-      font-weight: 600;
-    }
-
-    .blog-article-toc,
-    .blog-sidebar-list {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-    }
-
-    .blog-article-toc a,
-    .blog-sidebar-list a {
-      color: rgba(255,255,255,0.76);
-      text-decoration: none;
-      font-size: 0.98rem;
-      line-height: 1.5;
-      transition: color 0.2s ease, transform 0.2s ease;
-    }
-
-    .blog-article-toc a:hover,
-    .blog-sidebar-list a:hover {
-      color: #ffffff;
-      transform: translateX(2px);
-    }
-
-    .blog-sidebar-item {
-      display: flex;
-      flex-direction: column;
-      gap: 4px;
-    }
-
-    .blog-sidebar-item-category {
-      font-size: 0.78rem;
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
-      color: #ff8383;
-    }
-
-    .blog-sidebar-divider {
-      width: 100%;
-      height: 1px;
-      background: linear-gradient(
-        90deg,
-        rgba(255,255,255,0.08) 0%,
-        rgba(255,255,255,0.02) 100%
-      );
-    }
-
-    .blog-sidebar-cta-copy {
-      margin: 0;
-      font-size: 0.98rem;
-      line-height: 1.7;
-      color: rgba(255,255,255,0.68);
-    }
-
-    .blog-sidebar-cta-link {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      margin-top: 14px;
-      color: #ffffff;
-      text-decoration: none;
-      font-size: 0.98rem;
-      font-weight: 600;
-      transition: opacity 0.2s ease, transform 0.2s ease;
-    }
-
-    .blog-sidebar-cta-link:hover {
-      opacity: 0.88;
-      transform: translateX(2px);
-    }
-
-    .blog-sidebar-cta-link-secondary {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      margin-top: 10px;
-      color: rgba(255,255,255,0.62);
-      text-decoration: none;
-      font-size: 0.94rem;
-      transition: color 0.2s ease, transform 0.2s ease;
-    }
-
-    .blog-sidebar-cta-link-secondary:hover {
-      color: #ffffff;
-      transform: translateX(2px);
-    }
-
-    .blog-article-end-cta {
-      margin-top: 42px;
-      padding-top: 28px;
-      border-top: 1px solid rgba(255,255,255,0.08);
-    }
-
-    .blog-article-end-cta h3 {
-      margin-bottom: 12px;
-    }
-
-    .blog-article-end-cta p {
-      max-width: 58ch;
-      color: rgba(255,255,255,0.72);
-    }
-
-    .blog-article-end-cta-link {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      margin-top: 8px;
-      color: #ffffff;
-      text-decoration: none;
-      font-weight: 600;
-    }
-
-    @media (max-width: 1240px) {
-      .blog-article-shell {
-        grid-template-columns: minmax(0, 1fr) 280px;
-        gap: 40px;
-      }
-    }
-
-    @media (max-width: 1080px) {
-      .blog-article-shell {
-        grid-template-columns: 1fr;
-      }
-
-      .blog-article-sidebar {
-        position: static;
-      }
-
-      .blog-article-content,
-      .blog-article-cover {
-        max-width: none;
-      }
-
-      .blog-article-header h1,
-      .blog-article-excerpt {
-        max-width: none;
-      }
-    }
-  </style>
+  <link rel="stylesheet" href="/css/article.css?v=1">
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -844,7 +574,7 @@ function renderArticleHtml(locale, post, sidebarPosts) {
             <article class="blog-article-content">
               ${articleData.html}
               <div class="blog-article-end-cta">
-                <h3>${copy.ctaTitle}</h3>
+                <h2>${copy.ctaTitle}</h2>
                 <p>${copy.ctaText}</p>
                 <a class="blog-article-end-cta-link" href="/#contacto">
                   ${copy.ctaPrimary}
@@ -857,13 +587,8 @@ function renderArticleHtml(locale, post, sidebarPosts) {
 
         <aside class="blog-article-sidebar" aria-label="${copy.sidebarLabel}">
           ${tocHtml}
-          <div class="blog-sidebar-divider"></div>
           ${relatedHtml}
-          <div class="blog-sidebar-divider"></div>
           ${recentHtml}
-          <div class="blog-sidebar-divider"></div>
-          ${featuredHtml}
-          <div class="blog-sidebar-divider"></div>
           ${ctaHtml}
         </aside>
       </div>
@@ -1010,14 +735,10 @@ function renderSidebarCta(locale, copy) {
   const secondaryHref = '/#contacto';
 
   return `
-    <section class="blog-sidebar-section">
+    <section class="blog-sidebar-section blog-sidebar-cta-section">
       <p class="blog-sidebar-kicker">${copy.ctaTitle}</p>
       <p class="blog-sidebar-cta-copy">${copy.ctaText}</p>
-      <a class="blog-sidebar-cta-link" href="${primaryHref}">
-        ${copy.ctaPrimary}
-        <i class="fas fa-arrow-right"></i>
-      </a>
-      <a class="blog-sidebar-cta-link-secondary" href="${secondaryHref}">
+      <a class="blog-sidebar-cta-link" href="${secondaryHref}">
         ${copy.ctaSecondary}
         <i class="fas fa-arrow-right"></i>
       </a>
@@ -1062,8 +783,8 @@ async function updateSitemap(esPosts, enPosts) {
   ];
 
   const dynamicUrls = [
-    ...esPosts.map((post) => ({ url: post.url, lastmod: post.publishedAt })),
-    ...enPosts.map((post) => ({ url: post.url, lastmod: post.publishedAt }))
+    ...esPosts.map((post) => ({ url: post.url.replace(/\.html$/, ''), lastmod: post.publishedAt })),
+    ...enPosts.map((post) => ({ url: post.url.replace(/\.html$/, ''), lastmod: post.publishedAt }))
   ];
 
   const uniqueMap = new Map();
