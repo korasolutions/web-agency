@@ -1,6 +1,32 @@
 {
-  "updatedAt": "2026-03-29T18:09:52.942Z",
+  "updatedAt": "2026-03-29T18:14:05.070Z",
   "posts": [
+    {
+      "locale": "es",
+      "title": "¿Por qué una web bonita no siempre vende en negocios locales?",
+      "slug": "web-bonita-no-siempre-vende",
+      "url": "/blog/web-bonita-no-siempre-vende.html",
+      "excerpt": "Descubre por qué tener una web atractiva no garantiza ventas y cómo optimizarla para tu negocio local en Lanzarote.",
+      "category": "Desarrollo web",
+      "categorySlug": "desarrollo-web",
+      "keywords": [
+        "desarrollo web",
+        "negocios locales",
+        "optimización web",
+        "ventas online",
+        "Lanzarote",
+        "automatización",
+        "IA",
+        "por qué una web bonita no siempre vende en negocios locales"
+      ],
+      "date": "29 de marzo de 2026",
+      "publishedAt": "2026-03-29T18:13:49.434Z",
+      "coverImage": "/assets/blog/articulo-desarrollo-web.webp",
+      "metaDescription": "Una web atractiva no siempre asegura ventas. Aprende a optimizar tu sitio para aumentar conversiones en negocios locales en Lanzarote.",
+      "alternateUrl": "/en/blog/why-a-beautiful-website-doesnt-always-sell-local-businesses.html",
+      "seedTopic": "por qué una web bonita no siempre vende en negocios locales",
+      "imageTopicSlug": "desarrollo-web"
+    },
     {
       "locale": "es",
       "title": "Ahorra Tiempo en Tu Pyme de Lanzarote a Través de la Automatización de Procesos",

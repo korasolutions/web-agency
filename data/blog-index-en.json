@@ -1,6 +1,33 @@
 {
-  "updatedAt": "2026-03-29T18:09:52.942Z",
+  "updatedAt": "2026-03-29T18:14:05.070Z",
   "posts": [
+    {
+      "locale": "en",
+      "title": "Why a Beautiful Website Doesn't Always Sell for Local Businesses",
+      "slug": "why-a-beautiful-website-doesnt-always-sell-local-businesses",
+      "url": "/en/blog/why-a-beautiful-website-doesnt-always-sell-local-businesses.html",
+      "excerpt": "Discover why having an attractive website doesn't guarantee sales and how to optimize it for your local business in Lanzarote.",
+      "category": "Web development",
+      "categorySlug": "desarrollo-web",
+      "keywords": [
+        "web development",
+        "local businesses",
+        "website optimization",
+        "online sales",
+        "Lanzarote",
+        "automation",
+        "AI",
+        "why a beautiful website doesn't always sell for local businesses",
+        "desarrollo web"
+      ],
+      "date": "March 29, 2026",
+      "publishedAt": "2026-03-29T18:13:49.434Z",
+      "coverImage": "/assets/blog/articulo-desarrollo-web.webp",
+      "metaDescription": "An attractive website doesn't always ensure sales. Learn how to optimize your site to increase conversions for local businesses in Lanzarote.",
+      "alternateUrl": "/blog/web-bonita-no-siempre-vende.html",
+      "seedTopic": "por qué una web bonita no siempre vende en negocios locales",
+      "imageTopicSlug": "desarrollo-web"
+    },
     {
       "locale": "en",
       "title": "Save Time in Your Lanzarote SME Through Process Automation",
