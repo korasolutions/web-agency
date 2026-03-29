@@ -1,6 +1,59 @@
 {
-  "updatedAt": "2026-03-29T01:13:29.860Z",
+  "updatedAt": "2026-03-29T01:27:56.079Z",
   "posts": [
+    {
+      "locale": "es",
+      "title": "Cómo captar clientes en Lanzarote con una web profesional",
+      "slug": "captar-clientes-lanzarote-web-profesional",
+      "url": "/blog/captar-clientes-lanzarote-web-profesional",
+      "excerpt": "Descubre cómo una web profesional puede transformar tu negocio en Lanzarote, atrayendo más clientes y generando oportunidades de crecimiento.",
+      "category": "Desarrollo web",
+      "categorySlug": "desarrollo-web",
+      "keywords": [
+        "captar clientes",
+        "web profesional",
+        "Lanzarote",
+        "negocios locales",
+        "digitalización",
+        "desarrollo web",
+        "automatización",
+        "IA",
+        "cómo captar clientes en lanzarote con una web profesional"
+      ],
+      "date": "29 de marzo de 2026",
+      "publishedAt": "2026-03-29T01:26:45.668Z",
+      "coverImage": "/assets/blog/captar-clientes-lanzarote-web-profesional.png",
+      "metaDescription": "Aprende a captar clientes en Lanzarote con una web profesional. Estrategias efectivas para negocios locales y pymes que quieren digitalizarse.",
+      "alternateUrl": "/en/blog/attract-customers-lanzarote-professional-website",
+      "seedTopic": "cómo captar clientes en lanzarote con una web profesional",
+      "imageTopicSlug": "desarrollo-web"
+    },
+    {
+      "locale": "es",
+      "title": "Optimiza tu Negocio en Lanzarote: Automatización de WhatsApp y Formularios",
+      "slug": "automatizacion-whatsapp-lanzarote",
+      "url": "/blog/automatizacion-whatsapp-lanzarote",
+      "excerpt": "Descubre cómo la automatización de WhatsApp y formularios puede transformar tu negocio en Lanzarote, mejorando la atención al cliente y aumentando las conversiones.",
+      "category": "Automatización",
+      "categorySlug": "automatizacion",
+      "keywords": [
+        "automatización",
+        "WhatsApp",
+        "formularios",
+        "negocios Lanzarote",
+        "Lanzarote",
+        "desarrollo web",
+        "IA",
+        "automatización de whatsapp y formularios para negocios en lanzarote"
+      ],
+      "date": "29 de marzo de 2026",
+      "publishedAt": "2026-03-29T01:25:23.843Z",
+      "coverImage": "/assets/blog/articulo-automatizacion.webp",
+      "metaDescription": "Aprende cómo la automatización de WhatsApp y formularios puede potenciar tu negocio en Lanzarote, facilitando la atención al cliente y aumentando las ventas.",
+      "alternateUrl": "/en/blog/optimize-business-lanzarote-whatsapp-automation",
+      "seedTopic": "automatización de whatsapp y formularios para negocios en lanzarote",
+      "imageTopicSlug": "automatizacion"
+    },
     {
       "locale": "es",
       "title": "¿Cuándo es el Momento Ideal para Rediseñar la Página Web de tu Empresa en Lanzarote?",

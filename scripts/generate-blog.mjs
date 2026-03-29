@@ -439,30 +439,31 @@ Important:
 }
 
 async function generateImageWithOpenAI(prompt) {
-  const response = await fetch("https://openrouter.ai/api/v1/chat/completions", {
-  method: "POST",
-  headers: {
-    "Authorization": `Bearer ${process.env.OPENROUTER_API_KEY}`,
-    "Content-Type": "application/json"
-  },
-  body: JSON.stringify({
-    model: "openai/gpt-5o",
-    messages: [
-      { role: "user", content: prompt }
-    ]
-  })
-});
+  try {
+    const response = await fetchJsonWithTimeout(
+      'https://api.openai.com/v1/images/generations',
+      {
+        method: 'POST',
+        headers: {
+          Authorization: `Bearer ${openAiApiKey}`,
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          model: 'gpt-image-1',
+          prompt,
+          size: '1536x1024'
+        })
+      },
+      120000
+    );
 
-  const imageItems = Array.isArray(response?.output)
-    ? response.output.filter((item) => item?.type === 'image_generation_call' && item?.result)
-    : [];
-
-  if (!imageItems.length) {
     console.log('OpenAI image response:', JSON.stringify(response, null, 2));
+
+    return response?.data?.[0]?.b64_json || null;
+  } catch (error) {
+    console.error('Error generando imagen:', error.message);
     return null;
   }
-
-  return imageItems[0].result;
 }
 
 function renderArticleHtml(locale, post) {
