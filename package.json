@@ -1,0 +1,11 @@
+{
+  "name": "kora-blog-generator",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "generate": "node ./scripts/generate-blog.mjs"
+  },
+  "dependencies": {
+    "node-fetch": "^3.3.2"
+  }
+}

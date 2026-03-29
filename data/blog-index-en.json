@@ -1,6 +1,60 @@
 {
-  "updatedAt": "2026-03-27T10:41:34.948Z",
+  "updatedAt": "2026-03-29T01:13:29.860Z",
   "posts": [
+    {
+      "locale": "en",
+      "title": "When is the Ideal Time to Redesign Your Business Website in Lanzarote?",
+      "slug": "when-to-redesign-website-lanzarote",
+      "url": "/en/blog/when-to-redesign-website-lanzarote",
+      "excerpt": "Discover the signs that indicate it's time for a website redesign and how it can benefit your local business in Lanzarote.",
+      "category": "Web development",
+      "categorySlug": "desarrollo-web",
+      "keywords": [
+        "website redesign",
+        "web development Lanzarote",
+        "local businesses Lanzarote",
+        "automation AI",
+        "Lanzarote",
+        "web development",
+        "automation",
+        "AI",
+        "when a business in Lanzarote needs to redesign its website"
+      ],
+      "date": "March 29, 2026",
+      "publishedAt": "2026-03-29T01:13:15.743Z",
+      "coverImage": "/assets/blog/articulo-desarrollo-web.webp",
+      "metaDescription": "Learn the signs indicating the need to redesign your website in Lanzarote and how to improve your local business's conversion rates.",
+      "alternateUrl": "/blog/rediseno-web-lanzarote",
+      "seedTopic": "cuándo una empresa en lanzarote necesita rediseñar su página web",
+      "imageTopicSlug": "desarrollo-web"
+    },
+    {
+      "locale": "en",
+      "title": "Why a Beautiful Website Doesn’t Always Drive Sales for Local Businesses",
+      "slug": "beautiful-website-local-business-sales",
+      "url": "/en/blog/beautiful-website-local-business-sales",
+      "excerpt": "Discover why an attractive website doesn't guarantee sales for local businesses and how to optimize your digital presence in Lanzarote.",
+      "category": "Web development",
+      "categorySlug": "desarrollo-web",
+      "keywords": [
+        "web development",
+        "local businesses",
+        "website optimization",
+        "Lanzarote",
+        "automation",
+        "AI",
+        "why a beautiful website doesn't always sell for local businesses",
+        "desarrollo web",
+        "automatización"
+      ],
+      "date": "March 29, 2026",
+      "publishedAt": "2026-03-29T01:09:18.899Z",
+      "coverImage": "/assets/blog/articulo-desarrollo-web.webp",
+      "metaDescription": "A beautiful website doesn't always translate to sales. Learn how to optimize your site for local businesses in Lanzarote and improve your conversion rate.",
+      "alternateUrl": "/blog/web-bonita-no-siempre-vende",
+      "seedTopic": "por qué una web bonita no siempre vende en negocios locales",
+      "imageTopicSlug": "desarrollo-web"
+    },
     {
       "locale": "en",
       "title": "How to Generate More Leads from Your Business Website in Lanzarote",

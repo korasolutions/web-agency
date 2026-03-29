@@ -6,6 +6,8 @@ const BLOG_DIR = path.join(ROOT, 'blog');
 const EN_DIR = path.join(ROOT, 'en');
 const EN_BLOG_DIR = path.join(EN_DIR, 'blog');
 const DATA_DIR = path.join(ROOT, 'data');
+const ASSETS_DIR = path.join(ROOT, 'assets');
+const BLOG_ASSETS_DIR = path.join(ASSETS_DIR, 'blog');
 
 const ES_INDEX_PATH = path.join(DATA_DIR, 'blog-index.json');
 const EN_INDEX_PATH = path.join(DATA_DIR, 'blog-index-en.json');
@@ -13,64 +15,35 @@ const SITEMAP_PATH = path.join(ROOT, 'sitemap.xml');
 
 const SITE_URL = 'https://koradigitalsolutions.com';
 
-const apiKey = process.env.OPENROUTER_API_KEY;
-const model = process.env.OPENROUTER_MODEL || 'openai/gpt-4o-mini';
+const openRouterApiKey = process.env.OPENROUTER_API_KEY;
+const openRouterModel = process.env.OPENROUTER_MODEL || 'openai/gpt-4o-mini';
+const openAiApiKey = process.env.OPENAI_API_KEY || '';
 
-if (!apiKey) {
+if (!openRouterApiKey) {
   throw new Error('Falta OPENROUTER_API_KEY en las variables del workflow.');
 }
 
-// scope: 'lanzarote' | 'canarias' | 'generic'
 const topicPool = [
-  // --- Lanzarote ---
-  { topic: 'seo local en lanzarote para negocios de servicios', scope: 'lanzarote', category: 'seo' },
-  { topic: 'cómo captar clientes en lanzarote con una web profesional', scope: 'lanzarote', category: 'desarrollo-web' },
-  { topic: 'por qué un negocio local en lanzarote necesita una web que convierta', scope: 'lanzarote', category: 'desarrollo-web' },
-  { topic: 'automatizaciones con ia para negocios locales en lanzarote', scope: 'lanzarote', category: 'automatizacion' },
-  { topic: 'cómo usar un chatbot con ia para captar leads en lanzarote', scope: 'lanzarote', category: 'ia' },
-  { topic: 'errores que hacen que una web de empresa en lanzarote no genere clientes', scope: 'lanzarote', category: 'desarrollo-web' },
-  { topic: 'qué debe tener una landing page para negocios locales en lanzarote', scope: 'lanzarote', category: 'desarrollo-web' },
-  { topic: 'cuándo una empresa en lanzarote necesita rediseñar su página web', scope: 'lanzarote', category: 'desarrollo-web' },
-  { topic: 'ia aplicada a reservas formularios y atención al cliente en lanzarote', scope: 'lanzarote', category: 'ia' },
-  { topic: 'cómo una pyme en lanzarote puede ahorrar tiempo automatizando procesos', scope: 'lanzarote', category: 'automatizacion' },
-  { topic: 'cómo elegir una agencia de desarrollo web y automatización en lanzarote', scope: 'lanzarote', category: 'desarrollo-web' },
-  { topic: 'qué contenido ayuda a posicionar una web de servicios en lanzarote', scope: 'lanzarote', category: 'seo' },
-  { topic: 'seo para clínicas restaurantes y negocios turísticos en lanzarote', scope: 'lanzarote', category: 'seo' },
-  { topic: 'cómo digitalizar un negocio local en lanzarote paso a paso', scope: 'lanzarote', category: 'negocios' },
-  { topic: 'cómo conseguir más contactos desde una web de empresa en lanzarote', scope: 'lanzarote', category: 'desarrollo-web' },
-  { topic: 'automatización de whatsapp y formularios para negocios en lanzarote', scope: 'lanzarote', category: 'automatizacion' },
-  { topic: 'cómo mejorar la velocidad de una web para vender más en lanzarote', scope: 'lanzarote', category: 'desarrollo-web' },
-  { topic: 'estrategia de contenidos para negocios locales en lanzarote', scope: 'lanzarote', category: 'seo' },
-  { topic: 'cómo los negocios turísticos de lanzarote pueden usar la ia para crecer', scope: 'lanzarote', category: 'ia' },
-
-  // --- Canarias ---
-  { topic: 'marketing digital para negocios locales en canarias', scope: 'canarias', category: 'negocios' },
-  { topic: 'cómo posicionar una empresa en canarias con seo local', scope: 'canarias', category: 'seo' },
-  { topic: 'automatización de procesos para pymes en canarias', scope: 'canarias', category: 'automatizacion' },
-  { topic: 'ia para el sector turístico en canarias', scope: 'canarias', category: 'ia' },
-  { topic: 'desarrollo web para negocios en las islas canarias', scope: 'canarias', category: 'desarrollo-web' },
-  { topic: 'cómo una empresa canaria puede competir online con grandes marcas', scope: 'canarias', category: 'negocios' },
-  { topic: 'seo local para restaurantes y hoteles en canarias', scope: 'canarias', category: 'seo' },
-  { topic: 'digitalización de pymes en canarias oportunidades y retos', scope: 'canarias', category: 'negocios' },
-  { topic: 'chatbots e ia para el comercio local en canarias', scope: 'canarias', category: 'ia' },
-  { topic: 'landing pages que convierten para negocios de servicios en canarias', scope: 'canarias', category: 'desarrollo-web' },
-
-  // --- Genérico ---
-  { topic: 'cómo automatizar respuestas de clientes sin perder calidad en negocios locales', scope: 'generic', category: 'automatizacion' },
-  { topic: 'diferencias entre una web corporativa y una landing page para captar clientes', scope: 'generic', category: 'desarrollo-web' },
-  { topic: 'por qué una web bonita no siempre vende en negocios locales', scope: 'generic', category: 'desarrollo-web' },
-  { topic: 'qué es un chatbot con ia y cómo puede aumentar las ventas de tu negocio', scope: 'generic', category: 'ia' },
-  { topic: 'cómo medir si tu web está generando clientes de verdad', scope: 'generic', category: 'negocios' },
-  { topic: 'automatización del proceso de onboarding para clientes de servicios', scope: 'generic', category: 'automatizacion' },
-  { topic: 'por qué los formularios de contacto mal diseñados pierden clientes', scope: 'generic', category: 'desarrollo-web' },
-  { topic: 'cómo crear un embudo de ventas digital para un negocio de servicios', scope: 'generic', category: 'negocios' },
-  { topic: 'qué es el seo local y por qué importa para cualquier negocio', scope: 'generic', category: 'seo' },
-  { topic: 'inteligencia artificial aplicada a la atención al cliente en pymes', scope: 'generic', category: 'ia' },
-  { topic: 'cómo reducir el tiempo de respuesta a clientes con automatizaciones', scope: 'generic', category: 'automatizacion' },
-  { topic: 'por qué tu empresa necesita una landing page además de una web corporativa', scope: 'generic', category: 'desarrollo-web' },
-  { topic: 'cómo el diseño web influye en la tasa de conversión de un negocio', scope: 'generic', category: 'desarrollo-web' },
-  { topic: 'señales de que tu web necesita una actualización urgente', scope: 'generic', category: 'desarrollo-web' },
-  { topic: 'automatización de emails y seguimiento para negocios de servicios', scope: 'generic', category: 'automatizacion' },
+  'seo local en lanzarote para negocios de servicios',
+  'cómo captar clientes en lanzarote con una web profesional',
+  'por qué un negocio local en lanzarote necesita una web que convierta',
+  'automatizaciones con ia para negocios locales en lanzarote',
+  'cómo usar un chatbot con ia para captar leads en lanzarote',
+  'errores que hacen que una web de empresa en lanzarote no genere clientes',
+  'cómo mejorar la velocidad de una web para vender más en lanzarote',
+  'qué debe tener una landing page para negocios locales en lanzarote',
+  'cuándo una empresa en lanzarote necesita rediseñar su página web',
+  'cómo automatizar respuestas de clientes sin perder calidad en negocios locales',
+  'ia aplicada a reservas formularios y atención al cliente en lanzarote',
+  'por qué una web bonita no siempre vende en negocios locales',
+  'cómo una pyme en lanzarote puede ahorrar tiempo automatizando procesos',
+  'diferencias entre una web corporativa y una landing page para captar clientes',
+  'cómo elegir una agencia de desarrollo web y automatización en lanzarote',
+  'qué contenido ayuda a posicionar una web de servicios en lanzarote',
+  'seo para clínicas restaurantes y negocios turísticos en lanzarote',
+  'cómo digitalizar un negocio local en lanzarote paso a paso',
+  'cómo conseguir más contactos desde una web de empresa en lanzarote',
+  'automatización de whatsapp y formularios para negocios en lanzarote'
 ];
 
 const categoryMapEs = {
@@ -107,18 +80,13 @@ const usedSlugsEs = new Set((existingEsIndex.posts || []).map((post) => String(p
 const usedSlugsEn = new Set((existingEnIndex.posts || []).map((post) => String(post.slug || '').toLowerCase()));
 const recentTopics = new Set((existingEsIndex.posts || []).slice(0, 40).map((post) => String(post.seedTopic || '').toLowerCase()));
 
-const lastTwoCategories = getLastCategories(existingEsIndex.posts || [], 2);
-const lastCategory = lastTwoCategories[0] || null;
-const secondLastCategory = lastTwoCategories[1] || null;
+const selectedTopic = pickTopic(recentTopics);
 
-let selectedTopic;
-if (lastCategory && lastCategory === secondLastCategory) {
-  selectedTopic = pickTopic(recentTopics, lastCategory);
-} else {
-  selectedTopic = pickTopic(recentTopics, null);
-}
+console.log(`Tema seleccionado: ${selectedTopic}`);
 
 const esPost = await generateSpanishArticle(selectedTopic, usedTitlesEs, usedSlugsEs);
+esPost.coverImage = await ensureCoverImage(esPost);
+
 const enPost = await generateEnglishVersion(esPost, usedSlugsEn);
 
 const linkedEsPost = {
@@ -128,6 +96,7 @@ const linkedEsPost = {
 
 const linkedEnPost = {
   ...enPost,
+  coverImage: esPost.coverImage,
   alternateUrl: esPost.url
 };
 
@@ -139,12 +108,12 @@ await fs.writeFile(path.join(EN_BLOG_DIR, `${linkedEnPost.slug}.html`), enHtml, 
 
 const updatedEsPosts = [
   toIndexEntry('es', linkedEsPost),
-  ...(existingEsIndex.posts || [])
+  ...(existingEsIndex.posts || []).filter((post) => String(post.slug || '').toLowerCase() !== linkedEsPost.slug.toLowerCase())
 ].slice(0, 300);
 
 const updatedEnPosts = [
   toIndexEntry('en', linkedEnPost),
-  ...(existingEnIndex.posts || [])
+  ...(existingEnIndex.posts || []).filter((post) => String(post.slug || '').toLowerCase() !== linkedEnPost.slug.toLowerCase())
 ].slice(0, 300);
 
 await fs.writeFile(
@@ -163,58 +132,15 @@ await updateSitemap(updatedEsPosts, updatedEnPosts);
 
 console.log(`Artículo ES generado: ${linkedEsPost.title}`);
 console.log(`Article EN generated: ${linkedEnPost.title}`);
+console.log(`Imagen usada: ${linkedEsPost.coverImage}`);
 
-function pickTopic(recentTopicsSet, lastCategory) {
-  const available = topicPool.filter((t) => !recentTopicsSet.has(t.topic.toLowerCase()));
-  const pool = available.length >= 3 ? available : topicPool;
-
-  if (lastCategory) {
-    const differentCategory = pool.filter((t) => t.category !== lastCategory);
-    if (differentCategory.length > 0) {
-      return differentCategory[Math.floor(Math.random() * differentCategory.length)];
-    }
-  }
-
+function pickTopic(recentTopicsSet) {
+  const available = topicPool.filter((topic) => !recentTopicsSet.has(topic.toLowerCase()));
+  const pool = available.length ? available : topicPool;
   return pool[Math.floor(Math.random() * pool.length)];
 }
 
-function getLastCategories(posts, count = 2) {
-  const categories = [];
-  for (let i = 0; i < Math.min(count, posts.length); i++) {
-    if (posts[i] && posts[i].categorySlug) {
-      categories.push(posts[i].categorySlug);
-    }
-  }
-  return categories;
-}
-
-function buildGeoContext(scope) {
-  if (scope === 'lanzarote') {
-    return {
-      positioningLine: 'Zona de posicionamiento principal: Lanzarote.',
-      contentGuideline: 'Incluye referencias naturales al contexto de negocios locales en Lanzarote cuando tenga sentido.',
-      enPreserveLine: 'Preserve the local Lanzarote context where relevant.'
-    };
-  }
-  if (scope === 'canarias') {
-    return {
-      positioningLine: 'Zona de posicionamiento: Canarias (islas canarias en general).',
-      contentGuideline: 'Haz referencia al contexto canario cuando tenga sentido, sin limitarte a una sola isla.',
-      enPreserveLine: 'Preserve the Canary Islands context where relevant, without limiting to a single island.'
-    };
-  }
-  // generic
-  return {
-    positioningLine: 'Dirigido a cualquier pyme o negocio local, sin referencia geográfica específica.',
-    contentGuideline: 'No hagas referencias geográficas específicas. Habla de negocios locales o pymes en general.',
-    enPreserveLine: 'Do not add geographic references. Keep the content general, applicable to any local business.'
-  };
-}
-
-async function generateSpanishArticle(topicObj, usedTitles, usedSlugs) {
-  const { topic: seedTopic, scope } = topicObj;
-  const geo = buildGeoContext(scope);
-
+async function generateSpanishArticle(seedTopic, usedTitles, usedSlugs) {
   const prompt = `
 Eres el equipo editorial SEO de KORA Digital Solutions.
 
@@ -222,12 +148,12 @@ Contexto de marca:
 - KORA es una agencia digital que crea webs de alto impacto y sistemas de IA para que los negocios conviertan más y trabajen menos.
 - Cliente ideal: negocios locales y pymes que quieren digitalizarse rápido.
 - Servicios: desarrollo web, rediseño web, automatizaciones con IA, chatbots, formularios inteligentes, reservas, FAQs dinámicas.
-- ${geo.positioningLine}
+- Zona de posicionamiento principal: Lanzarote.
 - Tono: profesional, claro, cercano, práctico, sin relleno.
 - Debe sonar experto, local y útil de verdad.
 
 Objetivo:
-Crear un artículo SEO en español, de alta calidad, pensado para posicionar búsquedas relacionadas con desarrollo web, automatización e IA para empresas.
+Crear un artículo SEO en español, de alta calidad, pensado para posicionar búsquedas relacionadas con desarrollo web, automatización e IA para empresas en Lanzarote.
 
 Tema semilla:
 ${seedTopic}
@@ -238,7 +164,7 @@ Instrucciones obligatorias:
 - El artículo debe ser original y profundo.
 - Longitud del contenido HTML: entre 1200 y 1700 palabras.
 - Enfocado en intención informacional + comercial.
-- ${geo.contentGuideline}
+- Debe incluir referencias naturales al contexto de negocios locales en Lanzarote cuando tenga sentido.
 - No inventes estadísticas ni casos falsos.
 - No abuses del nombre KORA.
 - No escribas frases vacías.
@@ -271,11 +197,11 @@ Estructura del JSON:
     {
       method: 'POST',
       headers: {
-        Authorization: `Bearer ${apiKey}`,
+        Authorization: `Bearer ${openRouterApiKey}`,
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        model,
+        model: openRouterModel,
         messages: [
           {
             role: 'system',
@@ -303,7 +229,6 @@ Estructura del JSON:
   const finalTitle = String(parsed.title).trim();
 
   const imageTopicSlug = normalizeImageTopicSlug(parsed.imageTopicSlug, parsed.categorySlug, seedTopic);
-  const coverImage = `/assets/blog/articulo-${imageTopicSlug}.webp`;
 
   const publishedAt = new Date().toISOString();
   const date = new Intl.DateTimeFormat('es-ES', {
@@ -328,21 +253,18 @@ Estructura del JSON:
     metaDescription: trimMetaDescription(parsed.metaDescription, parsed.excerpt),
     categorySlug: parsed.categorySlug in categoryMapEs ? parsed.categorySlug : 'negocios',
     category: categoryMapEs[parsed.categorySlug] || 'Negocios',
-    keywords: normalizeKeywords(parsed.keywords, seedTopic, scope),
+    keywords: normalizeKeywords(parsed.keywords, seedTopic),
     imageTopicSlug,
-    coverImage,
+    coverImage: '',
     contentHtml: sanitizeHtml(parsed.contentHtml),
     publishedAt,
     date,
     url: `/blog/${finalSlug}`,
-    seedTopic,
-    scope
+    seedTopic
   };
 }
 
 async function generateEnglishVersion(esPost, usedSlugsEn) {
-  const geo = buildGeoContext(esPost.scope);
-
   const prompt = `
 Translate and adapt this Spanish article into high-quality natural English for the KORA Digital Solutions blog.
 
@@ -353,7 +275,7 @@ Requirements:
 - Keep SEO quality.
 - Do not translate word by word in a robotic way.
 - Keep HTML content with clean tags: <p>, <h2>, <h3>, <ul>, <li>, <strong>.
-- ${geo.enPreserveLine}
+- Preserve the local Lanzarote context where relevant.
 - Keep the CTA natural in English.
 - Keep the FAQ block in English.
 - Generate an English slug.
@@ -390,11 +312,11 @@ JSON structure:
     {
       method: 'POST',
       headers: {
-        Authorization: `Bearer ${apiKey}`,
+        Authorization: `Bearer ${openRouterApiKey}`,
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        model,
+        model: openRouterModel,
         messages: [
           {
             role: 'system',
@@ -426,26 +348,121 @@ JSON structure:
   }).format(new Date(publishedAt));
 
   const imageTopicSlug = normalizeImageTopicSlug(parsed.imageTopicSlug, parsed.categorySlug, esPost.seedTopic);
-  const coverImage = `/assets/blog/articulo-${imageTopicSlug}.webp`;
 
   return {
     locale: 'en',
     title: cleanText(parsed.title),
     slug: finalSlug,
     excerpt: cleanText(parsed.excerpt),
-    metaDescription: trimMetaDescription(parsed.metaDescription, parsed.excerpt),
+    metaDescription: trimMetaDescription(parsed.metaDescription, parsed.excerpt, 'en'),
     categorySlug: parsed.categorySlug in categoryMapEn ? parsed.categorySlug : esPost.categorySlug,
     category: categoryMapEn[parsed.categorySlug] || categoryMapEn[esPost.categorySlug] || 'Business',
-    keywords: normalizeKeywords(parsed.keywords, esPost.seedTopic, esPost.scope),
+    keywords: normalizeKeywords(parsed.keywords, esPost.seedTopic),
     imageTopicSlug,
-    coverImage,
+    coverImage: esPost.coverImage,
     contentHtml: sanitizeHtml(parsed.contentHtml),
     publishedAt,
     date,
     url: `/en/blog/${finalSlug}`,
-    seedTopic: esPost.seedTopic,
-    scope: esPost.scope
+    seedTopic: esPost.seedTopic
   };
+}
+
+async function ensureCoverImage(post) {
+  const fileName = `${post.slug}.png`;
+  const relativeImagePath = `/assets/blog/${fileName}`;
+  const absoluteImagePath = path.join(BLOG_ASSETS_DIR, fileName);
+
+  try {
+    await fs.access(absoluteImagePath);
+    return relativeImagePath;
+  } catch {}
+
+  const fallbackImage = `/assets/blog/articulo-${post.imageTopicSlug}.webp`;
+
+  if (!openAiApiKey) {
+    console.warn('OPENAI_API_KEY no está configurada. Se usará imagen fallback por categoría.');
+    return fallbackImage;
+  }
+
+  try {
+    const imagePrompt = buildImagePrompt(post);
+    const imageBase64 = await generateImageWithOpenAI(imagePrompt);
+
+    if (!imageBase64) {
+      console.warn('No se recibió imagen de OpenAI. Se usará fallback.');
+      return fallbackImage;
+    }
+
+    await fs.writeFile(absoluteImagePath, Buffer.from(imageBase64, 'base64'));
+    return relativeImagePath;
+  } catch (error) {
+    console.error(`Error generando imagen para ${post.slug}: ${error.message}`);
+    return fallbackImage;
+  }
+}
+
+function buildImagePrompt(post) {
+  return `
+Create a premium editorial cover image for a business blog article.
+
+Brand context:
+- Company: KORA Digital Solutions
+- Audience: local businesses and SMEs in Lanzarote
+- Services: web development, AI automation, chatbots, lead generation, digital transformation
+- Goal: image for a professional blog article cover
+
+Article context:
+- Title: ${post.title}
+- Topic: ${post.seedTopic}
+- Category: ${post.category}
+
+Visual direction:
+- photorealistic or realistic editorial style
+- premium, minimalist, modern
+- dark neutral palette, elegant contrast
+- subtle business / digital / local context
+- lots of negative space
+- no text
+- no logos
+- no watermark
+- no UI screenshots
+- no visible brand names
+- avoid obvious AI look
+- clean composition
+- horizontal blog cover image
+
+Important:
+- make it feel like a real website hero image for a serious agency
+- suitable for a 16:9 blog cover
+`;
+}
+
+async function generateImageWithOpenAI(prompt) {
+  const response = await fetch("https://openrouter.ai/api/v1/chat/completions", {
+  method: "POST",
+  headers: {
+    "Authorization": `Bearer ${process.env.OPENROUTER_API_KEY}`,
+    "Content-Type": "application/json"
+  },
+  body: JSON.stringify({
+    model: "openai/gpt-5o",
+    messages: [
+      { role: "user", content: prompt }
+    ]
+  })
+});
+
+  const imageItems = Array.isArray(response?.output)
+    ? response.output.filter((item) => item?.type === 'image_generation_call' && item?.result)
+    : [];
+
+  if (!imageItems.length) {
+    console.log('OpenAI image response:', JSON.stringify(response, null, 2));
+    return null;
+  }
+
+  return imageItems[0].result;
 }
 
 function renderArticleHtml(locale, post) {
@@ -480,7 +497,6 @@ function renderArticleHtml(locale, post) {
   <meta property="og:description" content="${escapeHtml(post.metaDescription || post.excerpt)}">
   <meta property="og:url" content="${canonicalUrl}">
   <meta property="og:image" content="${SITE_URL}${post.coverImage}">
-  <!-- FAVICONS -->
   <link rel="icon" href="/assets/logo/icon/favicon.ico" sizes="any">
   <link rel="icon" type="image/svg+xml" href="/assets/logo/icon/favicon.svg">
   <link rel="icon" type="image/png" sizes="48x48" href="/assets/logo/icon/favicon-48.png">
@@ -548,7 +564,7 @@ function renderArticleHtml(locale, post) {
         </header>
 
         <div class="blog-article-cover">
-          <img src="${post.coverImage}" alt="${escapeHtml(post.title)}" loading="eager" fetchpriority="high" onerror="this.onerror=null;this.src='/assets/blog/article-default-image.webp';">
+          <img src="${post.coverImage}" alt="${escapeHtml(post.title)}" loading="eager" fetchpriority="high">
         </div>
 
         <article class="blog-article-content">
@@ -566,7 +582,7 @@ function renderArticleHtml(locale, post) {
   <div id="footer-placeholder"></div>
 
   <script src="/js/i18n.js?v=5"></script>
-  <script src="https://unpkg.com/lenis@1.3.18/dist/lenis.min.js" defer></script>
+  <script src="https://unpkg.com/lenis@1.3.18/dist/lenis.min.js"></script>
   <link rel="stylesheet" href="https://unpkg.com/lenis@1.3.18/dist/lenis.css">
   <script src="/js/script.js?v=6"></script>
   <script src="/js/blog-language-switch.js?v=1"></script>
@@ -590,8 +606,7 @@ function toIndexEntry(locale, post) {
     metaDescription: post.metaDescription,
     alternateUrl: post.alternateUrl,
     seedTopic: post.seedTopic,
-    imageTopicSlug: post.imageTopicSlug,
-    scope: post.scope
+    imageTopicSlug: post.imageTopicSlug
   };
 }
 
@@ -614,7 +629,7 @@ async function updateSitemap(esPosts, enPosts) {
 
   const uniqueMap = new Map();
   [...staticUrls, ...dynamicUrls].forEach((item) => {
-    const normalizedUrl = item.url.replace(/\.html$/, '');
+    const normalizedUrl = item.url === '/index.html' ? '/' : item.url;
     uniqueMap.set(normalizedUrl, {
       url: normalizedUrl,
       lastmod: item.lastmod
@@ -641,6 +656,7 @@ async function ensureBaseFiles() {
   await fs.mkdir(EN_DIR, { recursive: true });
   await fs.mkdir(EN_BLOG_DIR, { recursive: true });
   await fs.mkdir(DATA_DIR, { recursive: true });
+  await fs.mkdir(BLOG_ASSETS_DIR, { recursive: true });
 
   try {
     await fs.access(ES_INDEX_PATH);
@@ -703,7 +719,7 @@ async function fetchJsonWithTimeout(url, options, timeoutMs) {
 
     if (!response.ok) {
       const text = await response.text();
-      throw new Error(`Error OpenRouter: ${response.status} - ${text}`);
+      throw new Error(`Error HTTP ${response.status} - ${text}`);
     }
 
     return await response.json();
@@ -740,17 +756,9 @@ function cleanText(value) {
   return String(value || '').replace(/\s+/g, ' ').trim();
 }
 
-function normalizeKeywords(keywords, seedTopic, scope) {
+function normalizeKeywords(keywords, seedTopic) {
   const base = Array.isArray(keywords) ? keywords : [];
-  const geoKeyword = scope === 'lanzarote' ? 'Lanzarote' : scope === 'canarias' ? 'Canarias' : null;
-  const merged = [
-    ...base,
-    ...(geoKeyword ? [geoKeyword] : []),
-    'desarrollo web',
-    'automatización',
-    'IA',
-    seedTopic
-  ];
+  const merged = [...base, 'Lanzarote', 'desarrollo web', 'automatización', 'IA', seedTopic];
   const cleaned = merged
     .map((item) => cleanText(item))
     .filter(Boolean)
@@ -759,12 +767,14 @@ function normalizeKeywords(keywords, seedTopic, scope) {
   return Array.from(new Set(cleaned));
 }
 
-function trimMetaDescription(metaDescription, fallback = '') {
+function trimMetaDescription(metaDescription, fallback = '', locale = 'es') {
   const source = cleanText(metaDescription) || cleanText(fallback);
   const max = 160;
 
   if (!source) {
-    return 'Ideas sobre desarrollo web, automatización e IA para negocios y pymes.';
+    return locale === 'en'
+      ? 'Web development, automation, and AI insights for businesses in Lanzarote.'
+      : 'Ideas de desarrollo web, automatización e IA para negocios en Lanzarote.';
   }
 
   return source.length <= max ? source : `${source.slice(0, max - 1).trim()}…`;
