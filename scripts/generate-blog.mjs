@@ -70,6 +70,16 @@ const imageTopicMap = {
   'negocios': 'negocios'
 };
 
+const FEATURED_SLUGS_ES = [
+  'como-digitalizar-un-negocio-local-en-lanzarote-guia-paso-a-paso',
+  'como-conseguir-mas-contactos-desde-tu-web-de-empresa-en-lanzarote'
+];
+
+const FEATURED_SLUGS_EN = [
+  'how-to-digitize-a-local-business-in-lanzarote-step-by-step-guide',
+  'how-to-get-more-leads-from-your-business-website-in-lanzarote'
+];
+
 await ensureBaseFiles();
 
 const existingEsIndex = await readJson(ES_INDEX_PATH, { updatedAt: '', posts: [] });
@@ -100,8 +110,11 @@ const linkedEnPost = {
   alternateUrl: esPost.url
 };
 
-const esHtml = renderArticleHtml('es', linkedEsPost);
-const enHtml = renderArticleHtml('en', linkedEnPost);
+const esSidebarPosts = buildSidebarCollections('es', linkedEsPost, existingEsIndex.posts || []);
+const enSidebarPosts = buildSidebarCollections('en', linkedEnPost, existingEnIndex.posts || []);
+
+const esHtml = renderArticleHtml('es', linkedEsPost, esSidebarPosts);
+const enHtml = renderArticleHtml('en', linkedEnPost, enSidebarPosts);
 
 await fs.writeFile(path.join(BLOG_DIR, `${linkedEsPost.slug}.html`), esHtml, 'utf8');
 await fs.writeFile(path.join(EN_BLOG_DIR, `${linkedEnPost.slug}.html`), enHtml, 'utf8');
@@ -145,15 +158,14 @@ async function generateSpanishArticle(seedTopic, usedTitles, usedSlugs) {
 Eres el equipo editorial SEO de KORA Digital Solutions.
 
 Contexto de marca:
-- KORA es una agencia digital que crea webs de alto impacto y sistemas de IA para que los negocios conviertan más y trabajen menos.
-- Cliente ideal: negocios locales y pymes que quieren digitalizarse rápido.
-- Servicios: desarrollo web, rediseño web, automatizaciones con IA, chatbots, formularios inteligentes, reservas, FAQs dinámicas.
-- Zona de posicionamiento principal: Lanzarote.
-- Tono: profesional, claro, cercano, práctico, sin relleno.
-- Debe sonar experto, local y útil de verdad.
+- KORA es una agencia digital que crea webs de alto impacto y automatizaciones con IA para que los negocios conviertan más y trabajen menos.
+- Cliente ideal: negocios locales y pymes en Lanzarote.
+- Tono: profesional, claro, directo, útil, sin relleno.
+- Debe sonar experto y local.
+- Debe tener enfoque informacional y comercial.
 
 Objetivo:
-Crear un artículo SEO en español, de alta calidad, pensado para posicionar búsquedas relacionadas con desarrollo web, automatización e IA para empresas en Lanzarote.
+Crear un artículo SEO en español, de alta calidad, para posicionar búsquedas relacionadas con desarrollo web, automatización e IA para negocios en Lanzarote.
 
 Tema semilla:
 ${seedTopic}
@@ -161,19 +173,18 @@ ${seedTopic}
 Instrucciones obligatorias:
 - Devuelve SOLO JSON válido.
 - No metas markdown ni comentarios.
-- El artículo debe ser original y profundo.
-- Longitud del contenido HTML: entre 1200 y 1700 palabras.
-- Enfocado en intención informacional + comercial.
-- Debe incluir referencias naturales al contexto de negocios locales en Lanzarote cuando tenga sentido.
+- Longitud del contenido HTML: entre 850 y 1200 palabras.
+- El artículo debe ser más corto, más escaneable y más elegante que un blog genérico.
+- Estructura pensada para SEO y lectura rápida.
+- Usa HTML limpio con etiquetas: <p>, <h2>, <h3>, <ul>, <li>, <strong>.
+- Empieza con una introducción breve y clara.
+- Usa 4 o 5 secciones principales como máximo.
+- Incluye listas cuando aporten claridad.
+- Incluye un bloque FAQ SEO final con 3 preguntas y respuestas útiles.
 - No inventes estadísticas ni casos falsos.
 - No abuses del nombre KORA.
-- No escribas frases vacías.
-- Debe sonar humano y convincente.
-- Debe venir en HTML limpio con etiquetas: <p>, <h2>, <h3>, <ul>, <li>, <strong>.
-- Añade al final un CTA suave y natural para contactar.
-- Incluye un bloque FAQ SEO al final con 3 preguntas y respuestas útiles en HTML.
-- El título debe ser atractivo pero profesional, sin clickbait barato.
-- El excerpt debe ser claro y vender el valor del artículo.
+- El título debe ser atractivo pero profesional.
+- El excerpt debe resumir valor real.
 - La metaDescription debe tener entre 140 y 160 caracteres aprox.
 - El slug debe ser corto, natural y SEO friendly.
 - El campo imageTopicSlug debe devolver SOLO uno de estos valores:
@@ -210,7 +221,7 @@ Estructura del JSON:
           { role: 'user', content: prompt }
         ],
         temperature: 0.7,
-        max_tokens: 3200
+        max_tokens: 2600
       })
     },
     3,
@@ -272,11 +283,9 @@ Requirements:
 - Return ONLY valid JSON.
 - Keep the same meaning and commercial intent.
 - Adapt the writing so it sounds native in English.
-- Keep SEO quality.
-- Do not translate word by word in a robotic way.
+- Keep the same lighter, more editorial structure.
 - Keep HTML content with clean tags: <p>, <h2>, <h3>, <ul>, <li>, <strong>.
-- Preserve the local Lanzarote context where relevant.
-- Keep the CTA natural in English.
+- Preserve the Lanzarote local context when relevant.
 - Keep the FAQ block in English.
 - Generate an English slug.
 - Do not invent data.
@@ -325,7 +334,7 @@ JSON structure:
           { role: 'user', content: prompt }
         ],
         temperature: 0.5,
-        max_tokens: 3200
+        max_tokens: 2600
       })
     },
     3,
@@ -369,7 +378,7 @@ JSON structure:
 }
 
 async function ensureCoverImage(post) {
-  const fileName = `${post.slug}.png`;
+  const fileName = `${post.slug}.webp`;
   const relativeImagePath = `/assets/blog/${fileName}`;
   const absoluteImagePath = path.join(BLOG_ASSETS_DIR, fileName);
 
@@ -386,7 +395,7 @@ async function ensureCoverImage(post) {
   }
 
   try {
-    const imagePrompt = buildImagePrompt(post);
+    const imagePrompt = generateImagePrompt(post);
     const imageBase64 = await generateImageWithOpenAI(imagePrompt);
 
     if (!imageBase64) {
@@ -402,39 +411,86 @@ async function ensureCoverImage(post) {
   }
 }
 
-function buildImagePrompt(post) {
-  return `
-Create a premium editorial cover image for a business blog article.
+function generateImagePrompt(post) {
+  const baseStyle = `
+High-end editorial photography, ultra realistic.
 
-Brand context:
-- Company: KORA Digital Solutions
-- Audience: local businesses and SMEs in Lanzarote
-- Services: web development, AI automation, chatbots, lead generation, digital transformation
-- Goal: image for a professional blog article cover
+Style:
+- Dark environment, night or low light scene
+- Realistic lighting with soft warm highlights
+- Cinematic depth of field
+- Matte materials
+- Minimalist composition
+- Photorealistic
+- No text, no logos, no UI overlays
+- No futuristic sci-fi
+- No neon overload
+- No abstract concepts
+
+Mood:
+Premium, calm, modern, professional
+`;
+
+  const compositions = [
+    'slightly angled desk composition',
+    'close-up composition with depth of field',
+    'wide minimal composition with one main focus',
+    'soft side perspective',
+    'editorial product-like composition'
+  ];
+
+  const scenesByCategory = {
+    'desarrollo-web': [
+      'a laptop on a clean desk displaying a modern website layout',
+      'a minimalist workspace with a laptop showing a structured website interface',
+      'a desk with a laptop and subtle web design elements on screen'
+    ],
+    'seo': [
+      'a laptop displaying analytics and growth charts in a dark environment',
+      'a workspace showing a screen with website traffic and ranking metrics',
+      'a computer with a clean dashboard representing SEO performance'
+    ],
+    'automatizacion': [
+      'a laptop and smartphone on a desk showing automated communication',
+      'a workspace with devices connected representing automation',
+      'a laptop with a messaging interface and a phone beside it'
+    ],
+    'ia': [
+      'a laptop with a clean AI assistant interface in a dark workspace',
+      'a smart assistant experience on a screen in a premium desk setup',
+      'a minimal desk setup with an AI interface on screen'
+    ],
+    'negocios': [
+      'a premium desk setup with a laptop and subtle business documents',
+      'a modern workspace representing planning and growth',
+      'a clean executive desk in a dark elegant environment'
+    ]
+  };
+
+  const category = post.categorySlug || 'negocios';
+  const sceneList = scenesByCategory[category] || scenesByCategory.negocios;
+  const scene = sceneList[Math.floor(Math.random() * sceneList.length)];
+  const composition = compositions[Math.floor(Math.random() * compositions.length)];
+
+  return `
+${baseStyle}
+
+Scene:
+${scene}
 
 Article context:
-- Title: ${post.title}
-- Topic: ${post.seedTopic}
-- Category: ${post.category}
+${post.title}
 
-Visual direction:
-- photorealistic or realistic editorial style
-- premium, minimalist, modern
-- dark neutral palette, elegant contrast
-- subtle business / digital / local context
-- lots of negative space
-- no text
-- no logos
-- no watermark
-- no UI screenshots
-- no visible brand names
-- avoid obvious AI look
-- clean composition
-- horizontal blog cover image
+Composition:
+${composition}
 
 Important:
-- make it feel like a real website hero image for a serious agency
-- suitable for a 16:9 blog cover
+- Must look like real photography
+- Must feel premium and consistent with a dark minimalist brand
+- Avoid generic stock-photo look
+- Avoid repetition
+- One main subject only
+- Clean and elegant
 `;
 }
 
@@ -458,7 +514,6 @@ async function generateImageWithOpenAI(prompt) {
     );
 
     console.log('OpenAI image response:', JSON.stringify(response, null, 2));
-
     return response?.data?.[0]?.b64_json || null;
   } catch (error) {
     console.error('Error generando imagen:', error.message);
@@ -466,21 +521,22 @@ async function generateImageWithOpenAI(prompt) {
   }
 }
 
-function renderArticleHtml(locale, post) {
+function renderArticleHtml(locale, post, sidebarPosts) {
   const isEn = locale === 'en';
   const canonicalUrl = `${SITE_URL}${post.url}`;
   const esAlt = isEn ? `${SITE_URL}${post.alternateUrl}` : canonicalUrl;
   const enAlt = isEn ? canonicalUrl : `${SITE_URL}${post.alternateUrl}`;
   const keywords = JSON.stringify(post.keywords || []);
   const pageTitle = isEn ? `${post.title} | KORA Blog` : `${post.title} | Blog KORA`;
-  const ctaTitle = isEn ? 'Want to apply this to your business?' : '¿Quieres aplicar esto en tu negocio?';
-  const ctaText = isEn
-    ? 'At KORA, we create conversion-focused websites and AI automations designed to save time and generate real opportunities for businesses.'
-    : 'En KORA creamos webs orientadas a conversión y automatizaciones con IA pensadas para ahorrar tiempo y generar oportunidades reales para negocios.';
-  const ctaLinkText = isEn ? 'Talk to KORA' : 'Hablar con KORA';
-  const backText = isEn ? 'Back to blog' : 'Volver al blog';
-  const contactHref = '/#contacto';
   const blogHref = isEn ? '/en/blog/' : '/blog/';
+  const copy = getArticleUiCopy(locale);
+
+  const articleData = addIdsToHeadings(post.contentHtml);
+  const tocHtml = renderArticleToc(articleData.headings, copy);
+  const relatedHtml = renderSidebarList(copy.relatedTitle, sidebarPosts.related, copy.emptyList);
+  const recentHtml = renderSidebarList(copy.recentTitle, sidebarPosts.recent, copy.emptyList);
+  const featuredHtml = renderSidebarList(copy.featuredTitle, sidebarPosts.featured, copy.emptyList);
+  const ctaHtml = renderSidebarCta(locale, copy);
 
   return `<!DOCTYPE html>
 <html lang="${locale}">
@@ -517,6 +573,221 @@ function renderArticleHtml(locale, post) {
   <link rel="stylesheet" href="/css/base.css?v=6">
   <link rel="stylesheet" href="/css/components.css?v=7">
   <link rel="stylesheet" href="/css/blog.css?v=2">
+  <style>
+    .blog-article-shell {
+      display: grid;
+      grid-template-columns: minmax(0, 760px) 300px;
+      gap: 56px;
+      align-items: start;
+    }
+
+    .blog-article-primary {
+      min-width: 0;
+    }
+
+    .blog-article-sidebar {
+      position: sticky;
+      top: 120px;
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      align-self: start;
+    }
+
+    .blog-article-header {
+      margin-bottom: 28px;
+    }
+
+    .blog-article-header h1 {
+      max-width: 14ch;
+      line-height: 0.98;
+      letter-spacing: -0.04em;
+    }
+
+    .blog-article-excerpt {
+      max-width: 58ch;
+      font-size: 1.08rem;
+      line-height: 1.75;
+      color: rgba(255,255,255,0.72);
+    }
+
+    .blog-article-cover {
+      width: 100%;
+      max-width: 760px;
+      margin: 0 0 34px;
+    }
+
+    .blog-article-cover img {
+      width: 100%;
+      aspect-ratio: 16 / 8;
+      object-fit: cover;
+      border-radius: 24px;
+      display: block;
+    }
+
+    .blog-article-content {
+      max-width: 720px;
+    }
+
+    .blog-article-content > p:first-child {
+      font-size: 1.08rem;
+      color: rgba(255,255,255,0.82);
+    }
+
+    .blog-sidebar-section {
+      background: transparent;
+      border: 0;
+      padding: 0;
+    }
+
+    .blog-sidebar-kicker {
+      margin: 0 0 14px;
+      font-size: 0.76rem;
+      line-height: 1.2;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.42);
+      font-weight: 600;
+    }
+
+    .blog-article-toc,
+    .blog-sidebar-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .blog-article-toc a,
+    .blog-sidebar-list a {
+      color: rgba(255,255,255,0.76);
+      text-decoration: none;
+      font-size: 0.98rem;
+      line-height: 1.5;
+      transition: color 0.2s ease, transform 0.2s ease;
+    }
+
+    .blog-article-toc a:hover,
+    .blog-sidebar-list a:hover {
+      color: #ffffff;
+      transform: translateX(2px);
+    }
+
+    .blog-sidebar-item {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .blog-sidebar-item-category {
+      font-size: 0.78rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: #ff8383;
+    }
+
+    .blog-sidebar-divider {
+      width: 100%;
+      height: 1px;
+      background: linear-gradient(
+        90deg,
+        rgba(255,255,255,0.08) 0%,
+        rgba(255,255,255,0.02) 100%
+      );
+    }
+
+    .blog-sidebar-cta-copy {
+      margin: 0;
+      font-size: 0.98rem;
+      line-height: 1.7;
+      color: rgba(255,255,255,0.68);
+    }
+
+    .blog-sidebar-cta-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 14px;
+      color: #ffffff;
+      text-decoration: none;
+      font-size: 0.98rem;
+      font-weight: 600;
+      transition: opacity 0.2s ease, transform 0.2s ease;
+    }
+
+    .blog-sidebar-cta-link:hover {
+      opacity: 0.88;
+      transform: translateX(2px);
+    }
+
+    .blog-sidebar-cta-link-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 10px;
+      color: rgba(255,255,255,0.62);
+      text-decoration: none;
+      font-size: 0.94rem;
+      transition: color 0.2s ease, transform 0.2s ease;
+    }
+
+    .blog-sidebar-cta-link-secondary:hover {
+      color: #ffffff;
+      transform: translateX(2px);
+    }
+
+    .blog-article-end-cta {
+      margin-top: 42px;
+      padding-top: 28px;
+      border-top: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .blog-article-end-cta h3 {
+      margin-bottom: 12px;
+    }
+
+    .blog-article-end-cta p {
+      max-width: 58ch;
+      color: rgba(255,255,255,0.72);
+    }
+
+    .blog-article-end-cta-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 8px;
+      color: #ffffff;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    @media (max-width: 1240px) {
+      .blog-article-shell {
+        grid-template-columns: minmax(0, 1fr) 280px;
+        gap: 40px;
+      }
+    }
+
+    @media (max-width: 1080px) {
+      .blog-article-shell {
+        grid-template-columns: 1fr;
+      }
+
+      .blog-article-sidebar {
+        position: static;
+      }
+
+      .blog-article-content,
+      .blog-article-cover {
+        max-width: none;
+      }
+
+      .blog-article-header h1,
+      .blog-article-excerpt {
+        max-width: none;
+      }
+    }
+  </style>
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -550,32 +821,51 @@ function renderArticleHtml(locale, post) {
 
   <main class="blog-article-main">
     <div class="container">
-      <div class="blog-article-wrap">
-        <nav class="blog-breadcrumb" aria-label="Breadcrumb">
-          <a href="${blogHref}">${backText}</a>
-        </nav>
+      <div class="blog-article-shell">
+        <div class="blog-article-primary">
+          <div class="blog-article-wrap">
+            <nav class="blog-breadcrumb" aria-label="Breadcrumb">
+              <a href="${blogHref}">${copy.backText}</a>
+            </nav>
 
-        <header class="blog-article-header">
-          <div class="blog-card-meta">
-            <span class="blog-tag">${escapeHtml(post.category)}</span>
-            <span>${escapeHtml(post.date)}</span>
+            <header class="blog-article-header">
+              <div class="blog-card-meta">
+                <span class="blog-tag">${escapeHtml(post.category)}</span>
+                <span>${escapeHtml(post.date)}</span>
+              </div>
+              <h1>${escapeHtml(post.title)}</h1>
+              <p class="blog-article-excerpt">${escapeHtml(post.excerpt)}</p>
+            </header>
+
+            <div class="blog-article-cover">
+              <img src="${post.coverImage}" alt="${escapeHtml(post.title)}" loading="eager" fetchpriority="high" onerror="this.onerror=null;this.src='/assets/blog/article-default-image.webp';">
+            </div>
+
+            <article class="blog-article-content">
+              ${articleData.html}
+              <div class="blog-article-end-cta">
+                <h3>${copy.ctaTitle}</h3>
+                <p>${copy.ctaText}</p>
+                <a class="blog-article-end-cta-link" href="/#contacto">
+                  ${copy.ctaPrimary}
+                  <i class="fas fa-arrow-right"></i>
+                </a>
+              </div>
+            </article>
           </div>
-          <h1>${escapeHtml(post.title)}</h1>
-          <p class="blog-article-excerpt">${escapeHtml(post.excerpt)}</p>
-        </header>
-
-        <div class="blog-article-cover">
-          <img src="${post.coverImage}" alt="${escapeHtml(post.title)}" loading="eager" fetchpriority="high">
         </div>
 
-        <article class="blog-article-content">
-          ${post.contentHtml}
-          <div class="blog-cta-box">
-            <h3>${ctaTitle}</h3>
-            <p>${ctaText}</p>
-            <p><a class="blog-card-link" href="${contactHref}">${ctaLinkText} <i class="fas fa-arrow-right"></i></a></p>
-          </div>
-        </article>
+        <aside class="blog-article-sidebar" aria-label="${copy.sidebarLabel}">
+          ${tocHtml}
+          <div class="blog-sidebar-divider"></div>
+          ${relatedHtml}
+          <div class="blog-sidebar-divider"></div>
+          ${recentHtml}
+          <div class="blog-sidebar-divider"></div>
+          ${featuredHtml}
+          <div class="blog-sidebar-divider"></div>
+          ${ctaHtml}
+        </aside>
       </div>
     </div>
   </main>
@@ -589,6 +879,154 @@ function renderArticleHtml(locale, post) {
   <script src="/js/blog-language-switch.js?v=1"></script>
 </body>
 </html>`;
+}
+
+function getArticleUiCopy(locale) {
+  const isEn = locale === 'en';
+
+  return {
+    backText: isEn ? 'Back to blog' : 'Volver al blog',
+    sidebarLabel: isEn ? 'Article sidebar' : 'Barra lateral del artículo',
+    tocTitle: isEn ? 'In this article' : 'En este artículo',
+    relatedTitle: isEn ? 'Related articles' : 'Artículos relacionados',
+    recentTitle: isEn ? 'Recent articles' : 'Artículos recientes',
+    featuredTitle: isEn ? 'Featured articles' : 'Artículos destacados',
+    ctaTitle: isEn ? 'Want to apply this to your business?' : '¿Quieres aplicar esto en tu negocio?',
+    ctaText: isEn
+      ? 'We review your website or digital process and show you clear improvement opportunities.'
+      : 'Revisamos tu web o proceso digital y te enseñamos oportunidades claras de mejora.',
+    ctaPrimary: isEn ? 'Request analysis' : 'Solicitar análisis',
+    ctaSecondary: isEn ? 'Talk to KORA' : 'Hablar con KORA',
+    emptyToc: isEn ? 'Article sections will appear here.' : 'Aquí aparecerán las secciones del artículo.',
+    emptyList: isEn ? 'More articles soon.' : 'Más artículos pronto.'
+  };
+}
+
+function addIdsToHeadings(html) {
+  const headings = [];
+  let counter = 1;
+
+  const updatedHtml = String(html || '').replace(/<h2([^>]*)>([\s\S]*?)<\/h2>/gi, (_, attrs = '', content = '') => {
+    const cleanHeading = stripTags(content).trim();
+    const baseId = slugify(cleanHeading) || `seccion-${counter}`;
+    let finalId = baseId;
+
+    if (headings.some((item) => item.id === finalId)) {
+      finalId = `${baseId}-${counter}`;
+    }
+
+    headings.push({
+      id: finalId,
+      text: cleanHeading
+    });
+
+    counter += 1;
+
+    if (/\sid=("|')[^"']+("|')/i.test(attrs)) {
+      return `<h2${attrs}>${content}</h2>`;
+    }
+
+    return `<h2${attrs} id="${finalId}">${content}</h2>`;
+  });
+
+  return {
+    html: updatedHtml,
+    headings
+  };
+}
+
+function renderArticleToc(headings, copy) {
+  if (!headings.length) {
+    return `
+      <section class="blog-sidebar-section">
+        <p class="blog-sidebar-kicker">${copy.tocTitle}</p>
+        <p class="blog-sidebar-cta-copy">${copy.emptyToc}</p>
+      </section>
+    `;
+  }
+
+  return `
+    <section class="blog-sidebar-section">
+      <p class="blog-sidebar-kicker">${copy.tocTitle}</p>
+      <nav class="blog-article-toc">
+        ${headings.map((heading) => `<a href="#${escapeHtml(heading.id)}">${escapeHtml(heading.text)}</a>`).join('')}
+      </nav>
+    </section>
+  `;
+}
+
+function buildSidebarCollections(locale, currentPost, posts = []) {
+  const featuredSlugs = locale === 'en' ? FEATURED_SLUGS_EN : FEATURED_SLUGS_ES;
+
+  const validPosts = posts.filter((post) => {
+    const sameSlug = String(post.slug || '').toLowerCase() === String(currentPost.slug || '').toLowerCase();
+    return !sameSlug;
+  });
+
+  const related = validPosts
+    .filter((post) => post.categorySlug === currentPost.categorySlug)
+    .slice(0, 2);
+
+  const recent = validPosts.slice(0, 2);
+
+  const featured = validPosts
+    .filter((post) => featuredSlugs.includes(post.slug))
+    .slice(0, 2);
+
+  return {
+    related,
+    recent,
+    featured
+  };
+}
+
+function renderSidebarList(title, items = [], emptyText = 'Más artículos pronto.') {
+  if (!items.length) {
+    return `
+      <section class="blog-sidebar-section">
+        <p class="blog-sidebar-kicker">${title}</p>
+        <p class="blog-sidebar-cta-copy">${emptyText}</p>
+      </section>
+    `;
+  }
+
+  return `
+    <section class="blog-sidebar-section">
+      <p class="blog-sidebar-kicker">${title}</p>
+      <div class="blog-sidebar-list">
+        ${items.map((item) => `
+          <div class="blog-sidebar-item">
+            <span class="blog-sidebar-item-category">${escapeHtml(item.category || 'Blog')}</span>
+            <a href="${escapeHtml(item.url)}">${escapeHtml(item.title)}</a>
+          </div>
+        `).join('')}
+      </div>
+    </section>
+  `;
+}
+
+function renderSidebarCta(locale, copy) {
+  const primaryHref = '/#contacto';
+  const secondaryHref = '/#contacto';
+
+  return `
+    <section class="blog-sidebar-section">
+      <p class="blog-sidebar-kicker">${copy.ctaTitle}</p>
+      <p class="blog-sidebar-cta-copy">${copy.ctaText}</p>
+      <a class="blog-sidebar-cta-link" href="${primaryHref}">
+        ${copy.ctaPrimary}
+        <i class="fas fa-arrow-right"></i>
+      </a>
+      <a class="blog-sidebar-cta-link-secondary" href="${secondaryHref}">
+        ${copy.ctaSecondary}
+        <i class="fas fa-arrow-right"></i>
+      </a>
+    </section>
+  `;
+}
+
+function stripTags(value) {
+  return String(value || '').replace(/<[^>]+>/g, ' ');
 }
 
 function toIndexEntry(locale, post) {
