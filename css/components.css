@@ -524,15 +524,14 @@ footer .logo {
     background: transparent;
     color: var(--text-primary);
     border: 1px solid var(--border-light);
-    padding: 0.47rem 1.6rem;
+    padding: 6px 32px;
     border-radius: 40px;
     text-decoration: none;
     transition: var(--transition-smooth);
 }
 
 .btn-blog:hover {
-    border-color: var(--text-primary);
-    background-color: var(--accent-glow);
+    border-color: var(--accent-color);
     transform: translateY(-2px);
 }
 
