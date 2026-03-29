@@ -387,11 +387,21 @@ async function ensureCoverImage(post) {
     return relativeImagePath;
   } catch {}
 
-  const fallbackImage = `/assets/blog/articulo-${post.imageTopicSlug}.webp`;
+  const categoryFallbackPath = path.join(BLOG_ASSETS_DIR, `articulo-${post.imageTopicSlug}.webp`);
+  const defaultFallbackImage = '/assets/blog/article-default-image.webp';
+
+  async function resolveFallback() {
+    try {
+      await fs.access(categoryFallbackPath);
+      return `/assets/blog/articulo-${post.imageTopicSlug}.webp`;
+    } catch {
+      return defaultFallbackImage;
+    }
+  }
 
   if (!openAiApiKey) {
-    console.warn('OPENAI_API_KEY no está configurada. Se usará imagen fallback por categoría.');
-    return fallbackImage;
+    console.warn('OPENAI_API_KEY no está configurada. Se usará imagen fallback.');
+    return resolveFallback();
   }
 
   try {
@@ -400,14 +410,14 @@ async function ensureCoverImage(post) {
 
     if (!imageBase64) {
       console.warn('No se recibió imagen de OpenAI. Se usará fallback.');
-      return fallbackImage;
+      return resolveFallback();
     }
 
     await fs.writeFile(absoluteImagePath, Buffer.from(imageBase64, 'base64'));
     return relativeImagePath;
   } catch (error) {
     console.error(`Error generando imagen para ${post.slug}: ${error.message}`);
-    return fallbackImage;
+    return resolveFallback();
   }
 }
 
