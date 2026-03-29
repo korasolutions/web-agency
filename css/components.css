@@ -9,7 +9,7 @@
   position: fixed;
   left: 18px;
   bottom: 18px;
-  z-index: 9999;
+  z-index: 9999999;
   width: min(380px, calc(100vw - 36px));
   background: rgba(18, 18, 18, 0.92);
   border: 1px solid var(--border-light);

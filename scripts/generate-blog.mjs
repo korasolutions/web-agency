@@ -566,7 +566,7 @@ function renderArticleHtml(locale, post) {
   <div id="footer-placeholder"></div>
 
   <script src="/js/i18n.js?v=5"></script>
-  <script src="https://unpkg.com/lenis@1.3.18/dist/lenis.min.js"></script>
+  <script src="https://unpkg.com/lenis@1.3.18/dist/lenis.min.js" defer></script>
   <link rel="stylesheet" href="https://unpkg.com/lenis@1.3.18/dist/lenis.css">
   <script src="/js/script.js?v=6"></script>
   <script src="/js/blog-language-switch.js?v=1"></script>
