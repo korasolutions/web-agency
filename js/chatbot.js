@@ -40,7 +40,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     };
 
-    const copy = lang.startsWith("en") ? t.en : t.es;
+    let copy = lang.startsWith("en") ? t.en : t.es;
 
     clearSessionIfPageWasReloaded();
 
@@ -613,6 +613,44 @@ document.addEventListener("DOMContentLoaded", () => {
 
     window.addEventListener("pagehide", () => {
         saveSessionState();
+    });
+
+    document.addEventListener("i18n:applied", () => {
+        const newLang = document.documentElement.lang || "es";
+        const newCopy = newLang.startsWith("en") ? t.en : t.es;
+        if (newCopy === copy) return;
+
+        const prevWelcome = copy.welcome;
+        copy = newCopy;
+
+        root.querySelector(".kora-chatbot-header h3").textContent = newCopy.title;
+        root.querySelector(".kora-chatbot-header p").textContent = newCopy.subtitle;
+        root.querySelector(".kora-chatbot-close").setAttribute("aria-label", newCopy.closeLabel);
+        toggleBtn.setAttribute("aria-label", isOpen ? newCopy.closeLabel : newCopy.openLabel);
+        input.placeholder = hasOptionalConsent() ? newCopy.placeholder : newCopy.consentButton;
+        sendBtn.textContent = newCopy.send;
+        root.querySelector(".kora-chatbot-cookie-title").textContent = newCopy.consentTitle;
+        root.querySelector(".kora-chatbot-cookie-text").childNodes[0].textContent = newCopy.consentText + " ";
+        root.querySelector(".kora-chatbot-cookie-text .legal-href").textContent = newCopy.consentHref;
+        root.querySelector(".kora-chatbot-cookie-accept").textContent = newCopy.consentButton;
+        root.querySelector(".kora-chatbot-cookie-note").textContent = newCopy.consentNote;
+
+        // Traducir el mensaje de bienvenida si está en el historial
+        const welcomeIndex = conversationHistory.findIndex(
+            (msg) => msg.role === "bot" && msg.text.trim() === prevWelcome.trim()
+        );
+        if (welcomeIndex !== -1) {
+            conversationHistory[welcomeIndex].text = newCopy.welcome;
+            const botBubbles = messages.querySelectorAll(".kora-chatbot-message.bot:not(.typing)");
+            // El mensaje de bienvenida es siempre el primero del bot
+            if (botBubbles.length > 0) {
+                const bubble = botBubbles[0].querySelector(".bubble");
+                if (bubble) {
+                    bubble.innerHTML = escapeHtml(cleanMarkdown(newCopy.welcome)).replace(/\n/g, "<br>");
+                }
+            }
+            saveSessionState();
+        }
     });
 
     restoreMessagesFromSession();
