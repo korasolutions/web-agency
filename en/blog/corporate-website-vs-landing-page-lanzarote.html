@@ -41,221 +41,7 @@
   <link rel="stylesheet" href="/css/base.css?v=6">
   <link rel="stylesheet" href="/css/components.css?v=7">
   <link rel="stylesheet" href="/css/blog.css?v=2">
-  <style>
-    .blog-article-shell {
-      display: grid;
-      grid-template-columns: minmax(0, 760px) 300px;
-      gap: 56px;
-      align-items: start;
-    }
-
-    .blog-article-primary {
-      min-width: 0;
-    }
-
-    .blog-article-sidebar {
-      position: sticky;
-      top: 120px;
-      min-width: 0;
-      display: flex;
-      flex-direction: column;
-      gap: 24px;
-      align-self: start;
-    }
-
-    .blog-article-header {
-      margin-bottom: 28px;
-    }
-
-    .blog-article-header h1 {
-      max-width: 14ch;
-      line-height: 0.98;
-      letter-spacing: -0.04em;
-    }
-
-    .blog-article-excerpt {
-      max-width: 58ch;
-      font-size: 1.08rem;
-      line-height: 1.75;
-      color: rgba(255,255,255,0.72);
-    }
-
-    .blog-article-cover {
-      width: 100%;
-      max-width: 760px;
-      margin: 0 0 34px;
-    }
-
-    .blog-article-cover img {
-      width: 100%;
-      aspect-ratio: 16 / 8;
-      object-fit: cover;
-      border-radius: 24px;
-      display: block;
-    }
-
-    .blog-article-content {
-      max-width: 720px;
-    }
-
-    .blog-article-content > p:first-child {
-      font-size: 1.08rem;
-      color: rgba(255,255,255,0.82);
-    }
-
-    .blog-sidebar-section {
-      background: transparent;
-      border: 0;
-      padding: 0;
-    }
-
-    .blog-sidebar-kicker {
-      margin: 0 0 14px;
-      font-size: 0.76rem;
-      line-height: 1.2;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: rgba(255,255,255,0.42);
-      font-weight: 600;
-    }
-
-    .blog-article-toc,
-    .blog-sidebar-list {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-    }
-
-    .blog-article-toc a,
-    .blog-sidebar-list a {
-      color: rgba(255,255,255,0.76);
-      text-decoration: none;
-      font-size: 0.98rem;
-      line-height: 1.5;
-      transition: color 0.2s ease, transform 0.2s ease;
-    }
-
-    .blog-article-toc a:hover,
-    .blog-sidebar-list a:hover {
-      color: #ffffff;
-      transform: translateX(2px);
-    }
-
-    .blog-sidebar-item {
-      display: flex;
-      flex-direction: column;
-      gap: 4px;
-    }
-
-    .blog-sidebar-item-category {
-      font-size: 0.78rem;
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
-      color: #ff8383;
-    }
-
-    .blog-sidebar-divider {
-      width: 100%;
-      height: 1px;
-      background: linear-gradient(
-        90deg,
-        rgba(255,255,255,0.08) 0%,
-        rgba(255,255,255,0.02) 100%
-      );
-    }
-
-    .blog-sidebar-cta-copy {
-      margin: 0;
-      font-size: 0.98rem;
-      line-height: 1.7;
-      color: rgba(255,255,255,0.68);
-    }
-
-    .blog-sidebar-cta-link {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      margin-top: 14px;
-      color: #ffffff;
-      text-decoration: none;
-      font-size: 0.98rem;
-      font-weight: 600;
-      transition: opacity 0.2s ease, transform 0.2s ease;
-    }
-
-    .blog-sidebar-cta-link:hover {
-      opacity: 0.88;
-      transform: translateX(2px);
-    }
-
-    .blog-sidebar-cta-link-secondary {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      margin-top: 10px;
-      color: rgba(255,255,255,0.62);
-      text-decoration: none;
-      font-size: 0.94rem;
-      transition: color 0.2s ease, transform 0.2s ease;
-    }
-
-    .blog-sidebar-cta-link-secondary:hover {
-      color: #ffffff;
-      transform: translateX(2px);
-    }
-
-    .blog-article-end-cta {
-      margin-top: 42px;
-      padding-top: 28px;
-      border-top: 1px solid rgba(255,255,255,0.08);
-    }
-
-    .blog-article-end-cta h3 {
-      margin-bottom: 12px;
-    }
-
-    .blog-article-end-cta p {
-      max-width: 58ch;
-      color: rgba(255,255,255,0.72);
-    }
-
-    .blog-article-end-cta-link {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      margin-top: 8px;
-      color: #ffffff;
-      text-decoration: none;
-      font-weight: 600;
-    }
-
-    @media (max-width: 1240px) {
-      .blog-article-shell {
-        grid-template-columns: minmax(0, 1fr) 280px;
-        gap: 40px;
-      }
-    }
-
-    @media (max-width: 1080px) {
-      .blog-article-shell {
-        grid-template-columns: 1fr;
-      }
-
-      .blog-article-sidebar {
-        position: static;
-      }
-
-      .blog-article-content,
-      .blog-article-cover {
-        max-width: none;
-      }
-
-      .blog-article-header h1,
-      .blog-article-excerpt {
-        max-width: none;
-      }
-    }
-  </style>
+  <link rel="stylesheet" href="/css/article.css?v=1">
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -284,7 +70,7 @@
   }
   </script>
 </head>
-<body data-page-lang="en" data-alt-es-url="/blog/web-corporativa-vs-landing-page" data-alt-en-url="/en/blog/corporate-website-vs-landing-page-lanzarote">
+<body data-page-lang="en" data-alt-es-url="/blog/web-corporativa-vs-landing-page.html" data-alt-en-url="/en/blog/corporate-website-vs-landing-page-lanzarote.html">
   <div id="header-placeholder"></div>
 
   <main class="blog-article-main">
@@ -312,7 +98,7 @@
             <article class="blog-article-content">
               <p>In today's digital world, having an effective online presence is crucial for any business, especially for SMEs in Lanzarote. Two of the most common options for establishing that presence are corporate websites and landing pages. While both serve important functions, they have key differences that make them suitable for different objectives.</p> <h2 id="what-is-a-corporate-website">What is a Corporate Website?</h2> <p>A corporate website is the main site of a company. Its goal is to provide information about the business, its products and services, and to establish a connection with visitors. Typically, it includes several sections such as:</p> <ul> <li>Home</li> <li>About Us</li> <li>Services</li> <li>Blog</li> <li>Contact</li> </ul> <p>This type of website is ideal for consolidating brand identity and offering detailed information to users.</p> <h2 id="what-is-a-landing-page">What is a Landing Page?</h2> <p>On the other hand, a landing page is a web page specifically designed to capture the user's attention and convert them into a customer. It usually focuses on a specific offer, such as a product, service, or promotion. Its features include:</p> <ul> <li>A single conversion goal</li> <li>Clear and direct content</li> <li>A prominent call to action</li> <li>Attractive visual elements</li> </ul> <p>The landing page is ideal for specific marketing campaigns and temporary promotions.</p> <h2 id="key-differences">Key Differences</h2> <p>Here are the most significant differences between a corporate website and a landing page:</p> <ul> <li><strong>Objective:</strong> The corporate website aims to inform, while the landing page focuses on conversion.</li> <li><strong>Structure:</strong> The corporate website is more extensive and varied; the landing page is simple and direct.</li> <li><strong>Content:</strong> The corporate website includes multiple sections; the landing page has specific and limited content.</li> <li><strong>Duration:</strong> The corporate website is permanent; the landing page is usually temporary, linked to specific campaigns.</li> </ul> <h2 id="which-one-to-choose-for-your-business-in-lanzarote">Which One to Choose for Your Business in Lanzarote?</h2> <p>The choice between a corporate website and a landing page depends on your business objectives. If you aim to build a solid online presence and provide comprehensive information about your business, a corporate website is the best option. However, if you want to promote a specific product or service and maximize customer acquisition, a landing page may be more effective.</p> <h2 id="conclusion">Conclusion</h2> <p>Both corporate websites and landing pages play a crucial role in the digital strategy of any business. Entrepreneurs in Lanzarote should assess their goals and choose the option that best suits their needs. At KORA Digital Solutions, we are here to help you make the right decision and create the most suitable digital solution for you.</p> <h2 id="frequently-asked-questions">Frequently Asked Questions</h2> <h3>Can I have both types of pages on my website?</h3> <p>Yes, many businesses choose to have a corporate website along with several landing pages for different campaigns and objectives.</p> <h3>How long does it take to create a landing page?</h3> <p>The creation of a landing page can vary, but it generally can be done quickly, depending on the complexity of the design and content.</p> <h3>Is a landing page necessary for marketing campaigns?</h3> <p>It is not strictly necessary, but an optimized landing page can significantly improve your conversion rates.</p>
               <div class="blog-article-end-cta">
-                <h3>Want to apply this to your business?</h3>
+                <h2>Want to apply this to your business?</h2>
                 <p>We review your website or digital process and show you clear improvement opportunities.</p>
                 <a class="blog-article-end-cta-link" href="/#contacto">
                   Request analysis
@@ -324,74 +110,30 @@
         </div>
 
         <aside class="blog-article-sidebar" aria-label="Article sidebar">
-          
+
     <section class="blog-sidebar-section">
       <p class="blog-sidebar-kicker">In this article</p>
       <nav class="blog-article-toc">
         <a href="#what-is-a-corporate-website">What is a Corporate Website?</a><a href="#what-is-a-landing-page">What is a Landing Page?</a><a href="#key-differences">Key Differences</a><a href="#which-one-to-choose-for-your-business-in-lanzarote">Which One to Choose for Your Business in Lanzarote?</a><a href="#conclusion">Conclusion</a><a href="#frequently-asked-questions">Frequently Asked Questions</a>
       </nav>
     </section>
-  
-          <div class="blog-sidebar-divider"></div>
-          
+
     <section class="blog-sidebar-section">
       <p class="blog-sidebar-kicker">Related articles</p>
       <div class="blog-sidebar-list">
-        
-          <div class="blog-sidebar-item">
-            <span class="blog-sidebar-item-category">Web development</span>
-            <a href="/en/blog/improve-website-speed-lanzarote">How to Improve Your Website Speed to Boost Sales in Lanzarote</a>
-          </div>
-        
-          <div class="blog-sidebar-item">
-            <span class="blog-sidebar-item-category">Web development</span>
-            <a href="/en/blog/choose-web-development-agency-lanzarote">How to Choose the Best Web Development and Automation Agency in Lanzarote</a>
-          </div>
-        
-      </div>
-    </section>
-  
-          <div class="blog-sidebar-divider"></div>
-          
-    <section class="blog-sidebar-section">
-      <p class="blog-sidebar-kicker">Recent articles</p>
-      <div class="blog-sidebar-list">
-        
-          <div class="blog-sidebar-item">
-            <span class="blog-sidebar-item-category">SEO</span>
-            <a href="/en/blog/local-seo-lanzarote-service-business">Local SEO in Lanzarote: Boost Your Service Business</a>
-          </div>
-        
-          <div class="blog-sidebar-item">
-            <span class="blog-sidebar-item-category">Web development</span>
-            <a href="/en/blog/improve-website-speed-lanzarote">How to Improve Your Website Speed to Boost Sales in Lanzarote</a>
-          </div>
-        
-      </div>
-    </section>
-  
-          <div class="blog-sidebar-divider"></div>
-          
-      <section class="blog-sidebar-section">
-        <p class="blog-sidebar-kicker">Featured articles</p>
         <p class="blog-sidebar-cta-copy">More articles soon.</p>
-      </section>
-    
-          <div class="blog-sidebar-divider"></div>
-          
-    <section class="blog-sidebar-section">
+      </div>
+    </section>
+
+    <section class="blog-sidebar-section blog-sidebar-cta-section">
       <p class="blog-sidebar-kicker">Want to apply this to your business?</p>
       <p class="blog-sidebar-cta-copy">We review your website or digital process and show you clear improvement opportunities.</p>
       <a class="blog-sidebar-cta-link" href="/#contacto">
-        Request analysis
-        <i class="fas fa-arrow-right"></i>
-      </a>
-      <a class="blog-sidebar-cta-link-secondary" href="/#contacto">
         Talk to KORA
         <i class="fas fa-arrow-right"></i>
       </a>
     </section>
-  
+
         </aside>
       </div>
     </div>
