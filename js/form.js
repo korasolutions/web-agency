@@ -78,6 +78,13 @@ document.addEventListener("DOMContentLoaded", () => {
                 I18N.t("home.contact.form.status.success");
             statusBox.classList.add("show", "success");
 
+            window.dataLayer = window.dataLayer || [];
+            window.dataLayer.push({
+                event: "generate_lead",
+                form_name: "formulario_principal",
+                lead_type: "contacto_web"
+            });
+
             form.reset();
         } catch (error) {
             console.error("Error real:", error.message);
