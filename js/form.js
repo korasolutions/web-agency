@@ -1,5 +1,7 @@
 (() => {
     "use strict";
+    console.log("[form.js] ARCHIVO NUEVO CARGADO");
+    document.body.setAttribute("data-form-js", "loaded-v999");
 
     const DEBUG = true;
     const FORM_ID = "contact-form";
