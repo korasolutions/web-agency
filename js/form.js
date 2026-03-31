@@ -3,7 +3,7 @@
     console.log("[form.js] ARCHIVO NUEVO CARGADO");
     document.body.setAttribute("data-form-js", "loaded-v999");
 
-    const DEBUG = true;
+    const DEBUG = false;
     const FORM_ID = "contact-form";
     const STATUS_ID = "form-status";
     const RETRY_DELAY = 300;

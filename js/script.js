@@ -3,7 +3,7 @@ window.Lenis;
 document.addEventListener('DOMContentLoaded', function () {
 
     function initLenis() {
-        const isDesktop = window.innerWidth > 1024;
+        const isDesktop = !window.matchMedia('(pointer: coarse)').matches;
 
         if (!isDesktop || typeof window.Lenis === 'undefined') {
             return null;
