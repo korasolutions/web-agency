@@ -1,4 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
+    console.log("SCRIPT NUEVO CARGADO 999");
+    alert("SCRIPT NUEVO CARGADO 999");
     const form = document.getElementById("contact-form");
     const statusBox = document.getElementById("form-status");
 
