@@ -1,6 +1,33 @@
 {
-  "updatedAt": "2026-03-29T19:49:19.630Z",
+  "updatedAt": "2026-03-31T10:45:39.131Z",
   "posts": [
+    {
+      "locale": "en",
+      "title": "When Should a Business in Lanzarote Redesign Its Website?",
+      "slug": "when-should-a-business-in-lanzarote-redesign-its-website",
+      "url": "/en/blog/when-should-a-business-in-lanzarote-redesign-its-website.html",
+      "excerpt": "Discover the key moments when your business in Lanzarote needs a website redesign to improve performance and attract more customers.",
+      "category": "Web development",
+      "categorySlug": "desarrollo-web",
+      "keywords": [
+        "website redesign",
+        "businesses Lanzarote",
+        "web pages",
+        "web optimization",
+        "Lanzarote",
+        "web development",
+        "automation",
+        "AI",
+        "when a business in Lanzarote needs to redesign its website"
+      ],
+      "date": "March 31, 2026",
+      "publishedAt": "2026-03-31T10:45:21.026Z",
+      "coverImage": "/assets/blog/article-default-image.webp?v=2",
+      "metaDescription": "Identify the ideal time to redesign your company's website in Lanzarote and maximize your conversion potential.",
+      "alternateUrl": "/blog/rediseno-web-lanzarote.html",
+      "seedTopic": "cuándo una empresa en lanzarote necesita rediseñar su página web",
+      "imageTopicSlug": "desarrollo-web"
+    },
     {
       "locale": "en",
       "title": "How to Digitize a Local Business in Lanzarote: A Step-by-Step Guide",

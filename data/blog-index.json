@@ -1,6 +1,33 @@
 {
-  "updatedAt": "2026-03-29T19:49:19.630Z",
+  "updatedAt": "2026-03-31T10:45:39.131Z",
   "posts": [
+    {
+      "locale": "es",
+      "title": "¿Cuándo debe una empresa en Lanzarote rediseñar su página web?",
+      "slug": "rediseno-web-lanzarote",
+      "url": "/blog/rediseno-web-lanzarote.html",
+      "excerpt": "Descubre los momentos clave en los que tu negocio en Lanzarote necesita un rediseño web para mejorar su rendimiento y atraer más clientes.",
+      "category": "Desarrollo web",
+      "categorySlug": "desarrollo-web",
+      "keywords": [
+        "rediseño web",
+        "empresas Lanzarote",
+        "páginas web",
+        "optimización web",
+        "Lanzarote",
+        "desarrollo web",
+        "automatización",
+        "IA",
+        "cuándo una empresa en lanzarote necesita rediseñar su página web"
+      ],
+      "date": "31 de marzo de 2026",
+      "publishedAt": "2026-03-31T10:45:21.026Z",
+      "coverImage": "/assets/blog/article-default-image.webp?v=2",
+      "metaDescription": "Identifica cuándo es el momento ideal para rediseñar la web de tu empresa en Lanzarote y maximiza tu potencial de conversión.",
+      "alternateUrl": "/en/blog/when-should-a-business-in-lanzarote-redesign-its-website.html",
+      "seedTopic": "cuándo una empresa en lanzarote necesita rediseñar su página web",
+      "imageTopicSlug": "desarrollo-web"
+    },
     {
       "locale": "es",
       "title": "Cómo Digitalizar un Negocio Local en Lanzarote: Guía Paso a Paso",
