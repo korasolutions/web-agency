@@ -586,7 +586,7 @@ function renderArticleHtml(locale, post, sidebarPosts) {
               <div class="blog-article-end-cta">
                 <h2>${copy.ctaTitle}</h2>
                 <p>${copy.ctaText}</p>
-                <a class="blog-article-end-cta-link" href="/#contacto">
+                <a class="blog-article-end-cta-link" href="/#inicio">
                   ${copy.ctaPrimary}
                   <i class="fas fa-arrow-right"></i>
                 </a>
@@ -626,12 +626,17 @@ function getArticleUiCopy(locale) {
     relatedTitle: isEn ? 'Related articles' : 'Artículos relacionados',
     recentTitle: isEn ? 'Recent articles' : 'Artículos recientes',
     featuredTitle: isEn ? 'Featured articles' : 'Artículos destacados',
-    ctaTitle: isEn ? 'Want to apply this to your business?' : '¿Quieres aplicar esto en tu negocio?',
+    ctaTitle: isEn ? 'Want to discover everything we do?' : '¿Quieres conocer todo lo que hacemos?',
     ctaText: isEn
-      ? 'We review your website or digital process and show you clear improvement opportunities.'
-      : 'Revisamos tu web o proceso digital y te enseñamos oportunidades claras de mejora.',
-    ctaPrimary: isEn ? 'Request analysis' : 'Solicitar análisis',
+      ? 'Explore the digital services and solutions KORA offers for businesses in Lanzarote.'
+      : 'Descubre los servicios y soluciones digitales que KORA ofrece para negocios en Lanzarote.',
+    ctaPrimary: isEn ? 'Visit our website' : 'Visita nuestra web',
     ctaSecondary: isEn ? 'Talk to KORA' : 'Hablar con KORA',
+    sidebarCtaTitle: isEn ? 'Want a free consultation?' : 'Da el siguiente paso',
+    sidebarCtaText: isEn
+      ? 'No strings attached — tell us about your business and we\'ll guide you through the next steps.'
+      : 'Analizamos tu situación y te proponemos mejoras reales.',
+    backToBlog: isEn ? 'Back to blog' : 'Volver al blog',
     emptyToc: isEn ? 'Article sections will appear here.' : 'Aquí aparecerán las secciones del artículo.',
     emptyList: isEn ? 'More articles soon.' : 'Más artículos pronto.'
   };
@@ -741,18 +746,22 @@ function renderSidebarList(title, items = [], emptyText = 'Más artículos pront
 }
 
 function renderSidebarCta(locale, copy) {
-  const primaryHref = '/#contacto';
-  const secondaryHref = '/#contacto';
+  const ctaHref = '/#contacto';
+  const blogHref = locale === 'en' ? '/en/blog/' : '/blog/';
 
   return `
     <section class="blog-sidebar-section blog-sidebar-cta-section">
-      <p class="blog-sidebar-kicker">${copy.ctaTitle}</p>
-      <p class="blog-sidebar-cta-copy">${copy.ctaText}</p>
-      <a class="blog-sidebar-cta-link" href="${secondaryHref}">
+      <p class="blog-sidebar-kicker">${copy.sidebarCtaTitle}</p>
+      <p class="blog-sidebar-cta-copy">${copy.sidebarCtaText}</p>
+      <a class="blog-sidebar-cta-link" href="${ctaHref}">
         ${copy.ctaSecondary}
         <i class="fas fa-arrow-right"></i>
       </a>
     </section>
+    <a class="blog-sidebar-back-link" href="${blogHref}">
+      <i class="fas fa-arrow-left"></i>
+      ${copy.backToBlog}
+    </a>
   `;
 }
 
