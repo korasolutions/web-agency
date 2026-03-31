@@ -477,9 +477,9 @@ async function generateImageWithOpenAI(prompt) {
 
 function renderArticleHtml(locale, post, sidebarPosts) {
   const isEn = locale === 'en';
-  const canonicalUrl = `${SITE_URL}${post.url}`;
-  const esAlt = isEn ? `${SITE_URL}${post.alternateUrl}` : canonicalUrl;
-  const enAlt = isEn ? canonicalUrl : `${SITE_URL}${post.alternateUrl}`;
+  const canonicalUrl = `${SITE_URL}${post.url.replace(/\.html$/, '')}`;
+  const esAlt = isEn ? `${SITE_URL}${post.alternateUrl.replace(/\.html$/, '')}` : canonicalUrl;
+  const enAlt = isEn ? canonicalUrl : `${SITE_URL}${post.alternateUrl.replace(/\.html$/, '')}`;
   const keywords = JSON.stringify(post.keywords || []);
   const pageTitle = isEn ? `${post.title} | KORA Blog` : `${post.title} | Blog KORA`;
   const blogHref = isEn ? '/en/blog/' : '/blog/';
@@ -526,8 +526,8 @@ function renderArticleHtml(locale, post, sidebarPosts) {
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="stylesheet" href="/css/base.css?v=6">
   <link rel="stylesheet" href="/css/components.css?v=7">
-  <link rel="stylesheet" href="/css/blog.css?v=2">
-  <link rel="stylesheet" href="/css/article.css?v=1">
+  <link rel="stylesheet" href="/css/blog.css?v=3">
+  <link rel="stylesheet" href="/css/article.css?v=2">
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
