@@ -73,10 +73,16 @@ document.addEventListener("DOMContentLoaded", () => {
             }
 
             // Éxito
+            // Éxito
+            console.log("SUCCESS 1 - entró en éxito");
+            alert("SUCCESS 1 - entró en éxito");
+
             statusBox.dataset.state = "success";
             statusBox.textContent =
                 I18N.t("home.contact.form.status.success");
             statusBox.classList.add("show", "success");
+
+            console.log("SUCCESS 2 - antes de push", window.dataLayer);
 
             window.dataLayer = window.dataLayer || [];
             window.dataLayer.push({
@@ -84,6 +90,9 @@ document.addEventListener("DOMContentLoaded", () => {
                 form_name: "formulario_principal",
                 lead_type: "contacto_web"
             });
+
+            console.log("SUCCESS 3 - después de push", window.dataLayer);
+            alert("SUCCESS 3 - evento lanzado");
 
             form.reset();
         } catch (error) {
