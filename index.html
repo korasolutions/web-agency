@@ -78,7 +78,7 @@
     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-T8RSJ7GH" height="0" width="0"
             style="display:none;visibility:hidden"></iframe></noscript>
     <!-- End Google Tag Manager (noscript) -->
-     
+
     <!-- ===================================================== -->
     <!--  TEMPLATE HEADER (tpl/header.html)  -->
     <!-- ===================================================== -->
@@ -385,7 +385,11 @@
                                     data-text="Enviar mensaje">
                                 <i class="fas fa-paper-plane"></i> Enviar mensaje
                             </button>
-
+                            window.dataLayer = window.dataLayer || [];
+                            window.dataLayer.push({
+                                event: "generate_lead",
+                                form_name: "contact_form"
+                            });
                             <div class="form-status" id="form-status"></div>
                         </form>
                     </div>
