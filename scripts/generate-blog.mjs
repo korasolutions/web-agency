@@ -185,8 +185,9 @@ Instrucciones obligatorias:
 - No abuses del nombre KORA.
 - El título debe ser atractivo pero profesional.
 - El excerpt debe resumir valor real.
-- La metaDescription debe tener entre 140 y 160 caracteres aprox.
+- La metaDescription debe tener entre 140 y 160 caracteres. Sin excepción.
 - El slug debe ser corto, natural y SEO friendly.
+- El array keywords debe contener entre 5 y 7 términos de búsqueda relevantes en español, específicos para el tema y Lanzarote cuando aplique.
 - El campo imageTopicSlug debe devolver SOLO uno de estos valores:
   "seo", "automatizacion", "ia", "desarrollo-web", "negocios", "chatbot", "landing-page", "lanzarote"
 
@@ -287,7 +288,9 @@ Requirements:
 - Keep HTML content with clean tags: <p>, <h2>, <h3>, <ul>, <li>, <strong>.
 - Preserve the Lanzarote local context when relevant.
 - Keep the FAQ block in English.
-- Generate an English slug.
+- Generate an English slug (short, natural, SEO friendly).
+- The metaDescription must be between 140 and 160 characters.
+- The keywords array must contain 5 to 7 relevant English search terms.
 - Do not invent data.
 - The field imageTopicSlug must keep one of these values only:
   "seo", "automatizacion", "ia", "desarrollo-web", "negocios", "chatbot", "landing-page", "lanzarote"
@@ -499,6 +502,10 @@ function renderArticleHtml(locale, post, sidebarPosts) {
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>${escapeHtml(pageTitle)}</title>
   <meta name="description" content="${escapeHtml(post.metaDescription || post.excerpt)}">
+  <meta name="author" content="KORA Digital Solutions">
+  <meta name="publisher" content="KORA Digital Solutions">
+  <meta name="keywords" content="${escapeHtml((post.keywords || []).join(', '))}">
+  <meta name="robots" content="index, follow">
   <link rel="canonical" href="${canonicalUrl}">
   <link rel="alternate" hreflang="es" href="${esAlt}">
   <link rel="alternate" hreflang="en" href="${enAlt}">
