@@ -187,6 +187,7 @@ Instrucciones obligatorias:
 - El excerpt debe resumir valor real.
 - La metaDescription debe tener entre 140 y 160 caracteres. Sin excepción.
 - El slug debe ser corto, natural y SEO friendly.
+- El campo "title" es el título del artículo (para el H1). Debe tener máximo 53 caracteres, ya que se combinará con " | Blog KORA" para formar el title SEO completo (≤65 chars).
 - El array keywords debe contener entre 5 y 7 términos de búsqueda relevantes en español, específicos para el tema y Lanzarote cuando aplique.
 - El campo imageTopicSlug debe devolver SOLO uno de estos valores:
   "seo", "automatizacion", "ia", "desarrollo-web", "negocios", "chatbot", "landing-page", "lanzarote"
@@ -290,6 +291,7 @@ Requirements:
 - Keep the FAQ block in English.
 - Generate an English slug (short, natural, SEO friendly).
 - The metaDescription must be between 140 and 160 characters.
+- The "title" field is the article title (used for H1). It must be maximum 53 characters, as it will be combined with " | KORA Blog" to form the full SEO title (≤65 chars).
 - The keywords array must contain 5 to 7 relevant English search terms.
 - Do not invent data.
 - The field imageTopicSlug must keep one of these values only:
