@@ -474,6 +474,34 @@
             document.body.appendChild(button);
         })();
     </script>
+
+    <script>
+        (() => {
+            const webCard = document.querySelector('.service-web');
+            const aiCard  = document.querySelector('.service-ai');
+            if (!webCard || !aiCard) return;
+
+            // Estado inicial: ocultas fuera de pantalla
+            webCard.classList.add('slide-ready', 'slide-from-left', 'slide-off');
+            aiCard.classList.add('slide-ready', 'slide-from-right', 'slide-off', 'slide-delay');
+
+            const observer = new IntersectionObserver(
+                (entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.remove('slide-off');
+                        } else {
+                            entry.target.classList.add('slide-off');
+                        }
+                    });
+                },
+                { threshold: 0.3 }
+            );
+
+            observer.observe(webCard);
+            observer.observe(aiCard);
+        })();
+    </script>
 </body>
 
 </html>

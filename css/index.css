@@ -1661,3 +1661,22 @@
     font-size: 0.9rem;
   }
 }
+
+/* ======================================================
+   SERVICES CARDS — SLIDE-IN ANIMATION
+====================================================== */
+.service-visual.slide-ready {
+    will-change: transform, opacity;
+    transition:
+        transform 0.65s cubic-bezier(0.22, 1, 0.36, 1),
+        opacity    0.65s cubic-bezier(0.22, 1, 0.36, 1),
+        border-color 0.35s ease,
+        box-shadow   0.35s ease;
+}
+
+.service-visual.slide-ready.slide-delay {
+    transition-delay: 0.12s;
+}
+
+.service-visual.slide-ready.slide-off.slide-from-left  { transform: translateX(-70px); opacity: 0; }
+.service-visual.slide-ready.slide-off.slide-from-right { transform: translateX(70px);  opacity: 0; }
