@@ -493,7 +493,7 @@ function renderArticleHtml(locale, post, sidebarPosts) {
   const articleData = addIdsToHeadings(post.contentHtml);
   const tocHtml = renderArticleToc(articleData.headings, copy);
   const relatedHtml = renderSidebarList(copy.relatedTitle, sidebarPosts.related, copy.emptyList);
-  const recentHtml = renderSidebarList(copy.recentTitle, sidebarPosts.recent, copy.emptyList);
+  const recentHtml = renderRecentCarousel(copy.recentTitle, sidebarPosts.recent, copy.readText);
   const featuredHtml = renderSidebarList(copy.featuredTitle, sidebarPosts.featured, copy.emptyList);
   const ctaHtml = renderSidebarCta(locale, copy);
 
@@ -536,7 +536,7 @@ function renderArticleHtml(locale, post, sidebarPosts) {
   <link rel="stylesheet" href="/css/base.css?v=6">
   <link rel="stylesheet" href="/css/components.css?v=7">
   <link rel="stylesheet" href="/css/blog.css?v=3">
-  <link rel="stylesheet" href="/css/article.css?v=2">
+  <link rel="stylesheet" href="/css/article.css?v=3">
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -607,10 +607,10 @@ function renderArticleHtml(locale, post, sidebarPosts) {
         <aside class="blog-article-sidebar" aria-label="${copy.sidebarLabel}">
           ${tocHtml}
           ${relatedHtml}
-          ${recentHtml}
           ${ctaHtml}
         </aside>
       </div>
+      ${recentHtml}
     </div>
   </main>
 
@@ -647,7 +647,8 @@ function getArticleUiCopy(locale) {
       : 'Analizamos tu situación y te proponemos mejoras reales.',
     backToBlog: isEn ? 'Back to blog' : 'Volver al blog',
     emptyToc: isEn ? 'Article sections will appear here.' : 'Aquí aparecerán las secciones del artículo.',
-    emptyList: isEn ? 'More articles soon.' : 'Más artículos pronto.'
+    emptyList: isEn ? 'More articles soon.' : 'Más artículos pronto.',
+    readText: isEn ? 'Read article' : 'Leer artículo'
   };
 }
 
@@ -716,7 +717,7 @@ function buildSidebarCollections(locale, currentPost, posts = []) {
     .filter((post) => post.categorySlug === currentPost.categorySlug)
     .slice(0, 2);
 
-  const recent = validPosts.slice(0, 2);
+  const recent = validPosts.slice(0, 3);
 
   const featured = validPosts
     .filter((post) => featuredSlugs.includes(post.slug))
@@ -727,6 +728,31 @@ function buildSidebarCollections(locale, currentPost, posts = []) {
     recent,
     featured
   };
+}
+
+function renderRecentCarousel(title, items = [], readText = 'Leer artículo') {
+  if (!items.length) return '';
+
+  return `
+    <section class="blog-recent-section">
+      <p class="blog-sidebar-kicker">${title}</p>
+      <div class="blog-recent-carousel">
+        ${items.map((item) => `
+          <a class="blog-recent-card" href="${escapeHtml(item.url)}">
+            <img class="blog-recent-card-cover" src="${escapeHtml(item.coverImage || '/assets/blog/article-default-image.webp?v=2')}" alt="${escapeHtml(item.title)}" loading="lazy" onerror="this.onerror=null;this.src='/assets/blog/article-default-image.webp?v=2';">
+            <div class="blog-recent-card-body">
+              <div class="blog-card-meta">
+                <span class="blog-tag">${escapeHtml(item.category || 'Blog')}</span>
+                <span>${escapeHtml(item.date || '')}</span>
+              </div>
+              <h3>${escapeHtml(item.title)}</h3>
+              <span class="blog-recent-card-cta">${readText} <i class="fas fa-arrow-right"></i></span>
+            </div>
+          </a>
+        `).join('')}
+      </div>
+    </section>
+  `;
 }
 
 function renderSidebarList(title, items = [], emptyText = 'Más artículos pronto.') {
@@ -745,7 +771,6 @@ function renderSidebarList(title, items = [], emptyText = 'Más artículos pront
       <div class="blog-sidebar-list">
         ${items.map((item) => `
           <div class="blog-sidebar-item">
-            <span class="blog-sidebar-item-category">${escapeHtml(item.category || 'Blog')}</span>
             <a href="${escapeHtml(item.url)}">${escapeHtml(item.title)}</a>
           </div>
         `).join('')}
