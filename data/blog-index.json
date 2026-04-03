@@ -1,6 +1,34 @@
 {
-  "updatedAt": "2026-03-31T10:45:39.131Z",
+  "updatedAt": "2026-04-03T10:37:27.963Z",
   "posts": [
+    {
+      "locale": "es",
+      "title": "Cómo captar clientes en Lanzarote con una web profesional",
+      "slug": "captar-clientes-lanzarote-web",
+      "url": "/blog/captar-clientes-lanzarote-web.html",
+      "excerpt": "Descubre estrategias efectivas para atraer clientes locales mediante un sitio web profesional en Lanzarote.",
+      "category": "Negocios",
+      "categorySlug": "negocios",
+      "keywords": [
+        "captar clientes Lanzarote",
+        "web profesional",
+        "negocios locales",
+        "pymes Lanzarote",
+        "estrategias de marketing",
+        "Lanzarote",
+        "desarrollo web",
+        "automatización",
+        "IA",
+        "cómo captar clientes en lanzarote con una web profesional"
+      ],
+      "date": "03 de abril de 2026",
+      "publishedAt": "2026-04-03T10:37:08.333Z",
+      "coverImage": "/assets/blog/article-default-image.webp?v=2",
+      "metaDescription": "Aprende a captar clientes en Lanzarote con una web profesional. Estrategias efectivas para negocios locales y pymes.",
+      "alternateUrl": "/en/blog/attract-customers-lanzarote-professional-website.html",
+      "seedTopic": "cómo captar clientes en lanzarote con una web profesional",
+      "imageTopicSlug": "desarrollo-web"
+    },
     {
       "locale": "es",
       "title": "¿Cuándo debe una empresa en Lanzarote rediseñar su página web?",
