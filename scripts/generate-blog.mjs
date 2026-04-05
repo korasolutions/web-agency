@@ -272,7 +272,7 @@ Estructura del JSON:
     contentHtml: sanitizeHtml(parsed.contentHtml),
     publishedAt,
     date,
-    url: `/blog/${finalSlug}.html`,
+    url: `/blog/${finalSlug}`,
     seedTopic
   };
 }
@@ -377,7 +377,7 @@ JSON structure:
     contentHtml: sanitizeHtml(parsed.contentHtml),
     publishedAt,
     date,
-    url: `/en/blog/${finalSlug}.html`,
+    url: `/en/blog/${finalSlug}`,
     seedTopic: esPost.seedTopic
   };
 }
@@ -482,9 +482,9 @@ async function generateImageWithOpenAI(prompt) {
 
 function renderArticleHtml(locale, post, sidebarPosts) {
   const isEn = locale === 'en';
-  const canonicalUrl = `${SITE_URL}${post.url.replace(/\.html$/, '')}`;
-  const esAlt = isEn ? `${SITE_URL}${post.alternateUrl.replace(/\.html$/, '')}` : canonicalUrl;
-  const enAlt = isEn ? canonicalUrl : `${SITE_URL}${post.alternateUrl.replace(/\.html$/, '')}`;
+  const canonicalUrl = `${SITE_URL}${post.url}`;
+  const esAlt = isEn ? `${SITE_URL}${post.alternateUrl}` : canonicalUrl;
+  const enAlt = isEn ? canonicalUrl : `${SITE_URL}${post.alternateUrl}`;
   const keywords = JSON.stringify(post.keywords || []);
   const pageTitle = isEn ? `${post.title} | KORA Blog` : `${post.title} | Blog KORA`;
   const blogHref = isEn ? '/en/blog/' : '/blog/';
@@ -836,8 +836,8 @@ async function updateSitemap(esPosts, enPosts) {
   ];
 
   const dynamicUrls = [
-    ...esPosts.map((post) => ({ url: post.url.replace(/\.html$/, ''), lastmod: post.publishedAt })),
-    ...enPosts.map((post) => ({ url: post.url.replace(/\.html$/, ''), lastmod: post.publishedAt }))
+    ...esPosts.map((post) => ({ url: post.url, lastmod: post.publishedAt })),
+    ...enPosts.map((post) => ({ url: post.url, lastmod: post.publishedAt }))
   ];
 
   const uniqueMap = new Map();

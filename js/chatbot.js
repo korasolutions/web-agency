@@ -179,7 +179,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
                     <p class="kora-chatbot-cookie-text">
                         ${copy.consentText}
-                        <a href="/legal.html#legal-ia" class="legal-href">${copy.consentHref}</a>
+                        <a href="/legal#legal-ia" class="legal-href">${copy.consentHref}</a>
                     </p>
 
                     <div class="kora-chatbot-cookie-actions">

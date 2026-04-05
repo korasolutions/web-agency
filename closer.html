@@ -56,17 +56,17 @@
      
     <header class="header">
         <div class="header-container">
-            <a href="/closer.html" class="logo">
+            <a href="/closer" class="logo">
                 <img class="kora-logo" src="/assets/logo/kora.svg" alt="Logo de Kora Digital Solutions" title="KORA Digital Solutions">
                 <span class="logo-dot"></span>
             </a>
             <nav class="nav">
                 <ul class="nav-list">
                     <li class="nav-item">
-                        <a href="/closer.html#contacto" class="nav-link">Contáctanos</a>
+                        <a href="/closer#contacto" class="nav-link">Contáctanos</a>
                     </li>
                     <li class="nav-item">
-                        <a href="/index.html#inicio" class="nav-link">Visita Nuestra Web</a>
+                        <a href="/#inicio" class="nav-link">Visita Nuestra Web</a>
                     </li>
                 </ul>
             </nav>
@@ -633,7 +633,7 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-brand">
-                    <a href="/index.html" class="logo">
+                    <a href="/" class="logo">
                         <img class="kora-logo" src="/assets/logo/kora.svg" alt="Logo de Kora Digital Solutions" title="KORA Digital Solutions">
                         <span class="logo-dot"></span>
                     </a>
@@ -658,7 +658,7 @@
 
                 <div class="footer-cta">
                     <h3 class="footer-title">ENLACES</h3>
-                    <a href="/index.html#inicio" class="btn btn-secondary">
+                    <a href="/#inicio" class="btn btn-secondary">
                         Visita Nuestra Web
                     </a>
                 </div>
@@ -677,7 +677,7 @@
 
     <script>
         sessionStorage.removeItem('came_from_closer');
-        document.querySelectorAll('a[href^="/index.html"], a[href="/"], a[href^="/#"]').forEach((link) => {
+        document.querySelectorAll('a[href="/"], a[href^="/#"]').forEach((link) => {
             link.addEventListener('click', () => {
                 sessionStorage.setItem('came_from_closer', 'true');
             });
