@@ -529,11 +529,8 @@ function renderArticleHtml(locale, post, sidebarPosts) {
   <meta name="twitter:title" content="${escapeHtml(pageTitle)}">
   <meta name="twitter:description" content="${escapeHtml(post.metaDescription || post.excerpt)}">
   <meta name="twitter:image" content="${SITE_URL}${post.coverImage}">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <link rel="stylesheet" href="/css/base.css?v=6">
+  <link rel="stylesheet" href="/css/base.css?v=7">
   <link rel="stylesheet" href="/css/components.css?v=7">
   <link rel="stylesheet" href="/css/blog.css?v=3">
   <link rel="stylesheet" href="/css/article.css?v=3">
