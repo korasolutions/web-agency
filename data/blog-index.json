@@ -1,6 +1,32 @@
 {
-  "updatedAt": "2026-04-03T10:37:27.963Z",
+  "updatedAt": "2026-04-10T10:47:04.415Z",
   "posts": [
+    {
+      "locale": "es",
+      "title": "Por qué un negocio local en Lanzarote necesita una web que convierta",
+      "slug": "web-que-convierte-lanzarote",
+      "url": "/blog/web-que-convierte-lanzarote",
+      "excerpt": "Descubre por qué una web efectiva es esencial para negocios locales en Lanzarote y cómo puede impulsar tus ventas.",
+      "category": "Negocios",
+      "categorySlug": "negocios",
+      "keywords": [
+        "negocios Lanzarote",
+        "web que convierte",
+        "desarrollo web",
+        "automatización",
+        "IA para negocios",
+        "pymes Lanzarote",
+        "marketing digital",
+        "Lanzarote"
+      ],
+      "date": "10 de abril de 2026",
+      "publishedAt": "2026-04-10T10:46:42.270Z",
+      "coverImage": "/assets/blog/article-default-image.webp?v=2",
+      "metaDescription": "Una web que convierta es clave para negocios locales en Lanzarote. Descubre su importancia y cómo maximizar tu impacto.",
+      "alternateUrl": "/en/blog/lanzarote-local-business-converting-website",
+      "seedTopic": "por qué un negocio local en lanzarote necesita una web que convierta",
+      "imageTopicSlug": "desarrollo-web"
+    },
     {
       "locale": "es",
       "title": "Cómo captar clientes en Lanzarote con una web profesional",
