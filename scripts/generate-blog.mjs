@@ -26,8 +26,7 @@ if (!openRouterApiKey) {
 const topicPool = [
   'seo local en lanzarote para negocios de servicios',
   'cómo captar clientes en lanzarote con una web profesional',
-  'por qué un negocio local en lanzarote necesita una web que convierta',
-  'automatizaciones con ia para negocios locales en lanzarote',
+'automatizaciones con ia para negocios locales en lanzarote',
   'cómo usar un chatbot con ia para captar leads en lanzarote',
   'errores que hacen que una web de empresa en lanzarote no genere clientes',
   'cómo mejorar la velocidad de una web para vender más en lanzarote',

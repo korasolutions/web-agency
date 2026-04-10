@@ -3,34 +3,6 @@
   "posts": [
     {
       "locale": "en",
-      "title": "Why a Local Business in Lanzarote Needs a Converting Website",
-      "slug": "lanzarote-local-business-converting-website",
-      "url": "/en/blog/lanzarote-local-business-converting-website",
-      "excerpt": "Discover why an effective website is essential for local businesses in Lanzarote and how it can boost your sales.",
-      "category": "Business",
-      "categorySlug": "negocios",
-      "keywords": [
-        "Lanzarote businesses",
-        "converting website",
-        "web development",
-        "automation",
-        "AI for businesses",
-        "Lanzarote SMEs",
-        "digital marketing",
-        "Lanzarote",
-        "desarrollo web",
-        "automatización"
-      ],
-      "date": "April 10, 2026",
-      "publishedAt": "2026-04-10T10:46:42.270Z",
-      "coverImage": "/assets/blog/article-default-image.webp?v=2",
-      "metaDescription": "A converting website is key for local businesses in Lanzarote. Learn its importance and how to maximize your impact.",
-      "alternateUrl": "/blog/web-que-convierte-lanzarote",
-      "seedTopic": "por qué un negocio local en lanzarote necesita una web que convierta",
-      "imageTopicSlug": "desarrollo-web"
-    },
-    {
-      "locale": "en",
       "title": "How to Attract Customers in Lanzarote with a Professional Website",
       "slug": "attract-customers-lanzarote-professional-website",
       "url": "/en/blog/attract-customers-lanzarote-professional-website",
