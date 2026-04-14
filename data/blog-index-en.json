@@ -1,6 +1,33 @@
 {
-  "updatedAt": "2026-04-10T10:47:04.415Z",
+  "updatedAt": "2026-04-14T10:56:55.304Z",
   "posts": [
+    {
+      "locale": "en",
+      "title": "AI Chatbots: Lead Generation in Lanzarote",
+      "slug": "ai-chatbots-lead-generation-lanzarote",
+      "url": "/en/blog/ai-chatbots-lead-generation-lanzarote",
+      "excerpt": "Discover how AI chatbots can help your Lanzarote business capture more leads and optimize processes.",
+      "category": "Business",
+      "categorySlug": "negocios",
+      "keywords": [
+        "AI chatbots",
+        "lead generation",
+        "business in Lanzarote",
+        "automation",
+        "artificial intelligence",
+        "Lanzarote",
+        "how to use a chatbot for lead generation",
+        "desarrollo web",
+        "automatización"
+      ],
+      "date": "April 14, 2026",
+      "publishedAt": "2026-04-14T10:56:45.807Z",
+      "coverImage": "/assets/blog/article-default-image.webp?v=2",
+      "metaDescription": "Learn how to use AI chatbots for lead generation in Lanzarote. Optimize your business and improve conversions.",
+      "alternateUrl": "/blog/chatbots-ia-lanzarote",
+      "seedTopic": "cómo usar un chatbot con ia para captar leads en lanzarote",
+      "imageTopicSlug": "chatbot"
+    },
     {
       "locale": "en",
       "title": "How to Attract Customers in Lanzarote with a Professional Website",
