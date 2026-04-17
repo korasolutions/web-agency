@@ -1,6 +1,34 @@
 {
-  "updatedAt": "2026-04-14T10:56:55.303Z",
+  "updatedAt": "2026-04-17T10:49:17.865Z",
   "posts": [
+    {
+      "locale": "es",
+      "title": "Elementos Clave de una Landing Page Local",
+      "slug": "landing-page-negocios-lanzarote",
+      "url": "/blog/landing-page-negocios-lanzarote",
+      "excerpt": "Descubre los elementos esenciales para crear una landing page efectiva para negocios locales en Lanzarote.",
+      "category": "Negocios",
+      "categorySlug": "negocios",
+      "keywords": [
+        "landing page Lanzarote",
+        "diseño web local",
+        "conversiones negocios",
+        "automatización marketing",
+        "IA para pymes",
+        "Lanzarote",
+        "desarrollo web",
+        "automatización",
+        "IA",
+        "qué debe tener una landing page para negocios locales en lanzarote"
+      ],
+      "date": "17 de abril de 2026",
+      "publishedAt": "2026-04-17T10:48:52.930Z",
+      "coverImage": "/assets/blog/article-default-image.webp?v=2",
+      "metaDescription": "Aprende qué debe incluir una landing page para negocios locales en Lanzarote y mejora tu conversión.",
+      "alternateUrl": "/en/blog/local-landing-page-elements",
+      "seedTopic": "qué debe tener una landing page para negocios locales en lanzarote",
+      "imageTopicSlug": "landing-page"
+    },
     {
       "locale": "es",
       "title": "Chatbots IA: Captación de Leads en Lanzarote",
